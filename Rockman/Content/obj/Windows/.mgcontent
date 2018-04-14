@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/rockman/RockmanEXEBattle1.png</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/Font.spritefont</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/RockmanFont.spritefont</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/battleEffect/busterEffect.png</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/battleEffect/chargeBuster.png</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/bgm/BattleStart-EXE5.mp3</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/BusterCharged.wav</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/BusterCharging.wav</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/Buster.wav</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/bgm/TournamentBattle-EXE4.5.mp3</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/virus/MettonAttack.png</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/panel/panelStage.png</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/bgm/PVPBattle(Re)-RNR3.mp3</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/Cannon.wav</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/MettWave.wav</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/DefeatedExplode.wav</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/Deleted.wav</File>
+    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/background/space.png</File>
+  </SourceFiles>
+</SourceFileCollection>

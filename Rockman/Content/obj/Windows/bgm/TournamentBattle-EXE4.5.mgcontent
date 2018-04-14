@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/bgm/TournamentBattle-EXE4.5.mp3</SourceFile>
+  <SourceTime>2017-08-13T08:40:18.6456237+07:00</SourceTime>
+  <DestFile>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/bin/Windows/bgm/TournamentBattle-EXE4.5.xnb</DestFile>
+  <DestTime>2018-02-20T23:32:41.1064063+07:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2017-03-01T22:05:36+07:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2017-03-01T22:05:36+07:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/bin/Windows/bgm/TournamentBattle-EXE4.5.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>
