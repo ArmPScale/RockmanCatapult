@@ -97,7 +97,7 @@ namespace Rockman.Sprites
         public override void Draw(SpriteBatch spriteBatch)
         {
             //rectAtk
-            destRectMetAtk = new Rectangle((TILESIZE * currentTile.Y * 2) + (screenStageX - 12), (24 * currentTile.X * 2) + (screenStageY - 85), 50 * (int)scale, 60 * (int)scale);
+            destRectMetAtk = new Rectangle((TILESIZEX * currentTile.Y * 2) + (screenStageX - 20), (TILESIZEY * currentTile.X * 2) + (screenStageY - 125), 50 * (int)scale, 60 * (int)scale);
             //Position = new Vector2((TILESIZE * currentTile.Y * 2) + (screenStageX - 12), (24 * currentTile.X * 2) + (screenStageY - 85));
             for (int i = 0; i < 3; i++)
             {
@@ -116,7 +116,7 @@ namespace Rockman.Sprites
                         //}
                         spriteBatch.Draw(_texture[0], destRectMetAtk, sourceRectMetAtk, Color.White);
                         //drawHP
-                        spriteBatch.DrawString(Singleton.Instance._font, string.Format("{0}", (Singleton.Instance.spriteHP[i, j])), new Vector2((TILESIZE * j * scale) + (screenStageX + 16 + 10), (24 * i * scale) + (screenStageY - 5 + 45)), Color.White);
+                        spriteBatch.DrawString(Singleton.Instance._font, string.Format("{0}", (Singleton.Instance.spriteHP[i, j])), new Vector2((TILESIZEX * currentTile.Y * 2) + (screenStageX + TILESIZEY), (TILESIZEY * currentTile.X * 2) + (screenStageY + TILESIZEX - 10)), Color.White,0f,Vector2.Zero,1.3f,SpriteEffects.None,0f);
                     }
                 }
             }

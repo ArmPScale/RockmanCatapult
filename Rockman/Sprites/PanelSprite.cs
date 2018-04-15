@@ -45,7 +45,7 @@ namespace Rockman.Sprites
                         areaCracked[i, j] = 0;
                     }
                     //rectPanel
-                    destRectPanel = new Rectangle((TILESIZE * j * (int)scale) + screenStageX, (24 * i * (int)scale) + screenStageY, 40 * (int)scale, 24 * (int)scale);
+                    destRectPanel = new Rectangle((40 * j * (int)scale) + screenStageX, (24 * i * (int)scale) + screenStageY, 40 * (int)scale, 24 * (int)scale);
                     //defaultSprite
                     if (Singleton.Instance.panelBoundary[i, j] == 0 && i == 0)
                     {
@@ -85,7 +85,7 @@ namespace Rockman.Sprites
                     }
                     else if (Singleton.Instance.panelBoundary[i, j] == 0 && i == 2)
                     {
-                        destRectPanel = new Rectangle((TILESIZE * j * (int)scale) + screenStageX, (24 * i * (int)scale) + screenStageY, 40 * (int)scale, 30 * (int)scale);
+                        destRectPanel = new Rectangle((40 * j * (int)scale) + screenStageX, (24 * i * (int)scale) + screenStageY, 40 * (int)scale, 30 * (int)scale);
                         switch (Singleton.Instance.panelStage[i, j])
                         {
                             case 0:
@@ -140,7 +140,7 @@ namespace Rockman.Sprites
                     }
                     else if (Singleton.Instance.panelBoundary[i, j] == 1 && i == 2)
                     {
-                        destRectPanel = new Rectangle((TILESIZE * j * (int)scale) + screenStageX, (24 * i * (int)scale) + screenStageY, 40 * (int)scale, 30 * (int)scale);
+                        destRectPanel = new Rectangle((40 * j * (int)scale) + screenStageX, (24 * i * (int)scale) + screenStageY, 40 * (int)scale, 30 * (int)scale);
                         switch (Singleton.Instance.panelStage[i, j])
                         {
                             case 0:
@@ -160,7 +160,7 @@ namespace Rockman.Sprites
                     //virusAtkPanel
                     if (Singleton.Instance.virusAttack[i, j] == 2)
                     {
-                        destRectPanel = new Rectangle((TILESIZE * j * (int)scale) + screenStageX, (24 * i * (int)scale) + screenStageY, 40 * (int)scale, 24 * (int)scale);
+                        destRectPanel = new Rectangle((40 * j * (int)scale) + screenStageX, (24 * i * (int)scale) + screenStageY, 40 * (int)scale, 24 * (int)scale);
                         spriteBatch.Draw(_texture[0], destRectPanel, new Rectangle(320, 0, 40, 24), Color.White);
                     }
                 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/BusterCharging.wav</SourceFile>
+  <SourceFile>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BusterCharging.wav</SourceFile>
   <SourceTime>2018-02-20T22:54:56.991103+07:00</SourceTime>
-  <DestFile>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/bin/Windows/sfx/BusterCharging.xnb</DestFile>
-  <DestTime>2018-02-20T22:55:32.5219696+07:00</DestTime>
+  <DestFile>D:/Projects/RockmanCatapult/Rockman/Content/bin/Windows/sfx/BusterCharging.xnb</DestFile>
+  <DestTime>2018-04-14T15:24:03.1885468+07:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-03-01T22:05:36+07:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

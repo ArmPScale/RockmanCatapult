@@ -48,6 +48,10 @@
     <Compile Include="Models\Animation.cs" />
     <Compile Include="Managers\AnimationManager.cs" />
     <Compile Include="Sprites\BackgroundSprite.cs" />
+    <Compile Include="Sprites\Chips\WaveSprite.cs" />
+    <Compile Include="Sprites\Chips\ChipSprite.cs" />
+    <Compile Include="Sprites\CustomScreen.cs" />
+    <Compile Include="Sprites\FadeScreen.cs" />
     <Compile Include="Sprites\MettonWaveSprite.cs" />
     <Compile Include="Sprites\MettonSprite.cs" />
     <Compile Include="Sprites\PanelSprite.cs" />

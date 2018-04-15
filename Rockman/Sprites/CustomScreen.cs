@@ -9,30 +9,23 @@ using System.Threading.Tasks;
 
 namespace Rockman.Sprites
 {
-    class BackgroundSprite : Sprite
+    class CustomScreen : Sprite
     {
-        Vector2 bgScroll;
-        int n = 0;
 
-        public BackgroundSprite(Texture2D[] texture)
+        public CustomScreen(Texture2D[] texture)
             : base(texture)
         {
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            n--;
-            bgScroll = new Vector2(n, 0);
-            if(n <= -(Singleton.WIDTH) * scale)
-            {
-                n = 0;
-            }
+
             base.Update(gameTime, sprites);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture[0], bgScroll, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+            //spriteBatch.Draw(_texture[0], bgScroll, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
             base.Draw(spriteBatch);
         }
     }

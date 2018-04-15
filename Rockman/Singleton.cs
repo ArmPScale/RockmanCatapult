@@ -10,8 +10,8 @@ namespace Rockman
 {
     class Singleton
     {
-        public const int WIDTH = 800;
-        public const int HEIGHT = 480;
+        public const int WIDTH = 1200;
+        public const int HEIGHT = 800;
 
         public int HeroHP = 100;
         public int[,] panelStage, spriteMove, spriteHP, panelBoundary, chipAttack, virusAttack;
@@ -24,9 +24,16 @@ namespace Rockman
         public float MasterBGMVolume;
         public float MasterSFXVolume;
 
+        public bool useChip, useChipDuring, useChipSuccess;
+        public String useChipName = "Test";
+        public Queue<String> chipSlotIn;
+        public String[] chipSelect;
+
         public enum GameState
         {
             GamePlaying,
+            GameWaitingChip,
+            GameUseChip,
             GameClear,
             GameOver,
         }

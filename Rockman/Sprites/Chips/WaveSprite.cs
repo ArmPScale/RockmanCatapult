@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace Rockman.Sprites
+namespace Rockman.Sprites.Chips
 {
-    class MettonWaveSprite : Sprite
+    class WaveSprite : ChipSprite
     {
         Point currentTile;
         float delay = 100f, drawWaveTime;
@@ -14,12 +14,12 @@ namespace Rockman.Sprites
 
         Rectangle destRectWave, sourceRectWave;
 
-        public MettonWaveSprite(Texture2D[] texture)
+        public WaveSprite(Texture2D[] texture)
             : base(texture)
         {
         }
 
-        public override void Update(GameTime gameTime, List<Sprite> sprites)
+        public override void Update(GameTime gameTime, List<ChipSprite> sprites)
         {
             drawWaveTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 

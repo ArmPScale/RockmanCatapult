@@ -9,12 +9,14 @@ using Microsoft.Xna.Framework.Audio;
 using Rockman.Managers;
 using Rockman.Models;
 
-namespace Rockman.Sprites
+namespace Rockman.Sprites.Chips
 {
-    class Sprite : ICloneable
+    class ChipSprite : ICloneable
     {
-        public const int TILESIZEX = 40*3/2, TILESIZEY = 24*3/2, screenStageX = 0, screenStageY = 500;
+        public const int TILESIZEX = 40*3/2, TILESIZEY = 24*3/2, screenStageX = 0, screenStageY = 450;
         protected float scale = 3f;
+        public int chipID;
+        
 
         #region PUBLIC_VARIABLES
 
@@ -50,7 +52,7 @@ namespace Rockman.Sprites
         protected Texture2D[] _texture;
         #endregion
 
-        public Sprite()
+        public ChipSprite()
         {
             Position = Vector2.Zero;
             Scale = Vector2.One;
@@ -58,7 +60,7 @@ namespace Rockman.Sprites
             IsActive = true;
         }
 
-        public Sprite(Texture2D[] texture)
+        public ChipSprite(Texture2D[] texture)
         {
             _texture = texture;
             Position = Vector2.Zero;
@@ -67,7 +69,7 @@ namespace Rockman.Sprites
             IsActive = true;
         }
 
-        public Sprite(Dictionary<string, Animation> animations)
+        public ChipSprite(Dictionary<string, Animation> animations)
         {
             Position = Vector2.Zero;
             Scale = Vector2.One;
@@ -77,7 +79,7 @@ namespace Rockman.Sprites
             _animationManager = new AnimationManager(_animations.First().Value);
         }
 
-        public virtual void Update(GameTime gameTime, List<Sprite> sprites)
+        public virtual void Update(GameTime gameTime, List<ChipSprite> sprites)
         {
 
         }
@@ -97,7 +99,7 @@ namespace Rockman.Sprites
         }
 
         #region Collision
-        public bool IsTouching(Sprite g)
+        public bool IsTouching(ChipSprite g)
         {
             return IsTouchingLeft(g) ||
                 IsTouchingTop(g) ||
@@ -105,7 +107,7 @@ namespace Rockman.Sprites
                 IsTouchingBottom(g);
         }
 
-        public bool IsTouchingLeft(Sprite g)
+        public bool IsTouchingLeft(ChipSprite g)
         {
             return this.Rectangle.Right > g.Rectangle.Left &&
                     this.Rectangle.Left < g.Rectangle.Left &&
@@ -113,7 +115,7 @@ namespace Rockman.Sprites
                     this.Rectangle.Top < g.Rectangle.Bottom;
         }
 
-        public bool IsTouchingRight(Sprite g)
+        public bool IsTouchingRight(ChipSprite g)
         {
             return this.Rectangle.Right > g.Rectangle.Right &&
                     this.Rectangle.Left < g.Rectangle.Right &&
@@ -121,7 +123,7 @@ namespace Rockman.Sprites
                     this.Rectangle.Top < g.Rectangle.Bottom;
         }
 
-        public bool IsTouchingTop(Sprite g)
+        public bool IsTouchingTop(ChipSprite g)
         {
             return this.Rectangle.Right > g.Rectangle.Left &&
                     this.Rectangle.Left < g.Rectangle.Right &&
@@ -129,7 +131,7 @@ namespace Rockman.Sprites
                     this.Rectangle.Top < g.Rectangle.Top;
         }
 
-        public bool IsTouchingBottom(Sprite g)
+        public bool IsTouchingBottom(ChipSprite g)
         {
             return this.Rectangle.Right > g.Rectangle.Left &&
                     this.Rectangle.Left < g.Rectangle.Right &&

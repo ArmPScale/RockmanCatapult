@@ -4,23 +4,25 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/rockman/RockmanEXEBattle1.png</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/Font.spritefont</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/RockmanFont.spritefont</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/battleEffect/busterEffect.png</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/battleEffect/chargeBuster.png</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/bgm/BattleStart-EXE5.mp3</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/BusterCharged.wav</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/BusterCharging.wav</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/Buster.wav</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/bgm/TournamentBattle-EXE4.5.mp3</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/virus/MettonAttack.png</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/panel/panelStage.png</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/bgm/PVPBattle(Re)-RNR3.mp3</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/Cannon.wav</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/MettWave.wav</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/DefeatedExplode.wav</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/sfx/Deleted.wav</File>
-    <File>C:/Users/Akkrawut Khanthawan/Desktop/Game Programming/ProjectRockman/Rockman/Rockman/Content/background/space.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanEXEBattle1.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/Font.spritefont</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/RockmanFont.spritefont</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/busterEffect.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/chargeBuster.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/BattleStart-EXE5.mp3</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BusterCharged.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BusterCharging.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Buster.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/TournamentBattle-EXE4.5.mp3</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/virus/MettonAttack.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/panel/panelStage.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/PVPBattle(Re)-RNR3.mp3</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Cannon.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/MettWave.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/DefeatedExplode.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Deleted.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/space.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/UseChip.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/blackbomb.png</File>
   </SourceFiles>
 </SourceFileCollection>
