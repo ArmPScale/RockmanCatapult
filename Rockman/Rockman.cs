@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 using Rockman.Sprites;
-using Rockman.Sprites.Chips;
+using Rockman.Sprites.Screens;
 using Rockman.Models;
 
 namespace Rockman
@@ -17,8 +17,7 @@ namespace Rockman
         SpriteBatch spriteBatch;
 
         private List<Sprite> _sprites;
-        private List<ChipSprite> _chipSprites;
-        Texture2D[] rockmanEXETexture, panelTexture, mettonTexture, backgroundTexture, fadeScreenTexture, chipAtkTexture;
+        Texture2D[] rockmanEXETexture, panelTexture, mettonTexture, backgroundTexture, fadeScreenTexture, chipAtkTexture, customScreenTexture;
         private int _numObject;
 
         public Rockman()
@@ -33,15 +32,20 @@ namespace Rockman
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            IsMouseVisible = true;
+
             backgroundTexture = new Texture2D[10];
             panelTexture = new Texture2D[6];
             rockmanEXETexture = new Texture2D[10];
             mettonTexture = new Texture2D[10];
             fadeScreenTexture = new Texture2D[1];
+            customScreenTexture = new Texture2D[5];
             Singleton.Instance.effectsTexture = new Texture2D[10];
             Singleton.Instance.soundEffects = new List<SoundEffect>();
-
-            IsMouseVisible = true;
+            Singleton.Instance.chipSelect = new int[6]
+            {
+                1,0,0,0,0,0
+            };
 
             Singleton.Instance.panelBoundary = new int[3, 10]
             {
@@ -105,16 +109,6 @@ namespace Rockman
             fadeScreenTexture[0].SetData(data);
 
             Reset();
-            //_sprites.Add(new MettonSprite(new Dictionary<string, Animation>()
-            //{
-            //    {"MettonAtk", new Animation(mettonTexture[0], new Rectangle(50, 0, 50, 60), 14)   },
-            //})
-            //{
-            //    Name = "Metton",
-            //    HP = 40,
-            //    Attack = 10,
-            //    Viewport = new Rectangle(50, 0, 50, 60),
-            //});
         }
 
         protected override void UnloadContent()
@@ -129,9 +123,21 @@ namespace Rockman
 
             Singleton.Instance.CurrentKey = Keyboard.GetState();
             _numObject = _sprites.Count;
+            //Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
 
             switch (Singleton.Instance.CurrentGameState)
             {
+                case Singleton.GameState.GameCustomScreen:
+                    for (int i = 0; i < _numObject; i++)
+                    {
+                        if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
+                    }
+                    if (Singleton.Instance.selectChipSuccess)
+                    {
+                        Singleton.Instance.selectChipSuccess = false;
+                        Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
+                    }
+                    break;
                 case Singleton.GameState.GamePlaying:
                     for (int i = 0; i < _numObject; i++)
                     {
@@ -260,15 +266,20 @@ namespace Rockman
         protected void Reset()
         {
             Singleton.Instance.useChip = false;
-            Singleton.Instance.MasterBGMVolume = 0.15f;
-            Singleton.Instance.MasterSFXVolume = 0.05f;
+            Singleton.Instance.selectChipSuccess = false;
+            Singleton.Instance.MasterBGMVolume = 0.5f;
+            Singleton.Instance.MasterSFXVolume = 1f;
 
-            backgroundTexture[0] = this.Content.Load<Texture2D>("background/space");
-            panelTexture[0] = this.Content.Load<Texture2D>("panel/panelStage");
-            rockmanEXETexture[0] = this.Content.Load<Texture2D>("rockman/RockmanEXEBattle1");
-            mettonTexture[0] = this.Content.Load<Texture2D>("virus/MettonAttack");
+            backgroundTexture[0] = Content.Load<Texture2D>("background/space");
+            panelTexture[0] = Content.Load<Texture2D>("panel/panelStage");
+            rockmanEXETexture[0] = Content.Load<Texture2D>("rockman/RockmanEXE6");
+            mettonTexture[0] = Content.Load<Texture2D>("virus/MettonAttack");
             Singleton.Instance.effectsTexture[0] = this.Content.Load<Texture2D>("battleEffect/busterEffect");
             Singleton.Instance.effectsTexture[1] = this.Content.Load<Texture2D>("battleEffect/chargeBuster");
+            customScreenTexture[0] = Content.Load<Texture2D>("screen/CustomScreen");
+            customScreenTexture[1] = Content.Load<Texture2D>("screen/CustomWindow");
+            customScreenTexture[2] = Content.Load<Texture2D>("screen/statusboxEXE4");
+
             _sprites = new List<Sprite>()
             {
                 new BackgroundSprite(backgroundTexture)
@@ -288,18 +299,75 @@ namespace Rockman
                     Name = "Metton",
                     HP = 40, Attack = 10,
                 },
-                new RockmanEXESprite(rockmanEXETexture)
-                {
-                    Name = "RockmanEXE",
-                    HP = 100, Attack = 1,
-                    W = Keys.W, S = Keys.S, A = Keys.A, D = Keys.D,
-                    J = Keys.J, K = Keys.K,
-                },
                 new MettonWaveSprite(mettonTexture)
                 {
                     Name = "MettonWave",
                 },
             };
+            _sprites.Add(new RockmanEXESprite(new Dictionary<string, Animation>()
+            {
+                { "Alive", new Animation(rockmanEXETexture[0], new Rectangle(9, 1, 57, 57), 1) },
+                { "Buster", new Animation(rockmanEXETexture[0], new Rectangle(9, 527, 43*4, 52), 4) },
+                { "Bomb", new Animation(rockmanEXETexture[0], new Rectangle(10, 370, 49*7, 52), 7) },
+                { "Dead", new Animation(rockmanEXETexture[0], new Rectangle(9, 58, 42, 57), 1) },
+            })
+            {
+                Name = "RockmanEXE",
+                Viewport = new Rectangle(57, 0, 57, 57),
+                HP = 100,
+                Attack = 1,
+                W = Keys.W,
+                S = Keys.S,
+                A = Keys.A,
+                D = Keys.D,
+                J = Keys.J,
+                K = Keys.K,
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"Buster", Content.Load<SoundEffect>("sfx/Buster").CreateInstance() },
+                    {"Charging", Content.Load<SoundEffect>("sfx/BusterCharging").CreateInstance() },
+                    {"Charged", Content.Load<SoundEffect>("sfx/BusterCharged").CreateInstance() },
+                }
+            });
+            //customScreen
+            CustomScreen customScreen = new CustomScreen(new Dictionary<string, Animation>()
+            {
+                { "Screen", new Animation(customScreenTexture[0], new Rectangle(104, 7, 120, 160), 1) },
+            })
+            {
+                Name = "CustomScreen",
+                Position = new Vector2(0, 0),
+                Viewport = new Rectangle(104, 6, 160, 120),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"Custom", Content.Load<SoundEffect>("sfx/CustomScreenOpen").CreateInstance() },
+                }
+            };
+            _sprites.Add(customScreen);
+            //chipSelect
+            ChipSelect chipSelect = new ChipSelect(new Dictionary<string, Animation>()
+            {
+                { "Select", new Animation(customScreenTexture[0], new Rectangle(28, 10, 22, 24), 1) },
+            })
+            {
+                Name = "ChipSelect",
+                Viewport = new Rectangle(28, 35, 22, 22),
+                //W = Keys.W,
+                //S = Keys.S,
+                A = Keys.A,
+                D = Keys.D,
+                J = Keys.J,
+                K = Keys.K,
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"ChipSelect", Content.Load<SoundEffect>("sfx/ChipSelect").CreateInstance() },
+                    {"ChipChoose", Content.Load<SoundEffect>("sfx/ChipChoose").CreateInstance() },
+                    {"ChipCancel", Content.Load<SoundEffect>("sfx/ChipCancel").CreateInstance() },
+                    {"ChipConfirm", Content.Load<SoundEffect>("sfx/ChipConfirm").CreateInstance() },
+                }
+            };
+            _sprites.Add(chipSelect);
+
 
             MediaPlayer.Play(Singleton.Instance.song);
             Singleton.Instance._font = Content.Load<SpriteFont>("RockmanFont");

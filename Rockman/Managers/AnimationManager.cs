@@ -49,11 +49,14 @@ namespace Rockman.Managers
                 _animation.CurrentFrame++;
 
                 if (_animation.CurrentFrame >= _animation.FrameCount)
+                {
                     _animation.CurrentFrame = 0;
+                }
+
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, float scale)
         {
             spriteBatch.Draw(_animation.Texture,
                             position,
@@ -61,7 +64,7 @@ namespace Rockman.Managers
                                           _animation.AnimationRectangle.Y,
                                           _animation.FrameWidth,
                                           _animation.FrameHeight),
-                            Color.White);
+                            Color.White,0f,Vector2.Zero,scale,SpriteEffects.None,0f);
         }
     }
 }

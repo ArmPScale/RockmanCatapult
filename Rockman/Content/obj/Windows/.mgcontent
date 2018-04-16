@@ -23,6 +23,16 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Deleted.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/space.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/UseChip.wav</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/blackbomb.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanExe6.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomScreen.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomWindow.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/Uninstall.gif</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/statusboxEXE4.gif</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/ThroawableObjEXE4.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipCancel.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipChoose.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipConfirm.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipSelect.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/CustomScreenOpen.wav</File>
   </SourceFiles>
 </SourceFileCollection>

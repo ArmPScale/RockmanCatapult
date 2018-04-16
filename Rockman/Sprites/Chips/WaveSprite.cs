@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Rockman.Sprites.Chips
 {
-    class WaveSprite : ChipSprite
+    class WaveSprite : Sprite
     {
         Point currentTile;
         float delay = 100f, drawWaveTime;
@@ -19,7 +19,7 @@ namespace Rockman.Sprites.Chips
         {
         }
 
-        public override void Update(GameTime gameTime, List<ChipSprite> sprites)
+        public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             drawWaveTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 

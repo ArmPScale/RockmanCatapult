@@ -13,7 +13,7 @@ namespace Rockman
         public const int WIDTH = 1200;
         public const int HEIGHT = 800;
 
-        public int HeroHP = 100;
+        public int HeroHP = 50;
         public int[,] panelStage, spriteMove, spriteHP, panelBoundary, chipAttack, virusAttack;
         //public int[,] spriteMove2, spriteHP2;
         public SpriteFont _font;
@@ -24,13 +24,15 @@ namespace Rockman
         public float MasterBGMVolume;
         public float MasterSFXVolume;
 
+        public bool atkFinished, selectChipSuccess;
         public bool useChip, useChipDuring, useChipSuccess;
         public String useChipName = "Test";
         public Queue<String> chipSlotIn;
-        public String[] chipSelect;
+        public int[] chipSelect;
 
         public enum GameState
         {
+            GameCustomScreen,
             GamePlaying,
             GameWaitingChip,
             GameUseChip,

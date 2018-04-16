@@ -48,13 +48,15 @@
     <Compile Include="Models\Animation.cs" />
     <Compile Include="Managers\AnimationManager.cs" />
     <Compile Include="Sprites\BackgroundSprite.cs" />
+    <Compile Include="Sprites\Chips\Chip.cs" />
     <Compile Include="Sprites\Chips\WaveSprite.cs" />
-    <Compile Include="Sprites\Chips\ChipSprite.cs" />
-    <Compile Include="Sprites\CustomScreen.cs" />
+    <Compile Include="Sprites\Screens\CustomScreen.cs" />
+    <Compile Include="Sprites\Screens\ChipSelect.cs" />
     <Compile Include="Sprites\FadeScreen.cs" />
     <Compile Include="Sprites\MettonWaveSprite.cs" />
     <Compile Include="Sprites\MettonSprite.cs" />
     <Compile Include="Sprites\PanelSprite.cs" />
+    <Compile Include="Sprites\Screens\Screen.cs" />
     <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="Sprites\RockmanEXESprite.cs" />
   </ItemGroup>

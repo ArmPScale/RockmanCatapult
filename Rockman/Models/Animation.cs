@@ -24,8 +24,8 @@ namespace Rockman.Models
             Texture = texture;
             AnimationRectangle = rect;
             FrameCount = frameCount;
-            IsLooping = true;
-            FrameSpeed = 0.3f;
+            IsLooping = false;
+            FrameSpeed = 0.1f;
         }
     }
 }
