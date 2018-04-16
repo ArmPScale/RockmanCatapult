@@ -21,49 +21,64 @@ namespace Rockman.Sprites
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            drawWaveTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            if (Singleton.Instance.virusAttack[currentTile.X, currentTile.Y] == 2)
+            switch (Singleton.Instance.CurrentGameState)
             {
-                if (Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] == 1 && isDamaged)
-                {
-                    Singleton.Instance.HeroHP -= 10;
-                    isDamaged = false;
-                }
-                if (drawWaveTime >= delay)
-                {
-                    if (waveFrames >= 4)
-                    {
-                        waveFrames = -1;
-                        if(currentTile.Y > 0 && Singleton.Instance.panelStage[currentTile.X, currentTile.Y - 1] <= 1)
-                        {
-                            Singleton.Instance.virusAttack[currentTile.X, currentTile.Y - 1] = Singleton.Instance.virusAttack[currentTile.X, currentTile.Y];
-                        }
-                        //crackedWave
-                        //if (Singleton.Instance.panelStage[currentTile.X, currentTile.Y] == 1 && Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] != 1)
-                        //{
-                        //    Singleton.Instance.panelStage[currentTile.X, currentTile.Y] = 2;
-                        //}
-                        //else if (Singleton.Instance.panelStage[currentTile.X, currentTile.Y] == 0)
-                        //{
-                        //    Singleton.Instance.panelStage[currentTile.X, currentTile.Y] = 1;
-                        //}
-
-                        Singleton.Instance.virusAttack[currentTile.X, currentTile.Y] = 0;
-                        isDamaged = true;
-                    }
-                    else
-                    {
-                        if(waveFrames == 0)
-                        {
-                            Singleton.Instance.soundEffects[4].Play();
-                        }
-                        waveFrames++;
-                    }
+                case Singleton.GameState.GameCustomScreen:
                     sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
-                    drawWaveTime = 0;
-                }
+                    break;
+                case Singleton.GameState.GamePlaying:
+                    drawWaveTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                    if (Singleton.Instance.virusAttack[currentTile.X, currentTile.Y] == 2)
+                    {
+                        //atkPlayer
+                        if (Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] == 1 && isDamaged)
+                        {
+                            Singleton.Instance.HeroHP -= 10;
+                            isDamaged = false;
+                        }
+                        if (drawWaveTime >= delay)
+                        {
+                            if (waveFrames >= 4)
+                            {
+                                waveFrames = -1;
+                                if (currentTile.Y > 0 && Singleton.Instance.panelStage[currentTile.X, currentTile.Y - 1] <= 1)
+                                {
+                                    Singleton.Instance.virusAttack[currentTile.X, currentTile.Y - 1] = Singleton.Instance.virusAttack[currentTile.X, currentTile.Y];
+                                }
+                                //crackedWave
+                                //if (Singleton.Instance.panelStage[currentTile.X, currentTile.Y] == 1 && Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] != 1)
+                                //{
+                                //    Singleton.Instance.panelStage[currentTile.X, currentTile.Y] = 2;
+                                //}
+                                //else if (Singleton.Instance.panelStage[currentTile.X, currentTile.Y] == 0)
+                                //{
+                                //    Singleton.Instance.panelStage[currentTile.X, currentTile.Y] = 1;
+                                //}
+
+                                Singleton.Instance.virusAttack[currentTile.X, currentTile.Y] = 0;
+                                isDamaged = true;
+                            }
+                            else
+                            {
+                                if (waveFrames == 0)
+                                {
+                                    Singleton.Instance.soundEffects[4].Play();
+                                }
+                                waveFrames++;
+                            }
+                            sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
+                            drawWaveTime = 0;
+                        }
+                    }
+                    break;
+                case Singleton.GameState.GameWaitingChip:
+                    sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
+                    break;
+                case Singleton.GameState.GameUseChip:
+                    sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
+                    break;
             }
+            base.Update(gameTime, sprites);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -82,6 +97,7 @@ namespace Rockman.Sprites
                     }
                 }
             }
+            base.Draw(spriteBatch);
         }
     }
 }

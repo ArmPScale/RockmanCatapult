@@ -20,6 +20,10 @@ namespace Rockman.Sprites.Screens
         }
         public static CustomState CurrentCustomState;
 
+        public Screen(Texture2D[] texture) : base(texture)
+        {
+        }
+
         public Screen(Dictionary<string, Animation> animations) : base(animations)
         {
         }

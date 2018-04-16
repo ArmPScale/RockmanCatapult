@@ -12,7 +12,7 @@ namespace Rockman.Sprites
         private float _chargeTime, _busterCoolDown;
         public int HP, Attack;
         public Point currentTile, busterDamagedPosition;
-        public Keys W, S, A, D, J, K;
+        public Keys W, S, A, D, J, K, U;
         float delay = 50f, drawChargeTime;
         int chargeFrames = 0;
 
@@ -105,6 +105,8 @@ namespace Rockman.Sprites
                                             busterDamagedPosition.X = currentTile.X;
                                             busterDamagedPosition.Y = k;
                                             busterAttacked = true;
+                                            SoundEffects["BusterHit"].Volume = Singleton.Instance.MasterSFXVolume;
+                                            SoundEffects["BusterHit"].Play();
                                             break;
                                         }
                                     }
@@ -133,7 +135,13 @@ namespace Rockman.Sprites
                                     //}
                                     Attack = 1; _chargeTime = 0;
                                 }
-
+                                else if (Singleton.Instance.isCustomBarFull == true &&
+                                    Singleton.Instance.CurrentKey.IsKeyDown(U) && Singleton.Instance.PreviousKey.IsKeyUp(U))
+                                {
+                                    Singleton.Instance.newTurnCustom = true;
+                                    Singleton.Instance.isCustomBarFull = false;
+                                    Singleton.Instance.CurrentGameState = Singleton.GameState.GameCustomScreen;
+                                }
                                 //autoCharge
                                 if (drawChargeTime >= delay)
                                 {
@@ -183,11 +191,9 @@ namespace Rockman.Sprites
                                 _animationManager.Update(gameTime);
                                 break;
                         }
-
                     }
                     break;
             }
-                    
             base.Update(gameTime, sprites);
         }
         public override void Draw(SpriteBatch spriteBatch)

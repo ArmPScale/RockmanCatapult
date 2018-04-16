@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using Rockman.Sprites;
 using Rockman.Sprites.Screens;
+using Rockman.Sprites.Chips;
 using Rockman.Models;
 
 namespace Rockman
@@ -17,7 +18,7 @@ namespace Rockman
         SpriteBatch spriteBatch;
 
         private List<Sprite> _sprites;
-        Texture2D[] rockmanEXETexture, panelTexture, mettonTexture, backgroundTexture, fadeScreenTexture, chipAtkTexture, customScreenTexture;
+        Texture2D[] rockmanEXETexture, panelTexture, mettonTexture, backgroundTexture, fadeScreenTexture, chipTexture, customScreenTexture;
         private int _numObject;
 
         public Rockman()
@@ -40,11 +41,16 @@ namespace Rockman
             mettonTexture = new Texture2D[10];
             fadeScreenTexture = new Texture2D[1];
             customScreenTexture = new Texture2D[5];
+            chipTexture = new Texture2D[5];
             Singleton.Instance.effectsTexture = new Texture2D[10];
             Singleton.Instance.soundEffects = new List<SoundEffect>();
             Singleton.Instance.chipSelect = new int[6]
             {
                 1,0,0,0,0,0
+            };
+            Singleton.Instance.chipCustomSelect = new string[6]
+            {
+                "Recovery10","Recovery300","Recovery120","Recovery30","","NoChip"
             };
 
             Singleton.Instance.panelBoundary = new int[3, 10]
@@ -267,8 +273,11 @@ namespace Rockman
         {
             Singleton.Instance.useChip = false;
             Singleton.Instance.selectChipSuccess = false;
+            Singleton.Instance.newTurnCustom = false;
+            Singleton.Instance.isCustomBarFull = false;
             Singleton.Instance.MasterBGMVolume = 0.5f;
             Singleton.Instance.MasterSFXVolume = 1f;
+            Singleton.Instance.chipSlotIn = new Stack<string>();
 
             backgroundTexture[0] = Content.Load<Texture2D>("background/space");
             panelTexture[0] = Content.Load<Texture2D>("panel/panelStage");
@@ -279,6 +288,9 @@ namespace Rockman
             customScreenTexture[0] = Content.Load<Texture2D>("screen/CustomScreen");
             customScreenTexture[1] = Content.Load<Texture2D>("screen/CustomWindow");
             customScreenTexture[2] = Content.Load<Texture2D>("screen/statusboxEXE4");
+            chipTexture[0] = Content.Load<Texture2D>("chipAtk/chipList");
+            chipTexture[1] = Content.Load<Texture2D>("chipAtk/chipIconEXE6");
+            chipTexture[2] = Content.Load<Texture2D>("screen/CustomWindow");
 
             _sprites = new List<Sprite>()
             {
@@ -322,11 +334,13 @@ namespace Rockman
                 D = Keys.D,
                 J = Keys.J,
                 K = Keys.K,
+                U = Keys.U,
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"Buster", Content.Load<SoundEffect>("sfx/Buster").CreateInstance() },
                     {"Charging", Content.Load<SoundEffect>("sfx/BusterCharging").CreateInstance() },
                     {"Charged", Content.Load<SoundEffect>("sfx/BusterCharged").CreateInstance() },
+                    {"BusterHit", Content.Load<SoundEffect>("sfx/BusterHit").CreateInstance() },
                 }
             });
             //customScreen
@@ -367,6 +381,41 @@ namespace Rockman
                 }
             };
             _sprites.Add(chipSelect);
+            //customBar
+            CustomBar customBar = new CustomBar(new Dictionary<string, Animation>()
+            {
+                { "CustomBar", new Animation(customScreenTexture[0], new Rectangle(440, 117, 148, 15), 1) },
+            })
+            {
+                Name = "CustomBar",
+                Viewport = new Rectangle(446, 117, 137, 15),
+                Position = new Vector2(Singleton.WIDTH/3,10),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"FullCustom", Content.Load<SoundEffect>("sfx/CustBarFull").CreateInstance() },
+                }
+            };
+            _sprites.Add(customBar);
+            //Bar
+            _sprites.Add(new CustomBar(customScreenTexture)
+            {
+                Name = "Bar",
+                Viewport = new Rectangle(452, 139, 8, 8),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"FullCustom", Content.Load<SoundEffect>("sfx/CustBarFull").CreateInstance() },
+                }
+            });
+            //ChipRecovery
+            _sprites.Add(new Recovery(chipTexture)
+            {
+                Name = "RecoveryChip",
+                Viewport = new Rectangle(0, 145, 56, 48),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+
+                }
+            });
 
 
             MediaPlayer.Play(Singleton.Instance.song);

@@ -24,11 +24,15 @@ namespace Rockman
         public float MasterBGMVolume;
         public float MasterSFXVolume;
 
+        public bool newTurnCustom, isCustomBarFull;
         public bool atkFinished, selectChipSuccess;
         public bool useChip, useChipDuring, useChipSuccess;
         public String useChipName = "Test";
-        public Queue<String> chipSlotIn;
+        public String chipID,chipName,chipType,chipAtk;
+        public Stack<String> chipSlotIn;
         public int[] chipSelect;
+        public String[] chipCustomSelect;
+        public Point currentChipSelect;
 
         public enum GameState
         {

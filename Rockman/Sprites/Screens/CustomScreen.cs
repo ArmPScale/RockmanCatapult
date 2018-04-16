@@ -32,7 +32,11 @@ namespace Rockman.Sprites.Screens
                             setState(CustomState.Wait);
                             break;
                         case CustomState.Close:
-                            Singleton.Instance.selectChipSuccess = true;
+                            if (Singleton.Instance.newTurnCustom)
+                            {
+                                Singleton.Instance.newTurnCustom = false;
+                                setState(CustomState.Open);
+                            }
                             break;
                     }
                     break;

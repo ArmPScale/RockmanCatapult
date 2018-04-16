@@ -4,7 +4,6 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanEXEBattle1.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/Font.spritefont</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/RockmanFont.spritefont</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/busterEffect.png</File>
@@ -34,5 +33,10 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipConfirm.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipSelect.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/CustomScreenOpen.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BusterHit.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/CustBarFull.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipList.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanBusterEXE6.gif</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipIconEXE6.png</File>
   </SourceFiles>
 </SourceFileCollection>

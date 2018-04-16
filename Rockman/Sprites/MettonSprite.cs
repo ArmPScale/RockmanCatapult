@@ -32,7 +32,7 @@ namespace Rockman.Sprites
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameCustomScreen:
-                    sourceRectMetAtk = new Rectangle(0, 0, 50, 60);
+                    sourceRectMetAtk = new Rectangle((50 * atkFrames), 0, 50, 60);
                     break;
                 case Singleton.GameState.GamePlaying:
                     //Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] = HP;

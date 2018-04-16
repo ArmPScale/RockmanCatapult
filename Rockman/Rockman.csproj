@@ -49,7 +49,10 @@
     <Compile Include="Managers\AnimationManager.cs" />
     <Compile Include="Sprites\BackgroundSprite.cs" />
     <Compile Include="Sprites\Chips\Chip.cs" />
+    <Compile Include="Sprites\Chips\ChipIcon.cs" />
+    <Compile Include="Sprites\Chips\Recovery.cs" />
     <Compile Include="Sprites\Chips\WaveSprite.cs" />
+    <Compile Include="Sprites\Screens\CustomBar.cs" />
     <Compile Include="Sprites\Screens\CustomScreen.cs" />
     <Compile Include="Sprites\Screens\ChipSelect.cs" />
     <Compile Include="Sprites\FadeScreen.cs" />

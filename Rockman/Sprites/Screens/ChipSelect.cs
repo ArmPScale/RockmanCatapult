@@ -38,8 +38,6 @@ namespace Rockman.Sprites.Screens
             //    Singleton.Instance.spriteMove[currentTile.X + 1, currentTile.Y] = Singleton.Instance.spriteMove[currentTile.X, currentTile.Y];
             //    Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
             //}
-
-
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameCustomScreen:
@@ -53,7 +51,7 @@ namespace Rockman.Sprites.Screens
                                 {
                                     SoundEffects["ChipSelect"].Volume = Singleton.Instance.MasterSFXVolume;
                                     SoundEffects["ChipSelect"].Play();
-                                    Singleton.Instance.chipSelect[(chipLength - 1) - currentTile.X] = Singleton.Instance.chipSelect[currentTile.X];
+                                    Singleton.Instance.chipSelect[currentTile.X - 1 < 0 ? currentTile.X + 5 : currentTile.X - 1] = Singleton.Instance.chipSelect[currentTile.X];
                                     Singleton.Instance.chipSelect[currentTile.X] = 0;
                                 }
                                 else if (Singleton.Instance.CurrentKey.IsKeyDown(D) && Singleton.Instance.PreviousKey.IsKeyUp(D))
@@ -72,9 +70,12 @@ namespace Rockman.Sprites.Screens
                                 {
                                     if (currentTile.X == 5)
                                     {
+                                        Singleton.Instance.chipSelect[currentTile.X] = 0;
+                                        Singleton.Instance.chipSelect[0] = 1;
                                         SoundEffects["ChipConfirm"].Volume = Singleton.Instance.MasterSFXVolume;
                                         SoundEffects["ChipConfirm"].Play();
                                         setState(CustomState.Close);
+                                        Singleton.Instance.selectChipSuccess = true;
                                     }
                                     else
                                     {
@@ -109,8 +110,9 @@ namespace Rockman.Sprites.Screens
                             if (Singleton.Instance.chipSelect[i] == 1)
                             {
                                 currentTile = new Point(i);
+                                Singleton.Instance.currentChipSelect = new Point(i);
                                 if (currentTile.X == 5) _animationManager.Draw(spriteBatch, new Vector2(280, 110 * 3), scale);
-                                else _animationManager.Draw(spriteBatch, new Vector2(15 * i, 100 * 3), scale);
+                                else _animationManager.Draw(spriteBatch, new Vector2(15+ (48 * currentTile.X), 100 * 3), scale);
                             }
                         }
                     }
