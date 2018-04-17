@@ -28,7 +28,14 @@ namespace Rockman.Sprites.Screens
                         case CustomState.Open:
                             SoundEffects["Custom"].Volume = Singleton.Instance.MasterSFXVolume;
                             SoundEffects["Custom"].Play();
-
+                            //insertChipFolderToCustom
+                            for (int i = 0; i < 5; i++)
+                            {
+                                if (Singleton.Instance.chipCustomSelect[i] == "" && Singleton.Instance.nextChipFolder.Count != 0)
+                                {
+                                    Singleton.Instance.chipCustomSelect[i] = Singleton.Instance.nextChipFolder.Dequeue();
+                                }
+                            }
                             setState(CustomState.Wait);
                             break;
                         case CustomState.Close:

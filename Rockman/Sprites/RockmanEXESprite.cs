@@ -20,20 +20,6 @@ namespace Rockman.Sprites
         Rectangle destRectCharge, sourceRectCharge;
         public bool busterAttacked;
 
-        public enum PlayerState
-        {
-            Playing,
-            BusterShot,
-            Dead
-        }
-        public PlayerState CurrentPlayerState;
-
-
-        public RockmanEXESprite(Texture2D[] texture)
-            : base(texture)
-        {
-        }
-
         public RockmanEXESprite(Dictionary<string, Animation> animations) : base(animations)
         {
         }
@@ -41,6 +27,7 @@ namespace Rockman.Sprites
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             HP = Singleton.Instance.HeroHP;
+            Attack = Singleton.Instance.HeroAttack;
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameCustomScreen:
@@ -51,15 +38,16 @@ namespace Rockman.Sprites
                     drawChargeTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                     if (Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] == 1)
                     {
-                        switch (CurrentPlayerState)
+                        switch (Singleton.Instance.CurrentPlayerState)
                         {
-                            case PlayerState.Playing:
+                            case Singleton.PlayerState.Playing:
                                 _animationManager.Play(_animations["Alive"]);
                                 if (HP <= 0)
                                 {
+                                    SoundEffects["Deleted"].Volume = Singleton.Instance.MasterSFXVolume;
+                                    SoundEffects["Deleted"].Play();
                                     HP = 0;
-                                    Singleton.Instance.soundEffects[6].Play();
-                                    CurrentPlayerState = PlayerState.Dead;
+                                    Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.Dead;
                                 }
                                 if ((currentTile.X > 0 && Singleton.Instance.panelBoundary[currentTile.X - 1, currentTile.Y] == 0 &&
                                 Singleton.Instance.panelStage[currentTile.X - 1, currentTile.Y] <= 1) &&
@@ -92,7 +80,6 @@ namespace Rockman.Sprites
                                 else if (Singleton.Instance.CurrentKey.IsKeyDown(J) && Singleton.Instance.PreviousKey.IsKeyUp(J))
                                 {
                                     _animationManager.Play(_animations["Buster"]);
-
                                     for (int k = currentTile.Y; k < 10; k++)
                                     {
                                         chargeFrames = -1;
@@ -111,10 +98,10 @@ namespace Rockman.Sprites
                                             break;
                                         }
                                     }
-                                    _chargeTime = 0; Attack = 1;
+                                    _chargeTime = 0;
                                     SoundEffects["Buster"].Volume = Singleton.Instance.MasterSFXVolume;
                                     SoundEffects["Buster"].Play();
-                                    CurrentPlayerState = PlayerState.BusterShot;
+                                    Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.BusterShot;
 
                                     //Singleton.Instance.busterAttacked = false;
                                 }
@@ -138,7 +125,7 @@ namespace Rockman.Sprites
                                     //        break;
                                     //    }
                                     //}
-                                    Attack = 1; _chargeTime = 0;
+                                    _chargeTime = 0;
                                 }
                                 else if (Singleton.Instance.isCustomBarFull == true &&
                                     Singleton.Instance.CurrentKey.IsKeyDown(U) && Singleton.Instance.PreviousKey.IsKeyUp(U))
@@ -176,27 +163,23 @@ namespace Rockman.Sprites
                                     }
                                     drawChargeTime = 0;
                                 }
-                                _animationManager.Update(gameTime);
                                 break;
-                            case PlayerState.BusterShot:
+                            case Singleton.PlayerState.BusterShot:
                                 _busterCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
                                 if (_busterCoolDown > 0.3f)
                                 {
                                     _busterCoolDown = 0;
-                                    _animationManager.Play(_animations["Alive"]);
-                                    CurrentPlayerState = PlayerState.Playing;
+                                    Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.Playing;
                                 }
-
-                                _animationManager.Update(gameTime);
                                 break;
-                            case PlayerState.Dead:
+                            case Singleton.PlayerState.Dead:
                                 _animationManager.Play(_animations["Dead"]);
                                 //Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
                                 Singleton.Instance.CurrentGameState = Singleton.GameState.GameOver;
-                                _animationManager.Update(gameTime);
                                 break;
                         }
                     }
+                    _animationManager.Update(gameTime);
                     break;
             }
             base.Update(gameTime, sprites);
@@ -207,7 +190,16 @@ namespace Rockman.Sprites
             destRectCharge = new Rectangle((TILESIZEX * currentTile.Y * 2) + (screenStageX - 40), (TILESIZEY * currentTile.X * 2) + (screenStageY - 100), 67*(int)scale, 67*(int)scale);
 
             //drawHeroHP
-            spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", (Singleton.Instance.HeroHP)), new Vector2(10, 750), Color.White, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
+            if(Singleton.Instance.maxHeroHP/4 >= Singleton.Instance.HeroHP)
+            {
+                SoundEffects["LowHP"].Volume = Singleton.Instance.MasterSFXVolume;
+                SoundEffects["LowHP"].Play();
+                spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", (Singleton.Instance.HeroHP)), new Vector2(10, 750), Color.OrangeRed, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
+            }
+            else
+            {
+                spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", (Singleton.Instance.HeroHP)), new Vector2(10, 750), Color.White, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
+            }
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -215,6 +207,7 @@ namespace Rockman.Sprites
                     if (Singleton.Instance.spriteMove[i, j] == 1)
                     {
                         currentTile = new Point(i, j);
+                        Singleton.Instance.currentPlayerPoint = new Point(i, j);
                         if (_animationManager == null)
                         {
                             spriteBatch.Draw(_texture[0],

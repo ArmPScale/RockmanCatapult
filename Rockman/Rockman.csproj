@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Managers\FolderManage.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="Rockman.cs" />
     <Compile Include="Program.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="Models\Animation.cs" />
     <Compile Include="Managers\AnimationManager.cs" />
     <Compile Include="Sprites\BackgroundSprite.cs" />
+    <Compile Include="Sprites\Chips\Buster.cs" />
     <Compile Include="Sprites\Chips\Chip.cs" />
     <Compile Include="Sprites\Chips\ChipIcon.cs" />
     <Compile Include="Sprites\Chips\Recovery.cs" />

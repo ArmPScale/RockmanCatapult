@@ -13,7 +13,22 @@ namespace Rockman
         public const int WIDTH = 1200;
         public const int HEIGHT = 800;
 
-        public int HeroHP = 50, maxHeroHP = 500;
+        //heroVariable
+        public enum PlayerState
+        {
+            Playing,
+            BusterShot,
+            Dead
+        }
+        public PlayerState CurrentPlayerState;
+        public int HeroHP = 10, maxHeroHP = 500, HeroAttack = 1;
+        public Point currentPlayerPoint;
+
+        //folderPlayer
+        public List<string> folderList;
+        public Queue<string> nextChipFolder;
+
+        //initialArr
         public int[,] panelStage, spriteMove, spriteHP, panelBoundary, chipAttack, virusAttack;
         //public int[,] spriteMove2, spriteHP2;
         public SpriteFont _font;
@@ -24,6 +39,7 @@ namespace Rockman
         public float MasterBGMVolume;
         public float MasterSFXVolume;
 
+        //utility
         public bool newTurnCustom, isCustomBarFull;
         public bool atkFinished, selectChipSuccess;
         public bool useChip, useChipDuring, useChipSuccess;
@@ -48,6 +64,8 @@ namespace Rockman
         public GameState CurrentGameState;
 
         public KeyboardState PreviousKey, CurrentKey;
+
+        public Random rng = new Random();
 
         private static Singleton instance;
 

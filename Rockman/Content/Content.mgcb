@@ -309,3 +309,15 @@
 /processorParam:Quality=Best
 /build:sfx/Recover.wav
 
+#begin sfx/Barrier.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/Barrier.wav
+
+#begin sfx/RedHP.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/RedHP.wav
+

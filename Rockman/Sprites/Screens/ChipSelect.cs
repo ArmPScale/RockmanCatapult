@@ -24,20 +24,6 @@ namespace Rockman.Sprites.Screens
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            //if ((currentTile.X > 0 && Singleton.Instance.panelBoundary[currentTile.X - 1, currentTile.Y] == 0 &&
-            //            Singleton.Instance.panelStage[currentTile.X - 1, currentTile.Y] <= 1) &&
-            //            (Singleton.Instance.CurrentKey.IsKeyDown(W) && Singleton.Instance.PreviousKey.IsKeyUp(W)))
-            //{
-            //    Singleton.Instance.spriteMove[currentTile.X - 1, currentTile.Y] = Singleton.Instance.spriteMove[currentTile.X, currentTile.Y];
-            //    Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
-            //}
-            //else if ((currentTile.X < 2 && Singleton.Instance.panelBoundary[currentTile.X + 1, currentTile.Y] == 0 &&
-            //    Singleton.Instance.panelStage[currentTile.X + 1, currentTile.Y] <= 1) &&
-            //    (Singleton.Instance.CurrentKey.IsKeyDown(S) && Singleton.Instance.PreviousKey.IsKeyUp(S)))
-            //{
-            //    Singleton.Instance.spriteMove[currentTile.X + 1, currentTile.Y] = Singleton.Instance.spriteMove[currentTile.X, currentTile.Y];
-            //    Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
-            //}
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameCustomScreen:
@@ -83,6 +69,10 @@ namespace Rockman.Sprites.Screens
                                         {
                                             "","","","","",""
                                         };
+                                        if(Singleton.Instance.chipSlotIn.Count != 0)
+                                        {
+                                            Singleton.Instance.useChipSlotIn.Clear();
+                                        }
                                         while(Singleton.Instance.chipSlotIn.Count != 0)
                                         {
                                             Singleton.Instance.useChipSlotIn.Push(Singleton.Instance.chipSlotIn.Pop());

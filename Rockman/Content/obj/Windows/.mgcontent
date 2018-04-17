@@ -39,5 +39,7 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanBusterEXE6.gif</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipIconEXE6.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Recover.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Barrier.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/RedHP.wav</File>
   </SourceFiles>
 </SourceFileCollection>
