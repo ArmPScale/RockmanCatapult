@@ -23,6 +23,17 @@ namespace Rockman.Sprites.Chips
             {"Recovery200",  new Rectangle(56*6, 145, 56, 47) },
             {"Recovery300",  new Rectangle(56*7, 145, 56, 47) },
         };
+        Dictionary<string, int> recoveryHP = new Dictionary<string, int>()
+        {
+            {"Recovery10",  10 },
+            {"Recovery30",  30 },
+            {"Recovery50",  50 },
+            {"Recovery80",  80 },
+            {"Recovery120",  120 },
+            {"Recovery150",  150 },
+            {"Recovery200",  200 },
+            {"Recovery300",  300 },
+        };
 
         public Recovery(Texture2D[] texture) 
             : base(texture)
@@ -34,8 +45,21 @@ namespace Rockman.Sprites.Chips
         {
             switch (Singleton.Instance.CurrentGameState)
             {
-                case Singleton.GameState.GameCustomScreen:
-            
+                case Singleton.GameState.GamePlaying:       
+                    if(Singleton.Instance.useChipSlotIn.Count != 0 &&
+                        Singleton.Instance.useNormalChip == true && 
+                        rectChipRecovImg.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
+                    {
+                        SoundEffects["Recovery"].Volume = Singleton.Instance.MasterSFXVolume;
+                        SoundEffects["Recovery"].Play();
+                        if (Singleton.Instance.HeroHP + recoveryHP[Singleton.Instance.useChipSlotIn.Peek()] >= Singleton.Instance.maxHeroHP)
+                        {
+                            Singleton.Instance.HeroHP = Singleton.Instance.maxHeroHP;
+                            Singleton.Instance.useChipSlotIn.Pop();
+                        }
+                        else Singleton.Instance.HeroHP += recoveryHP[Singleton.Instance.useChipSlotIn.Pop()];
+                        Singleton.Instance.useNormalChip = false;
+                    }
                     break;
             }
             base.Update(gameTime, sprites);
@@ -46,12 +70,15 @@ namespace Rockman.Sprites.Chips
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameCustomScreen:
-                    if (rectChipRecovImg.ContainsKey(Singleton.Instance.chipCustomSelect[Singleton.Instance.currentChipSelect.X]))
+                    if (rectChipRecovImg.ContainsKey(chipCustomImg[Singleton.Instance.currentChipSelect.X]))
                     {
                         spriteBatch.Draw(_texture[0], new Vector2(16 * 3, 24 * 3 - 2),
-                            rectChipRecovImg[Singleton.Instance.chipCustomSelect[Singleton.Instance.currentChipSelect.X]],
+                            rectChipRecovImg[chipCustomImg[Singleton.Instance.currentChipSelect.X]],
                             Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
                     }
+                    break;
+                case Singleton.GameState.GamePlaying:
+                    
                     break;
             }
             base.Draw(spriteBatch);

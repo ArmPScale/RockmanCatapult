@@ -44,6 +44,13 @@ namespace Rockman
             chipTexture = new Texture2D[5];
             Singleton.Instance.effectsTexture = new Texture2D[10];
             Singleton.Instance.soundEffects = new List<SoundEffect>();
+            Singleton.Instance.chipSlotIn = new Stack<string>();
+            Singleton.Instance.indexChipSlotIn = new Stack<int>();
+            Singleton.Instance.useChipSlotIn = new Stack<string>();
+            Singleton.Instance.chipStackImg = new string[6]
+            {
+                "","","","","",""
+            };
             Singleton.Instance.chipSelect = new int[6]
             {
                 1,0,0,0,0,0
@@ -272,12 +279,12 @@ namespace Rockman
         protected void Reset()
         {
             Singleton.Instance.useChip = false;
+            Singleton.Instance.useNormalChip = false;
             Singleton.Instance.selectChipSuccess = false;
             Singleton.Instance.newTurnCustom = false;
             Singleton.Instance.isCustomBarFull = false;
             Singleton.Instance.MasterBGMVolume = 0.5f;
             Singleton.Instance.MasterSFXVolume = 1f;
-            Singleton.Instance.chipSlotIn = new Stack<string>();
 
             backgroundTexture[0] = Content.Load<Texture2D>("background/space");
             panelTexture[0] = Content.Load<Texture2D>("panel/panelStage");
@@ -418,11 +425,11 @@ namespace Rockman
                 Viewport = new Rectangle(0, 145, 56, 48),
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
-
+                    {"Recovery", Content.Load<SoundEffect>("sfx/Recover").CreateInstance() },
                 }
             });
 
-            MediaPlayer.Play(Singleton.Instance.song);
+            //MediaPlayer.Play(Singleton.Instance.song);
             Singleton.Instance._font = Content.Load<SpriteFont>("RockmanFont");
         }
     }

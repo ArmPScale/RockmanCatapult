@@ -63,24 +63,46 @@ namespace Rockman.Sprites.Screens
                                 }
                                 else if (Singleton.Instance.CurrentKey.IsKeyDown(J) && Singleton.Instance.PreviousKey.IsKeyUp(J))
                                 {
-                                    SoundEffects["ChipCancel"].Volume = Singleton.Instance.MasterSFXVolume;
-                                    SoundEffects["ChipCancel"].Play();
+                                    if (Singleton.Instance.chipSlotIn.Count > 0)
+                                    {
+                                        SoundEffects["ChipCancel"].Volume = Singleton.Instance.MasterSFXVolume;
+                                        SoundEffects["ChipCancel"].Play();
+                                        Singleton.Instance.chipStackImg[Singleton.Instance.chipSlotIn.Count - 1] = "";
+                                        Singleton.Instance.chipCustomSelect[Singleton.Instance.indexChipSlotIn.Pop()] = Singleton.Instance.chipSlotIn.Pop();
+                                    }
                                 }
                                 else if (Singleton.Instance.CurrentKey.IsKeyDown(K) && Singleton.Instance.PreviousKey.IsKeyUp(K))
                                 {
                                     if (currentTile.X == 5)
                                     {
-                                        Singleton.Instance.chipSelect[currentTile.X] = 0;
-                                        Singleton.Instance.chipSelect[0] = 1;
                                         SoundEffects["ChipConfirm"].Volume = Singleton.Instance.MasterSFXVolume;
                                         SoundEffects["ChipConfirm"].Play();
-                                        setState(CustomState.Close);
+                                        Singleton.Instance.chipSelect[currentTile.X] = 0;
+                                        Singleton.Instance.chipSelect[0] = 1;
+                                        Singleton.Instance.chipStackImg = new string[6]
+                                        {
+                                            "","","","","",""
+                                        };
+                                        while(Singleton.Instance.chipSlotIn.Count != 0)
+                                        {
+                                            Singleton.Instance.useChipSlotIn.Push(Singleton.Instance.chipSlotIn.Pop());
+                                        }
+                                        Singleton.Instance.indexChipSlotIn.Clear();
                                         Singleton.Instance.selectChipSuccess = true;
+                                        setState(CustomState.Close);
                                     }
                                     else
                                     {
-                                        SoundEffects["ChipChoose"].Volume = Singleton.Instance.MasterSFXVolume;
-                                        SoundEffects["ChipChoose"].Play();
+                                        if(Singleton.Instance.chipCustomSelect[currentTile.X] != "")
+                                        {
+                                            SoundEffects["ChipChoose"].Volume = Singleton.Instance.MasterSFXVolume;
+                                            SoundEffects["ChipChoose"].Play();
+                                            //selectChip
+                                            Singleton.Instance.chipSlotIn.Push(Singleton.Instance.chipCustomSelect[currentTile.X]);
+                                            Singleton.Instance.indexChipSlotIn.Push(currentTile.X);
+                                            Singleton.Instance.chipCustomSelect[currentTile.X] = "";
+                                            Singleton.Instance.chipStackImg[Singleton.Instance.chipSlotIn.Count - 1] = Singleton.Instance.chipSlotIn.Peek();
+                                        }
                                     }
                                 }
                             }

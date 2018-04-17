@@ -107,3 +107,4 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\CustBarFul
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\chipList.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\rockman\RockmanBusterEXE6.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\chipIconEXE6.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Recover.xnb

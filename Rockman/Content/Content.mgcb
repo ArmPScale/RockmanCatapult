@@ -303,3 +303,9 @@
 /processorParam:TextureFormat=Color
 /build:chipAtk/chipIconEXE6.png
 
+#begin sfx/Recover.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/Recover.wav
+

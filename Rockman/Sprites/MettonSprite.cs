@@ -123,8 +123,11 @@ namespace Rockman.Sprites
                     {
                         currentTile = new Point(i, j);
                         spriteBatch.Draw(_texture[0], destRectMetAtk, sourceRectMetAtk, Color.White);
-                        //drawHP
-                        spriteBatch.DrawString(Singleton.Instance._font, string.Format("{0}", (Singleton.Instance.spriteHP[i, j])), new Vector2((TILESIZEX * currentTile.Y * 2) + (screenStageX + TILESIZEY), (TILESIZEY * currentTile.X * 2) + (screenStageY + TILESIZEX - 10)), Color.White, 0f, Vector2.Zero, 1.3f, SpriteEffects.None, 0f);
+                        if (Singleton.Instance.spriteHP[i, j] >= 0)
+                        {
+                            //drawHP
+                            spriteBatch.DrawString(Singleton.Instance._font, string.Format("{0}", (Singleton.Instance.spriteHP[i, j])), new Vector2((TILESIZEX * currentTile.Y * 2) + (screenStageX + TILESIZEY), (TILESIZEY * currentTile.X * 2) + (screenStageY + TILESIZEX - 10)), Color.White, 0f, Vector2.Zero, 1.3f, SpriteEffects.None, 0f);
+                        }
                     }
                 }
             }

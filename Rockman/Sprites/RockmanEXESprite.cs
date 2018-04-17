@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using Rockman.Models;
 
@@ -117,13 +118,17 @@ namespace Rockman.Sprites
 
                                     //Singleton.Instance.busterAttacked = false;
                                 }
-                                else if (Singleton.Instance.CurrentKey.IsKeyDown(K) && Singleton.Instance.PreviousKey.IsKeyUp(K))
+                                else if (Singleton.Instance.useChipSlotIn.Count != 0 && 
+                                    Singleton.Instance.CurrentKey.IsKeyDown(K) && Singleton.Instance.PreviousKey.IsKeyUp(K))
                                 {
-                                    if (true)
-                                    {
-                                        Singleton.Instance.soundEffects[7].CreateInstance().Play();
-                                        Singleton.Instance.CurrentGameState = Singleton.GameState.GameWaitingChip;
-                                    }
+                                    Singleton.Instance.useNormalChip = true;
+
+                                    //if (true)
+                                    //{
+                                    //    Singleton.Instance.soundEffects[7].CreateInstance().Play();
+                                    //    Singleton.Instance.CurrentGameState = Singleton.GameState.GameWaitingChip;
+                                    //}
+
                                     //Singleton.Instance.soundEffects[3].CreateInstance().Play();
                                     //for (int k = currentTile.Y; k < 10; k++)
                                     //{
@@ -235,7 +240,6 @@ namespace Rockman.Sprites
                 }
             }
             
-
             base.Draw(spriteBatch);
         }
     }

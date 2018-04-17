@@ -12,8 +12,11 @@ namespace Rockman.Sprites.Chips
 {
     class Chip : Sprite
     {
+        public String[] chipCustomImg = new string[6];
+ 
         public Chip(Texture2D[] texture) : base(texture)
         {
+            chipCustomImg = Singleton.Instance.chipCustomSelect;
         }
 
         public Chip(Dictionary<string, Animation> animations) : base(animations)
