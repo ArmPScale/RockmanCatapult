@@ -50,7 +50,7 @@ namespace Rockman
             };
             Singleton.Instance.chipCustomSelect = new string[6]
             {
-                "Recovery10","Recovery300","Recovery120","Recovery30","","NoChip"
+                "Recovery10","Recovery300","Recovery120","Recovery30","Recovery30","NoChip"
             };
 
             Singleton.Instance.panelBoundary = new int[3, 10]
@@ -358,29 +358,6 @@ namespace Rockman
                 }
             };
             _sprites.Add(customScreen);
-            //chipSelect
-            ChipSelect chipSelect = new ChipSelect(new Dictionary<string, Animation>()
-            {
-                { "Select", new Animation(customScreenTexture[0], new Rectangle(28, 10, 22, 24), 1) },
-            })
-            {
-                Name = "ChipSelect",
-                Viewport = new Rectangle(28, 35, 22, 22),
-                //W = Keys.W,
-                //S = Keys.S,
-                A = Keys.A,
-                D = Keys.D,
-                J = Keys.J,
-                K = Keys.K,
-                SoundEffects = new Dictionary<string, SoundEffectInstance>()
-                {
-                    {"ChipSelect", Content.Load<SoundEffect>("sfx/ChipSelect").CreateInstance() },
-                    {"ChipChoose", Content.Load<SoundEffect>("sfx/ChipChoose").CreateInstance() },
-                    {"ChipCancel", Content.Load<SoundEffect>("sfx/ChipCancel").CreateInstance() },
-                    {"ChipConfirm", Content.Load<SoundEffect>("sfx/ChipConfirm").CreateInstance() },
-                }
-            };
-            _sprites.Add(chipSelect);
             //customBar
             CustomBar customBar = new CustomBar(new Dictionary<string, Animation>()
             {
@@ -406,6 +383,34 @@ namespace Rockman
                     {"FullCustom", Content.Load<SoundEffect>("sfx/CustBarFull").CreateInstance() },
                 }
             });
+            //ChipIcon
+            _sprites.Add(new ChipIcon(chipTexture)
+            {
+                Name = "ChipIcon",
+            });
+            //chipSelect
+            ChipSelect chipSelect = new ChipSelect(new Dictionary<string, Animation>()
+            {
+                { "Select", new Animation(customScreenTexture[0], new Rectangle(28, 10, 22, 24), 1) },
+            })
+            {
+                Name = "ChipSelect",
+                Viewport = new Rectangle(28, 35, 22, 22),
+                //W = Keys.W,
+                //S = Keys.S,
+                A = Keys.A,
+                D = Keys.D,
+                J = Keys.J,
+                K = Keys.K,
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"ChipSelect", Content.Load<SoundEffect>("sfx/ChipSelect").CreateInstance() },
+                    {"ChipChoose", Content.Load<SoundEffect>("sfx/ChipChoose").CreateInstance() },
+                    {"ChipCancel", Content.Load<SoundEffect>("sfx/ChipCancel").CreateInstance() },
+                    {"ChipConfirm", Content.Load<SoundEffect>("sfx/ChipConfirm").CreateInstance() },
+                }
+            };
+            _sprites.Add(chipSelect);
             //ChipRecovery
             _sprites.Add(new Recovery(chipTexture)
             {
@@ -416,7 +421,6 @@ namespace Rockman
 
                 }
             });
-
 
             MediaPlayer.Play(Singleton.Instance.song);
             Singleton.Instance._font = Content.Load<SpriteFont>("RockmanFont");

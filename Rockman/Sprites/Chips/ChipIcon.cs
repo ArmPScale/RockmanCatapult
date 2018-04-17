@@ -14,14 +14,14 @@ namespace Rockman.Sprites.Chips
     {
         Dictionary<string, Rectangle> rectChipIconImg = new Dictionary<string, Rectangle>()
         {
-            {"IconRecovery10",  new Rectangle(0, 145, 56, 47) },
-            {"IconRecovery30",  new Rectangle(56, 145, 56, 47) },
-            {"IconRecovery50",  new Rectangle(56*2, 145, 56, 47) },
-            {"IconRecovery80",  new Rectangle(56*3, 145, 56, 47) },
-            {"IconRecovery120",  new Rectangle(56*4, 145, 56, 47) },
-            {"IconRecovery150",  new Rectangle(56*5, 145, 56, 47) },
-            {"IconRecovery200",  new Rectangle(56*6, 145, 56, 47) },
-            {"IconRecovery300",  new Rectangle(56*7, 145, 56, 47) },
+            {"Recovery10",  new Rectangle(192, 164, 16, 16) },
+            {"Recovery30",  new Rectangle(211, 164, 16, 16) },
+            {"Recovery50",  new Rectangle(230, 164, 16, 16) },
+            {"Recovery80",  new Rectangle(249, 164, 16, 16) },
+            {"Recovery120",  new Rectangle(192+(19*4), 164, 16, 16) },
+            {"Recovery150",  new Rectangle(192+(19*5), 164, 16, 16) },
+            {"Recovery200",  new Rectangle(2+(19*0), 164+18, 16, 16) },
+            {"Recovery300",  new Rectangle(2+(19*1), 164+18, 16, 16) },
         };
 
         public ChipIcon(Texture2D[] texture)
@@ -43,16 +43,16 @@ namespace Rockman.Sprites.Chips
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 1; i < 6; i++)
             {
                 switch (Singleton.Instance.CurrentGameState)
                 {
                     case Singleton.GameState.GameCustomScreen:
-                        if (rectChipIconImg.ContainsKey(Singleton.Instance.chipCustomSelect[Singleton.Instance.currentChipSelect.X]))
+                        if (rectChipIconImg.ContainsKey(Singleton.Instance.chipCustomSelect[i-1]))
                         {
-                            spriteBatch.Draw(_texture[0], new Vector2(15 + (48 * i), 100 * 3),
-                                rectChipIconImg[Singleton.Instance.chipCustomSelect[Singleton.Instance.currentChipSelect.X]],
-                                Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                            spriteBatch.Draw(_texture[1], new Vector2((48 * i) - 22, 104 * 3),
+                                rectChipIconImg[Singleton.Instance.chipCustomSelect[i-1]],
+                                Color.White, 0f, Vector2.Zero, 2.75f, SpriteEffects.None, 0f);
                         }
                         break;
                 }
