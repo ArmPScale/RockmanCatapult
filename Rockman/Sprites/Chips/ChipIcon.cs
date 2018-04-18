@@ -14,14 +14,18 @@ namespace Rockman.Sprites.Chips
     {
         Dictionary<string, Rectangle> rectChipIconImg = new Dictionary<string, Rectangle>()
         {
-            {"Recovery10",  new Rectangle(192, 164, 16, 16) },
-            {"Recovery30",  new Rectangle(211, 164, 16, 16) },
-            {"Recovery50",  new Rectangle(230, 164, 16, 16) },
-            {"Recovery80",  new Rectangle(249, 164, 16, 16) },
-            {"Recovery120",  new Rectangle(191+(19*4), 164, 16, 16) },
-            {"Recovery150",  new Rectangle(191+(19*5), 164, 16, 16) },
-            {"Recovery200",  new Rectangle(2+(19*0), 164+18, 16, 16) },
-            {"Recovery300",  new Rectangle(2+(19*1), 164+18, 16, 16) },
+            {"Recovery10",  new Rectangle(192, 163, 16, 16) },
+            {"Recovery30",  new Rectangle(211, 163, 16, 16) },
+            {"Recovery50",  new Rectangle(230, 163, 16, 16) },
+            {"Recovery80",  new Rectangle(249, 163, 16, 16) },
+            {"Recovery120",  new Rectangle(191+(19*4), 163, 16, 16) },
+            {"Recovery150",  new Rectangle(191+(19*5), 163, 16, 16) },
+            {"Recovery200",  new Rectangle(2+(19*0), 163+18, 16, 16) },
+            {"Recovery300",  new Rectangle(2+(19*1), 163+18, 16, 16) },
+            {"Barrier10",  new Rectangle(40, 199, 16, 16) },
+            {"Barrier100",  new Rectangle(40+(19*1), 199, 16, 16) },
+            {"Barrier200",  new Rectangle(40+(19*2), 199, 16, 16) },
+            {"DreamAura",  new Rectangle(40+(19*4), 199, 16, 16) },
         };
 
         public ChipIcon(Texture2D[] texture)

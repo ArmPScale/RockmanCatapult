@@ -79,6 +79,7 @@ namespace Rockman.Sprites.Screens
                                         }
                                         Singleton.Instance.indexChipSlotIn.Clear();
                                         Singleton.Instance.selectChipSuccess = true;
+                                        Singleton.Instance.useSceneChip = false;
                                         setState(CustomState.Close);
                                     }
                                     else

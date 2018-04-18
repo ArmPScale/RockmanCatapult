@@ -46,6 +46,7 @@ namespace Rockman.Sprites.Screens
                             }
                             break;
                     }
+                    _animationManager.Update(gameTime);
                     break;
             }
             base.Update(gameTime, sprites);

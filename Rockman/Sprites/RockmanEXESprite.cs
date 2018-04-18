@@ -11,7 +11,7 @@ namespace Rockman.Sprites
     {
         const float CHARGING = 1.2f ,CHARGED = 3.2f;
         private float _chargeTime, _busterCoolDown;
-        public int HP, Attack;
+        public int HP, Attack, Barrier;
         public Point currentTile, busterDamagedPosition;
         public Keys W, S, A, D, J, K, U;
         float delay = 50f, drawChargeTime;
@@ -28,6 +28,7 @@ namespace Rockman.Sprites
         {
             HP = Singleton.Instance.HeroHP;
             Attack = Singleton.Instance.HeroAttack;
+            Barrier = Singleton.Instance.HeroBarrier;
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameCustomScreen:
@@ -42,6 +43,24 @@ namespace Rockman.Sprites
                         {
                             case Singleton.PlayerState.Playing:
                                 _animationManager.Play(_animations["Alive"]);
+                                if (Singleton.Instance.isDamaged)
+                                {
+                                    if (Singleton.Instance.HeroBarrier > 0)
+                                    {
+                                        Singleton.Instance.HeroBarrier -= Singleton.Instance.enemyAtk;
+                                    }
+                                    else if (Singleton.Instance.HeroAura > 0)
+                                    {
+                                        if (Singleton.Instance.enemyAtk >= Singleton.Instance.HeroAura) Singleton.Instance.HeroAura = 0;
+                                    }
+                                    else
+                                    {
+                                        SoundEffects["Damaged"].Volume = Singleton.Instance.MasterSFXVolume;
+                                        SoundEffects["Damaged"].Play();
+                                        Singleton.Instance.HeroHP -= Singleton.Instance.enemyAtk;
+                                    }
+                                    Singleton.Instance.isDamaged = false;
+                                }
                                 if (HP <= 0)
                                 {
                                     SoundEffects["Deleted"].Volume = Singleton.Instance.MasterSFXVolume;
@@ -108,23 +127,18 @@ namespace Rockman.Sprites
                                 else if (Singleton.Instance.useChipSlotIn.Count != 0 && 
                                     Singleton.Instance.CurrentKey.IsKeyDown(K) && Singleton.Instance.PreviousKey.IsKeyUp(K))
                                 {
-                                    Singleton.Instance.useNormalChip = true;
-
-                                    //if (true)
-                                    //{
-                                    //    Singleton.Instance.soundEffects[7].CreateInstance().Play();
-                                    //    Singleton.Instance.CurrentGameState = Singleton.GameState.GameWaitingChip;
-                                    //}
-
-                                    //Singleton.Instance.soundEffects[3].CreateInstance().Play();
-                                    //for (int k = currentTile.Y; k < 10; k++)
-                                    //{
-                                    //    if (Singleton.Instance.spriteMove[currentTile.X, k] > 1)
-                                    //    {
-                                    //        Singleton.Instance.spriteHP[currentTile.X, k] -= 40;
-                                    //        break;
-                                    //    }
-                                    //}
+                                    if (Singleton.Instance.useSceneChip)
+                                    {
+                                        SoundEffects["UseChip"].Volume = Singleton.Instance.MasterSFXVolume;
+                                        SoundEffects["UseChip"].Play();
+                                        Singleton.Instance.useChipName = Singleton.Instance.useChipSlotIn.Peek();
+                                        Singleton.Instance.useSceneChip = false;
+                                        Singleton.Instance.CurrentGameState = Singleton.GameState.GameWaitingChip;
+                                    }
+                                    else
+                                    {
+                                        Singleton.Instance.useNormalChip = true;
+                                    }
                                     _chargeTime = 0;
                                 }
                                 else if (Singleton.Instance.isCustomBarFull == true &&
@@ -134,6 +148,7 @@ namespace Rockman.Sprites
                                     Singleton.Instance.isCustomBarFull = false;
                                     Singleton.Instance.CurrentGameState = Singleton.GameState.GameCustomScreen;
                                 }
+
                                 //autoCharge
                                 if (drawChargeTime >= delay)
                                 {
@@ -186,7 +201,7 @@ namespace Rockman.Sprites
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            ////rectCharge
+            //rectCharge
             destRectCharge = new Rectangle((TILESIZEX * currentTile.Y * 2) + (screenStageX - 40), (TILESIZEY * currentTile.X * 2) + (screenStageY - 100), 67*(int)scale, 67*(int)scale);
 
             //drawHeroHP
@@ -232,7 +247,6 @@ namespace Rockman.Sprites
                     }
                 }
             }
-            
             base.Draw(spriteBatch);
         }
     }

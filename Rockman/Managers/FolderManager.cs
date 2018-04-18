@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rockman
 {
-    static class FolderManage
+    static class FolderManager
     {
         public static void Shuffle<T>(this IList<T> list)
         {

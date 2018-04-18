@@ -41,7 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Managers\FolderManage.cs" />
+    <Compile Include="Managers\FolderManager.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="Rockman.cs" />
     <Compile Include="Program.cs" />
@@ -49,11 +49,14 @@
     <Compile Include="Models\Animation.cs" />
     <Compile Include="Managers\AnimationManager.cs" />
     <Compile Include="Sprites\BackgroundSprite.cs" />
+    <Compile Include="Sprites\Chips\Barrier.cs" />
+    <Compile Include="Sprites\Chips\BarrierSprite.cs" />
     <Compile Include="Sprites\Chips\Buster.cs" />
     <Compile Include="Sprites\Chips\Chip.cs" />
     <Compile Include="Sprites\Chips\ChipIcon.cs" />
     <Compile Include="Sprites\Chips\Recovery.cs" />
     <Compile Include="Sprites\Chips\WaveSprite.cs" />
+    <Compile Include="Sprites\Screens\ChipType.cs" />
     <Compile Include="Sprites\Screens\CustomBar.cs" />
     <Compile Include="Sprites\Screens\CustomScreen.cs" />
     <Compile Include="Sprites\Screens\ChipSelect.cs" />
@@ -61,6 +64,7 @@
     <Compile Include="Sprites\MettonWaveSprite.cs" />
     <Compile Include="Sprites\MettonSprite.cs" />
     <Compile Include="Sprites\PanelSprite.cs" />
+    <Compile Include="Sprites\Screens\CustomWindow.cs" />
     <Compile Include="Sprites\Screens\Screen.cs" />
     <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="Sprites\RockmanEXESprite.cs" />

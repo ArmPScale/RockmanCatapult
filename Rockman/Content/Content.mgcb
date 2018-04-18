@@ -147,12 +147,6 @@
 /processorParam:TextureFormat=Color
 /build:background/space.png
 
-#begin sfx/UseChip.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sfx/UseChip.wav
-
 #begin rockman/RockmanExe6.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -320,4 +314,46 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sfx/RedHP.wav
+
+#begin sfx/PanelCrack.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/PanelCrack.wav
+
+#begin chipAtk/BarrierEXE6.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:chipAtk/BarrierEXE6.png
+
+#begin sfx/UseChip.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/UseChip.wav
+
+#begin sfx/Invisible.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/Invisible.wav
+
+#begin sfx/Damaged.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/Damaged.wav
+
+#begin sfx/Pointing.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/Pointing.wav
 

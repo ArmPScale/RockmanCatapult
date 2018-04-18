@@ -13,7 +13,7 @@ namespace Rockman
         public const int WIDTH = 1200;
         public const int HEIGHT = 800;
 
-        //heroVariable
+        //heroVar
         public enum PlayerState
         {
             Playing,
@@ -21,8 +21,12 @@ namespace Rockman
             Dead
         }
         public PlayerState CurrentPlayerState;
-        public int HeroHP = 10, maxHeroHP = 500, HeroAttack = 1;
+        public int HeroHP = 10, maxHeroHP = 500, HeroAttack = 1, HeroBarrier = 0, HeroAura = 0;
         public Point currentPlayerPoint;
+        public bool isDamaged;
+
+        //enemyVar
+        public int enemyAtk;
 
         //folderPlayer
         public List<string> folderList;
@@ -42,10 +46,10 @@ namespace Rockman
         //utility
         public bool newTurnCustom, isCustomBarFull;
         public bool atkFinished, selectChipSuccess;
-        public bool useChip, useChipDuring, useChipSuccess;
-        public bool useNormalChip;
+        public bool useChip, useChipDuring, useChipNearlySuccess, useChipSuccess;
+        public bool useNormalChip, useSceneChip;
         public String useChipName = "Test";
-        public String chipID,chipName,chipType,chipAtk;
+        public String chipType,chipClass;
         public Stack<String> chipSlotIn, useChipSlotIn;
         public Stack<int> indexChipSlotIn;
         public int[] chipSelect;

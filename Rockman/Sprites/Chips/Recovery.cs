@@ -41,6 +41,11 @@ namespace Rockman.Sprites.Chips
             _texture = texture;
         }
 
+        public Recovery(Dictionary<string, Animation> animations)
+            : base(animations)
+        {
+        }
+
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             switch (Singleton.Instance.CurrentGameState)
@@ -72,6 +77,11 @@ namespace Rockman.Sprites.Chips
                 case Singleton.GameState.GameCustomScreen:
                     if (rectChipRecovImg.ContainsKey(chipCustomImg[Singleton.Instance.currentChipSelect.X]))
                     {
+                        Singleton.Instance.chipClass = "Standard";
+                        Singleton.Instance.chipType = "Number";
+                        //drawChipName
+                        spriteBatch.DrawString(Singleton.Instance._font, chipCustomImg[Singleton.Instance.currentChipSelect.X], new Vector2(50, 40), Color.WhiteSmoke, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                        //drawChipImg
                         spriteBatch.Draw(_texture[0], new Vector2(16 * 3, 24 * 3 - 2),
                             rectChipRecovImg[chipCustomImg[Singleton.Instance.currentChipSelect.X]],
                             Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);

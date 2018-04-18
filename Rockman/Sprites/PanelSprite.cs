@@ -41,6 +41,8 @@ namespace Rockman.Sprites
                     }
                     else if (areaCracked[i, j] == 1)
                     {
+                        SoundEffects["PanelCrack"].Volume = Singleton.Instance.MasterSFXVolume;
+                        SoundEffects["PanelCrack"].Play();
                         Singleton.Instance.panelStage[i, j] = 2;
                         areaCracked[i, j] = 0;
                     }

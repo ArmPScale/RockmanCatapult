@@ -62,7 +62,8 @@ namespace Rockman
             //shuffleBattleChipInFolder
             Singleton.Instance.folderList = new List<string>()
             {
-                "Recovery10","Recovery10","Recovery10","Recovery30","Recovery50","Recovery120","Recovery120","Recovery300"
+                "Recovery10","Recovery10","Recovery30","Recovery50","DreamAura","Recovery120","Recovery300",
+                "DreamAura","Barrier10","Barrier100","Barrier200",
             };
             Singleton.Instance.folderList.Shuffle();
             Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
@@ -192,52 +193,21 @@ namespace Rockman
                         if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
                     }
                     Singleton.Instance.useChip = true;
-                    if (true)
-                    {
-                        Singleton.Instance.CurrentGameState = Singleton.GameState.GameUseChip;
-                    }
 
                     break;
                 case Singleton.GameState.GameUseChip:
-
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < _numObject; i++)
                     {
                         if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
                     }
-
-                    if (Singleton.Instance.useChipDuring)
+                    if (Singleton.Instance.useChipNearlySuccess)
                     {
-                        for (int k = 0; k < 10; k++)
-                        {
-                            int Attack = 10;
-                            if (Singleton.Instance.spriteMove[0, k] > 1)
-                            {
-                                
-                                Singleton.Instance.soundEffects[0].CreateInstance().Play();
-                                Singleton.Instance.spriteHP[0, k] -= Attack;
-                                Singleton.Instance.useChipDuring = false;
-                                Singleton.Instance.useChipSuccess = true;
-                                break;
-                            }
-                            else if (Singleton.Instance.spriteMove[1, k] > 1)
-                            {
-                                Singleton.Instance.soundEffects[0].CreateInstance().Play();
-                                Singleton.Instance.spriteHP[1, k] -= Attack;
-                                Singleton.Instance.useChipDuring = false;
-                                Singleton.Instance.useChipSuccess = true;
-                                break;
-                            }
-                            else if (Singleton.Instance.spriteMove[2, k] > 1)
-                            {
-                                Singleton.Instance.soundEffects[0].CreateInstance().Play();
-                                Singleton.Instance.spriteHP[2, k] -= Attack;
-                                Singleton.Instance.useChipDuring = false;
-                                Singleton.Instance.useChipSuccess = true;
-                                break;
-                            }
-                        }
-                    }                        
-                    
+                        //Singleton.Instance.useChipName = "";
+                        Singleton.Instance.useChipSlotIn.Pop();
+                        Singleton.Instance.useChipDuring = false;
+                        Singleton.Instance.useChipNearlySuccess = false;
+                        Singleton.Instance.useChipSuccess = true;
+                    }
                     break;
                 case Singleton.GameState.GameClear:
                     for (int i = 0; i < 3; i++)
@@ -287,6 +257,7 @@ namespace Rockman
         {
             Singleton.Instance.useChip = false;
             Singleton.Instance.useNormalChip = false;
+            Singleton.Instance.useSceneChip = false;
             Singleton.Instance.selectChipSuccess = false;
             Singleton.Instance.newTurnCustom = false;
             Singleton.Instance.isCustomBarFull = false;
@@ -305,7 +276,7 @@ namespace Rockman
             customScreenTexture[2] = Content.Load<Texture2D>("screen/statusboxEXE4");
             chipTexture[0] = Content.Load<Texture2D>("chipAtk/chipList");
             chipTexture[1] = Content.Load<Texture2D>("chipAtk/chipIconEXE6");
-            chipTexture[2] = Content.Load<Texture2D>("screen/CustomWindow");
+            chipTexture[2] = Content.Load<Texture2D>("chipAtk/BarrierEXE6");
 
             _sprites = new List<Sprite>()
             {
@@ -316,6 +287,10 @@ namespace Rockman
                 new PanelSprite(panelTexture)
                 {
                     Name = "Panel",
+                    SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                    {
+                        {"PanelCrack", Content.Load<SoundEffect>("sfx/PanelCrack").CreateInstance() },
+                    }
                 },
                 new FadeScreen(fadeScreenTexture)
                 {
@@ -331,6 +306,19 @@ namespace Rockman
                     Name = "MettonWave",
                 },
             };
+            //barrierSprite
+            _sprites.Add(new BarrierSprite(new Dictionary<string, Animation>()
+            {
+                { "Barrier10", new Animation(chipTexture[2], new Rectangle(-1, 0, 65*4 , 63), 4) },
+                { "Barrier100", new Animation(chipTexture[2], new Rectangle(-1, 63, 65*4 , 63), 4) },
+                { "Barrier200", new Animation(chipTexture[2], new Rectangle(-1, 63*2, 65*4 , 63), 4) },
+                { "DreamAura", new Animation(chipTexture[2], new Rectangle(0, (63*3)+1, 65*3 , 62), 3) },
+            })
+            {
+                Name = "BarrierSprite",
+                Viewport = new Rectangle(65, 62, 65, 62),
+            });
+            //rockmanEXE
             _sprites.Add(new RockmanEXESprite(new Dictionary<string, Animation>()
             {
                 { "Alive", new Animation(rockmanEXETexture[0], new Rectangle(9, 1, 57, 57), 1) },
@@ -354,8 +342,43 @@ namespace Rockman
                     {"Charging", Content.Load<SoundEffect>("sfx/BusterCharging").CreateInstance() },
                     {"Charged", Content.Load<SoundEffect>("sfx/BusterCharged").CreateInstance() },
                     {"BusterHit", Content.Load<SoundEffect>("sfx/BusterHit").CreateInstance() },
+                    {"Damaged", Content.Load<SoundEffect>("sfx/Damaged").CreateInstance() },
+                    {"UseChip", Content.Load<SoundEffect>("sfx/UseChip").CreateInstance() },
                     {"LowHP", Content.Load<SoundEffect>("sfx/RedHP").CreateInstance() },
                     {"Deleted", Content.Load<SoundEffect>("sfx/Deleted").CreateInstance() },
+                }
+            });
+            //busterRockman
+            _sprites.Add(new Buster(new Dictionary<string, Animation>()
+            {
+                { "NormalBuster", new Animation(rockmanEXETexture[1], new Rectangle(7, 3, 20*4, 7), 4) },
+            })
+            {
+                Name = "RockmanBuster",
+                Viewport = new Rectangle(8, 4, 19, 7),
+            });
+            //customBar
+            _sprites.Add(new CustomBar(new Dictionary<string, Animation>()
+            {
+                { "CustomBar", new Animation(customScreenTexture[0], new Rectangle(440, 117, 148, 15), 1) },
+            })
+            {
+                Name = "CustomBar",
+                Viewport = new Rectangle(446, 117, 137, 15),
+                Position = new Vector2(Singleton.WIDTH / 3, 10),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"FullCustom", Content.Load<SoundEffect>("sfx/CustBarFull").CreateInstance() },
+                }
+            });
+            //Bar
+            _sprites.Add(new CustomBar(customScreenTexture)
+            {
+                Name = "Bar",
+                Viewport = new Rectangle(452, 139, 8, 8),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"FullCustom", Content.Load<SoundEffect>("sfx/CustBarFull").CreateInstance() },
                 }
             });
             //customScreen
@@ -372,29 +395,37 @@ namespace Rockman
                     {"Custom", Content.Load<SoundEffect>("sfx/CustomScreenOpen").CreateInstance() },
                 }
             });
-            //customBar
-            _sprites.Add(new CustomBar(new Dictionary<string, Animation>()
+            //customWindow
+            _sprites.Add(new CustomWindow(new Dictionary<string, Animation>()
             {
-                { "CustomBar", new Animation(customScreenTexture[0], new Rectangle(440, 117, 148, 15), 1) },
+                { "Standard", new Animation(customScreenTexture[1], new Rectangle(9, 255, 89, 105), 1) },
+                { "Mega", new Animation(customScreenTexture[1], new Rectangle(107, 255, 89, 105), 1) },
+                { "Giga", new Animation(customScreenTexture[1], new Rectangle(205, 255, 89, 105), 1) },
             })
             {
-                Name = "CustomBar",
-                Viewport = new Rectangle(446, 117, 137, 15),
-                Position = new Vector2(Singleton.WIDTH/3,10),
-                SoundEffects = new Dictionary<string, SoundEffectInstance>()
-                {
-                    {"FullCustom", Content.Load<SoundEffect>("sfx/CustBarFull").CreateInstance() },
-                }
+                Name = "CustomWindow",
+                Position = new Vector2(0, 0),
+                Viewport = new Rectangle(9, 255, 89, 105),
             });
-            //Bar
-            _sprites.Add(new CustomBar(customScreenTexture)
+            //chipType
+            _sprites.Add(new ChipType(new Dictionary<string, Animation>()
             {
-                Name = "Bar",
-                Viewport = new Rectangle(452, 139, 8, 8),
-                SoundEffects = new Dictionary<string, SoundEffectInstance>()
-                {
-                    {"FullCustom", Content.Load<SoundEffect>("sfx/CustBarFull").CreateInstance() },
-                }
+                { "Fire", new Animation(customScreenTexture[1], new Rectangle(204, 47, 14, 14), 1) },
+                { "Aqua", new Animation(customScreenTexture[1], new Rectangle(204+(16*1), 47, 14, 14), 1) },
+                { "Elec", new Animation(customScreenTexture[1], new Rectangle(204+(16*2), 47, 14, 14), 1) },
+                { "Wood", new Animation(customScreenTexture[1], new Rectangle(204+(16*3), 47, 14, 14), 1) },
+                { "Sword", new Animation(customScreenTexture[1], new Rectangle(204+(16*4), 47, 14, 14), 1) },
+                { "Wind", new Animation(customScreenTexture[1], new Rectangle(204+(16*5), 47, 14, 14), 1) },
+                { "Scope", new Animation(customScreenTexture[1], new Rectangle(204, 64, 14, 14), 1) },
+                { "Box", new Animation(customScreenTexture[1], new Rectangle(204+(16*1), 64, 14, 14), 1) },
+                { "Number", new Animation(customScreenTexture[1], new Rectangle(204+(16*2), 64, 14, 14), 1) },
+                { "Break", new Animation(customScreenTexture[1], new Rectangle(204+(16*3), 64, 14, 14), 1) },
+                { "Normal", new Animation(customScreenTexture[1], new Rectangle(204+(16*4), 64, 14, 14), 1) },
+            })
+            {
+                Name = "ChipType",
+                Position = new Vector2(75, 219),
+                Viewport = new Rectangle(9, 255, 89, 105),
             });
             //ChipIcon
             _sprites.Add(new ChipIcon(chipTexture)
@@ -423,7 +454,7 @@ namespace Rockman
                     {"ChipConfirm", Content.Load<SoundEffect>("sfx/ChipConfirm").CreateInstance() },
                 }
             });
-            //ChipRecovery
+            //chipRecovery
             _sprites.Add(new Recovery(chipTexture)
             {
                 Name = "RecoveryChip",
@@ -433,17 +464,18 @@ namespace Rockman
                     {"Recovery", Content.Load<SoundEffect>("sfx/Recover").CreateInstance() },
                 }
             });
-            //busterRockman
-            _sprites.Add(new Buster(new Dictionary<string, Animation>()
+            //chipBarrier
+            _sprites.Add(new Barrier(chipTexture)
             {
-                { "NormalBuster", new Animation(rockmanEXETexture[1], new Rectangle(7, 3, 20*4, 7), 4) },
-            })
-            {
-                Name = "RockmanBuster",
-                Viewport = new Rectangle(8, 4, 19, 7),
+                Name = "BarrierChip",
+                Viewport = new Rectangle(224, 192, 56, 47),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"Barrier", Content.Load<SoundEffect>("sfx/Barrier").CreateInstance() },
+                }
             });
 
-            //MediaPlayer.Play(Singleton.Instance.song);
+            MediaPlayer.Play(Singleton.Instance.song);
             Singleton.Instance._font = Content.Load<SpriteFont>("RockmanFont");
         }
     }

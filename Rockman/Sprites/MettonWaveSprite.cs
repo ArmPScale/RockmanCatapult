@@ -9,7 +9,7 @@ namespace Rockman.Sprites
     {
         Point currentTile;
         float delay = 100f, drawWaveTime;
-        int waveFrames = 0;
+        int waveFrames = 0, Attack = 10;
         bool isDamaged = true;
 
         Rectangle destRectWave, sourceRectWave;
@@ -30,10 +30,11 @@ namespace Rockman.Sprites
                     drawWaveTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                     if (Singleton.Instance.virusAttack[currentTile.X, currentTile.Y] == 2)
                     {
-                        //atkPlayer
+                        //atkTakePlayer
                         if (Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] == 1 && isDamaged)
                         {
-                            Singleton.Instance.HeroHP -= 10;
+                            Singleton.Instance.enemyAtk = Attack;
+                            Singleton.Instance.isDamaged = isDamaged;
                             isDamaged = false;
                         }
                         if (drawWaveTime >= delay)

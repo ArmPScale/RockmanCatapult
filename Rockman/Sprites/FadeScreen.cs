@@ -39,6 +39,7 @@ namespace Rockman.Sprites
                 {
                     Singleton.Instance.useChip = false;
                     Singleton.Instance.useChipDuring = true;
+                    Singleton.Instance.CurrentGameState = Singleton.GameState.GameUseChip;
                 }
             }
             else if (Singleton.Instance.useChipSuccess)

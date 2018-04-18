@@ -21,7 +21,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/DefeatedExplode.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Deleted.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/space.png</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/UseChip.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanExe6.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomScreen.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomWindow.png</File>
@@ -41,5 +40,11 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Recover.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Barrier.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/RedHP.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/PanelCrack.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/BarrierEXE6.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/UseChip.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Invisible.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Damaged.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Pointing.wav</File>
   </SourceFiles>
 </SourceFileCollection>
