@@ -115,3 +115,5 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Barrie
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Damaged.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Invisible.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Pointing.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\CrackOut.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\chipIconEXE4.xnb

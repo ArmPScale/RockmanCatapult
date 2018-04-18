@@ -25,6 +25,9 @@ namespace Rockman.Sprites.Chips
             {"Barrier10",  new Rectangle(40, 199, 16, 16) },
             {"Barrier100",  new Rectangle(40+(19*1), 199, 16, 16) },
             {"Barrier200",  new Rectangle(40+(19*2), 199, 16, 16) },
+            {"CrackOut",  new Rectangle(40+(19*4), 199, 16, 16) },
+            {"DoubleCrack",  new Rectangle(40+(19*4), 199, 16, 16) },
+            {"TripleCrack",  new Rectangle(40+(19*4), 199, 16, 16) },
             {"DreamAura",  new Rectangle(40+(19*4), 199, 16, 16) },
         };
 

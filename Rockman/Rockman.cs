@@ -62,8 +62,8 @@ namespace Rockman
             //shuffleBattleChipInFolder
             Singleton.Instance.folderList = new List<string>()
             {
-                "Recovery10","Recovery10","Recovery30","Recovery50","DreamAura","Recovery120","Recovery300",
-                "DreamAura","Barrier10","Barrier100","Barrier200",
+                "Recovery10","CrackOut","DoubleCrack","Recovery50","DreamAura","Recovery120","Recovery300",
+                "DreamAura","Barrier10","Barrier100","Barrier200","TripleCrack",
             };
             Singleton.Instance.folderList.Shuffle();
             Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
@@ -277,7 +277,8 @@ namespace Rockman
             chipTexture[0] = Content.Load<Texture2D>("chipAtk/chipList");
             chipTexture[1] = Content.Load<Texture2D>("chipAtk/chipIconEXE6");
             chipTexture[2] = Content.Load<Texture2D>("chipAtk/BarrierEXE6");
-
+            chipTexture[3] = Content.Load<Texture2D>("chipAtk/chipIconEXE4");
+            
             _sprites = new List<Sprite>()
             {
                 new BackgroundSprite(backgroundTexture)
@@ -472,6 +473,16 @@ namespace Rockman
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"Barrier", Content.Load<SoundEffect>("sfx/Barrier").CreateInstance() },
+                }
+            });
+            //chipCrackOut
+            _sprites.Add(new CrackOut(chipTexture)
+            {
+                Name = "CrackOutChip",
+                Viewport = new Rectangle(112, 240, 56, 47),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"CrackOut", Content.Load<SoundEffect>("sfx/CrackOut").CreateInstance() },
                 }
             });
 

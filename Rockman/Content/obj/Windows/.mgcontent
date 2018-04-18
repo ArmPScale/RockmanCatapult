@@ -46,5 +46,7 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Invisible.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Damaged.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Pointing.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/CrackOut.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipIconEXE4.png</File>
   </SourceFiles>
 </SourceFileCollection>

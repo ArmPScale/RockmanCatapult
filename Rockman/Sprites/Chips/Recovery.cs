@@ -78,7 +78,7 @@ namespace Rockman.Sprites.Chips
                     if (rectChipRecovImg.ContainsKey(chipCustomImg[Singleton.Instance.currentChipSelect.X]))
                     {
                         Singleton.Instance.chipClass = "Standard";
-                        Singleton.Instance.chipType = "Number";
+                        Singleton.Instance.chipType = "Normal";
                         //drawChipName
                         spriteBatch.DrawString(Singleton.Instance._font, chipCustomImg[Singleton.Instance.currentChipSelect.X], new Vector2(50, 40), Color.WhiteSmoke, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                         //drawChipImg

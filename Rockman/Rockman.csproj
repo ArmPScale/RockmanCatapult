@@ -54,6 +54,7 @@
     <Compile Include="Sprites\Chips\Buster.cs" />
     <Compile Include="Sprites\Chips\Chip.cs" />
     <Compile Include="Sprites\Chips\ChipIcon.cs" />
+    <Compile Include="Sprites\Chips\CrackOut.cs" />
     <Compile Include="Sprites\Chips\Recovery.cs" />
     <Compile Include="Sprites\Chips\WaveSprite.cs" />
     <Compile Include="Sprites\Screens\ChipType.cs" />
