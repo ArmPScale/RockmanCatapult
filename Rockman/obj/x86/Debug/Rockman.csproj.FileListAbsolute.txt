@@ -95,7 +95,6 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\CustomS
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\CustomWindow.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\ThroawableObjEXE4.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\battleEffect\Uninstall.xnb
-D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\statusboxEXE4.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\ChipCancel.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\ChipChoose.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\ChipConfirm.xnb
@@ -117,3 +116,5 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Invisible.
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Pointing.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\CrackOut.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\chipIconEXE4.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\EmotionEXE5.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Recovery.xnb

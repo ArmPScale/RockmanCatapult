@@ -34,6 +34,10 @@ namespace Rockman.Sprites.Screens
                             {
                                 _animationManager.Play(_animations["Giga"]);
                             }
+                            else if (Singleton.Instance.chipClass == "Dark")
+                            {
+                                _animationManager.Play(_animations["Dark"]);
+                            }
                             else
                             {
                                 _animationManager.Play(_animations["Standard"]);

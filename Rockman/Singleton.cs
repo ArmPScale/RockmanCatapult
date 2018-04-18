@@ -18,15 +18,26 @@ namespace Rockman
         {
             Playing,
             BusterShot,
+            UseChipNormal,
             Dead
         }
         public PlayerState CurrentPlayerState;
-        public int HeroHP = 10, maxHeroHP = 500, HeroAttack = 1, HeroBarrier = 0, HeroAura = 0;
+        public int HeroHP = 10, maxHeroHP = 200, HeroAttack = 1, HeroBarrier = 0, HeroAura = 0;
         public Point currentPlayerPoint;
-        public bool isDamaged;
+        public bool isDamaged, isRecovered, statusBugHP = false;
+        public string choosePlayerAnimate = "";
+        public float currentChipCoolDown = 0;
 
         //enemyVar
-        public int enemyAtk;
+        public int enemyAtk = 0;
+
+        //panelVar
+        public int[,] areaCracked = new int[3, 10]
+        {
+            { 0,0,0,0,0,0,0,0,0,0},
+            { 0,0,0,0,0,0,0,0,0,0},
+            { 0,0,0,0,0,0,0,0,0,0},
+        };
 
         //folderPlayer
         public List<string> folderList;
@@ -34,7 +45,6 @@ namespace Rockman
 
         //initialArr
         public int[,] panelStage, spriteMove, spriteHP, panelBoundary, chipAttack, virusAttack;
-        //public int[,] spriteMove2, spriteHP2;
         public SpriteFont _font;
         public Texture2D[] effectsTexture;
 

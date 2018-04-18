@@ -28,7 +28,7 @@ namespace Rockman.Sprites.Chips
                 case Singleton.GameState.GameUseChip:
                     if (Singleton.Instance.HeroBarrier > 0)
                     {
-                        if (Singleton.Instance.useChipName == "Barrier10") _animationManager.Play(_animations["Barrier10"]);
+                        if (Singleton.Instance.useChipName == "Barrier") _animationManager.Play(_animations["Barrier"]);
                         else if (Singleton.Instance.useChipName == "Barrier100") _animationManager.Play(_animations["Barrier100"]);
                         else if (Singleton.Instance.useChipName == "Barrier200") _animationManager.Play(_animations["Barrier200"]);
                     }

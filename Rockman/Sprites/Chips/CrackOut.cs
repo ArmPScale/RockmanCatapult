@@ -12,17 +12,12 @@ namespace Rockman.Sprites.Chips
 {
     class CrackOut : Chip
     {
+        Point currentPanel;
         Dictionary<string, Rectangle> rectChipCrackImg = new Dictionary<string, Rectangle>()
         {
             {"CrackOut",  new Rectangle(112, 240, 56, 47) },
             {"DoubleCrack",  new Rectangle(168, 240, 56, 47) },
             {"TripleCrack",  new Rectangle(224, 240, 56, 47) },
-        };
-        Dictionary<string, int> crackOutPanel = new Dictionary<string, int>()
-        {
-            {"CrackOut",  1 },
-            {"DoubleCrack",  2 },
-            {"TripleCrack",  3 },
         };
 
         public CrackOut(Texture2D[] texture)
@@ -36,24 +31,47 @@ namespace Rockman.Sprites.Chips
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GamePlaying:
+                    currentPanel = Singleton.Instance.currentPlayerPoint;
                     if (Singleton.Instance.useChipSlotIn.Count != 0 &&
                         Singleton.Instance.useNormalChip == true &&
                         rectChipCrackImg.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
                     {
+                        //animateUseChipNormal
+                        Singleton.Instance.choosePlayerAnimate = "Bomb";
+                        Singleton.Instance.currentChipCoolDown = 0.3f;
+                        Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.UseChipNormal;
+                        //useChipCrackOut
                         SoundEffects["CrackOut"].Volume = Singleton.Instance.MasterSFXVolume;
                         SoundEffects["CrackOut"].Play();
                         if (Singleton.Instance.useChipSlotIn.Peek() == "DoubleCrack")
                         {
-                            Singleton.Instance.panelStage[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y + 1] = 2;
-                            Singleton.Instance.panelStage[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y + 2] = 2;
+                            if (Singleton.Instance.currentPlayerPoint.Y + 2 < 10
+                                && Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 2] != 3)
+                            {
+                                Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 2] = 2;
+                                Singleton.Instance.areaCracked[currentPanel.X, currentPanel.Y + 2] = 1;
+                            }
                         }
                         else if (Singleton.Instance.useChipSlotIn.Peek() == "TripleCrack")
                         {
-                            Singleton.Instance.panelStage[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y + 1] = 2;
+                            if (Singleton.Instance.currentPlayerPoint.X - 1 >= 0
+                                && Singleton.Instance.panelStage[currentPanel.X - 1, currentPanel.Y + 1] != 3)
+                            {
+                                Singleton.Instance.panelStage[currentPanel.X - 1, currentPanel.Y + 1] = 2;
+                                Singleton.Instance.areaCracked[currentPanel.X - 1, currentPanel.Y + 1] = 1;
+                            }
+                            if (Singleton.Instance.currentPlayerPoint.X + 1 < 3
+                                && Singleton.Instance.panelStage[currentPanel.X + 1, currentPanel.Y + 1] != 3)
+                            {
+                                Singleton.Instance.panelStage[currentPanel.X + 1, currentPanel.Y + 1] = 2;
+                                Singleton.Instance.areaCracked[currentPanel.X + 1, currentPanel.Y + 1] = 1;
+                            }
                         }
-                        else
+                        if (Singleton.Instance.currentPlayerPoint.Y + 1 < 10
+                            && Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 1] != 3)
                         {
-                            Singleton.Instance.panelStage[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y + 1] = 2;
+                            Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 1] = 2;
+                            Singleton.Instance.areaCracked[currentPanel.X, currentPanel.Y + 1] = 1;
                         }
                         Singleton.Instance.useChipSlotIn.Pop();
                         Singleton.Instance.useNormalChip = false;

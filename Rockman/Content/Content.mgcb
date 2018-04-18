@@ -171,18 +171,6 @@
 /processorParam:TextureFormat=Color
 /build:screen/CustomScreen.png
 
-#begin screen/CustomWindow.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:screen/CustomWindow.png
-
 #begin battleEffect/Uninstall.gif
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -194,18 +182,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:battleEffect/Uninstall.gif
-
-#begin screen/statusboxEXE4.gif
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:screen/statusboxEXE4.gif
 
 #begin chipAtk/ThroawableObjEXE4.png
 /importer:TextureImporter
@@ -374,4 +350,40 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:chipAtk/chipIconEXE4.png
+
+#begin screen/EmotionEXE5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:screen/EmotionEXE5.png
+
+#begin screen/CustomWindow.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:screen/CustomWindow.png
+
+#begin chipAtk/Recovery.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:chipAtk/Recovery.png
 

@@ -23,9 +23,7 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/space.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanExe6.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomScreen.png</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomWindow.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/Uninstall.gif</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/statusboxEXE4.gif</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/ThroawableObjEXE4.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipCancel.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipChoose.wav</File>
@@ -48,5 +46,8 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Pointing.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/CrackOut.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipIconEXE4.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/EmotionEXE5.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomWindow.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/Recovery.png</File>
   </SourceFiles>
 </SourceFileCollection>

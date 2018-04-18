@@ -14,14 +14,14 @@ namespace Rockman.Sprites.Chips
     {
         Dictionary<string, Rectangle> rectChipBarImg = new Dictionary<string, Rectangle>()
         {
-            {"Barrier10",  new Rectangle(224, 192, 56, 47) },
+            {"Barrier",  new Rectangle(224, 192, 56, 47) },
             {"Barrier100",  new Rectangle(224 + (56*1), 192, 56, 47) },
             {"Barrier200",  new Rectangle(224 + (56*2), 192, 56, 47) },
             {"DreamAura",  new Rectangle(56, 288, 56, 47) },
         };
         Dictionary<string, int> barrierDef = new Dictionary<string, int>()
         {
-            {"Barrier10",  10 },
+            {"Barrier",  10 },
             {"Barrier100",  100 },
             {"Barrier200",  200 },
             {"DreamAura",  200 },

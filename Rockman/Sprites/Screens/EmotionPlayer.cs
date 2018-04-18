@@ -8,21 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Rockman.Models;
 
-namespace Rockman.Sprites.Chips
+namespace Rockman.Sprites.Screens
 {
-    class Chip : Sprite
+    class EmotionPlayer : Screen
     {
-        public String[] chipCustomImg = new string[6];
-        public String[] chipCustomImgCopy = new string[6];
-
-        public Chip(Texture2D[] texture) 
-            : base(texture)
-        {
-            chipCustomImg = Singleton.Instance.chipCustomSelect;
-        }
-
-        public Chip(Dictionary<string, Animation> animations) 
-            : base(animations)
+        public EmotionPlayer(Texture2D[] texture) : base(texture)
         {
         }
 
@@ -35,11 +25,6 @@ namespace Rockman.Sprites.Chips
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-        }
-
-        public override void Reset()
-        {
-            base.Reset();
         }
     }
 }

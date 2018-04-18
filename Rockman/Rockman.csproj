@@ -66,6 +66,7 @@
     <Compile Include="Sprites\MettonSprite.cs" />
     <Compile Include="Sprites\PanelSprite.cs" />
     <Compile Include="Sprites\Screens\CustomWindow.cs" />
+    <Compile Include="Sprites\Screens\EmotionPlayer.cs" />
     <Compile Include="Sprites\Screens\Screen.cs" />
     <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="Sprites\RockmanEXESprite.cs" />
@@ -83,6 +84,7 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <Compile Include="Sprites\Chips\RecoverySprite.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

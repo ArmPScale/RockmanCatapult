@@ -22,6 +22,7 @@ namespace Rockman.Sprites.Chips
             {"Recovery150",  new Rectangle(56*5, 145, 56, 47) },
             {"Recovery200",  new Rectangle(56*6, 145, 56, 47) },
             {"Recovery300",  new Rectangle(56*7, 145, 56, 47) },
+            {"DarkRecovery",  new Rectangle(168, 336, 56, 47) },
         };
         Dictionary<string, int> recoveryHP = new Dictionary<string, int>()
         {
@@ -33,6 +34,7 @@ namespace Rockman.Sprites.Chips
             {"Recovery150",  150 },
             {"Recovery200",  200 },
             {"Recovery300",  300 },
+            {"DarkRecovery",  1000 },
         };
 
         public Recovery(Texture2D[] texture) 
@@ -44,6 +46,7 @@ namespace Rockman.Sprites.Chips
         public Recovery(Dictionary<string, Animation> animations)
             : base(animations)
         {
+            _animations = animations;
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -57,6 +60,11 @@ namespace Rockman.Sprites.Chips
                     {
                         SoundEffects["Recovery"].Volume = Singleton.Instance.MasterSFXVolume;
                         SoundEffects["Recovery"].Play();
+                        Singleton.Instance.isRecovered = true;
+                        if (Singleton.Instance.useChipSlotIn.Peek() == "DarkRecovery")
+                        {
+                            Singleton.Instance.statusBugHP = true;
+                        }
                         if (Singleton.Instance.HeroHP + recoveryHP[Singleton.Instance.useChipSlotIn.Peek()] >= Singleton.Instance.maxHeroHP)
                         {
                             Singleton.Instance.HeroHP = Singleton.Instance.maxHeroHP;
@@ -77,7 +85,14 @@ namespace Rockman.Sprites.Chips
                 case Singleton.GameState.GameCustomScreen:
                     if (rectChipRecovImg.ContainsKey(chipCustomImg[Singleton.Instance.currentChipSelect.X]))
                     {
-                        Singleton.Instance.chipClass = "Standard";
+                        if (chipCustomImg[Singleton.Instance.currentChipSelect.X] == "DarkRecovery")
+                        {
+                            Singleton.Instance.chipClass = "Dark";
+                        }
+                        else
+                        {
+                            Singleton.Instance.chipClass = "Standard";
+                        }
                         Singleton.Instance.chipType = "Normal";
                         //drawChipName
                         spriteBatch.DrawString(Singleton.Instance._font, chipCustomImg[Singleton.Instance.currentChipSelect.X], new Vector2(50, 40), Color.WhiteSmoke, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);

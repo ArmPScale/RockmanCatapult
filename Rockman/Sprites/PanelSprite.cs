@@ -8,13 +8,15 @@ namespace Rockman.Sprites
 {
     class PanelSprite : Sprite
     {
-        Rectangle destRectPanel, sourceRectPanel;
-        int[,] areaCracked = new int[3, 10]
+        Rectangle destRectPanel;
+        
+        private float[,] timePanelReturn = new float[3, 10]
         {
             { 0,0,0,0,0,0,0,0,0,0},
             { 0,0,0,0,0,0,0,0,0,0},
             { 0,0,0,0,0,0,0,0,0,0},
         };
+        private float timeToReturn = 10f;
 
 
         public PanelSprite(Texture2D[] texture)
@@ -24,7 +26,41 @@ namespace Rockman.Sprites
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    switch (Singleton.Instance.CurrentGameState)
+                    {
+                        case Singleton.GameState.GamePlaying:
+                            //areaCracked
+                            if (Singleton.Instance.panelStage[i, j] == 1 && Singleton.Instance.spriteMove[i, j] > 0)
+                            {
+                                Singleton.Instance.areaCracked[i, j] = 1;
+                            }
+                            else if (Singleton.Instance.areaCracked[i, j] == 1)
+                            {
+                                SoundEffects["PanelCrack"].Volume = Singleton.Instance.MasterSFXVolume;
+                                SoundEffects["PanelCrack"].Play();
+                                Singleton.Instance.panelStage[i, j] = 2;
+                                Singleton.Instance.areaCracked[i, j] = 0;
+                                //startCountTime
+                                timePanelReturn[i, j] += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                            }
+                            //panelReturn
+                            if (timePanelReturn[i, j] > 0 && timePanelReturn[i, j] < timeToReturn)
+                            {
+                                timePanelReturn[i, j] += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                            }
+                            if (timePanelReturn[i, j] >= timeToReturn)
+                            {
+                                Singleton.Instance.panelStage[i, j] = 0;
+                                timePanelReturn[i, j] = 0;
+                            }
+                            break;
+                    }
+                }
+            }
             base.Update(gameTime, sprites);
         }
 
@@ -34,18 +70,6 @@ namespace Rockman.Sprites
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    //areaCracked
-                    if (Singleton.Instance.panelStage[i, j] == 1 && Singleton.Instance.spriteMove[i, j] > 0)
-                    {
-                        areaCracked[i, j] = 1;
-                    }
-                    else if (areaCracked[i, j] == 1)
-                    {
-                        SoundEffects["PanelCrack"].Volume = Singleton.Instance.MasterSFXVolume;
-                        SoundEffects["PanelCrack"].Play();
-                        Singleton.Instance.panelStage[i, j] = 2;
-                        areaCracked[i, j] = 0;
-                    }
                     //rectPanel
                     destRectPanel = new Rectangle((40 * j * (int)scale) + screenStageX, (24 * i * (int)scale) + screenStageY, 40 * (int)scale, 24 * (int)scale);
                     //defaultSprite

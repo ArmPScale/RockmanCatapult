@@ -10,7 +10,7 @@ namespace Rockman.Sprites
     class RockmanEXESprite : Sprite
     {
         const float CHARGING = 1.2f ,CHARGED = 3.2f;
-        private float _chargeTime, _busterCoolDown;
+        private float _chargeTime, _busterCoolDown, _chipCoolDown, _bugCoolDown;
         public int HP, Attack, Barrier;
         public Point currentTile, busterDamagedPosition;
         public Keys W, S, A, D, J, K, U;
@@ -39,10 +39,21 @@ namespace Rockman.Sprites
                     drawChargeTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                     if (Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] == 1)
                     {
+                        //statusBug
+                        if (Singleton.Instance.statusBugHP)
+                        {
+                            _bugCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                            if (_bugCoolDown > 0.7f)
+                            {
+                                _bugCoolDown = 0;
+                                if(HP > 1) Singleton.Instance.HeroHP -= 1;
+                            }
+                        }
                         switch (Singleton.Instance.CurrentPlayerState)
                         {
                             case Singleton.PlayerState.Playing:
                                 _animationManager.Play(_animations["Alive"]);
+                                //Damaged
                                 if (Singleton.Instance.isDamaged)
                                 {
                                     if (Singleton.Instance.HeroBarrier > 0)
@@ -61,6 +72,7 @@ namespace Rockman.Sprites
                                     }
                                     Singleton.Instance.isDamaged = false;
                                 }
+                                //checkHP
                                 if (HP <= 0)
                                 {
                                     SoundEffects["Deleted"].Volume = Singleton.Instance.MasterSFXVolume;
@@ -68,6 +80,7 @@ namespace Rockman.Sprites
                                     HP = 0;
                                     Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.Dead;
                                 }
+                                //movementHero
                                 if ((currentTile.X > 0 && Singleton.Instance.panelBoundary[currentTile.X - 1, currentTile.Y] == 0 &&
                                 Singleton.Instance.panelStage[currentTile.X - 1, currentTile.Y] <= 1) &&
                                 (Singleton.Instance.CurrentKey.IsKeyDown(W) && Singleton.Instance.PreviousKey.IsKeyUp(W)))
@@ -187,6 +200,18 @@ namespace Rockman.Sprites
                                     Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.Playing;
                                 }
                                 break;
+                            case Singleton.PlayerState.UseChipNormal:
+                                //animateUseChipNormal
+                                _chipCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                                _animationManager.Play(_animations[Singleton.Instance.choosePlayerAnimate]);
+                                if (_chipCoolDown > Singleton.Instance.currentChipCoolDown)
+                                {
+                                    _chipCoolDown = 0;
+                                    Singleton.Instance.choosePlayerAnimate = "";
+                                    Singleton.Instance.currentChipCoolDown = 0f;
+                                    Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.Playing;
+                                }
+                                break;
                             case Singleton.PlayerState.Dead:
                                 _animationManager.Play(_animations["Dead"]);
                                 //Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
@@ -203,18 +228,32 @@ namespace Rockman.Sprites
         {
             //rectCharge
             destRectCharge = new Rectangle((TILESIZEX * currentTile.Y * 2) + (screenStageX - 40), (TILESIZEY * currentTile.X * 2) + (screenStageY - 100), 67*(int)scale, 67*(int)scale);
-
             //drawHeroHP
-            if(Singleton.Instance.maxHeroHP/4 >= Singleton.Instance.HeroHP)
+            if (Singleton.Instance.maxHeroHP / 4 >= HP)
             {
                 SoundEffects["LowHP"].Volume = Singleton.Instance.MasterSFXVolume;
                 SoundEffects["LowHP"].Play();
-                spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", (Singleton.Instance.HeroHP)), new Vector2(10, 750), Color.OrangeRed, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
+                if (Singleton.Instance.CurrentGameState == Singleton.GameState.GameCustomScreen)
+                {
+                    spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(375, 10), Color.OrangeRed, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
+                }
+                else
+                {
+                    spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(10, 10), Color.OrangeRed, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
+                }
             }
             else
             {
-                spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", (Singleton.Instance.HeroHP)), new Vector2(10, 750), Color.White, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
+                if (Singleton.Instance.CurrentGameState == Singleton.GameState.GameCustomScreen)
+                {
+                    spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(375, 10), Color.White, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
+                }
+                else
+                {
+                    spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
+                }
             }
+            //drawHeroSprite
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 10; j++)
