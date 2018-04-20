@@ -58,6 +58,9 @@
     <Compile Include="Sprites\Chips\ChipIcon.cs" />
     <Compile Include="Sprites\Chips\CrackOut.cs" />
     <Compile Include="Sprites\Chips\Recovery.cs" />
+    <Compile Include="Sprites\Chips\Spreader.cs" />
+    <Compile Include="Sprites\Chips\SpreaderEffect.cs" />
+    <Compile Include="Sprites\Chips\SpreaderSprite.cs" />
     <Compile Include="Sprites\Screens\ChipType.cs" />
     <Compile Include="Sprites\Screens\CustomBar.cs" />
     <Compile Include="Sprites\Screens\CustomScreen.cs" />

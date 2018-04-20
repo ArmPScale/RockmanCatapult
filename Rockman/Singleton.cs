@@ -22,9 +22,9 @@ namespace Rockman
             Dead
         }
         public PlayerState CurrentPlayerState;
-        public int HeroHP = 10, maxHeroHP = 200, HeroAttack = 1, HeroBarrier = 0, HeroAura = 0;
+        public int HeroHP = 50, maxHeroHP = 200, HeroAttack = 1, HeroBarrier = 0, HeroAura = 0;
         public Point currentPlayerPoint;
-        public bool isDamaged, isRecovered, statusBugHP = false;
+        public bool isDamaged, isRecovered, statusBugHP = false, drawEffect = false;
         public string choosePlayerAnimate = "", chooseEmotionPlayer = "NormalEmotion";
         public float currentChipCoolDown = 0;
 
@@ -44,7 +44,7 @@ namespace Rockman
         public Queue<string> nextChipFolder;
 
         //initialArr
-        public int[,] panelStage, spriteMove, spriteHP, panelBoundary, chipAttack, virusAttack;
+        public int[,] panelStage, spriteMove, spriteHP, panelBoundary, chipEffect, virusAttack;
         public SpriteFont _font;
         public Texture2D[] effectsTexture;
 
@@ -58,8 +58,7 @@ namespace Rockman
         public bool atkFinished, selectChipSuccess;
         public bool useChip, useChipDuring, useChipNearlySuccess, useChipSuccess;
         public bool useNormalChip, useSceneChip;
-        public String useChipName = "Test";
-        public String chipType,chipClass;
+        public String chipType ,chipClass, useChipName = "", drawChipEffectName = "";
         public Stack<String> chipSlotIn, useChipSlotIn;
         public Stack<int> indexChipSlotIn;
         public int[] chipSelect;

@@ -62,8 +62,8 @@ namespace Rockman
             //shuffleBattleChipInFolder
             Singleton.Instance.folderList = new List<string>()
             {
-                "DarkRecovery","DoubleCrack","AirShot","Recovery120","Recovery300",
-                "DreamAura","Barrier","Barrier100","TripleCrack","AirShot","AirShot"
+                "DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
+                "DreamAura","SpreadGun2","Barrier100","TripleCrack","AirShot","SpreadGun1"
             };
             Singleton.Instance.folderList.Shuffle();
             Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
@@ -89,10 +89,10 @@ namespace Rockman
             Singleton.Instance.spriteHP = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
-                { 0,0,0,0,0,0,0,0,70,0},
+                { 0,0,0,0,0,0,0,0,500,0},
                 { 0,0,0,0,0,0,0,0,0,0},
             };
-            Singleton.Instance.chipAttack = new int[3, 10]
+            Singleton.Instance.chipEffect = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
                 { 0,0,0,0,0,0,0,0,0,0},
@@ -281,6 +281,7 @@ namespace Rockman
             chipTexture[3] = Content.Load<Texture2D>("chipAtk/chipIconEXE4");
             chipTexture[4] = Content.Load<Texture2D>("chipAtk/Recovery");
             chipTexture[5] = Content.Load<Texture2D>("chipAtk/AirShot");
+            chipTexture[6] = Content.Load<Texture2D>("chipAtk/Spreader");
 
             _sprites = new List<Sprite>()
             {
@@ -369,6 +370,26 @@ namespace Rockman
             {
                 Name = "AirShotSprite",
                 Viewport = new Rectangle(0, 2, 50, 42),
+            });
+            //spreaderSprite
+            _sprites.Add(new SpreaderSprite(new Dictionary<string, Animation>()
+            {
+                { "Spreader", new Animation(chipTexture[6], new Rectangle(0, 0, 55*5, 32), 5) },
+                { "DarkSpread", new Animation(chipTexture[6], new Rectangle(0, 32, 55*6, 32), 6) },
+            })
+            {
+                Name = "SpreaderSprite",
+                Viewport = new Rectangle(0, 0, 55, 32),
+            });
+            //spreaderEffect
+            _sprites.Add(new SpreaderEffect(new Dictionary<string, Animation>()
+            {
+                { "Spreader", new Animation(chipTexture[6], new Rectangle(0, 64, 55*6, 32), 6) },
+                { "DarkSpread", new Animation(chipTexture[6], new Rectangle(0, 96, 55*6, 32), 6) },
+            })
+            {
+                Name = "SpreaderEffect",
+                Viewport = new Rectangle(0, 64, 55, 32),
             });
             //recoverySprite
             _sprites.Add(new RecoverySprite(new Dictionary<string, Animation>()
@@ -482,6 +503,26 @@ namespace Rockman
                     {"ChipConfirm", Content.Load<SoundEffect>("sfx/ChipConfirm").CreateInstance() },
                 }
             });
+            //chipAirShot
+            _sprites.Add(new AirShot(chipTexture)
+            {
+                Name = "AirShotChip",
+                Viewport = new Rectangle(168, 0, 56, 47),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"AirShot", Content.Load<SoundEffect>("sfx/Spreader").CreateInstance() },
+                }
+            });
+            //chipSpreader
+            _sprites.Add(new Spreader(chipTexture)
+            {
+                Name = "SpreaderChip",
+                Viewport = new Rectangle(392, 0, 56, 47),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"Spreader", Content.Load<SoundEffect>("sfx/Spreader").CreateInstance() },
+                }
+            });
             //chipRecovery
             _sprites.Add(new Recovery(chipTexture)
             {
@@ -510,16 +551,6 @@ namespace Rockman
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"CrackOut", Content.Load<SoundEffect>("sfx/CrackOut").CreateInstance() },
-                }
-            });
-            //chipAirShot
-            _sprites.Add(new AirShot(chipTexture)
-            {
-                Name = "AirShotChip",
-                Viewport = new Rectangle(168, 0, 56, 47),
-                SoundEffects = new Dictionary<string, SoundEffectInstance>()
-                {
-                    {"AirShot", Content.Load<SoundEffect>("sfx/Spreader").CreateInstance() },
                 }
             });
 
