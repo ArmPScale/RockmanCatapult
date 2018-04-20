@@ -25,7 +25,7 @@ namespace Rockman
         public int HeroHP = 10, maxHeroHP = 200, HeroAttack = 1, HeroBarrier = 0, HeroAura = 0;
         public Point currentPlayerPoint;
         public bool isDamaged, isRecovered, statusBugHP = false;
-        public string choosePlayerAnimate = "";
+        public string choosePlayerAnimate = "", chooseEmotionPlayer = "NormalEmotion";
         public float currentChipCoolDown = 0;
 
         //enemyVar

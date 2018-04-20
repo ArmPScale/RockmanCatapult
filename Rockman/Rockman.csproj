@@ -49,6 +49,8 @@
     <Compile Include="Models\Animation.cs" />
     <Compile Include="Managers\AnimationManager.cs" />
     <Compile Include="Sprites\BackgroundSprite.cs" />
+    <Compile Include="Sprites\Chips\AirShot.cs" />
+    <Compile Include="Sprites\Chips\AirShotSprite.cs" />
     <Compile Include="Sprites\Chips\Barrier.cs" />
     <Compile Include="Sprites\Chips\BarrierSprite.cs" />
     <Compile Include="Sprites\Chips\Buster.cs" />
@@ -56,7 +58,6 @@
     <Compile Include="Sprites\Chips\ChipIcon.cs" />
     <Compile Include="Sprites\Chips\CrackOut.cs" />
     <Compile Include="Sprites\Chips\Recovery.cs" />
-    <Compile Include="Sprites\Chips\WaveSprite.cs" />
     <Compile Include="Sprites\Screens\ChipType.cs" />
     <Compile Include="Sprites\Screens\CustomBar.cs" />
     <Compile Include="Sprites\Screens\CustomScreen.cs" />

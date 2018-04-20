@@ -233,22 +233,24 @@ namespace Rockman.Sprites
             {
                 SoundEffects["LowHP"].Volume = Singleton.Instance.MasterSFXVolume;
                 SoundEffects["LowHP"].Play();
+                if (Singleton.Instance.chooseEmotionPlayer != "DarkEmotion") Singleton.Instance.chooseEmotionPlayer = "HurtEmotion";
                 if (Singleton.Instance.CurrentGameState == Singleton.GameState.GameCustomScreen)
                 {
                     spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(375, 10), Color.OrangeRed, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
                 }
-                else
+                else if (Singleton.Instance.CurrentGameState == Singleton.GameState.GamePlaying)
                 {
                     spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(10, 10), Color.OrangeRed, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
                 }
             }
             else
             {
+                if(Singleton.Instance.chooseEmotionPlayer != "DarkEmotion") Singleton.Instance.chooseEmotionPlayer = "NormalEmotion";
                 if (Singleton.Instance.CurrentGameState == Singleton.GameState.GameCustomScreen)
                 {
                     spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(375, 10), Color.White, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
                 }
-                else
+                else if (Singleton.Instance.CurrentGameState == Singleton.GameState.GamePlaying)
                 {
                     spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
                 }

@@ -49,5 +49,7 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/EmotionEXE5.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomWindow.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/Recovery.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/AirShot.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Spreader.wav</File>
   </SourceFiles>
 </SourceFileCollection>

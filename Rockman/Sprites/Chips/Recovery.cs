@@ -63,6 +63,7 @@ namespace Rockman.Sprites.Chips
                         Singleton.Instance.isRecovered = true;
                         if (Singleton.Instance.useChipSlotIn.Peek() == "DarkRecovery")
                         {
+                            Singleton.Instance.chooseEmotionPlayer = "DarkEmotion";
                             Singleton.Instance.statusBugHP = true;
                         }
                         if (Singleton.Instance.HeroHP + recoveryHP[Singleton.Instance.useChipSlotIn.Peek()] >= Singleton.Instance.maxHeroHP)
@@ -101,9 +102,6 @@ namespace Rockman.Sprites.Chips
                             rectChipRecovImg[chipCustomImg[Singleton.Instance.currentChipSelect.X]],
                             Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
                     }
-                    break;
-                case Singleton.GameState.GamePlaying:
-                    
                     break;
             }
             base.Draw(spriteBatch);

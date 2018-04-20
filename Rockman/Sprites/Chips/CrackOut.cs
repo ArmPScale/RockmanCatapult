@@ -48,8 +48,15 @@ namespace Rockman.Sprites.Chips
                             if (Singleton.Instance.currentPlayerPoint.Y + 2 < 10
                                 && Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 2] != 3)
                             {
-                                Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 2] = 2;
-                                Singleton.Instance.areaCracked[currentPanel.X, currentPanel.Y + 2] = 1;
+                                if (Singleton.Instance.spriteMove[currentPanel.X, currentPanel.Y + 2] > 0)
+                                {
+                                    Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 2] = 1;
+                                }
+                                else
+                                {
+                                    Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 2] = 2;
+                                    Singleton.Instance.areaCracked[currentPanel.X, currentPanel.Y + 2] = 1;
+                                }
                             }
                         }
                         else if (Singleton.Instance.useChipSlotIn.Peek() == "TripleCrack")
@@ -57,21 +64,42 @@ namespace Rockman.Sprites.Chips
                             if (Singleton.Instance.currentPlayerPoint.X - 1 >= 0
                                 && Singleton.Instance.panelStage[currentPanel.X - 1, currentPanel.Y + 1] != 3)
                             {
-                                Singleton.Instance.panelStage[currentPanel.X - 1, currentPanel.Y + 1] = 2;
-                                Singleton.Instance.areaCracked[currentPanel.X - 1, currentPanel.Y + 1] = 1;
+                                if (Singleton.Instance.spriteMove[currentPanel.X - 1, currentPanel.Y + 1] > 0)
+                                {
+                                    Singleton.Instance.panelStage[currentPanel.X - 1, currentPanel.Y + 1] = 1;
+                                }
+                                else
+                                {
+                                    Singleton.Instance.panelStage[currentPanel.X - 1, currentPanel.Y + 1] = 2;
+                                    Singleton.Instance.areaCracked[currentPanel.X - 1, currentPanel.Y + 1] = 1;
+                                }
                             }
                             if (Singleton.Instance.currentPlayerPoint.X + 1 < 3
                                 && Singleton.Instance.panelStage[currentPanel.X + 1, currentPanel.Y + 1] != 3)
                             {
-                                Singleton.Instance.panelStage[currentPanel.X + 1, currentPanel.Y + 1] = 2;
-                                Singleton.Instance.areaCracked[currentPanel.X + 1, currentPanel.Y + 1] = 1;
+                                if (Singleton.Instance.spriteMove[currentPanel.X + 1, currentPanel.Y + 1] > 0)
+                                {
+                                    Singleton.Instance.panelStage[currentPanel.X + 1, currentPanel.Y + 1] = 1;
+                                }
+                                else
+                                {
+                                    Singleton.Instance.panelStage[currentPanel.X + 1, currentPanel.Y + 1] = 2;
+                                    Singleton.Instance.areaCracked[currentPanel.X + 1, currentPanel.Y + 1] = 1;
+                                }
                             }
                         }
                         if (Singleton.Instance.currentPlayerPoint.Y + 1 < 10
                             && Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 1] != 3)
                         {
-                            Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 1] = 2;
-                            Singleton.Instance.areaCracked[currentPanel.X, currentPanel.Y + 1] = 1;
+                            if (Singleton.Instance.spriteMove[currentPanel.X, currentPanel.Y + 1] > 0)
+                            {
+                                Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 1] = 1;
+                            }
+                            else
+                            {
+                                Singleton.Instance.panelStage[currentPanel.X, currentPanel.Y + 1] = 2;
+                                Singleton.Instance.areaCracked[currentPanel.X, currentPanel.Y + 1] = 1;
+                            }
                         }
                         Singleton.Instance.useChipSlotIn.Pop();
                         Singleton.Instance.useNormalChip = false;

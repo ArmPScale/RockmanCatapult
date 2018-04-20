@@ -14,6 +14,7 @@ namespace Rockman.Sprites.Chips
     {
         Dictionary<string, Rectangle> rectChipIconImg = new Dictionary<string, Rectangle>()
         {
+            {"AirShot",  new Rectangle(79, 2, 14, 14) },
             {"Recovery10",  new Rectangle(193, 164, 14, 14) },
             {"Recovery30",  new Rectangle(212, 164, 14, 14) },
             {"Recovery50",  new Rectangle(231, 164, 14, 14) },

@@ -17,7 +17,7 @@ namespace Rockman
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private List<Sprite> _sprites;
+        private List<Sprite> _sprites, _chipSprites, _outSprites;
         Texture2D[] rockmanEXETexture, panelTexture, mettonTexture, backgroundTexture, fadeScreenTexture, chipTexture, customScreenTexture;
         private int _numObject;
 
@@ -41,7 +41,7 @@ namespace Rockman
             mettonTexture = new Texture2D[10];
             fadeScreenTexture = new Texture2D[1];
             customScreenTexture = new Texture2D[5];
-            chipTexture = new Texture2D[5];
+            chipTexture = new Texture2D[10];
             Singleton.Instance.effectsTexture = new Texture2D[10];
             Singleton.Instance.soundEffects = new List<SoundEffect>();
             Singleton.Instance.chipSlotIn = new Stack<string>();
@@ -62,22 +62,22 @@ namespace Rockman
             //shuffleBattleChipInFolder
             Singleton.Instance.folderList = new List<string>()
             {
-                "DarkRecovery","CrackOut","DoubleCrack","Recovery50","Recovery120","Recovery300",
-                "DreamAura","Barrier","Barrier200","TripleCrack",
+                "DarkRecovery","DoubleCrack","AirShot","Recovery120","Recovery300",
+                "DreamAura","Barrier","Barrier100","TripleCrack","AirShot","AirShot"
             };
             Singleton.Instance.folderList.Shuffle();
             Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
 
             Singleton.Instance.panelBoundary = new int[3, 10]
             {
-                { 0,0,0,0,2,2,1,1,1,1},
-                { 0,0,0,0,2,2,1,1,1,1},
+                { 0,0,0,0,0,1,1,1,1,1},
+                { 0,0,0,0,0,1,1,1,1,1},
                 { 0,0,0,0,0,1,1,1,1,1},
             };
             Singleton.Instance.panelStage = new int[3, 10]
             {
-                { 3,1,0,0,3,3,0,0,0,0},
-                { 1,0,0,0,3,3,0,0,0,0},
+                { 3,1,0,0,0,0,0,0,0,0},
+                { 1,0,0,0,0,0,0,0,0,0},
                 { 0,0,0,0,0,0,0,0,0,0},
             };
             Singleton.Instance.spriteMove = new int[3, 10]
@@ -188,10 +188,11 @@ namespace Rockman
                     }
                     break;
                 case Singleton.GameState.GameWaitingChip:
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < _numObject; i++)
                     {
                         if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
                     }
+
                     Singleton.Instance.useChip = true;
 
                     break;
@@ -279,6 +280,7 @@ namespace Rockman
             chipTexture[2] = Content.Load<Texture2D>("chipAtk/BarrierEXE6");
             chipTexture[3] = Content.Load<Texture2D>("chipAtk/chipIconEXE4");
             chipTexture[4] = Content.Load<Texture2D>("chipAtk/Recovery");
+            chipTexture[5] = Content.Load<Texture2D>("chipAtk/AirShot");
 
             _sprites = new List<Sprite>()
             {
@@ -359,6 +361,24 @@ namespace Rockman
                 Name = "RockmanBuster",
                 Viewport = new Rectangle(8, 4, 19, 7),
             });
+            //airShotSprite
+            _sprites.Add(new AirShotSprite(new Dictionary<string, Animation>()
+            {
+                { "AirShot", new Animation(chipTexture[5], new Rectangle(0, 2, 50*3, 42), 3) },
+            })
+            {
+                Name = "AirShotSprite",
+                Viewport = new Rectangle(0, 2, 50, 42),
+            });
+            //recoverySprite
+            _sprites.Add(new RecoverySprite(new Dictionary<string, Animation>()
+            {
+                { "Recovery", new Animation(chipTexture[4], new Rectangle(5, 0, 40*8 , 72), 8) },
+            })
+            {
+                Name = "RecoverySprite",
+                Viewport = new Rectangle(6, 0, 40, 72),
+            });
             //customBar
             _sprites.Add(new CustomBar(new Dictionary<string, Animation>()
             {
@@ -410,7 +430,7 @@ namespace Rockman
                 Position = new Vector2(0, 0),
                 Viewport = new Rectangle(9, 255, 89, 105),
             });
-            //ChipIcon
+            //emotionPlayer
             _sprites.Add(new EmotionPlayer(customScreenTexture)
             {
                 Name = "EmotionPlayer",
@@ -472,15 +492,6 @@ namespace Rockman
                     {"Recovery", Content.Load<SoundEffect>("sfx/Recover").CreateInstance() },
                 }
             });
-            //recoverySprite
-            _sprites.Add(new RecoverySprite(new Dictionary<string, Animation>()
-            {
-                { "Recovery", new Animation(chipTexture[4], new Rectangle(5, 0, 40*8 , 72), 8) },
-            })
-            {
-                Name = "RecoverySprite",
-                Viewport = new Rectangle(6, 0, 40, 72),
-            });
             //chipBarrier
             _sprites.Add(new Barrier(chipTexture)
             {
@@ -501,8 +512,18 @@ namespace Rockman
                     {"CrackOut", Content.Load<SoundEffect>("sfx/CrackOut").CreateInstance() },
                 }
             });
+            //chipAirShot
+            _sprites.Add(new AirShot(chipTexture)
+            {
+                Name = "AirShotChip",
+                Viewport = new Rectangle(168, 0, 56, 47),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"AirShot", Content.Load<SoundEffect>("sfx/Spreader").CreateInstance() },
+                }
+            });
 
-            MediaPlayer.Play(Singleton.Instance.song);
+            //MediaPlayer.Play(Singleton.Instance.song);
             Singleton.Instance._font = Content.Load<SpriteFont>("RockmanFont");
         }
     }
