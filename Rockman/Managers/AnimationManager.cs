@@ -66,5 +66,16 @@ namespace Rockman.Managers
                                           _animation.FrameHeight),
                             Color.White,0f,Vector2.Zero,scale,SpriteEffects.None,0f);
         }
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, float scale, SpriteEffects spriteEffects)
+        {
+            spriteBatch.Draw(_animation.Texture,
+                            position,
+                            new Rectangle(_animation.AnimationRectangle.X + _animation.CurrentFrame * _animation.FrameWidth,
+                                          _animation.AnimationRectangle.Y,
+                                          _animation.FrameWidth,
+                                          _animation.FrameHeight),
+                            Color.White, 0f, Vector2.Zero, scale, spriteEffects, 0f);
+        }
     }
 }

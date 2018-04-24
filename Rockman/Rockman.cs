@@ -63,7 +63,7 @@ namespace Rockman
             Singleton.Instance.folderList = new List<string>()
             {
                 "DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
-                "DreamAura","SpreadGun2","Barrier100","TripleCrack","AirShot","SpreadGun1"
+                "DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon"
             };
             Singleton.Instance.folderList.Shuffle();
             Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
@@ -484,11 +484,11 @@ namespace Rockman
             //chipSelect
             _sprites.Add(new ChipSelect(new Dictionary<string, Animation>()
             {
-                { "Select", new Animation(customScreenTexture[0], new Rectangle(28, 10, 22, 24), 1) },
+                { "Select", new Animation(customScreenTexture[1], new Rectangle(330, 75, 30*2, 22), 2) },
             })
             {
                 Name = "ChipSelect",
-                Viewport = new Rectangle(28, 35, 22, 22),
+                Viewport = new Rectangle(330, 75, 30, 22),
                 //W = Keys.W,
                 //S = Keys.S,
                 A = Keys.A,
@@ -501,6 +501,16 @@ namespace Rockman
                     {"ChipChoose", Content.Load<SoundEffect>("sfx/ChipChoose").CreateInstance() },
                     {"ChipCancel", Content.Load<SoundEffect>("sfx/ChipCancel").CreateInstance() },
                     {"ChipConfirm", Content.Load<SoundEffect>("sfx/ChipConfirm").CreateInstance() },
+                }
+            });
+            //chipCannon
+            _sprites.Add(new Cannon(chipTexture)
+            {
+                Name = "CannonChip",
+                Viewport = new Rectangle(392, 0, 56, 47),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"Cannon", Content.Load<SoundEffect>("sfx/Cannon").CreateInstance() },
                 }
             });
             //chipAirShot
@@ -554,7 +564,7 @@ namespace Rockman
                 }
             });
 
-            //MediaPlayer.Play(Singleton.Instance.song);
+            MediaPlayer.Play(Singleton.Instance.song);
             Singleton.Instance._font = Content.Load<SpriteFont>("RockmanFont");
         }
     }

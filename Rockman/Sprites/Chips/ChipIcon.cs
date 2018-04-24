@@ -14,6 +14,9 @@ namespace Rockman.Sprites.Chips
     {
         Dictionary<string, Rectangle> rectChipIconImg = new Dictionary<string, Rectangle>()
         {
+            {"Cannon",  new Rectangle(22, 2, 14, 14) },
+            {"HiCannon",  new Rectangle(22+(19*1), 2, 14, 14) },
+            {"MegaCannon",  new Rectangle(22+(19*2), 2, 14, 14) },
             {"AirShot",  new Rectangle(79, 2, 14, 14) },
             {"SpreadGun1",  new Rectangle(174, 2, 14, 14) },
             {"SpreadGun2",  new Rectangle(174+(19*1), 2, 14, 14) },
@@ -36,6 +39,7 @@ namespace Rockman.Sprites.Chips
             {"CrackOut",  new Rectangle(240, 49, 14, 14) },
             {"DoubleCrack",  new Rectangle(240+(16*1), 49, 14, 14) },
             {"TripleCrack",  new Rectangle(240+(16*2), 49, 14, 14) },
+            {"DarkCannon",  new Rectangle(128, 113, 14, 14) },
             {"DarkSpread",  new Rectangle(160, 113, 14, 14) },
             {"DarkRecovery",  new Rectangle(224, 113, 14, 14) },
         };

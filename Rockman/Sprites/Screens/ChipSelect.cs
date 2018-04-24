@@ -33,6 +33,7 @@ namespace Rockman.Sprites.Screens
                         case CustomState.Wait:
                             if (Singleton.Instance.chipSelect[currentTile.X] == 1)
                             {
+                                _animationManager.Play(_animations["Select"]);
                                 if (Singleton.Instance.CurrentKey.IsKeyDown(A) && Singleton.Instance.PreviousKey.IsKeyUp(A))
                                 {
                                     SoundEffects["ChipSelect"].Volume = Singleton.Instance.MasterSFXVolume;
@@ -96,6 +97,7 @@ namespace Rockman.Sprites.Screens
                                         }
                                     }
                                 }
+                                _animationManager.Update(gameTime);
                             }
                             break;
                     }
@@ -124,8 +126,8 @@ namespace Rockman.Sprites.Screens
                             {
                                 currentTile = new Point(i);
                                 Singleton.Instance.currentChipSelect = new Point(i);
-                                if (currentTile.X == 5) _animationManager.Draw(spriteBatch, new Vector2(280, 110 * 3), scale);
-                                else _animationManager.Draw(spriteBatch, new Vector2(15+ (48 * currentTile.X), 100 * 3), scale);
+                                if (currentTile.X == 5) _animationManager.Draw(spriteBatch, new Vector2(273, 110 * 3), scale);
+                                else _animationManager.Draw(spriteBatch, new Vector2(12+ (48 * currentTile.X), 100 * 3), scale);
                             }
                         }
                     }
