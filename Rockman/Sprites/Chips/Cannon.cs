@@ -48,17 +48,16 @@ namespace Rockman.Sprites.Chips
                         //useChipCannon
                         SoundEffects["Cannon"].Volume = Singleton.Instance.MasterSFXVolume;
                         SoundEffects["Cannon"].Play();
+                        Singleton.Instance.useChipName = Singleton.Instance.useChipSlotIn.Peek();
                         if (Singleton.Instance.useChipSlotIn.Peek() == "DarkCannon")
                         {
-                            Singleton.Instance.useChipName = "DarkCannon";
-                            Singleton.Instance.currentChipCoolDown = 0.3f;
+                            Singleton.Instance.currentChipCoolDown = 0.95f;
                             Singleton.Instance.chooseEmotionPlayer = "DarkEmotion";
                             Singleton.Instance.statusBugHP = true;
                         }
                         else
                         {
-                            Singleton.Instance.useChipName = "Cannon";
-                            Singleton.Instance.currentChipCoolDown = 0.3f;
+                            Singleton.Instance.currentChipCoolDown = 0.8f;
                         }
                         for (int k = Singleton.Instance.currentPlayerPoint.Y; k < 10; k++)
                         {

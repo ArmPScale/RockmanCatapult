@@ -282,6 +282,8 @@ namespace Rockman
             chipTexture[4] = Content.Load<Texture2D>("chipAtk/Recovery");
             chipTexture[5] = Content.Load<Texture2D>("chipAtk/AirShot");
             chipTexture[6] = Content.Load<Texture2D>("chipAtk/Spreader");
+            chipTexture[7] = Content.Load<Texture2D>("chipAtk/Cannon");
+
 
             _sprites = new List<Sprite>()
             {
@@ -361,6 +363,18 @@ namespace Rockman
             {
                 Name = "RockmanBuster",
                 Viewport = new Rectangle(8, 4, 19, 7),
+            });
+            //cannonSprite
+            _sprites.Add(new CannonSprite(new Dictionary<string, Animation>()
+            {
+                { "Cannon", new Animation(chipTexture[7], new Rectangle(-1, 0, 65*8, 60), 8) },
+                { "HiCannon", new Animation(chipTexture[7], new Rectangle(-1, 60, 65*8, 60), 8) },
+                { "MegaCannon", new Animation(chipTexture[7], new Rectangle(-1, 120, 65*8, 60), 8) },
+                { "DarkCannon", new Animation(chipTexture[7], new Rectangle(-1, 180, 65*11, 60), 11) },
+            })
+            {
+                Name = "CannonSprite",
+                Viewport = new Rectangle(0, 0, 65, 60),
             });
             //airShotSprite
             _sprites.Add(new AirShotSprite(new Dictionary<string, Animation>()

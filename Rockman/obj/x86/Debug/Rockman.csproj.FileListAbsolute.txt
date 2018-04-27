@@ -121,3 +121,4 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Recove
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Spreader.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\AirShot.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Spreader.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Cannon.xnb

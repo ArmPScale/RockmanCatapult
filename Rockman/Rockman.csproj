@@ -55,6 +55,7 @@
     <Compile Include="Sprites\Chips\BarrierSprite.cs" />
     <Compile Include="Sprites\Chips\Buster.cs" />
     <Compile Include="Sprites\Chips\Cannon.cs" />
+    <Compile Include="Sprites\Chips\CannonSprite.cs" />
     <Compile Include="Sprites\Chips\Chip.cs" />
     <Compile Include="Sprites\Chips\ChipIcon.cs" />
     <Compile Include="Sprites\Chips\CrackOut.cs" />
