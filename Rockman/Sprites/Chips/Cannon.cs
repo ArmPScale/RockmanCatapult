@@ -46,9 +46,8 @@ namespace Rockman.Sprites.Chips
                         Singleton.Instance.choosePlayerAnimate = "Buster";
                         Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.UseChipNormal;
                         //useChipCannon
-                        SoundEffects["Cannon"].Volume = Singleton.Instance.MasterSFXVolume;
-                        SoundEffects["Cannon"].Play();
                         Singleton.Instance.useChipName = Singleton.Instance.useChipSlotIn.Peek();
+                        Singleton.Instance.currentChipAtkTime = 0.5f;
                         if (Singleton.Instance.useChipSlotIn.Peek() == "DarkCannon")
                         {
                             Singleton.Instance.currentChipCoolDown = 0.95f;
@@ -59,13 +58,17 @@ namespace Rockman.Sprites.Chips
                         {
                             Singleton.Instance.currentChipCoolDown = 0.8f;
                         }
+                        SoundEffects["Cannon"].Volume = Singleton.Instance.MasterSFXVolume;
+                        SoundEffects["Cannon"].Play();
                         for (int k = Singleton.Instance.currentPlayerPoint.Y; k < 10; k++)
                         {
                             if (Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k] > 1)
                             {
                                 Singleton.Instance.drawChipEffectName = Singleton.Instance.useChipName;
-                                Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, k] -= cannonAtk[Singleton.Instance.useChipSlotIn.Peek()];
-
+                                Singleton.Instance.currentVirusGotDmgIndex = k;
+                                Singleton.Instance.playerChipAtk = cannonAtk[Singleton.Instance.useChipSlotIn.Peek()];
+                                //impactHalfExplode
+                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, k] = 2;
                                 break;
                             }
                         }

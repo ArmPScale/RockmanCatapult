@@ -48,7 +48,9 @@ namespace Rockman.Sprites.Chips
                             if (Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k] > 1)
                             {
                                 Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, k] -= airShotAtk[Singleton.Instance.useChipSlotIn.Peek()];
-                                if(k + 1 < 10)
+                                //impactHalfExplode
+                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, k] = 2;
+                                if (k + 1 < 10)
                                 {
                                     Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k + 1] = Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k];
                                     Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k] = 0;

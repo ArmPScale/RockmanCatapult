@@ -204,7 +204,16 @@ namespace Rockman.Sprites
                                 //animateUseChipNormal
                                 _chipCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
                                 _animationManager.Play(_animations[Singleton.Instance.choosePlayerAnimate]);
-                                if (_chipCoolDown > Singleton.Instance.currentChipCoolDown)
+                                if (_chipCoolDown > Singleton.Instance.currentChipAtkTime 
+                                    //&& Singleton.Instance.currentChipAtkTime != 0
+                                    && Singleton.Instance.currentVirusGotDmgIndex != -1)
+                                {
+                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentVirusGotDmgIndex] -= Singleton.Instance.playerChipAtk;
+                                    Singleton.Instance.currentVirusGotDmgIndex = -1;
+                                    Singleton.Instance.playerChipAtk = 0;
+                                    Singleton.Instance.currentChipAtkTime = 0f;
+                                }
+                                else if (_chipCoolDown > Singleton.Instance.currentChipCoolDown)
                                 {
                                     _chipCoolDown = 0;
                                     Singleton.Instance.choosePlayerAnimate = "";

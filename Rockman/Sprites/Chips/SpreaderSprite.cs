@@ -47,17 +47,17 @@ namespace Rockman.Sprites.Chips
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GamePlaying:
-                    if (_animationManager == null)
-                    {
-                        spriteBatch.Draw(_texture[0],
-                                        Position,
-                                        Viewport,
-                                        Color.White);
-                    }
-                    else
-                    {
-                        if (Singleton.Instance.useChipName == "Spreader"
+                    if (Singleton.Instance.useChipName == "Spreader"
                         || Singleton.Instance.useChipName == "DarkSpread")
+                    {
+                        if (_animationManager == null)
+                        {
+                            spriteBatch.Draw(_texture[0],
+                                            Position,
+                                            Viewport,
+                                            Color.White);
+                        }
+                        else
                         {
                             _animationManager.Draw(spriteBatch, new Vector2((TILESIZEX * Singleton.Instance.currentPlayerPoint.Y * 2) + (screenStageX + 95), (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 90)), scale);
                         }

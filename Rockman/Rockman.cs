@@ -144,7 +144,10 @@ namespace Rockman
 
             Singleton.Instance.CurrentKey = Keyboard.GetState();
             _numObject = _sprites.Count;
-            //Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
+
+            //if (MediaPlayer.State != MediaState.Playing) MediaPlayer.Play(Singleton.Instance.song);
+            //else if(MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604)) MediaPlayer.Play(Singleton.Instance.song, new TimeSpan(0, 0, 0, 6, 880));
+            //Console.WriteLine(MediaPlayer.PlayPosition);
 
             switch (Singleton.Instance.CurrentGameState)
             {
@@ -272,6 +275,7 @@ namespace Rockman
             mettonTexture[0] = Content.Load<Texture2D>("virus/MettonAttack");
             Singleton.Instance.effectsTexture[0] = this.Content.Load<Texture2D>("battleEffect/busterEffect");
             Singleton.Instance.effectsTexture[1] = this.Content.Load<Texture2D>("battleEffect/chargeBuster");
+            Singleton.Instance.effectsTexture[2] = this.Content.Load<Texture2D>("battleEffect/ImpacteffectHalfexplosion");
             customScreenTexture[0] = Content.Load<Texture2D>("screen/CustomScreen");
             customScreenTexture[1] = Content.Load<Texture2D>("screen/CustomWindow");
             customScreenTexture[2] = Content.Load<Texture2D>("screen/EmotionEXE5");
@@ -414,6 +418,15 @@ namespace Rockman
                 Name = "RecoverySprite",
                 Viewport = new Rectangle(6, 0, 40, 72),
             });
+            //impactHalfExplodeSprite
+            _sprites.Add(new ImpactHalfExplodeEffect(new Dictionary<string, Animation>()
+            {
+                { "HalfExplode", new Animation(Singleton.Instance.effectsTexture[2], new Rectangle(0, 0, 33*9 , 52), 9) },
+            })
+            {
+                Name = "ImpactHalfExplodeSprite",
+                Viewport = new Rectangle(0, 0, 33, 52),
+            });
             //customBar
             _sprites.Add(new CustomBar(new Dictionary<string, Animation>()
             {
@@ -465,11 +478,11 @@ namespace Rockman
                 Position = new Vector2(0, 0),
                 Viewport = new Rectangle(9, 255, 89, 105),
             });
-            //emotionPlayer
-            _sprites.Add(new EmotionPlayer(customScreenTexture)
-            {
-                Name = "EmotionPlayer",
-            });
+            ////emotionPlayer
+            //_sprites.Add(new EmotionPlayer(customScreenTexture)
+            //{
+            //    Name = "EmotionPlayer",
+            //});
             //chipType
             _sprites.Add(new ChipType(new Dictionary<string, Animation>()
             {
@@ -578,7 +591,6 @@ namespace Rockman
                 }
             });
 
-            MediaPlayer.Play(Singleton.Instance.song);
             Singleton.Instance._font = Content.Load<SpriteFont>("RockmanFont");
         }
     }

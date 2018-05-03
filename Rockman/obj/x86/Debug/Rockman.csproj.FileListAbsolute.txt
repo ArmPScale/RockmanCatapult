@@ -122,3 +122,4 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Spreader.x
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\AirShot.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Spreader.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Cannon.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\battleEffect\ImpacteffectHalfexplosion.xnb

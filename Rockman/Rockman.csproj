@@ -61,6 +61,7 @@
     <Compile Include="Sprites\Chips\CrackOut.cs" />
     <Compile Include="Sprites\Chips\Recovery.cs" />
     <Compile Include="Sprites\Chips\Spreader.cs" />
+    <Compile Include="Sprites\Chips\ImpactHalfExplodeEffect.cs" />
     <Compile Include="Sprites\Chips\SpreaderEffect.cs" />
     <Compile Include="Sprites\Chips\SpreaderSprite.cs" />
     <Compile Include="Sprites\Screens\ChipType.cs" />

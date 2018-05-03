@@ -21,6 +21,12 @@ namespace Rockman.Sprites.Chips
             {"SpreadGun1",  new Rectangle(174, 2, 14, 14) },
             {"SpreadGun2",  new Rectangle(174+(19*1), 2, 14, 14) },
             {"SpreadGun3",  new Rectangle(174+(19*2), 2, 14, 14) },
+            {"MiniBomb",  new Rectangle(117, 56, 14, 14) },
+            {"BigBomb",  new Rectangle(193, 218, 14, 14) },
+            {"EnergyBomb",  new Rectangle(117+(19*1), 56, 14, 14) },
+            {"MegaEnergyBomb",  new Rectangle(117+(19*2), 56, 14, 14) },
+            {"BlackBomb",  new Rectangle(117+(19*6), 56, 14, 14) },
+            {"BugBomb",  new Rectangle(60, 74, 14, 14) },
             {"Recovery10",  new Rectangle(193, 164, 14, 14) },
             {"Recovery30",  new Rectangle(212, 164, 14, 14) },
             {"Recovery50",  new Rectangle(231, 164, 14, 14) },
@@ -36,12 +42,39 @@ namespace Rockman.Sprites.Chips
         };
         Dictionary<string, Rectangle> rectChipIconEXE4Img = new Dictionary<string, Rectangle>()
         {
+            {"CannonBall",  new Rectangle(256, 17, 14, 14) },
+            {"SearchBomb1",  new Rectangle(144, 97, 14, 14) },
+            {"SearchBomb2",  new Rectangle(144+(16*1), 97, 14, 14) },
+            {"SearchBomb3",  new Rectangle(144+(16*2), 97, 14, 14) },
             {"CrackOut",  new Rectangle(240, 49, 14, 14) },
             {"DoubleCrack",  new Rectangle(240+(16*1), 49, 14, 14) },
             {"TripleCrack",  new Rectangle(240+(16*2), 49, 14, 14) },
             {"DarkCannon",  new Rectangle(128, 113, 14, 14) },
             {"DarkSpread",  new Rectangle(160, 113, 14, 14) },
+            {"DarkBomb",  new Rectangle(176, 113, 14, 14) },
             {"DarkRecovery",  new Rectangle(224, 113, 14, 14) },
+        };
+        Dictionary<string, int> allChipIconAtk = new Dictionary<string, int>()
+        {
+            {"Cannon",  40 },
+            {"HiCannon",  100 },
+            {"MegaCannon",  180 },
+            {"AirShot",  20 },
+            {"SpreadGun1",  30 },
+            {"SpreadGun2",  60 },
+            {"SpreadGun3",  90 },
+            {"MiniBomb",  50 },
+            {"BigBomb",  140 },
+            {"EnergyBomb",  40 },
+            {"MegaEnergyBomb",  60 },
+            {"BlackBomb",  250 },
+            {"CannonBall",  140 },
+            {"SearchBomb1",  80 },
+            {"SearchBomb2",  110 },
+            {"SearchBomb3",  140 },
+            {"DarkCannon",  Singleton.Instance.maxHeroHP - Singleton.Instance.HeroHP},
+            {"DarkSpread",  400 },
+            {"DarkBomb",  200 },
         };
 
         public ChipIcon(Texture2D[] texture)
@@ -52,7 +85,12 @@ namespace Rockman.Sprites.Chips
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-
+            switch (Singleton.Instance.CurrentGameState)
+            {
+                case Singleton.GameState.GamePlaying:
+                    if (Singleton.Instance.maxHeroHP - Singleton.Instance.HeroHP < 1000) allChipIconAtk["DarkCannon"] = Singleton.Instance.maxHeroHP - Singleton.Instance.HeroHP;
+                    break;
+            }
             base.Update(gameTime, sprites);
         }
 
@@ -91,6 +129,9 @@ namespace Rockman.Sprites.Chips
                         }
                         break;
                     case Singleton.GameState.GamePlaying:
+                        Color[] colors = { Color.WhiteSmoke, Color.DarkOrange };
+                        Vector2 startPosition = new Vector2(60, 755);
+                        Vector2 offset = Vector2.Zero;
                         if (Singleton.Instance.useChipSlotIn.Count != 0)
                         {
                             if (rectChipIconImg.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
@@ -105,7 +146,20 @@ namespace Rockman.Sprites.Chips
                                     rectChipIconEXE4Img[Singleton.Instance.useChipSlotIn.Peek()],
                                     Color.White, 0f, Vector2.Zero, 2.75f, SpriteEffects.None, 0f);
                             }
-                            spriteBatch.DrawString(Singleton.Instance._font, Singleton.Instance.useChipSlotIn.Peek(), new Vector2(60, 755), Color.WhiteSmoke, 0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0f);
+                            //chipNameAndAtk
+                            if (allChipIconAtk.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
+                            {
+                                string[] stringPieces = { Singleton.Instance.useChipSlotIn.Peek(), "" + allChipIconAtk[Singleton.Instance.useChipSlotIn.Peek()] };
+                                for (int x = 0; x < stringPieces.Length; x++)
+                                {
+                                    spriteBatch.DrawString(Singleton.Instance._font, stringPieces[x], startPosition + offset, colors[x], 0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0f);
+                                    offset.X += Singleton.Instance._font.MeasureString(stringPieces[x]).X + 40;
+                                }
+                            }
+                            else
+                            {
+                                spriteBatch.DrawString(Singleton.Instance._font, Singleton.Instance.useChipSlotIn.Peek(), startPosition, Color.WhiteSmoke, 0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0f);
+                            }
                         }
                         break;
                 }
