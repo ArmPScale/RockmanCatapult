@@ -22,7 +22,7 @@ namespace Rockman
             Dead
         }
         public PlayerState CurrentPlayerState;
-        public int HeroHP = 50, maxHeroHP = 200, HeroAttack = 1, HeroBarrier = 0, HeroAura = 0, playerChipAtk = 0;
+        public int HeroHP = 100, maxHeroHP = 200, HeroAttack = 1, HeroBarrier = 0, HeroAura = 0, playerChipAtk = 0;
         public int currentVirusGotDmgIndex;
         public Point currentPlayerPoint;
         public bool isDamaged, isRecovered, statusBugHP = false;
@@ -58,7 +58,7 @@ namespace Rockman
         public bool newTurnCustom, isCustomBarFull;
         public bool atkFinished, selectChipSuccess;
         public bool useChip, useChipDuring, useChipNearlySuccess, useChipSuccess;
-        public bool useNormalChip, useSceneChip;
+        public bool useNormalChip, useSceneChip, useThrowableChip;
         public String chipType ,chipClass, useChipName = "", drawChipEffectName = "";
         public Stack<String> chipSlotIn, useChipSlotIn;
         public Stack<int> indexChipSlotIn;

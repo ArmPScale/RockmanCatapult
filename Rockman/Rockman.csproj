@@ -51,6 +51,8 @@
     <Compile Include="Sprites\BackgroundSprite.cs" />
     <Compile Include="Sprites\Chips\AirShot.cs" />
     <Compile Include="Sprites\Chips\AirShotSprite.cs" />
+    <Compile Include="Sprites\Chips\ThrowableSprite.cs" />
+    <Compile Include="Sprites\Chips\Throwable.cs" />
     <Compile Include="Sprites\Chips\Barrier.cs" />
     <Compile Include="Sprites\Chips\BarrierSprite.cs" />
     <Compile Include="Sprites\Chips\Buster.cs" />

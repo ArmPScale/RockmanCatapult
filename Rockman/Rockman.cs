@@ -62,8 +62,9 @@ namespace Rockman
             //shuffleBattleChipInFolder
             Singleton.Instance.folderList = new List<string>()
             {
-                "DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
-                "DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon"
+                //"DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
+                "DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon",
+                "MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","BlackBomb","CannonBall","SearchBomb3","DarkBomb"
             };
             Singleton.Instance.folderList.Shuffle();
             Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
@@ -145,9 +146,9 @@ namespace Rockman
             Singleton.Instance.CurrentKey = Keyboard.GetState();
             _numObject = _sprites.Count;
 
-            //if (MediaPlayer.State != MediaState.Playing) MediaPlayer.Play(Singleton.Instance.song);
-            //else if(MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604)) MediaPlayer.Play(Singleton.Instance.song, new TimeSpan(0, 0, 0, 6, 880));
-            //Console.WriteLine(MediaPlayer.PlayPosition);
+            if (MediaPlayer.State != MediaState.Playing) MediaPlayer.Play(Singleton.Instance.song);
+            else if (MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604)) MediaPlayer.Play(Singleton.Instance.song, new TimeSpan(0, 0, 0, 6, 880));
+            Console.WriteLine(MediaPlayer.PlayPosition);
 
             switch (Singleton.Instance.CurrentGameState)
             {
@@ -262,6 +263,7 @@ namespace Rockman
             Singleton.Instance.useChip = false;
             Singleton.Instance.useNormalChip = false;
             Singleton.Instance.useSceneChip = false;
+            Singleton.Instance.useThrowableChip = false;
             Singleton.Instance.selectChipSuccess = false;
             Singleton.Instance.newTurnCustom = false;
             Singleton.Instance.isCustomBarFull = false;
@@ -287,6 +289,8 @@ namespace Rockman
             chipTexture[5] = Content.Load<Texture2D>("chipAtk/AirShot");
             chipTexture[6] = Content.Load<Texture2D>("chipAtk/Spreader");
             chipTexture[7] = Content.Load<Texture2D>("chipAtk/Cannon");
+            chipTexture[8] = Content.Load<Texture2D>("chipAtk/Throwables");
+
 
 
             _sprites = new List<Sprite>()
@@ -408,6 +412,29 @@ namespace Rockman
             {
                 Name = "SpreaderEffect",
                 Viewport = new Rectangle(0, 64, 55, 32),
+            });
+            //throwableSprite
+            _sprites.Add(new ThrowableSprite(new Dictionary<string, Animation>()
+            {
+                { "MiniBomb", new Animation(chipTexture[8], new Rectangle(22, 4, 11, 11), 1) },
+                { "BigBomb", new Animation(chipTexture[8], new Rectangle(41, 4, 11, 11), 1) },
+                {"EnergyBomb",  new Animation(chipTexture[8], new Rectangle(1, 22, 15, 15), 1) },
+                {"MegaEnergyBomb",  new Animation(chipTexture[8], new Rectangle(1, 22, 15, 15), 1) },
+                {"BugBomb",  new Animation(chipTexture[8], new Rectangle(1, 43, 22, 22), 1) },
+                {"SearchBomb1",  new Animation(chipTexture[8], new Rectangle(21, 152, 14, 14), 1) },
+                {"SearchBomb2",  new Animation(chipTexture[8], new Rectangle(21, 152, 14, 14), 1) },
+                {"SearchBomb3",  new Animation(chipTexture[8], new Rectangle(21, 152, 14, 14), 1) },
+                {"CannonBall",  new Animation(chipTexture[8], new Rectangle(2, 4, 11, 11), 1) },
+                {"BlackBomb",  new Animation(chipTexture[8], new Rectangle(1, 71, 22, 30), 1) },
+                {"DarkBomb",  new Animation(chipTexture[8], new Rectangle(22, 4, 11, 11), 1) },
+            })
+            {
+                Name = "ThrowableSprite",
+                Viewport = new Rectangle(22, 4, 11, 11),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"Throw", Content.Load<SoundEffect>("sfx/Throwable").CreateInstance() },
+                }
             });
             //recoverySprite
             _sprites.Add(new RecoverySprite(new Dictionary<string, Animation>()
@@ -559,6 +586,12 @@ namespace Rockman
                 {
                     {"Spreader", Content.Load<SoundEffect>("sfx/Spreader").CreateInstance() },
                 }
+            });
+            //chipBomb
+            _sprites.Add(new Throwable(chipTexture)
+            {
+                Name = "ThrowableChip",
+                Viewport = new Rectangle(0, 48, 56, 47),
             });
             //chipRecovery
             _sprites.Add(new Recovery(chipTexture)

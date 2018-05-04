@@ -12,6 +12,44 @@ namespace Rockman.Sprites.Chips
 {
     class Chip : Sprite
     {
+        #region PHYSICS_VARIABLES
+        public float GRAVITY = 981;
+        public float Restitution;
+        public float Mass;
+
+        public enum PhysicsType
+        {
+            STATICS,
+            KINEMATICS,
+            DYNAMICS
+        }
+        public PhysicsType EntityPhysicsType;
+
+        public enum BoundingBoxType
+        {
+            NONE,
+            AABB,
+            CIRCLE
+        }
+        public BoundingBoxType EntityBoundingBoxType;
+
+        public enum ImpluseType
+        {
+            NONE,
+            SURFACE,
+            NORMAL
+        }
+        public ImpluseType EntityImpluseType;
+
+        public List<CollisionManifold> CollideeManifold;
+        public struct CollisionManifold
+        {
+            public Sprite Collidee;
+            public float Penetration;
+            public Vector2 Normal;
+        }
+        #endregion
+
         public String[] chipCustomImg = new string[6];
         public String[] chipCustomImgCopy = new string[6];
 

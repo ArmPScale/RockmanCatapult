@@ -93,7 +93,6 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\UseChip.xn
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\rockman\RockmanExe6.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\CustomScreen.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\CustomWindow.xnb
-D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\ThroawableObjEXE4.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\battleEffect\Uninstall.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\ChipCancel.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\ChipChoose.xnb
@@ -123,3 +122,6 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\AirSho
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Spreader.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Cannon.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\battleEffect\ImpacteffectHalfexplosion.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Throwables.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Throwable.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\PushButtonEXE3.xnb

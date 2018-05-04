@@ -62,7 +62,7 @@ namespace Rockman.Sprites
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (Singleton.Instance.useChip || Singleton.Instance.useChipSuccess)
+            if (Singleton.Instance.useChip || Singleton.Instance.useChipDuring || Singleton.Instance.useChipSuccess)
             {
                 spriteBatch.Draw(_texture[0], new Vector2(0, 0), null, fade, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
                 if(_textAnimate < 2f) { 
