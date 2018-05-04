@@ -37,7 +37,7 @@ namespace Rockman.Sprites
                 case Singleton.GameState.GamePlaying:
                     _chargeTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     drawChargeTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                    if (Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] == 1)
+                    if (Singleton.Instance.playerMove[currentTile.X, currentTile.Y] == 1)
                     {
                         //statusBug
                         if (Singleton.Instance.statusBugHP)
@@ -85,29 +85,29 @@ namespace Rockman.Sprites
                                 Singleton.Instance.panelStage[currentTile.X - 1, currentTile.Y] <= 1) &&
                                 (Singleton.Instance.CurrentKey.IsKeyDown(W) && Singleton.Instance.PreviousKey.IsKeyUp(W)))
                                 {
-                                    Singleton.Instance.spriteMove[currentTile.X - 1, currentTile.Y] = Singleton.Instance.spriteMove[currentTile.X, currentTile.Y];
-                                    Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
+                                    Singleton.Instance.playerMove[currentTile.X - 1, currentTile.Y] = Singleton.Instance.playerMove[currentTile.X, currentTile.Y];
+                                    Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
                                 }
                                 else if ((currentTile.X < 2 && Singleton.Instance.panelBoundary[currentTile.X + 1, currentTile.Y] == 0 &&
                                     Singleton.Instance.panelStage[currentTile.X + 1, currentTile.Y] <= 1) &&
                                     (Singleton.Instance.CurrentKey.IsKeyDown(S) && Singleton.Instance.PreviousKey.IsKeyUp(S)))
                                 {
-                                    Singleton.Instance.spriteMove[currentTile.X + 1, currentTile.Y] = Singleton.Instance.spriteMove[currentTile.X, currentTile.Y];
-                                    Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
+                                    Singleton.Instance.playerMove[currentTile.X + 1, currentTile.Y] = Singleton.Instance.playerMove[currentTile.X, currentTile.Y];
+                                    Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
                                 }
                                 else if ((currentTile.Y > 0 && Singleton.Instance.panelBoundary[currentTile.X, currentTile.Y - 1] == 0 &&
                                     Singleton.Instance.panelStage[currentTile.X, currentTile.Y - 1] <= 1) &&
                                     (Singleton.Instance.CurrentKey.IsKeyDown(A) && Singleton.Instance.PreviousKey.IsKeyUp(A)))
                                 {
-                                    Singleton.Instance.spriteMove[currentTile.X, currentTile.Y - 1] = Singleton.Instance.spriteMove[currentTile.X, currentTile.Y];
-                                    Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
+                                    Singleton.Instance.playerMove[currentTile.X, currentTile.Y - 1] = Singleton.Instance.playerMove[currentTile.X, currentTile.Y];
+                                    Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
                                 }
                                 else if ((currentTile.Y < 10 && Singleton.Instance.panelBoundary[currentTile.X, currentTile.Y + 1] == 0 &&
                                     Singleton.Instance.panelStage[currentTile.X, currentTile.Y + 1] <= 1) &&
                                     (Singleton.Instance.CurrentKey.IsKeyDown(D) && Singleton.Instance.PreviousKey.IsKeyUp(D)))
                                 {
-                                    Singleton.Instance.spriteMove[currentTile.X, currentTile.Y + 1] = Singleton.Instance.spriteMove[currentTile.X, currentTile.Y];
-                                    Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
+                                    Singleton.Instance.playerMove[currentTile.X, currentTile.Y + 1] = Singleton.Instance.playerMove[currentTile.X, currentTile.Y];
+                                    Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
                                 }
                                 else if (Singleton.Instance.CurrentKey.IsKeyDown(J) && Singleton.Instance.PreviousKey.IsKeyUp(J))
                                 {
@@ -223,7 +223,7 @@ namespace Rockman.Sprites
                                 break;
                             case Singleton.PlayerState.Dead:
                                 _animationManager.Play(_animations["Dead"]);
-                                //Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
+                                //Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
                                 Singleton.Instance.CurrentGameState = Singleton.GameState.GameOver;
                                 break;
                         }
@@ -269,7 +269,7 @@ namespace Rockman.Sprites
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if (Singleton.Instance.spriteMove[i, j] == 1)
+                    if (Singleton.Instance.playerMove[i, j] == 1)
                     {
                         currentTile = new Point(i, j);
                         Singleton.Instance.currentPlayerPoint = new Point(i, j);

@@ -45,12 +45,12 @@ namespace Rockman
         public Queue<string> nextChipFolder;
 
         //initialArr
-        public int[,] panelStage, spriteMove, spriteHP, panelBoundary, chipEffect, virusAttack;
+        public int[,] panelStage, playerMove, spriteMove, spriteHP, panelBoundary, chipEffect, virusAttack;
         public SpriteFont _font;
         public Texture2D[] effectsTexture;
 
         public Song song;
-        public List<SoundEffect> soundEffects;
+        //public List<SoundEffect> soundEffects;
         public float MasterBGMVolume;
         public float MasterSFXVolume;
 

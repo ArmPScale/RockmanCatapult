@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Rockman.Sprites
 {
-    class MettonWaveSprite : Sprite
+    class MettonWaveSprite : Enemy
     {
         Point currentTile;
         float delay = 100f, drawWaveTime;
@@ -31,7 +31,7 @@ namespace Rockman.Sprites
                     if (Singleton.Instance.virusAttack[currentTile.X, currentTile.Y] == 2)
                     {
                         //atkTakePlayer
-                        if (Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] == 1 && isDamaged)
+                        if (Singleton.Instance.playerMove[currentTile.X, currentTile.Y] > 0 && isDamaged)
                         {
                             Singleton.Instance.enemyAtk = Attack;
                             Singleton.Instance.isDamaged = isDamaged;
@@ -63,7 +63,8 @@ namespace Rockman.Sprites
                             {
                                 if (waveFrames == 0)
                                 {
-                                    Singleton.Instance.soundEffects[4].Play();
+                                    SoundEffects["MettonWave"].Volume = Singleton.Instance.MasterSFXVolume;
+                                    SoundEffects["MettonWave"].Play();
                                 }
                                 waveFrames++;
                             }

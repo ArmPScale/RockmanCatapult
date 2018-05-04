@@ -47,7 +47,6 @@ namespace Rockman.Sprites.Chips
                         //useChipAirShot
                         SoundEffects["Spreader"].Volume = Singleton.Instance.MasterSFXVolume;
                         SoundEffects["Spreader"].Play();
-                        Singleton.Instance.currentChipAtkTime = 0.1f;
                         if (Singleton.Instance.useChipSlotIn.Peek() == "DarkSpread")
                         {
                             Singleton.Instance.useChipName = "DarkSpread";
@@ -66,23 +65,39 @@ namespace Rockman.Sprites.Chips
                             {
                                 Singleton.Instance.drawChipEffectName = Singleton.Instance.useChipName;
                                 Singleton.Instance.currentVirusGotDmgIndex = k;
-                                Singleton.Instance.playerChipAtk = spreaderAtk[Singleton.Instance.useChipSlotIn.Peek()];
                                 if (Singleton.Instance.currentPlayerPoint.X - 1 >= 0)
                                 {
                                     Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X - 1, k - 1] = 1;
+                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X - 1, k - 1 ] -= spreaderAtk[Singleton.Instance.useChipSlotIn.Peek()]; 
                                     Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X - 1, k] = 1;
-                                    if (k + 1 < 10) Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X - 1, k + 1] = 1;
+                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X - 1, k] -= spreaderAtk[Singleton.Instance.useChipSlotIn.Peek()];
+                                    if (k + 1 < 10)
+                                    {
+                                        Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X - 1, k + 1] = 1;
+                                        Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X - 1, k + 1] -= spreaderAtk[Singleton.Instance.useChipSlotIn.Peek()];
+                                    }
                                 }
                                 if (Singleton.Instance.currentPlayerPoint.X + 1 < 3)
                                 {
                                     Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X + 1, k - 1] = 1;
+                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X + 1, k - 1] -= spreaderAtk[Singleton.Instance.useChipSlotIn.Peek()];
                                     Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X + 1, k] = 1;
-                                    if (k + 1 < 10) Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X + 1, k + 1] = 1;
+                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X + 1, k] -= spreaderAtk[Singleton.Instance.useChipSlotIn.Peek()];
+                                    if (k + 1 < 10)
+                                    {
+                                        Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X + 1, k + 1] = 1;
+                                        Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X + 1, k + 1] -= spreaderAtk[Singleton.Instance.useChipSlotIn.Peek()];
+                                    }
                                 }
                                 Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, k - 1] = 1;
+                                Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, k - 1] -= spreaderAtk[Singleton.Instance.useChipSlotIn.Peek()];
                                 Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, k] = 1;
-                                if (k + 1 < 10) Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, k + 1] = 1;
-
+                                Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, k] -= spreaderAtk[Singleton.Instance.useChipSlotIn.Peek()];
+                                if (k + 1 < 10)
+                                {
+                                    Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, k + 1] = 1;
+                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, k + 1] -= spreaderAtk[Singleton.Instance.useChipSlotIn.Peek()];
+                                }
                                 break;
                             }
                         }

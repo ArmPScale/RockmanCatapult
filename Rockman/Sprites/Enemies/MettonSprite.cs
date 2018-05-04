@@ -6,7 +6,7 @@ using Rockman.Models;
 
 namespace Rockman.Sprites
 {
-    class MettonSprite : Sprite
+    class MettonSprite : Enemy
     {
         private float _timer, _atkTime;
         public int HP, Attack;
@@ -45,7 +45,8 @@ namespace Rockman.Sprites
                         //checkHP
                         if (Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] <= 0)
                         {
-                            Singleton.Instance.soundEffects[5].Play();
+                            SoundEffects["Explosion"].Volume = Singleton.Instance.MasterSFXVolume;
+                            SoundEffects["Explosion"].Play();
                             Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
                         }
                         //defaultSprite

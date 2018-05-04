@@ -52,10 +52,13 @@ namespace Rockman.Sprites.Chips
                                 Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, k] = 2;
                                 if (k + 1 < 10)
                                 {
-                                    Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k + 1] = Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k];
-                                    Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k] = 0;
-                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, k + 1] = Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, k];
-                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, k] = 0;
+                                    if (Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k + 1] == 0)
+                                    {
+                                        Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k + 1] = Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k];
+                                        Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k] = 0;
+                                        Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, k + 1] = Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, k];
+                                        Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, k] = 0;
+                                    }
                                 }
                                 break;
                             }

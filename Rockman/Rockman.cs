@@ -18,7 +18,7 @@ namespace Rockman
         SpriteBatch spriteBatch;
 
         private List<Sprite> _sprites, _chipSprites, _outSprites;
-        Texture2D[] rockmanEXETexture, panelTexture, mettonTexture, backgroundTexture, fadeScreenTexture, chipTexture, customScreenTexture;
+        Texture2D[] playersTexture, panelTexture, enemiesTexture, backgroundTexture, fadeScreenTexture, chipTexture, customScreenTexture;
         private int _numObject;
 
         public Rockman()
@@ -37,13 +37,13 @@ namespace Rockman
 
             backgroundTexture = new Texture2D[10];
             panelTexture = new Texture2D[6];
-            rockmanEXETexture = new Texture2D[10];
-            mettonTexture = new Texture2D[10];
+            playersTexture = new Texture2D[10];
+            enemiesTexture = new Texture2D[10];
             fadeScreenTexture = new Texture2D[1];
             customScreenTexture = new Texture2D[5];
             chipTexture = new Texture2D[10];
             Singleton.Instance.effectsTexture = new Texture2D[10];
-            Singleton.Instance.soundEffects = new List<SoundEffect>();
+            //Singleton.Instance.soundEffects = new List<SoundEffect>();
             Singleton.Instance.chipSlotIn = new Stack<string>();
             Singleton.Instance.indexChipSlotIn = new Stack<int>();
             Singleton.Instance.useChipSlotIn = new Stack<string>();
@@ -62,9 +62,10 @@ namespace Rockman
             //shuffleBattleChipInFolder
             Singleton.Instance.folderList = new List<string>()
             {
-                //"DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
+                "DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
                 "DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon",
-                "MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","BlackBomb","CannonBall","SearchBomb3","DarkBomb"
+                "MiniBomb","BigBomb","EnergyBomb","BlackBomb","CannonBall","SearchBomb3",
+                //"MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","BlackBomb","CannonBall","SearchBomb3","DarkBomb"
             };
             Singleton.Instance.folderList.Shuffle();
             Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
@@ -81,17 +82,23 @@ namespace Rockman
                 { 1,0,0,0,0,0,0,0,0,0},
                 { 0,0,0,0,0,0,0,0,0,0},
             };
+            Singleton.Instance.playerMove = new int[3, 10]
+            {
+                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,1,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,0,0,0},
+            };
             Singleton.Instance.spriteMove = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
-                { 0,1,0,0,0,0,0,0,2,0},
-                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,0,2,0},
+                { 0,0,0,0,0,0,0,3,0,0},
             };
             Singleton.Instance.spriteHP = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
                 { 0,0,0,0,0,0,0,0,500,0},
-                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,40,0,0},
             };
             Singleton.Instance.chipEffect = new int[3, 10]
             {
@@ -116,14 +123,6 @@ namespace Rockman
             //Singleton.Instance.song = this.Content.Load<Song>("bgm/BattleStart-EXE5");
             //Singleton.Instance.song = this.Content.Load<Song>("bgm/TournamentBattle-EXE4.5");
             Singleton.Instance.song = this.Content.Load<Song>("bgm/PVPBattle(Re)-RNR3");
-            Singleton.Instance.soundEffects.Add(this.Content.Load<SoundEffect>("sfx/Buster"));
-            Singleton.Instance.soundEffects.Add(this.Content.Load<SoundEffect>("sfx/BusterCharging"));
-            Singleton.Instance.soundEffects.Add(this.Content.Load<SoundEffect>("sfx/BusterCharged"));
-            Singleton.Instance.soundEffects.Add(this.Content.Load<SoundEffect>("sfx/Cannon"));
-            Singleton.Instance.soundEffects.Add(this.Content.Load<SoundEffect>("sfx/MettWave"));
-            Singleton.Instance.soundEffects.Add(this.Content.Load<SoundEffect>("sfx/DefeatedExplode"));
-            Singleton.Instance.soundEffects.Add(this.Content.Load<SoundEffect>("sfx/Deleted"));
-            Singleton.Instance.soundEffects.Add(this.Content.Load<SoundEffect>("sfx/UseChip"));
 
             fadeScreenTexture[0] = new Texture2D(graphics.GraphicsDevice, Singleton.WIDTH, Singleton.HEIGHT);
             Color[] data = new Color[Singleton.WIDTH * Singleton.HEIGHT];
@@ -272,9 +271,10 @@ namespace Rockman
 
             backgroundTexture[0] = Content.Load<Texture2D>("background/space");
             panelTexture[0] = Content.Load<Texture2D>("panel/panelStage");
-            rockmanEXETexture[0] = Content.Load<Texture2D>("rockman/RockmanEXE6");
-            rockmanEXETexture[1] = Content.Load<Texture2D>("rockman/RockmanBusterEXE6");
-            mettonTexture[0] = Content.Load<Texture2D>("virus/MettonAttack");
+            playersTexture[0] = Content.Load<Texture2D>("rockman/RockmanEXE6");
+            playersTexture[1] = Content.Load<Texture2D>("rockman/RockmanBusterEXE6");
+            enemiesTexture[0] = Content.Load<Texture2D>("virus/MettonAttack");
+            enemiesTexture[1] = Content.Load<Texture2D>("virus/MettFire");
             Singleton.Instance.effectsTexture[0] = this.Content.Load<Texture2D>("battleEffect/busterEffect");
             Singleton.Instance.effectsTexture[1] = this.Content.Load<Texture2D>("battleEffect/chargeBuster");
             Singleton.Instance.effectsTexture[2] = this.Content.Load<Texture2D>("battleEffect/ImpacteffectHalfexplosion");
@@ -291,36 +291,62 @@ namespace Rockman
             chipTexture[7] = Content.Load<Texture2D>("chipAtk/Cannon");
             chipTexture[8] = Content.Load<Texture2D>("chipAtk/Throwables");
 
-
-
-            _sprites = new List<Sprite>()
+            // --> spriteList
+            _sprites = new List<Sprite>();
+            //backgroundSprite
+            _sprites.Add(new BackgroundSprite(backgroundTexture)
             {
-                new BackgroundSprite(backgroundTexture)
+                Name = "Background",
+            });
+            //panelSprite
+            _sprites.Add(new PanelSprite(panelTexture)
+            {
+                Name = "Panel",
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
-                    Name = "Background",
-                },
-                new PanelSprite(panelTexture)
+                    {"PanelCrack", Content.Load<SoundEffect>("sfx/PanelCrack").CreateInstance() },
+                }
+            });
+            //fadeScreen
+            _sprites.Add(new FadeScreen(fadeScreenTexture)
+            {
+                Name = "FadeScreen",
+            });
+            //mettonSprite
+            _sprites.Add(new MettonSprite(enemiesTexture)
+            {
+                Name = "Metton",
+                HP = 40,
+                Attack = 10,
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
-                    Name = "Panel",
-                    SoundEffects = new Dictionary<string, SoundEffectInstance>()
-                    {
-                        {"PanelCrack", Content.Load<SoundEffect>("sfx/PanelCrack").CreateInstance() },
-                    }
-                },
-                new FadeScreen(fadeScreenTexture)
+                    {"Explosion", Content.Load<SoundEffect>("sfx/DefeatedExplode").CreateInstance() },
+                }
+            });
+            //mettonWaveSprite
+            _sprites.Add(new MettonWaveSprite(enemiesTexture)
+            {
+                Name = "MettonWave",
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
-                    Name = "Panel",
-                },
-                new MettonSprite(mettonTexture)
+                    {"MettonWave", Content.Load<SoundEffect>("sfx/MettWave").CreateInstance() },
+                }
+            });
+            //mageSprite
+            _sprites.Add(new Mage(new Dictionary<string, Animation>()
+            {
+                { "Alive", new Animation(enemiesTexture[1], new Rectangle(21, 0, 38*4 , 66), 4) },
+                { "Casting", new Animation(enemiesTexture[1], new Rectangle(2, 66, 39*5 , 66), 5) },
+            })
+            {
+                Name = "Mage",
+                Viewport = new Rectangle(6, 0, 40, 72),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
-                    Name = "Metton",
-                    HP = 40, Attack = 10,
-                },
-                new MettonWaveSprite(mettonTexture)
-                {
-                    Name = "MettonWave",
-                },
-            };
+                    {"Casting", Content.Load<SoundEffect>("sfx/SpellCasting").CreateInstance() },
+                    {"Explosion", Content.Load<SoundEffect>("sfx/DefeatedExplode").CreateInstance() },
+                }
+            });
             //barrierSprite
             _sprites.Add(new BarrierSprite(new Dictionary<string, Animation>()
             {
@@ -336,10 +362,10 @@ namespace Rockman
             //rockmanEXE
             _sprites.Add(new RockmanEXESprite(new Dictionary<string, Animation>()
             {
-                { "Alive", new Animation(rockmanEXETexture[0], new Rectangle(9, 1, 57, 57), 1) },
-                { "Buster", new Animation(rockmanEXETexture[0], new Rectangle(9, 527, 43*4, 52), 4) },
-                { "Bomb", new Animation(rockmanEXETexture[0], new Rectangle(10, 370, 49*7, 52), 7) },
-                { "Dead", new Animation(rockmanEXETexture[0], new Rectangle(9, 58, 42, 57), 1) },
+                { "Alive", new Animation(playersTexture[0], new Rectangle(9, 1, 57, 57), 1) },
+                { "Buster", new Animation(playersTexture[0], new Rectangle(9, 527, 43*4, 52), 4) },
+                { "Bomb", new Animation(playersTexture[0], new Rectangle(10, 370, 49*7, 52), 7) },
+                { "Dead", new Animation(playersTexture[0], new Rectangle(9, 58, 42, 57), 1) },
             })
             {
                 Name = "RockmanEXE",
@@ -366,7 +392,7 @@ namespace Rockman
             //busterRockman
             _sprites.Add(new Buster(new Dictionary<string, Animation>()
             {
-                { "NormalBuster", new Animation(rockmanEXETexture[1], new Rectangle(7, 3, 20*4, 7), 4) },
+                { "NormalBuster", new Animation(playersTexture[1], new Rectangle(7, 3, 20*4, 7), 4) },
             })
             {
                 Name = "RockmanBuster",

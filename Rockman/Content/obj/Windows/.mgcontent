@@ -17,7 +17,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/panel/panelStage.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/PVPBattle(Re)-RNR3.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Cannon.wav</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/MettWave.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/DefeatedExplode.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Deleted.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/space.png</File>
@@ -56,5 +55,8 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Throwable.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/PushButtonEXE3.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/Throwables.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/MettWave.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/SpellCasting.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/virus/MettFire.png</File>
   </SourceFiles>
 </SourceFileCollection>

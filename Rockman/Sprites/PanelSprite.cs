@@ -34,7 +34,8 @@ namespace Rockman.Sprites
                     {
                         case Singleton.GameState.GamePlaying:
                             //areaCracked
-                            if (Singleton.Instance.panelStage[i, j] == 1 && Singleton.Instance.spriteMove[i, j] > 0)
+                            if (Singleton.Instance.panelStage[i, j] == 1 && 
+                                (Singleton.Instance.spriteMove[i, j] > 0 || Singleton.Instance.playerMove[i, j] > 0))
                             {
                                 Singleton.Instance.areaCracked[i, j] = 1;
                             }

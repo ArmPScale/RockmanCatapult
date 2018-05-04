@@ -125,3 +125,5 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\battleEffect\I
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Throwables.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Throwable.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\PushButtonEXE3.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\virus\MettFire.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\SpellCasting.xnb

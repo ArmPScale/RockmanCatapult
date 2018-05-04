@@ -117,12 +117,6 @@
 /processorParam:Quality=Best
 /build:sfx/Cannon.wav
 
-#begin sfx/MettWave.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sfx/MettWave.wav
-
 #begin sfx/DefeatedExplode.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -458,4 +452,28 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:chipAtk/Throwables.png
+
+#begin sfx/MettWave.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/MettWave.wav
+
+#begin sfx/SpellCasting.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/SpellCasting.wav
+
+#begin virus/MettFire.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:virus/MettFire.png
 
