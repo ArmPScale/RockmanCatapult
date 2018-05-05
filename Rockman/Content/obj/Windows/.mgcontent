@@ -14,7 +14,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Buster.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/TournamentBattle-EXE4.5.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/virus/MettonAttack.png</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/panel/panelStage.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/PVPBattle(Re)-RNR3.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Cannon.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/DefeatedExplode.wav</File>
@@ -30,7 +29,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/CustomScreenOpen.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BusterHit.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/CustBarFull.wav</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipList.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanBusterEXE6.gif</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipIconEXE6.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Recover.wav</File>
@@ -58,5 +56,14 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/MettWave.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/SpellCasting.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/virus/MettFire.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/panel/PanelsEXE5.gif</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Paneltolce.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/AttackBounce.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/PanelPower.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Meteor.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/VirusExplode.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipList.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/BattleStart.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/EnemyDeleted(short).mp3</File>
   </SourceFiles>
 </SourceFileCollection>

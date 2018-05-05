@@ -51,7 +51,6 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\PVPBattle(
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\PVPBattle(Re)-RNR3.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\TournamentBattle-EXE4.5.wma
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\TournamentBattle-EXE4.5.xnb
-D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\panel\panelStage.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\battleEffect\busterEffect.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\battleEffect\chargeBuster.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\virus\mettonAttack.xnb
@@ -127,3 +126,12 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Throwable.
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\PushButtonEXE3.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\virus\MettFire.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\SpellCasting.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\panel\PanelsEXE5.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Paneltolce.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\AttackBounce.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\PanelPower.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\Meteor.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\VirusExplode.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\BattleStart.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\EnemyDeleted(short).wma
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\EnemyDeleted(short).xnb

@@ -64,7 +64,7 @@ namespace Rockman
             {
                 "DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
                 "DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon",
-                "MiniBomb","BigBomb","EnergyBomb","BlackBomb","CannonBall","SearchBomb3",
+                "PanelReturn","HolyPanel","Sanctuary","BlackBomb","CannonBall","DarkStage",
                 //"MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","BlackBomb","CannonBall","SearchBomb3","DarkBomb"
             };
             Singleton.Instance.folderList.Shuffle();
@@ -82,6 +82,12 @@ namespace Rockman
                 { 1,0,0,0,0,0,0,0,0,0},
                 { 0,0,0,0,0,0,0,0,0,0},
             };
+            Singleton.Instance.panelElement = new int[3, 10]
+            {
+                { 0,0,0,1,0,0,0,1,0,0},
+                { 0,0,1,1,0,0,1,1,1,0},
+                { 0,0,1,0,0,0,0,1,0,0},
+            };
             Singleton.Instance.playerMove = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
@@ -91,14 +97,14 @@ namespace Rockman
             Singleton.Instance.spriteMove = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
-                { 0,0,0,0,0,0,0,0,2,0},
-                { 0,0,0,0,0,0,0,3,0,0},
+                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,3,0,4},
             };
             Singleton.Instance.spriteHP = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
                 { 0,0,0,0,0,0,0,0,500,0},
-                { 0,0,0,0,0,0,0,40,0,0},
+                { 0,0,0,0,0,0,0,40,0,20},
             };
             Singleton.Instance.chipEffect = new int[3, 10]
             {
@@ -119,10 +125,6 @@ namespace Rockman
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            //Singleton.Instance.song = this.Content.Load<Song>("bgm/BattleStart-EXE5");
-            //Singleton.Instance.song = this.Content.Load<Song>("bgm/TournamentBattle-EXE4.5");
-            Singleton.Instance.song = this.Content.Load<Song>("bgm/PVPBattle(Re)-RNR3");
 
             fadeScreenTexture[0] = new Texture2D(graphics.GraphicsDevice, Singleton.WIDTH, Singleton.HEIGHT);
             Color[] data = new Color[Singleton.WIDTH * Singleton.HEIGHT];
@@ -145,13 +147,28 @@ namespace Rockman
             Singleton.Instance.CurrentKey = Keyboard.GetState();
             _numObject = _sprites.Count;
 
-            if (MediaPlayer.State != MediaState.Playing) MediaPlayer.Play(Singleton.Instance.song);
-            else if (MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604)) MediaPlayer.Play(Singleton.Instance.song, new TimeSpan(0, 0, 0, 6, 880));
-            Console.WriteLine(MediaPlayer.PlayPosition);
+            switch (Singleton.Instance.CurrentScreenState)
+            {
+                case Singleton.ScreenState.TitleScreen:
+                    break;
+                case Singleton.ScreenState.MenuScreen:
+                    break;
+                case Singleton.ScreenState.StoryMode:
+                    break;
+            }
+            //mediaPlay --> PVPBattle
+            if (MediaPlayer.State != MediaState.Playing)
+            {
+                MediaPlayer.Play(Singleton.Instance.song["PVPBattle"]);
+                Singleton.Instance.mediaPlaySong = "PVPBattle";
+            }
+            else if (MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604)) MediaPlayer.Play(Singleton.Instance.song["PVPBattle"], new TimeSpan(0, 0, 0, 6, 880));
+
 
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameCustomScreen:
+                    
                     for (int i = 0; i < _numObject; i++)
                     {
                         if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
@@ -159,7 +176,13 @@ namespace Rockman
                     if (Singleton.Instance.selectChipSuccess)
                     {
                         Singleton.Instance.selectChipSuccess = false;
-                        Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
+                        Singleton.Instance.CurrentGameState = Singleton.GameState.GameWaiting;
+                    }
+                    break;
+                case Singleton.GameState.GameWaiting:
+                    for (int i = 0; i < _numObject; i++)
+                    {
+                        if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
                     }
                     break;
                 case Singleton.GameState.GamePlaying:
@@ -214,11 +237,40 @@ namespace Rockman
                     }
                     break;
                 case Singleton.GameState.GameClear:
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < _numObject; i++)
                     {
                         if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
                     }
 
+                    Singleton.Instance.chipEffect = new int[3, 10]
+                    {
+                        { 0,0,0,0,0,0,0,0,0,0},
+                        { 0,0,0,0,0,0,0,0,0,0},
+                        { 0,0,0,0,0,0,0,0,0,0},
+                    };
+                    Singleton.Instance.virusAttack = new int[3, 10]
+                    {
+                        { 0,0,0,0,0,0,0,0,0,0},
+                        { 0,0,0,0,0,0,0,0,0,0},
+                        { 0,0,0,0,0,0,0,0,0,0},
+                    };
+
+                    //mediaPlay --> EnemyDeletedShort
+                    if (Singleton.Instance.mediaPlaySong != "EnemyDeletedShort")
+                    {
+                        MediaPlayer.Play(Singleton.Instance.song["EnemyDeletedShort"]);
+                        Singleton.Instance.mediaPlaySong = "EnemyDeletedShort";
+                    }
+
+                    for (int i = 0; i < _numObject; i++)
+                    {
+                        if (!_sprites[i].IsActive)
+                        {
+                            _sprites.RemoveAt(i);
+                            i--;
+                            _numObject--;
+                        }
+                    }
                     break;
                 case Singleton.GameState.GameOver:
                     for (int i = 0; i < _numObject; i++)
@@ -269,8 +321,16 @@ namespace Rockman
             Singleton.Instance.MasterBGMVolume = 0.5f;
             Singleton.Instance.MasterSFXVolume = 1f;
 
+            //Singleton.Instance.song = this.Content.Load<Song>("bgm/BattleStart-EXE5");
+            //Singleton.Instance.song = this.Content.Load<Song>("bgm/TournamentBattle-EXE4.5");
+            Singleton.Instance.song = new Dictionary<string, Song>()
+            {
+                {"PVPBattle", Content.Load<Song>("bgm/PVPBattle(Re)-RNR3") },
+                {"EnemyDeletedShort", Content.Load<Song>("bgm/EnemyDeleted(short)") },
+            };
+
             backgroundTexture[0] = Content.Load<Texture2D>("background/space");
-            panelTexture[0] = Content.Load<Texture2D>("panel/panelStage");
+            panelTexture[0] = Content.Load<Texture2D>("panel/PanelsEXE5");
             playersTexture[0] = Content.Load<Texture2D>("rockman/RockmanEXE6");
             playersTexture[1] = Content.Load<Texture2D>("rockman/RockmanBusterEXE6");
             enemiesTexture[0] = Content.Load<Texture2D>("virus/MettonAttack");
@@ -281,6 +341,7 @@ namespace Rockman
             customScreenTexture[0] = Content.Load<Texture2D>("screen/CustomScreen");
             customScreenTexture[1] = Content.Load<Texture2D>("screen/CustomWindow");
             customScreenTexture[2] = Content.Load<Texture2D>("screen/EmotionEXE5");
+            customScreenTexture[3] = Content.Load<Texture2D>("screen/BattleStart");
             chipTexture[0] = Content.Load<Texture2D>("chipAtk/chipList");
             chipTexture[1] = Content.Load<Texture2D>("chipAtk/chipIconEXE6");
             chipTexture[2] = Content.Load<Texture2D>("chipAtk/BarrierEXE6");
@@ -320,7 +381,7 @@ namespace Rockman
                 Attack = 10,
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
-                    {"Explosion", Content.Load<SoundEffect>("sfx/DefeatedExplode").CreateInstance() },
+                    {"Explosion", Content.Load<SoundEffect>("sfx/VirusExplode").CreateInstance() },
                 }
             });
             //mettonWaveSprite
@@ -344,7 +405,24 @@ namespace Rockman
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"Casting", Content.Load<SoundEffect>("sfx/SpellCasting").CreateInstance() },
-                    {"Explosion", Content.Load<SoundEffect>("sfx/DefeatedExplode").CreateInstance() },
+                    {"Paneltolce", Content.Load<SoundEffect>("sfx/Paneltolce").CreateInstance() },
+                    {"Explosion", Content.Load<SoundEffect>("sfx/VirusExplode").CreateInstance() },
+                }
+            });
+            //wizardSprite
+            _sprites.Add(new Wizard(new Dictionary<string, Animation>()
+            {
+                { "Alive", new Animation(enemiesTexture[1], new Rectangle(21, 0, 38*4 , 66), 4) },
+                { "Casting", new Animation(enemiesTexture[1], new Rectangle(2, 66, 39*5 , 66), 5) },
+            })
+            {
+                Name = "Wizard",
+                Viewport = new Rectangle(6, 0, 40, 72),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"Casting", Content.Load<SoundEffect>("sfx/SpellCasting").CreateInstance() },
+                    {"Paneltolce", Content.Load<SoundEffect>("sfx/Paneltolce").CreateInstance() },
+                    {"Explosion", Content.Load<SoundEffect>("sfx/VirusExplode").CreateInstance() },
                 }
             });
             //barrierSprite
@@ -379,6 +457,7 @@ namespace Rockman
                 U = Keys.U,
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
+                    {"Barrier", Content.Load<SoundEffect>("sfx/AttackBounce").CreateInstance() },
                     {"Buster", Content.Load<SoundEffect>("sfx/Buster").CreateInstance() },
                     {"Charging", Content.Load<SoundEffect>("sfx/BusterCharging").CreateInstance() },
                     {"Charged", Content.Load<SoundEffect>("sfx/BusterCharged").CreateInstance() },
@@ -531,6 +610,19 @@ namespace Rockman
                 Position = new Vector2(0, 0),
                 Viewport = new Rectangle(9, 255, 89, 105),
             });
+            //battleStart
+            _sprites.Add(new BattleStart(new Dictionary<string, Animation>()
+            {
+                { "BattleStart", new Animation(customScreenTexture[3], new Rectangle(0, 0, 140*3, 20), 3) },
+                { "BattleStartFreeze", new Animation(customScreenTexture[3], new Rectangle(280, 0, 140, 20), 1) },
+                { "EnemyDeleted", new Animation(customScreenTexture[3], new Rectangle(0, 20, 140*3, 20), 3)},
+                { "EnemyDeletedFreeze", new Animation(customScreenTexture[3], new Rectangle(280, 20, 140, 20), 1) },
+            })
+            {
+                Name = "BattleStart",
+                Position = new Vector2(Singleton.WIDTH/3, Singleton.HEIGHT/4),
+                Viewport = new Rectangle(0, 0, 280, 20),
+            });
             ////emotionPlayer
             //_sprites.Add(new EmotionPlayer(customScreenTexture)
             //{
@@ -627,6 +719,16 @@ namespace Rockman
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"Recovery", Content.Load<SoundEffect>("sfx/Recover").CreateInstance() },
+                }
+            });
+            //chipPanel
+            _sprites.Add(new PanelChip(chipTexture)
+            {
+                Name = "PanelChip",
+                Viewport = new Rectangle(448, 144, 56, 47),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"PanelPower", Content.Load<SoundEffect>("sfx/PanelPower").CreateInstance() },
                 }
             });
             //chipBarrier

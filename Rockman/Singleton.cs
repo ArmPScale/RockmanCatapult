@@ -45,11 +45,11 @@ namespace Rockman
         public Queue<string> nextChipFolder;
 
         //initialArr
-        public int[,] panelStage, playerMove, spriteMove, spriteHP, panelBoundary, chipEffect, virusAttack;
+        public int[,] panelBoundary, panelStage, panelElement, playerMove, spriteMove, spriteHP, chipEffect, virusAttack;
         public SpriteFont _font;
         public Texture2D[] effectsTexture;
-
-        public Song song;
+        public Dictionary<string, Song> song;
+        public string mediaPlaySong = "";
         //public List<SoundEffect> soundEffects;
         public float MasterBGMVolume;
         public float MasterSFXVolume;
@@ -66,15 +66,29 @@ namespace Rockman
         public String[] chipCustomSelect, chipStackImg;
         public Point currentChipSelect;
 
+        public enum ScreenState
+        {
+            TitleScreen,
+            MenuScreen,
+            StoryMode,
+            EditFolderChip,
+            Shop,
+            Tutorial,
+            Option,
+            Credits,
+        }
         public enum GameState
         {
             GameCustomScreen,
+            GameWaiting,
             GamePlaying,
             GameWaitingChip,
             GameUseChip,
             GameClear,
             GameOver,
         }
+
+        public ScreenState CurrentScreenState;
         public GameState CurrentGameState;
 
         public KeyboardState PreviousKey, CurrentKey;

@@ -79,6 +79,9 @@ namespace Rockman.Sprites
                 case Singleton.GameState.GameUseChip:
                     sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
                     break;
+                case Singleton.GameState.GameClear:
+                    sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
+                    break;
             }
             base.Update(gameTime, sprites);
         }

@@ -93,18 +93,6 @@
 /processorParam:TextureFormat=Color
 /build:virus/MettonAttack.png
 
-#begin panel/panelStage.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:panel/panelStage.png
-
 #begin bgm/PVPBattle(Re)-RNR3.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -218,18 +206,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sfx/CustBarFull.wav
-
-#begin chipAtk/chipList.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:chipAtk/chipList.png
 
 #begin rockman/RockmanBusterEXE6.gif
 /importer:TextureImporter
@@ -476,4 +452,76 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:virus/MettFire.png
+
+#begin panel/PanelsEXE5.gif
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:panel/PanelsEXE5.gif
+
+#begin sfx/Paneltolce.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/Paneltolce.wav
+
+#begin sfx/AttackBounce.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/AttackBounce.wav
+
+#begin sfx/PanelPower.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/PanelPower.wav
+
+#begin sfx/Meteor.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/Meteor.wav
+
+#begin sfx/VirusExplode.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/VirusExplode.wav
+
+#begin chipAtk/chipList.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:chipAtk/chipList.png
+
+#begin screen/BattleStart.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:screen/BattleStart.png
+
+#begin bgm/EnemyDeleted(short).mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:bgm/EnemyDeleted(short).mp3
 

@@ -56,8 +56,16 @@ namespace Rockman.Sprites
                                 //Damaged
                                 if (Singleton.Instance.isDamaged)
                                 {
+                                    //holyPanelPlayer
+                                    if (Singleton.Instance.panelElement[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] == 1)
+                                    {
+                                        Singleton.Instance.enemyAtk /= 2;
+                                    }
+                                    //barrier
                                     if (Singleton.Instance.HeroBarrier > 0)
                                     {
+                                        SoundEffects["Barrier"].Volume = Singleton.Instance.MasterSFXVolume;
+                                        SoundEffects["Barrier"].Play();
                                         Singleton.Instance.HeroBarrier -= Singleton.Instance.enemyAtk;
                                     }
                                     else if (Singleton.Instance.HeroAura > 0)
@@ -70,6 +78,7 @@ namespace Rockman.Sprites
                                         SoundEffects["Damaged"].Play();
                                         Singleton.Instance.HeroHP -= Singleton.Instance.enemyAtk;
                                     }
+                                    Singleton.Instance.enemyAtk = 0;
                                     Singleton.Instance.isDamaged = false;
                                 }
                                 //checkHP
@@ -204,10 +213,15 @@ namespace Rockman.Sprites
                                 //animateUseChipNormal
                                 _chipCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
                                 _animationManager.Play(_animations[Singleton.Instance.choosePlayerAnimate]);
-                                if (_chipCoolDown > Singleton.Instance.currentChipAtkTime 
+                                if (_chipCoolDown > Singleton.Instance.currentChipAtkTime
                                     //&& Singleton.Instance.currentChipAtkTime != 0
                                     && Singleton.Instance.currentVirusGotDmgIndex != -1)
                                 {
+                                    //holyPanelVirus
+                                    if (Singleton.Instance.panelElement[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentVirusGotDmgIndex] == 1)
+                                    {
+                                        Singleton.Instance.playerChipAtk /= 2;
+                                    }
                                     Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentVirusGotDmgIndex] -= Singleton.Instance.playerChipAtk;
                                     Singleton.Instance.currentVirusGotDmgIndex = -1;
                                     Singleton.Instance.playerChipAtk = 0;
@@ -228,6 +242,10 @@ namespace Rockman.Sprites
                                 break;
                         }
                     }
+                    _animationManager.Update(gameTime);
+                    break;
+                case Singleton.GameState.GameClear:
+                    _animationManager.Play(_animations["Alive"]);
                     _animationManager.Update(gameTime);
                     break;
             }

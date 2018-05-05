@@ -6,19 +6,19 @@ using Rockman.Models;
 
 namespace Rockman.Sprites
 {
-    class Mage : Enemy
+    class Wizard : Enemy
     {
         private float _timer, _atkTime, _castingTime;
         public Point currentTile;
         public static Random random = new Random();
-        int panelX, panelY, panelType;
+        int panelX, panelY;
 
-        public Mage(Texture2D[] _texture)
+        public Wizard(Texture2D[] _texture)
             : base(_texture)
         {
         }
 
-        public Mage(Dictionary<string, Animation> animations)
+        public Wizard(Dictionary<string, Animation> animations)
             : base(animations)
         {
         }
@@ -30,7 +30,7 @@ namespace Rockman.Sprites
                     _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     _atkTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     _castingTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] == 3)
+                    if (Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] == 4)
                     {
                         //checkHP
                         if (Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] <= 0)
@@ -40,11 +40,11 @@ namespace Rockman.Sprites
                             SoundEffects["Explosion"].Play();
                             Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
                         }
-                        //mageAtk
-                        if (_atkTime > 5.0f)
+                        //wizardAtk
+                        if (_atkTime > 6.0f)
                         {
                             _animationManager.Play(_animations["Casting"]);
-                            if (_atkTime < 5.2f)
+                            if (_atkTime < 6.2f)
                             {
                                 SoundEffects["Casting"].Volume = Singleton.Instance.MasterSFXVolume;
                                 SoundEffects["Casting"].Play();
@@ -52,23 +52,22 @@ namespace Rockman.Sprites
                                 {
                                     panelX = random.Next(0, 3);
                                     panelY = random.Next(0, 5);
-                                    panelType = random.Next(1, 5);
                                     Singleton.Instance.virusAttack[panelX, panelY] = 3;
                                     _castingTime = 0f;
                                 }
                                 
                             }
-                            else if (_atkTime > 6.5f)
+                            else if (_atkTime > 7.5f)
                             {
                                 SoundEffects["Paneltolce"].Volume = Singleton.Instance.MasterSFXVolume;
                                 SoundEffects["Paneltolce"].Play();
-                                Singleton.Instance.panelElement[panelX, panelY] = panelType;
+
                                 Singleton.Instance.virusAttack[panelX, panelY] = 0;
                                 _atkTime = 0f;
                             }
                         }
                         //movement
-                        else if (_timer > 0.8f)
+                        else if (_timer > 1.0f)
                         {
                             _animationManager.Play(_animations["Alive"]);
                             int xPos = random.Next(0, 3);
@@ -97,8 +96,8 @@ namespace Rockman.Sprites
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    //drawMage
-                    if (Singleton.Instance.spriteMove[i, j] == 3)
+                    //drawWizard
+                    if (Singleton.Instance.spriteMove[i, j] == 4)
                     {
                         currentTile = new Point(i, j);
                         if (_animationManager == null)

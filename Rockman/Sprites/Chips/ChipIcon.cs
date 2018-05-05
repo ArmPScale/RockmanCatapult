@@ -35,6 +35,9 @@ namespace Rockman.Sprites.Chips
             {"Recovery150",  new Rectangle(192+(19*5), 164, 14, 14) },
             {"Recovery200",  new Rectangle(3+(19*0), 164+18, 14, 14) },
             {"Recovery300",  new Rectangle(3+(19*1), 164+18, 14, 14) },
+            {"PanelReturn",  new Rectangle(117, 182, 14, 14) },
+            {"HolyPanel",  new Rectangle(117+(19*2), 182, 14, 14) },
+            {"Sanctuary",  new Rectangle(117+(19*3), 182, 14, 14) },
             {"Barrier",  new Rectangle(41, 200, 14, 14) },
             {"Barrier100",  new Rectangle(41+(19*1), 200, 14, 14) },
             {"Barrier200",  new Rectangle(41+(19*2), 200, 14, 14) },
@@ -53,6 +56,7 @@ namespace Rockman.Sprites.Chips
             {"DarkSpread",  new Rectangle(160, 113, 14, 14) },
             {"DarkBomb",  new Rectangle(176, 113, 14, 14) },
             {"DarkRecovery",  new Rectangle(224, 113, 14, 14) },
+            {"DarkStage",  new Rectangle(240, 113, 14, 14) },
         };
         Dictionary<string, int> allChipIconAtk = new Dictionary<string, int>()
         {
@@ -98,6 +102,9 @@ namespace Rockman.Sprites.Chips
         {
             for (int i = 1; i < 6; i++)
             {
+                Color[] colors = { Color.WhiteSmoke, Color.DarkOrange };
+                Vector2 startPosition = new Vector2(60, 755);
+                Vector2 offset = Vector2.Zero;
                 switch (Singleton.Instance.CurrentGameState)
                 {
                     case Singleton.GameState.GameCustomScreen:
@@ -128,10 +135,38 @@ namespace Rockman.Sprites.Chips
                                 Color.White, 0f, Vector2.Zero, 2.75f, SpriteEffects.None, 0f);
                         }
                         break;
+                    case Singleton.GameState.GameWaiting:
+                        if (Singleton.Instance.useChipSlotIn.Count != 0)
+                        {
+                            if (rectChipIconImg.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
+                            {
+                                spriteBatch.Draw(_texture[1], new Vector2(10, 750),
+                                    rectChipIconImg[Singleton.Instance.useChipSlotIn.Peek()],
+                                    Color.White, 0f, Vector2.Zero, 2.75f, SpriteEffects.None, 0f);
+                            }
+                            else if (rectChipIconEXE4Img.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
+                            {
+                                spriteBatch.Draw(_texture[3], new Vector2(10, 750),
+                                    rectChipIconEXE4Img[Singleton.Instance.useChipSlotIn.Peek()],
+                                    Color.White, 0f, Vector2.Zero, 2.75f, SpriteEffects.None, 0f);
+                            }
+                            //chipNameAndAtk
+                            if (allChipIconAtk.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
+                            {
+                                string[] stringPieces = { Singleton.Instance.useChipSlotIn.Peek(), "" + allChipIconAtk[Singleton.Instance.useChipSlotIn.Peek()] };
+                                for (int x = 0; x < stringPieces.Length; x++)
+                                {
+                                    spriteBatch.DrawString(Singleton.Instance._font, stringPieces[x], startPosition + offset, colors[x], 0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0f);
+                                    offset.X += Singleton.Instance._font.MeasureString(stringPieces[x]).X + 40;
+                                }
+                            }
+                            else
+                            {
+                                spriteBatch.DrawString(Singleton.Instance._font, Singleton.Instance.useChipSlotIn.Peek(), startPosition, Color.WhiteSmoke, 0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0f);
+                            }
+                        }
+                        break;
                     case Singleton.GameState.GamePlaying:
-                        Color[] colors = { Color.WhiteSmoke, Color.DarkOrange };
-                        Vector2 startPosition = new Vector2(60, 755);
-                        Vector2 offset = Vector2.Zero;
                         if (Singleton.Instance.useChipSlotIn.Count != 0)
                         {
                             if (rectChipIconImg.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
