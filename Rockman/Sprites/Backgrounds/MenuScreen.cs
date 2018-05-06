@@ -145,8 +145,6 @@ namespace Rockman.Sprites
                         textButtonColor[6] = new Color(247, 159, 47);
                         if (isClicked)
                         {
-                            SoundEffects["PressStart"].Volume = Singleton.Instance.MasterSFXVolume;
-                            SoundEffects["PressStart"].Play();
                             Singleton.Instance.CurrentScreenState = Singleton.ScreenState.Quit;
                         }
                     }

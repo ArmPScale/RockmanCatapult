@@ -75,6 +75,7 @@ namespace Rockman.Sprites
                     else if (alpha >= 255)
                     {
                         MediaPlayer.Stop();
+                        Singleton.Instance.mediaPlaySong = "MenuScreen";
                         Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
                     }
                     break;

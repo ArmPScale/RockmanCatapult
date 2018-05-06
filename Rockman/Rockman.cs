@@ -154,23 +154,11 @@ namespace Rockman
             _numScreenSprites = _screenSprites.Count;
             _numObject = _sprites.Count;
 
-            MediaPlayer.Volume = Singleton.Instance.MasterBGMVolume;
-
             switch (Singleton.Instance.CurrentScreenState)
             {
                 case Singleton.ScreenState.TitleScreen:
                     //mediaPlay --> TitleScreenRemix
-                    if (MediaPlayer.State != MediaState.Playing)
-                    {
-                        Singleton.Instance.mediaPlaySong = "TitleScreenRemix";
-                        MediaPlayer.Play(Singleton.Instance.song["TitleScreenRemix"]);
-                    }
-                    else if (Singleton.Instance.mediaPlaySong == "TitleScreenRemix" && 
-                        MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 1, 750))
-                        MediaPlayer.Play(Singleton.Instance.song["TitleScreenRemix"], new TimeSpan(0, 0, 0, 32, 400));
-                    else if (Singleton.Instance.mediaPlaySong == "TitleScreen" && 
-                        MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 0, 830))
-                        MediaPlayer.Play(Singleton.Instance.song["TitleScreen"], new TimeSpan(0, 0, 0, 34, 200));
+                    Singleton.Instance.mediaPlaySong = "TitleScreenRemix";
 
                     for (int i = 0; i < _numScreenSprites; i++)
                     {
@@ -178,15 +166,9 @@ namespace Rockman
                     }
                     break;
                 case Singleton.ScreenState.MenuScreen:
-                    //mediaPlay --> mediaPlaySongName
-                    if (MediaPlayer.State != MediaState.Playing)
-                    {
-                        Singleton.Instance.mediaPlaySong = "MenuScreen";
-                        MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong]);
-                    }
-                    else if (Singleton.Instance.mediaPlaySong == "MenuScreen" && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
-                        MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong], new TimeSpan(0, 0, 0, 6, 880));
-
+                    //mediaPlay --> MenuScreen
+                    Singleton.Instance.mediaPlaySong = "MenuScreen";
+                    
                     for (int i = 0; i < _numScreenSprites; i++)
                     {
                         if (_screenSprites[i].IsActive) _screenSprites[i].Update(gameTime, _screenSprites);
@@ -194,19 +176,13 @@ namespace Rockman
 
                     break;
                 case Singleton.ScreenState.StoryMode:
-                    //mediaPlay --> mediaPlaySongName
-                    if (MediaPlayer.State != MediaState.Playing)
-                    {
-                        MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong]);
-                    }
-                    else if (Singleton.Instance.mediaPlaySong == "PVPBattle" && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
-                        MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong], new TimeSpan(0, 0, 0, 6, 880));
-                    else if (Singleton.Instance.mediaPlaySong == "Battle1" && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
-                        MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong], new TimeSpan(0, 0, 0, 6, 880));
 
                     switch (Singleton.Instance.CurrentGameState)
                     {
                         case Singleton.GameState.GameCustomScreen:
+                            //mediaPlay --> Battle1
+                            Singleton.Instance.mediaPlaySong = "Battle1";
+
                             for (int i = 0; i < _numObject; i++)
                             {
                                 if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
@@ -249,6 +225,7 @@ namespace Rockman
                             if (enemies == 0)
                             {
                                 MediaPlayer.Stop();
+                                //mediaPlay --> EnemyDeletedShort
                                 Singleton.Instance.mediaPlaySong = "EnemyDeletedShort";
                                 Singleton.Instance.CurrentGameState = Singleton.GameState.GameClear;
                             }
@@ -337,7 +314,30 @@ namespace Rockman
                     Exit();
                     break;
             }
+
             Singleton.Instance.PreviousKey = Singleton.Instance.CurrentKey;
+
+            //mediaPlay
+            MediaPlayer.Volume = Singleton.Instance.MasterBGMVolume;
+            if (MediaPlayer.State != MediaState.Playing)
+            {
+                MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong]);
+            }
+            else if (Singleton.Instance.mediaPlaySong == "TitleScreenRemix" &&
+                MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 1, 750))
+                MediaPlayer.Play(Singleton.Instance.song["TitleScreenRemix"], new TimeSpan(0, 0, 0, 32, 400));
+            else if (Singleton.Instance.mediaPlaySong == "TitleScreen" &&
+                MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 0, 830))
+                MediaPlayer.Play(Singleton.Instance.song["TitleScreen"], new TimeSpan(0, 0, 0, 34, 200));
+            else if (Singleton.Instance.mediaPlaySong == "MenuScreen" &&
+                MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 42, 438))
+                MediaPlayer.Play(Singleton.Instance.song["MenuScreen"], new TimeSpan(0, 0, 0, 3, 526));
+            else if (Singleton.Instance.mediaPlaySong == "PVPBattle" 
+                && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
+                MediaPlayer.Play(Singleton.Instance.song["PVPBattle"], new TimeSpan(0, 0, 0, 6, 880));
+            else if (Singleton.Instance.mediaPlaySong == "Battle1" 
+                && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 53, 034))
+                MediaPlayer.Play(Singleton.Instance.song["Battle1"], new TimeSpan(0, 0, 0, 5, 985));
 
             base.Update(gameTime);
         }
