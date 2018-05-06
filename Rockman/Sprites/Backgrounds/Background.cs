@@ -12,6 +12,9 @@ namespace Rockman.Sprites.Screens
 {
     class Background : Sprite
     {
+        public Color fade;
+        public int alpha;
+
         public Background(Texture2D[] texture) : base(texture)
         {
         }

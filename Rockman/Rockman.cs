@@ -134,7 +134,7 @@ namespace Rockman
             for (int i = 0; i < data.Length; ++i) data[i] = Color.Black;
             fadeScreenTexture[0].SetData(data);
 
-            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.TitleScreen;
+            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
             Reset();
         }
 
@@ -145,8 +145,8 @@ namespace Rockman
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Singleton.Instance.CurrentScreenState = Singleton.ScreenState.Quit;
             Singleton.Instance.PreviousMouse = Singleton.Instance.CurrentMouse;
 
             Singleton.Instance.CurrentKey = Keyboard.GetState();
@@ -162,8 +162,8 @@ namespace Rockman
                     //mediaPlay --> TitleScreenRemix
                     if (MediaPlayer.State != MediaState.Playing)
                     {
-                        MediaPlayer.Play(Singleton.Instance.song["TitleScreenRemix"]);
                         Singleton.Instance.mediaPlaySong = "TitleScreenRemix";
+                        MediaPlayer.Play(Singleton.Instance.song["TitleScreenRemix"]);
                     }
                     else if (Singleton.Instance.mediaPlaySong == "TitleScreenRemix" && 
                         MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 1, 750))
@@ -181,6 +181,7 @@ namespace Rockman
                     //mediaPlay --> mediaPlaySongName
                     if (MediaPlayer.State != MediaState.Playing)
                     {
+                        Singleton.Instance.mediaPlaySong = "MenuScreen";
                         MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong]);
                     }
                     else if (Singleton.Instance.mediaPlaySong == "MenuScreen" && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
@@ -191,14 +192,6 @@ namespace Rockman
                         if (_screenSprites[i].IsActive) _screenSprites[i].Update(gameTime, _screenSprites);
                     }
 
-                    if (Singleton.Instance.PreviousMouse.LeftButton == ButtonState.Released &&
-                        Singleton.Instance.CurrentMouse.LeftButton == ButtonState.Pressed)
-                    {
-                        MediaPlayer.Stop();
-                        Singleton.Instance.mediaPlaySong = "Battle1";
-                        Singleton.Instance.CurrentScreenState = Singleton.ScreenState.StoryMode;
-                        Singleton.Instance.CurrentGameState = Singleton.GameState.GameCustomScreen;
-                    }
                     break;
                 case Singleton.ScreenState.StoryMode:
                     //mediaPlay --> mediaPlaySongName
@@ -330,6 +323,19 @@ namespace Rockman
                             break;
                     }
                     break;
+                case Singleton.ScreenState.EditFolderChip:
+                    break;
+                case Singleton.ScreenState.Shop:
+                    break;
+                case Singleton.ScreenState.Tutorial:
+                    break;
+                case Singleton.ScreenState.Option:
+                    break;
+                case Singleton.ScreenState.Credits:
+                    break;
+                case Singleton.ScreenState.Quit:
+                    Exit();
+                    break;
             }
             Singleton.Instance.PreviousKey = Singleton.Instance.CurrentKey;
 
@@ -394,7 +400,7 @@ namespace Rockman
             titleScreenTexture[1] = Content.Load<Texture2D>("background/titleScreen2");
             titleScreenTexture[2] = Content.Load<Texture2D>("background/logoTitle");
             //menuScreenTexture
-            menuScreenTexture[0] = Content.Load<Texture2D>("background/MenuScreen");
+            menuScreenTexture[0] = Content.Load<Texture2D>("background/MenuScreenBlack");
             menuScreenTexture[1] = Content.Load<Texture2D>("background/BlackAce");
             menuScreenTexture[2] = Content.Load<Texture2D>("background/logoTitle");
 
@@ -436,6 +442,10 @@ namespace Rockman
             _screenSprites.Add(new MenuScreen(menuScreenTexture)
             {
                 Name = "MenuScreen",
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
+                }
             });
 
             // --> spriteList

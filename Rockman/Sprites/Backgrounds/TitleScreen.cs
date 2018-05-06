@@ -15,15 +15,13 @@ namespace Rockman.Sprites
     {
         Vector2 bgScroll1, bgScroll2;
         int bg1 = 0, bg2 = 0;
-
-        Color fade;
-        int alpha = 255;
-
+        Color textButtonColor;
         bool isPressStart = false;
 
         public TitleScreen(Texture2D[] texture)
             : base(texture)
         {
+            alpha = 255;
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -45,22 +43,31 @@ namespace Rockman.Sprites
                     {
                         bg2 = 0;
                     }
-                    //fading
+                    //fadeIn
                     if (!isPressStart && alpha >= 0)
                     {
                         alpha -= 10;
                         fade = new Color(0, 0, 0, alpha);
                     }
-
-                    if (!isPressStart && Singleton.Instance.PreviousMouse.LeftButton == ButtonState.Released &&
-                        Singleton.Instance.CurrentMouse.LeftButton == ButtonState.Pressed)
+                    //textButton
+                    if ((Singleton.Instance.CurrentMouse.X >= 400 && Singleton.Instance.CurrentMouse.X <= 825) &&
+                        (Singleton.Instance.CurrentMouse.Y >= 600 && Singleton.Instance.CurrentMouse.Y <= 635))
                     {
-                        SoundEffects["PressStart"].Volume = Singleton.Instance.MasterSFXVolume;
-                        SoundEffects["PressStart"].Play();
-
-                        isPressStart = true;
+                        textButtonColor = new Color(247, 159, 47);
+                        if (!isPressStart && Singleton.Instance.PreviousMouse.LeftButton == ButtonState.Released &&
+                       Singleton.Instance.CurrentMouse.LeftButton == ButtonState.Pressed)
+                        {
+                            SoundEffects["PressStart"].Volume = 0.5f;
+                            SoundEffects["PressStart"].Play();
+                            isPressStart = true;
+                        }
                     }
-                    else if (isPressStart && alpha < 255)
+                    else
+                    {
+                        textButtonColor = Color.WhiteSmoke;
+                    }
+                    //fadeOut
+                    if (isPressStart && alpha < 255)
                     {
                         alpha += 5;
                         fade = new Color(0, 0, 0, alpha);
@@ -68,7 +75,6 @@ namespace Rockman.Sprites
                     else if (alpha >= 255)
                     {
                         MediaPlayer.Stop();
-                        Singleton.Instance.mediaPlaySong = "MenuScreen";
                         Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
                     }
                     break;
@@ -88,6 +94,9 @@ namespace Rockman.Sprites
                     //drawLogo
                     spriteBatch.Draw(_texture[2], new Vector2(Singleton.WIDTH / 4, Singleton.HEIGHT / 10),
                         null, Color.White, 0f, Vector2.Zero, scale - 0.3f, SpriteEffects.None, 0f);
+                    //drawTextButton
+                    spriteBatch.DrawString(Singleton.Instance._font, "Press Button Here", new Vector2(400, 600),
+                        textButtonColor, 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
                     //drawFadeBlack
                     spriteBatch.Draw(_texture[0], new Vector2(0,0), null, fade, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                     break;
