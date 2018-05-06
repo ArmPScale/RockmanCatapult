@@ -17,9 +17,10 @@ namespace Rockman
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private List<Sprite> _sprites, _chipSprites, _outSprites;
-        Texture2D[] playersTexture, panelTexture, enemiesTexture, backgroundTexture, fadeScreenTexture, chipTexture, customScreenTexture;
-        private int _numObject;
+        private List<Sprite> _screenSprites, _sprites;
+        Texture2D[] titleScreenTexture, menuScreenTexture,
+            playersTexture, panelTexture, enemiesTexture, backgroundTexture, fadeScreenTexture, chipTexture, customScreenTexture;
+        private int _numScreenSprites, _numObject;
 
         public Rockman()
         {
@@ -35,6 +36,8 @@ namespace Rockman
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
 
+            titleScreenTexture = new Texture2D[5];
+            menuScreenTexture = new Texture2D[5];
             backgroundTexture = new Texture2D[10];
             panelTexture = new Texture2D[6];
             playersTexture = new Texture2D[10];
@@ -97,14 +100,14 @@ namespace Rockman
             Singleton.Instance.spriteMove = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
-                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,0,2,0},
                 { 0,0,0,0,0,0,0,3,0,4},
             };
             Singleton.Instance.spriteHP = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
-                { 0,0,0,0,0,0,0,0,500,0},
-                { 0,0,0,0,0,0,0,40,0,20},
+                { 0,0,0,0,0,0,0,0,450,0},
+                { 0,0,0,0,0,0,0,100,0,100},
             };
             Singleton.Instance.chipEffect = new int[3, 10]
             {
@@ -131,6 +134,7 @@ namespace Rockman
             for (int i = 0; i < data.Length; ++i) data[i] = Color.Black;
             fadeScreenTexture[0].SetData(data);
 
+            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.TitleScreen;
             Reset();
         }
 
@@ -143,148 +147,187 @@ namespace Rockman
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            Singleton.Instance.PreviousMouse = Singleton.Instance.CurrentMouse;
 
             Singleton.Instance.CurrentKey = Keyboard.GetState();
+            Singleton.Instance.CurrentMouse = Mouse.GetState();
+            _numScreenSprites = _screenSprites.Count;
             _numObject = _sprites.Count;
+
+            MediaPlayer.Volume = Singleton.Instance.MasterBGMVolume;
 
             switch (Singleton.Instance.CurrentScreenState)
             {
                 case Singleton.ScreenState.TitleScreen:
+                    //mediaPlay --> TitleScreenRemix
+                    if (MediaPlayer.State != MediaState.Playing)
+                    {
+                        MediaPlayer.Play(Singleton.Instance.song["TitleScreenRemix"]);
+                        Singleton.Instance.mediaPlaySong = "TitleScreenRemix";
+                    }
+                    else if (Singleton.Instance.mediaPlaySong == "TitleScreenRemix" && 
+                        MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 1, 750))
+                        MediaPlayer.Play(Singleton.Instance.song["TitleScreenRemix"], new TimeSpan(0, 0, 0, 32, 400));
+                    else if (Singleton.Instance.mediaPlaySong == "TitleScreen" && 
+                        MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 0, 830))
+                        MediaPlayer.Play(Singleton.Instance.song["TitleScreen"], new TimeSpan(0, 0, 0, 34, 200));
+
+                    for (int i = 0; i < _numScreenSprites; i++)
+                    {
+                        if (_screenSprites[i].IsActive) _screenSprites[i].Update(gameTime, _screenSprites);
+                    }
                     break;
                 case Singleton.ScreenState.MenuScreen:
+                    //mediaPlay --> mediaPlaySongName
+                    if (MediaPlayer.State != MediaState.Playing)
+                    {
+                        MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong]);
+                    }
+                    else if (Singleton.Instance.mediaPlaySong == "MenuScreen" && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
+                        MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong], new TimeSpan(0, 0, 0, 6, 880));
+
+                    for (int i = 0; i < _numScreenSprites; i++)
+                    {
+                        if (_screenSprites[i].IsActive) _screenSprites[i].Update(gameTime, _screenSprites);
+                    }
+
+                    if (Singleton.Instance.PreviousMouse.LeftButton == ButtonState.Released &&
+                        Singleton.Instance.CurrentMouse.LeftButton == ButtonState.Pressed)
+                    {
+                        MediaPlayer.Stop();
+                        Singleton.Instance.mediaPlaySong = "Battle1";
+                        Singleton.Instance.CurrentScreenState = Singleton.ScreenState.StoryMode;
+                        Singleton.Instance.CurrentGameState = Singleton.GameState.GameCustomScreen;
+                    }
                     break;
                 case Singleton.ScreenState.StoryMode:
-                    break;
-            }
-            //mediaPlay --> PVPBattle
-            if (MediaPlayer.State != MediaState.Playing)
-            {
-                MediaPlayer.Play(Singleton.Instance.song["PVPBattle"]);
-                Singleton.Instance.mediaPlaySong = "PVPBattle";
-            }
-            else if (MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604)) MediaPlayer.Play(Singleton.Instance.song["PVPBattle"], new TimeSpan(0, 0, 0, 6, 880));
+                    //mediaPlay --> mediaPlaySongName
+                    if (MediaPlayer.State != MediaState.Playing)
+                    {
+                        MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong]);
+                    }
+                    else if (Singleton.Instance.mediaPlaySong == "PVPBattle" && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
+                        MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong], new TimeSpan(0, 0, 0, 6, 880));
+                    else if (Singleton.Instance.mediaPlaySong == "Battle1" && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
+                        MediaPlayer.Play(Singleton.Instance.song[Singleton.Instance.mediaPlaySong], new TimeSpan(0, 0, 0, 6, 880));
 
+                    switch (Singleton.Instance.CurrentGameState)
+                    {
+                        case Singleton.GameState.GameCustomScreen:
+                            for (int i = 0; i < _numObject; i++)
+                            {
+                                if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
+                            }
+                            if (Singleton.Instance.selectChipSuccess)
+                            {
+                                Singleton.Instance.selectChipSuccess = false;
+                                Singleton.Instance.CurrentGameState = Singleton.GameState.GameWaiting;
+                            }
+                            break;
+                        case Singleton.GameState.GameWaiting:
+                            for (int i = 0; i < _numObject; i++)
+                            {
+                                if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
+                            }
+                            break;
+                        case Singleton.GameState.GamePlaying:
+                            for (int i = 0; i < _numObject; i++)
+                            {
+                                if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
+                            }
+                            for (int i = 0; i < _numObject; i++)
+                            {
+                                if (!_sprites[i].IsActive)
+                                {
+                                    _sprites.RemoveAt(i);
+                                    i--;
+                                    _numObject--;
+                                }
+                            }
 
-            switch (Singleton.Instance.CurrentGameState)
-            {
-                case Singleton.GameState.GameCustomScreen:
-                    
-                    for (int i = 0; i < _numObject; i++)
-                    {
-                        if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
-                    }
-                    if (Singleton.Instance.selectChipSuccess)
-                    {
-                        Singleton.Instance.selectChipSuccess = false;
-                        Singleton.Instance.CurrentGameState = Singleton.GameState.GameWaiting;
-                    }
-                    break;
-                case Singleton.GameState.GameWaiting:
-                    for (int i = 0; i < _numObject; i++)
-                    {
-                        if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
-                    }
-                    break;
-                case Singleton.GameState.GamePlaying:
-                    for (int i = 0; i < _numObject; i++)
-                    {
-                        if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
-                    }
-                    for (int i = 0; i < _numObject; i++)
-                    {
-                        if (!_sprites[i].IsActive)
-                        {
-                            _sprites.RemoveAt(i);
-                            i--;
-                            _numObject--;
-                        }
-                    }
+                            int enemies = 0;
+                            foreach (int virus in Singleton.Instance.spriteMove)
+                            {
+                                if (virus >= 2)
+                                {
+                                    enemies += 1;
+                                }
+                            }
+                            if (enemies == 0)
+                            {
+                                MediaPlayer.Stop();
+                                Singleton.Instance.mediaPlaySong = "EnemyDeletedShort";
+                                Singleton.Instance.CurrentGameState = Singleton.GameState.GameClear;
+                            }
+                            break;
+                        case Singleton.GameState.GameWaitingChip:
+                            for (int i = 0; i < _numObject; i++)
+                            {
+                                if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
+                            }
 
-                    int enemies = 0;
-                    foreach (int virus in Singleton.Instance.spriteMove)
-                    {
-                        if (virus >= 2)
-                        {
-                           enemies += 1;
-                        }
-                    }
-                    if (enemies == 0)
-                    {
-                        Singleton.Instance.CurrentGameState = Singleton.GameState.GameClear;
-                    }
-                    break;
-                case Singleton.GameState.GameWaitingChip:
-                    for (int i = 0; i < _numObject; i++)
-                    {
-                        if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
-                    }
+                            Singleton.Instance.useChip = true;
 
-                    Singleton.Instance.useChip = true;
+                            break;
+                        case Singleton.GameState.GameUseChip:
+                            for (int i = 0; i < _numObject; i++)
+                            {
+                                if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
+                            }
+                            if (Singleton.Instance.useChipNearlySuccess)
+                            {
+                                //Singleton.Instance.useChipName = "";
+                                Singleton.Instance.useChipSlotIn.Pop();
+                                Singleton.Instance.useChipDuring = false;
+                                Singleton.Instance.useChipNearlySuccess = false;
+                                Singleton.Instance.useChipSuccess = true;
+                            }
+                            break;
+                        case Singleton.GameState.GameClear:
+                            for (int i = 0; i < _numObject; i++)
+                            {
+                                if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
+                            }
 
-                    break;
-                case Singleton.GameState.GameUseChip:
-                    for (int i = 0; i < _numObject; i++)
-                    {
-                        if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
-                    }
-                    if (Singleton.Instance.useChipNearlySuccess)
-                    {
-                        //Singleton.Instance.useChipName = "";
-                        Singleton.Instance.useChipSlotIn.Pop();
-                        Singleton.Instance.useChipDuring = false;
-                        Singleton.Instance.useChipNearlySuccess = false;
-                        Singleton.Instance.useChipSuccess = true;
-                    }
-                    break;
-                case Singleton.GameState.GameClear:
-                    for (int i = 0; i < _numObject; i++)
-                    {
-                        if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
-                    }
+                            Singleton.Instance.chipEffect = new int[3, 10]
+                            {
+                                { 0,0,0,0,0,0,0,0,0,0},
+                                { 0,0,0,0,0,0,0,0,0,0},
+                                { 0,0,0,0,0,0,0,0,0,0},
+                            };
+                            Singleton.Instance.virusAttack = new int[3, 10]
+                            {
+                                { 0,0,0,0,0,0,0,0,0,0},
+                                { 0,0,0,0,0,0,0,0,0,0},
+                                { 0,0,0,0,0,0,0,0,0,0},
+                            };
 
-                    Singleton.Instance.chipEffect = new int[3, 10]
-                    {
-                        { 0,0,0,0,0,0,0,0,0,0},
-                        { 0,0,0,0,0,0,0,0,0,0},
-                        { 0,0,0,0,0,0,0,0,0,0},
-                    };
-                    Singleton.Instance.virusAttack = new int[3, 10]
-                    {
-                        { 0,0,0,0,0,0,0,0,0,0},
-                        { 0,0,0,0,0,0,0,0,0,0},
-                        { 0,0,0,0,0,0,0,0,0,0},
-                    };
-
-                    //mediaPlay --> EnemyDeletedShort
-                    if (Singleton.Instance.mediaPlaySong != "EnemyDeletedShort")
-                    {
-                        MediaPlayer.Play(Singleton.Instance.song["EnemyDeletedShort"]);
-                        Singleton.Instance.mediaPlaySong = "EnemyDeletedShort";
-                    }
-
-                    for (int i = 0; i < _numObject; i++)
-                    {
-                        if (!_sprites[i].IsActive)
-                        {
-                            _sprites.RemoveAt(i);
-                            i--;
-                            _numObject--;
-                        }
-                    }
-                    break;
-                case Singleton.GameState.GameOver:
-                    for (int i = 0; i < _numObject; i++)
-                    {
-                        if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
-                    }
-                    for (int i = 0; i < _numObject; i++)
-                    {
-                        if (!_sprites[i].IsActive)
-                        {
-                            _sprites.RemoveAt(i);
-                            i--;
-                            _numObject--;
-                        }
+                            for (int i = 0; i < _numObject; i++)
+                            {
+                                if (!_sprites[i].IsActive)
+                                {
+                                    _sprites.RemoveAt(i);
+                                    i--;
+                                    _numObject--;
+                                }
+                            }
+                            break;
+                        case Singleton.GameState.GameOver:
+                            for (int i = 0; i < _numObject; i++)
+                            {
+                                if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
+                            }
+                            for (int i = 0; i < _numObject; i++)
+                            {
+                                if (!_sprites[i].IsActive)
+                                {
+                                    _sprites.RemoveAt(i);
+                                    i--;
+                                    _numObject--;
+                                }
+                            }
+                            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
+                            break;
                     }
                     break;
             }
@@ -298,11 +341,27 @@ namespace Rockman
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             // TODO: Add your drawing code here
-            for (int i = 0; i < _numObject; i++)
+            switch (Singleton.Instance.CurrentScreenState)
             {
-                if (_sprites[i].IsActive) _sprites[i].Draw(spriteBatch);
+                case Singleton.ScreenState.TitleScreen:
+                    for (int i = 0; i < _numScreenSprites; i++)
+                    {
+                        if (_screenSprites[i].IsActive) _screenSprites[i].Draw(spriteBatch);
+                    }
+                    break;
+                case Singleton.ScreenState.MenuScreen:
+                    for (int i = 0; i < _numScreenSprites; i++)
+                    {
+                        if (_screenSprites[i].IsActive) _screenSprites[i].Draw(spriteBatch);
+                    }
+                    break;
+                case Singleton.ScreenState.StoryMode:
+                    for (int i = 0; i < _numObject; i++)
+                    {
+                        if (_sprites[i].IsActive) _sprites[i].Draw(spriteBatch);
+                    }
+                    break;
             }
-
             spriteBatch.End();
             graphics.BeginDraw();
 
@@ -318,16 +377,26 @@ namespace Rockman
             Singleton.Instance.selectChipSuccess = false;
             Singleton.Instance.newTurnCustom = false;
             Singleton.Instance.isCustomBarFull = false;
-            Singleton.Instance.MasterBGMVolume = 0.5f;
-            Singleton.Instance.MasterSFXVolume = 1f;
+            Singleton.Instance.MasterBGMVolume = 0.6f;
+            Singleton.Instance.MasterSFXVolume = 0.8f;
 
-            //Singleton.Instance.song = this.Content.Load<Song>("bgm/BattleStart-EXE5");
-            //Singleton.Instance.song = this.Content.Load<Song>("bgm/TournamentBattle-EXE4.5");
             Singleton.Instance.song = new Dictionary<string, Song>()
             {
+                {"TitleScreen", Content.Load<Song>("bgm/TitleScreen") },
+                {"TitleScreenRemix", Content.Load<Song>("bgm/TitleScreenRemix") },
+                {"MenuScreen", Content.Load<Song>("bgm/MenuScreen") },
                 {"PVPBattle", Content.Load<Song>("bgm/PVPBattle(Re)-RNR3") },
+                {"Battle1", Content.Load<Song>("bgm/Battle1") },
                 {"EnemyDeletedShort", Content.Load<Song>("bgm/EnemyDeleted(short)") },
             };
+            //titleScreenTexture
+            titleScreenTexture[0] = Content.Load<Texture2D>("background/titleScreen1");
+            titleScreenTexture[1] = Content.Load<Texture2D>("background/titleScreen2");
+            titleScreenTexture[2] = Content.Load<Texture2D>("background/logoTitle");
+            //menuScreenTexture
+            menuScreenTexture[0] = Content.Load<Texture2D>("background/MenuScreen");
+            menuScreenTexture[1] = Content.Load<Texture2D>("background/BlackAce");
+            menuScreenTexture[2] = Content.Load<Texture2D>("background/logoTitle");
 
             backgroundTexture[0] = Content.Load<Texture2D>("background/space");
             panelTexture[0] = Content.Load<Texture2D>("panel/PanelsEXE5");
@@ -351,6 +420,23 @@ namespace Rockman
             chipTexture[6] = Content.Load<Texture2D>("chipAtk/Spreader");
             chipTexture[7] = Content.Load<Texture2D>("chipAtk/Cannon");
             chipTexture[8] = Content.Load<Texture2D>("chipAtk/Throwables");
+
+            // --> screenSpritesList
+            _screenSprites = new List<Sprite>();
+            //titleScreenSprite
+            _screenSprites.Add(new TitleScreen(titleScreenTexture)
+            {
+                Name = "TitleScreen",
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
+                }
+            });
+            //menuScreenSprite
+            _screenSprites.Add(new MenuScreen(menuScreenTexture)
+            {
+                Name = "MenuScreen",
+            });
 
             // --> spriteList
             _sprites = new List<Sprite>();

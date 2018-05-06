@@ -135,3 +135,17 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\VirusExplo
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\BattleStart.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\EnemyDeleted(short).wma
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\EnemyDeleted(short).xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\titleScreen1.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\titleScreen2.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\TitleScreen.wma
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\TitleScreen.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\logoTitle.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\PressStart.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\TitleScreenRemix.wma
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\TitleScreenRemix.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\BlackAce.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\MenuScreen.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\MenuScreen.wma
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\MenuScreen.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\Battle1.wma
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\Battle1.xnb

@@ -65,5 +65,15 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipList.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/BattleStart.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/EnemyDeleted(short).mp3</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/titleScreen1.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/titleScreen2.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/TitleScreen.mp3</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/logoTitle.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/PressStart.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/TitleScreenRemix.mp3</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/BlackAce.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/MenuScreen.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/MenuScreen.mp3</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/Battle1.mp3</File>
   </SourceFiles>
 </SourceFileCollection>

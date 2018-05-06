@@ -108,28 +108,33 @@ namespace Rockman.Sprites.Screens
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            switch (Singleton.Instance.CurrentGameState)
+            switch (Singleton.Instance.CurrentScreenState)
             {
-                case Singleton.GameState.GameCustomScreen:
-                    for (int i = 0; i < 6; i++)
+                case Singleton.ScreenState.StoryMode:
+                    switch (Singleton.Instance.CurrentGameState)
                     {
-                        if (_animationManager == null)
-                        {
-                            spriteBatch.Draw(_texture[0],
-                                            Position,
-                                            Viewport,
-                                            Color.White);
-                        }
-                        else
-                        {
-                            if (Singleton.Instance.chipSelect[i] == 1)
+                        case Singleton.GameState.GameCustomScreen:
+                            for (int i = 0; i < 6; i++)
                             {
-                                currentTile = new Point(i);
-                                Singleton.Instance.currentChipSelect = new Point(i);
-                                if (currentTile.X == 5) _animationManager.Draw(spriteBatch, new Vector2(273, 110 * 3), scale);
-                                else _animationManager.Draw(spriteBatch, new Vector2(12+ (48 * currentTile.X), 100 * 3), scale);
+                                if (_animationManager == null)
+                                {
+                                    spriteBatch.Draw(_texture[0],
+                                                    Position,
+                                                    Viewport,
+                                                    Color.White);
+                                }
+                                else
+                                {
+                                    if (Singleton.Instance.chipSelect[i] == 1)
+                                    {
+                                        currentTile = new Point(i);
+                                        Singleton.Instance.currentChipSelect = new Point(i);
+                                        if (currentTile.X == 5) _animationManager.Draw(spriteBatch, new Vector2(273, 110 * 3), scale);
+                                        else _animationManager.Draw(spriteBatch, new Vector2(12 + (48 * currentTile.X), 100 * 3), scale);
+                                    }
+                                }
                             }
-                        }
+                            break;
                     }
                     break;
             }

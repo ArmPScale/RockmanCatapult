@@ -71,7 +71,7 @@ namespace Rockman.Sprites
                         {
                             _animationManager.Play(_animations["Alive"]);
                             int xPos = random.Next(0, 3);
-                            int yPos = random.Next(6, 10);
+                            int yPos = random.Next(5, 10);
                             if ((xPos != currentTile.X || yPos != currentTile.Y) &&
                                 (Singleton.Instance.spriteMove[xPos, yPos] == 0 && Singleton.Instance.panelBoundary[xPos, yPos] == 1
                                 && Singleton.Instance.panelStage[xPos, yPos] <= 1))
@@ -92,35 +92,40 @@ namespace Rockman.Sprites
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < 3; i++)
+            switch (Singleton.Instance.CurrentScreenState)
             {
-                for (int j = 0; j < 10; j++)
-                {
-                    //drawWizard
-                    if (Singleton.Instance.spriteMove[i, j] == 4)
+                case Singleton.ScreenState.StoryMode:
+                    for (int i = 0; i < 3; i++)
                     {
-                        currentTile = new Point(i, j);
-                        if (_animationManager == null)
+                        for (int j = 0; j < 10; j++)
                         {
-                            spriteBatch.Draw(_texture[0],
-                                            Position,
-                                            Viewport,
-                                            Color.White);
-                        }
-                        else
-                        {
-                            _animationManager.Draw(spriteBatch, 
-                                new Vector2((TILESIZEX * j * 2) + (screenStageX + 10), 
-                                    (TILESIZEY * i * 2) + (screenStageY - 140)), 
-                                scale);
-                        }
-                        //drawHP
-                        if (Singleton.Instance.spriteHP[i, j] >= 0)
-                        {
-                            spriteBatch.DrawString(Singleton.Instance._font, string.Format("{0}", (Singleton.Instance.spriteHP[i, j])), new Vector2((TILESIZEX * currentTile.Y * 2) + (screenStageX + TILESIZEY), (TILESIZEY * currentTile.X * 2) + (screenStageY + TILESIZEX - 10)), Color.White, 0f, Vector2.Zero, 1.3f, SpriteEffects.None, 0f);
+                            //drawWizard
+                            if (Singleton.Instance.spriteMove[i, j] == 4)
+                            {
+                                currentTile = new Point(i, j);
+                                if (_animationManager == null)
+                                {
+                                    spriteBatch.Draw(_texture[0],
+                                                    Position,
+                                                    Viewport,
+                                                    Color.White);
+                                }
+                                else
+                                {
+                                    _animationManager.Draw(spriteBatch,
+                                        new Vector2((TILESIZEX * j * 2) + (screenStageX + 10),
+                                            (TILESIZEY * i * 2) + (screenStageY - 140)),
+                                        scale);
+                                }
+                                //drawHP
+                                if (Singleton.Instance.spriteHP[i, j] >= 0)
+                                {
+                                    spriteBatch.DrawString(Singleton.Instance._font, string.Format("{0}", (Singleton.Instance.spriteHP[i, j])), new Vector2((TILESIZEX * currentTile.Y * 2) + (screenStageX + TILESIZEY), (TILESIZEY * currentTile.X * 2) + (screenStageY + TILESIZEX - 10)), Color.White, 0f, Vector2.Zero, 1.3f, SpriteEffects.None, 0f);
+                                }
+                            }
                         }
                     }
-                }
+                    break;
             }
             base.Draw(spriteBatch);
         }

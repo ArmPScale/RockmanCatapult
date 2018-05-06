@@ -81,7 +81,7 @@ namespace Rockman.Sprites
                         else if (_timer > 1.2)
                         {
                             int xPos = random.Next(0, 3);
-                            int yPos = random.Next(6, 10);
+                            int yPos = random.Next(5, 10);
                             if ((xPos != currentTile.X || yPos != currentTile.Y) &&
                                 (Singleton.Instance.spriteMove[xPos, yPos] == 0 && Singleton.Instance.panelBoundary[xPos, yPos] == 1
                                 && Singleton.Instance.panelStage[xPos, yPos] <= 1))

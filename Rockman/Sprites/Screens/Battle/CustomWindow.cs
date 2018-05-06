@@ -52,19 +52,24 @@ namespace Rockman.Sprites.Screens
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            switch (Singleton.Instance.CurrentGameState)
+            switch (Singleton.Instance.CurrentScreenState)
             {
-                case Singleton.GameState.GameCustomScreen:
-                    if (_animationManager == null)
+                case Singleton.ScreenState.StoryMode:
+                    switch (Singleton.Instance.CurrentGameState)
                     {
-                        spriteBatch.Draw(_texture[0],
-                                        Position,
-                                        Viewport,
-                                        Color.White);
-                    }
-                    else
-                    {
-                        _animationManager.Draw(spriteBatch, Position, scale);
+                        case Singleton.GameState.GameCustomScreen:
+                            if (_animationManager == null)
+                            {
+                                spriteBatch.Draw(_texture[0],
+                                                Position,
+                                                Viewport,
+                                                Color.White);
+                            }
+                            else
+                            {
+                                _animationManager.Draw(spriteBatch, Position, scale);
+                            }
+                            break;
                     }
                     break;
             }

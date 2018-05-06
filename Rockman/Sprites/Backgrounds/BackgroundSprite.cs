@@ -32,7 +32,12 @@ namespace Rockman.Sprites
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture[0], bgScroll, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+            switch (Singleton.Instance.CurrentScreenState)
+            {
+                case Singleton.ScreenState.StoryMode:
+                    spriteBatch.Draw(_texture[0], bgScroll, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                    break;
+            }
             base.Draw(spriteBatch);
         }
     }

@@ -76,6 +76,7 @@ namespace Rockman
             Tutorial,
             Option,
             Credits,
+            Quit
         }
         public enum GameState
         {
@@ -92,6 +93,8 @@ namespace Rockman
         public GameState CurrentGameState;
 
         public KeyboardState PreviousKey, CurrentKey;
+        public MouseState PreviousMouse, CurrentMouse;
+
 
         public Random rng = new Random();
 
