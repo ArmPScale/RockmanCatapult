@@ -150,3 +150,5 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\MenuScreen
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\Battle1.wma
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\Battle1.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\MenuScreenBlack.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Meteor.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\virus\Wizard.xnb

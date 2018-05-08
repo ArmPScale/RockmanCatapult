@@ -35,18 +35,27 @@ namespace Rockman.Sprites.Chips
                             Singleton.Instance.useChipName = "";
                         }
                     }
+                    _animationManager.Update(gameTime);
+                    break;
+                case Singleton.GameState.GameClear:
+                    _spreaderCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (_spreaderCoolDown > Singleton.Instance.currentChipCoolDown)
+                    {
+                        _spreaderCoolDown = 0;
+                        Singleton.Instance.useChipName = "";
+                    }
+                    _animationManager.Update(gameTime);
                     break;
             }
-            _animationManager.Update(gameTime);
             base.Update(gameTime, sprites);
         }
 
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            switch (Singleton.Instance.CurrentGameState)
-            {
-                case Singleton.GameState.GamePlaying:
+            //switch (Singleton.Instance.CurrentGameState)
+            //{
+            //    case Singleton.GameState.GamePlaying:
                     if (Singleton.Instance.useChipName == "Spreader"
                         || Singleton.Instance.useChipName == "DarkSpread")
                     {
@@ -62,8 +71,8 @@ namespace Rockman.Sprites.Chips
                             _animationManager.Draw(spriteBatch, new Vector2((TILESIZEX * Singleton.Instance.currentPlayerPoint.Y * 2) + (screenStageX + 95), (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 90)), scale);
                         }
                     }
-                    break;
-            }
+            //        break;
+            //}
             base.Draw(spriteBatch);
         }
     }

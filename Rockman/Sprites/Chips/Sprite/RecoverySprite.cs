@@ -47,9 +47,9 @@ namespace Rockman.Sprites.Chips
                             Singleton.Instance.isRecovered = false;
                         }
                     }
+                    _animationManager.Update(gameTime);
                     break;
             }
-            _animationManager.Update(gameTime);
             base.Update(gameTime, sprites);
         }
 

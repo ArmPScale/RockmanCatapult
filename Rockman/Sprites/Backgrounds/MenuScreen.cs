@@ -28,9 +28,13 @@ namespace Rockman.Sprites
 
         public enum MenuState
         {
-            Open,
-            Wait,
-            Close
+            StoryMode,
+            EditFolderChip,
+            Shop,
+            Tutorial,
+            Option,
+            Credits,
+            Quit
         }
         public static MenuState CurrentMenuState;
 

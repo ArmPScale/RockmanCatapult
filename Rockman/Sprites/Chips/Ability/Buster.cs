@@ -12,6 +12,7 @@ namespace Rockman.Sprites.Chips
 {
     class Buster : Chip
     {
+        private float _busterCoolDown;
         public Buster(Dictionary<string, Animation> animations) 
             : base(animations)
         {
@@ -25,12 +26,17 @@ namespace Rockman.Sprites.Chips
                     switch (Singleton.Instance.CurrentPlayerState)
                     {
                         case Singleton.PlayerState.BusterShot:
+                            _busterCoolDown = 0f;
                             _animationManager.Play(_animations["NormalBuster"]);
+                            _animationManager.Update(gameTime);
                             break;
                     }
                     break;
+                case Singleton.GameState.GameClear:
+                    _busterCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    _animationManager.Update(gameTime);
+                    break;
             }
-            _animationManager.Update(gameTime);
             base.Update(gameTime, sprites);
         }
 
@@ -57,6 +63,12 @@ namespace Rockman.Sprites.Chips
                             }
                             break;
                     }
+                    break;
+                case Singleton.GameState.GameClear:
+                    if (_busterCoolDown < 0.3f)
+                        _animationManager.Draw(spriteBatch,
+                                new Vector2((TILESIZEX * Singleton.Instance.currentPlayerPoint.Y * 2) + (screenStageX + 95), (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 50)),
+                                scale);
                     break;
             }
             base.Draw(spriteBatch);

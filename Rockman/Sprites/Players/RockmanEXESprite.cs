@@ -10,7 +10,7 @@ namespace Rockman.Sprites
     class RockmanEXESprite : Sprite
     {
         const float CHARGING = 1.2f ,CHARGED = 3.2f;
-        private float _chargeTime, _busterCoolDown, _chipCoolDown, _bugCoolDown;
+        private float _chargeTime, _busterCoolDown, _chipCoolDown, _bugCoolDown, _deadCoolDown, _clearCoolDown;
         public int HP, Attack, Barrier;
         public Point currentTile, busterDamagedPosition;
         public Keys W, S, A, D, J, K, U;
@@ -236,9 +236,25 @@ namespace Rockman.Sprites
                                 }
                                 break;
                             case Singleton.PlayerState.Dead:
-                                _animationManager.Play(_animations["Dead"]);
-                                //Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
-                                Singleton.Instance.CurrentGameState = Singleton.GameState.GameOver;
+                                _chargeTime = 0;
+                                _deadCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                                if (_deadCoolDown < 0.1f)
+                                {
+                                    _animationManager.Play(_animations["Dead"]);
+                                }
+                                else
+                                {
+                                    if (_deadCoolDown > 1f)
+                                    {
+                                        _animationManager.Play(_animations["Uninstall"]);
+                                        if (_deadCoolDown > 3f)
+                                        {
+                                            _deadCoolDown = 0;
+                                            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
+                                            Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
+                                        }
+                                    }
+                                }
                                 break;
                         }
                     }
@@ -250,7 +266,12 @@ namespace Rockman.Sprites
                     break;
                 case Singleton.GameState.GameClear:
                     _chargeTime = 0;
-                    _animationManager.Play(_animations["Alive"]);
+                    _clearCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (_clearCoolDown > 0.4f)
+                    {
+                        _animationManager.Play(_animations["Alive"]);
+                        _clearCoolDown = 0f;
+                    }
                     _animationManager.Update(gameTime);
                     break;
             }

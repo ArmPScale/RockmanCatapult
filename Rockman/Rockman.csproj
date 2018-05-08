@@ -71,6 +71,7 @@
     <Compile Include="Sprites\Chips\Effect\SpreaderEffect.cs" />
     <Compile Include="Sprites\Chips\Sprite\SpreaderSprite.cs" />
     <Compile Include="Sprites\Enemies\Enemy.cs" />
+    <Compile Include="Sprites\Enemies\MeteorSprite.cs" />
     <Compile Include="Sprites\Enemies\Wizard.cs" />
     <Compile Include="Sprites\Enemies\Mage.cs" />
     <Compile Include="Sprites\Screens\Battle\ChipType.cs" />

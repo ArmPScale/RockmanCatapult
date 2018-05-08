@@ -67,8 +67,8 @@ namespace Rockman
             {
                 "DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
                 "DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon",
-                //"PanelReturn","HolyPanel","Sanctuary","BlackBomb","CannonBall","DarkStage",
-                "MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","BlackBomb","CannonBall","SearchBomb3","DarkBomb"
+                "PanelReturn","HolyPanel","Sanctuary","BlackBomb","CannonBall","DarkStage",
+                "MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb3","DarkBomb"
             };
             Singleton.Instance.folderList.Shuffle();
             Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
@@ -82,8 +82,8 @@ namespace Rockman
             Singleton.Instance.panelStage = new int[3, 10]
             {
                 { 3,1,0,0,0,0,0,0,0,0},
-                { 1,0,0,0,0,0,0,0,0,0},
-                { 0,0,0,0,0,0,0,0,0,0},
+                { 1,1,0,0,0,0,0,0,0,0},
+                { 1,1,0,0,0,0,0,0,0,0},
             };
             Singleton.Instance.panelElement = new int[3, 10]
             {
@@ -100,7 +100,7 @@ namespace Rockman
             Singleton.Instance.spriteMove = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
-                { 0,0,0,0,0,0,0,0,2,0},
+                { 0,0,0,0,0,0,0,0,0,0},
                 { 0,0,0,0,0,0,0,3,0,4},
             };
             Singleton.Instance.spriteHP = new int[3, 10]
@@ -307,7 +307,7 @@ namespace Rockman
                                     _numObject--;
                                 }
                             }
-                            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
+                            //Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
                             break;
                     }
                     break;
@@ -349,6 +349,9 @@ namespace Rockman
             else if (Singleton.Instance.mediaPlaySong == "Battle1" 
                 && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 53, 034))
                 MediaPlayer.Play(Singleton.Instance.song["Battle1"], new TimeSpan(0, 0, 0, 5, 985));
+            else if (Singleton.Instance.mediaPlaySong == "EnemyDeletedShort"
+                && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 53, 034))
+                MediaPlayer.Play(Singleton.Instance.song["EnemyDeletedShort"], new TimeSpan(0, 0, 0, 5, 985));
 
             base.Update(gameTime);
         }
@@ -421,9 +424,11 @@ namespace Rockman
             playersTexture[1] = Content.Load<Texture2D>("rockman/RockmanBusterEXE6");
             enemiesTexture[0] = Content.Load<Texture2D>("virus/MettonAttack");
             enemiesTexture[1] = Content.Load<Texture2D>("virus/MettFire");
+            enemiesTexture[2] = Content.Load<Texture2D>("virus/Wizard");
             Singleton.Instance.effectsTexture[0] = this.Content.Load<Texture2D>("battleEffect/busterEffect");
             Singleton.Instance.effectsTexture[1] = this.Content.Load<Texture2D>("battleEffect/chargeBuster");
             Singleton.Instance.effectsTexture[2] = this.Content.Load<Texture2D>("battleEffect/ImpacteffectHalfexplosion");
+            Singleton.Instance.effectsTexture[3] = this.Content.Load<Texture2D>("battleEffect/Uninstall");
             customScreenTexture[0] = Content.Load<Texture2D>("screen/CustomScreen");
             customScreenTexture[1] = Content.Load<Texture2D>("screen/CustomWindow");
             customScreenTexture[2] = Content.Load<Texture2D>("screen/EmotionEXE5");
@@ -437,6 +442,7 @@ namespace Rockman
             chipTexture[6] = Content.Load<Texture2D>("chipAtk/Spreader");
             chipTexture[7] = Content.Load<Texture2D>("chipAtk/Cannon");
             chipTexture[8] = Content.Load<Texture2D>("chipAtk/Throwables");
+            chipTexture[9] = Content.Load<Texture2D>("chipAtk/Meteor");
 
             // --> screenSpritesList
             _screenSprites = new List<Sprite>();
@@ -503,12 +509,13 @@ namespace Rockman
             //mageSprite
             _sprites.Add(new Mage(new Dictionary<string, Animation>()
             {
-                { "Alive", new Animation(enemiesTexture[1], new Rectangle(21, 0, 38*4 , 66), 4) },
-                { "Casting", new Animation(enemiesTexture[1], new Rectangle(2, 66, 39*5 , 66), 5) },
+                { "Alive", new Animation(enemiesTexture[2], new Rectangle(70, 0, 58*5 , 72), 5) },
+                { "Change", new Animation(enemiesTexture[2], new Rectangle(70, 72, 58*4 , 72), 4) },
+                { "Casting", new Animation(enemiesTexture[2], new Rectangle(70, 144, 58*4 , 72), 4) },
             })
             {
                 Name = "Mage",
-                Viewport = new Rectangle(6, 0, 40, 72),
+                Viewport = new Rectangle(70, 0, 58, 72),
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"Casting", Content.Load<SoundEffect>("sfx/SpellCasting").CreateInstance() },
@@ -528,8 +535,23 @@ namespace Rockman
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"Casting", Content.Load<SoundEffect>("sfx/SpellCasting").CreateInstance() },
-                    {"Paneltolce", Content.Load<SoundEffect>("sfx/Paneltolce").CreateInstance() },
+                    //{"Meteor", Content.Load<SoundEffect>("sfx/Meteor").CreateInstance() },
                     {"Explosion", Content.Load<SoundEffect>("sfx/VirusExplode").CreateInstance() },
+                }
+            });
+            //meteorSprite
+            _sprites.Add(new MeteorSprite(new Dictionary<string, Animation>()
+            {
+                { "Meteor", new Animation(chipTexture[9], new Rectangle(0, 0, 60 , 49), 1) },
+                { "MeteorCracked", new Animation(chipTexture[9], new Rectangle(60, 0, 60*6 , 49), 6) },
+            })
+            {
+                Name = "Meteor",
+                Position = new Vector2(800,900),
+                Viewport = new Rectangle(0, 0, 60, 49),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"Meteor", Content.Load<SoundEffect>("sfx/Meteor").CreateInstance() },
                 }
             });
             //barrierSprite
@@ -551,6 +573,7 @@ namespace Rockman
                 { "Buster", new Animation(playersTexture[0], new Rectangle(9, 527, 43*4, 52), 4) },
                 { "Bomb", new Animation(playersTexture[0], new Rectangle(10, 370, 49*7, 52), 7) },
                 { "Dead", new Animation(playersTexture[0], new Rectangle(9, 58, 42, 57), 1) },
+                { "Uninstall", new Animation(Singleton.Instance.effectsTexture[3], new Rectangle(0, 0, 75*4, 68), 4) },
             })
             {
                 Name = "RockmanEXE",

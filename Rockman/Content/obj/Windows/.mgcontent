@@ -21,7 +21,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/space.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanExe6.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomScreen.png</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/Uninstall.gif</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipCancel.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipChoose.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipConfirm.wav</File>
@@ -76,5 +75,8 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/MenuScreen.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/Battle1.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/MenuScreenBlack.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/Meteor.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/virus/Wizard.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/Uninstall.png</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -55,15 +55,15 @@ namespace Rockman.Sprites
                                     Singleton.Instance.virusAttack[panelX, panelY] = 3;
                                     _castingTime = 0f;
                                 }
-                                
                             }
                             else if (_atkTime > 7.5f)
                             {
-                                SoundEffects["Paneltolce"].Volume = Singleton.Instance.MasterSFXVolume;
-                                SoundEffects["Paneltolce"].Play();
-
-                                Singleton.Instance.virusAttack[panelX, panelY] = 0;
-                                _atkTime = 0f;
+                                Singleton.Instance.virusAttack[panelX, panelY] = 4;
+                                if (_atkTime > 7.5f + (0.92f * 3) + 0.05f)
+                                {
+                                    Singleton.Instance.virusAttack[panelX, panelY] = 0;
+                                    _atkTime = 0f;
+                                }
                             }
                         }
                         //movement
@@ -73,8 +73,9 @@ namespace Rockman.Sprites
                             int xPos = random.Next(0, 3);
                             int yPos = random.Next(5, 10);
                             if ((xPos != currentTile.X || yPos != currentTile.Y) &&
-                                (Singleton.Instance.spriteMove[xPos, yPos] == 0 && Singleton.Instance.panelBoundary[xPos, yPos] == 1
-                                && Singleton.Instance.panelStage[xPos, yPos] <= 1))
+                                (Singleton.Instance.spriteMove[xPos, yPos] == 0 && 
+                                Singleton.Instance.panelBoundary[xPos, yPos] == 1 && 
+                                Singleton.Instance.panelStage[xPos, yPos] <= 1))
                             {
                                 Singleton.Instance.spriteMove[xPos, yPos] = Singleton.Instance.spriteMove[currentTile.X, currentTile.Y];
                                 Singleton.Instance.spriteHP[xPos, yPos] = Singleton.Instance.spriteHP[currentTile.X, currentTile.Y];

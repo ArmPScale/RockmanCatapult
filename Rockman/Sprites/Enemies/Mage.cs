@@ -74,8 +74,9 @@ namespace Rockman.Sprites
                             int xPos = random.Next(0, 3);
                             int yPos = random.Next(5, 10);
                             if ((xPos != currentTile.X || yPos != currentTile.Y) &&
-                                (Singleton.Instance.spriteMove[xPos, yPos] == 0 && Singleton.Instance.panelBoundary[xPos, yPos] == 1
-                                && Singleton.Instance.panelStage[xPos, yPos] <= 1))
+                                (Singleton.Instance.spriteMove[xPos, yPos] == 0 && 
+                                Singleton.Instance.panelBoundary[xPos, yPos] == 1 &&
+                                Singleton.Instance.panelStage[xPos, yPos] <= 1))
                             {
                                 Singleton.Instance.spriteMove[xPos, yPos] = Singleton.Instance.spriteMove[currentTile.X, currentTile.Y];
                                 Singleton.Instance.spriteHP[xPos, yPos] = Singleton.Instance.spriteHP[currentTile.X, currentTile.Y];
@@ -114,8 +115,8 @@ namespace Rockman.Sprites
                                 else
                                 {
                                     _animationManager.Draw(spriteBatch,
-                                        new Vector2((TILESIZEX * j * 2) + (screenStageX + 10),
-                                            (TILESIZEY * i * 2) + (screenStageY - 140)),
+                                        new Vector2((TILESIZEX * j * 2) + (screenStageX - 35),
+                                            (TILESIZEY * i * 2) + (screenStageY - 150)),
                                         scale);
                                 }
                                 //drawHP
