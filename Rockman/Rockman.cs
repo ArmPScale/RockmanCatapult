@@ -42,7 +42,7 @@ namespace Rockman
             panelTexture = new Texture2D[6];
             playersTexture = new Texture2D[10];
             enemiesTexture = new Texture2D[10];
-            fadeScreenTexture = new Texture2D[1];
+            fadeScreenTexture = new Texture2D[2];
             customScreenTexture = new Texture2D[5];
             chipTexture = new Texture2D[10];
             Singleton.Instance.effectsTexture = new Texture2D[10];
@@ -67,8 +67,8 @@ namespace Rockman
             {
                 "DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
                 "DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon",
-                "PanelReturn","HolyPanel","Sanctuary","BlackBomb","CannonBall","DarkStage",
-                //"MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","BlackBomb","CannonBall","SearchBomb3","DarkBomb"
+                //"PanelReturn","HolyPanel","Sanctuary","BlackBomb","CannonBall","DarkStage",
+                "MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","BlackBomb","CannonBall","SearchBomb3","DarkBomb"
             };
             Singleton.Instance.folderList.Shuffle();
             Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
@@ -129,12 +129,17 @@ namespace Rockman
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            fadeScreenTexture[0] = new Texture2D(graphics.GraphicsDevice, Singleton.WIDTH, Singleton.HEIGHT);
             Color[] data = new Color[Singleton.WIDTH * Singleton.HEIGHT];
+            //fadeBlack
+            fadeScreenTexture[0] = new Texture2D(graphics.GraphicsDevice, Singleton.WIDTH, Singleton.HEIGHT);
             for (int i = 0; i < data.Length; ++i) data[i] = Color.Black;
             fadeScreenTexture[0].SetData(data);
+            //fadeWhite
+            fadeScreenTexture[1] = new Texture2D(graphics.GraphicsDevice, Singleton.WIDTH, Singleton.HEIGHT);
+            for (int i = 0; i < data.Length; ++i) data[i] = Color.White;
+            fadeScreenTexture[1].SetData(data);
 
-            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
+            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.StoryMode;
             Reset();
         }
 
@@ -173,12 +178,18 @@ namespace Rockman
                     {
                         if (_screenSprites[i].IsActive) _screenSprites[i].Update(gameTime, _screenSprites);
                     }
-
                     break;
                 case Singleton.ScreenState.StoryMode:
+                    Singleton.Instance.mediaPlaySong = "Battle1";
 
                     switch (Singleton.Instance.CurrentGameState)
                     {
+                        case Singleton.GameState.GameEnemyAppear:
+                            for (int i = 0; i < _numObject; i++)
+                            {
+                                if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
+                            }
+                            break;
                         case Singleton.GameState.GameCustomScreen:
                             //mediaPlay --> Battle1
                             Singleton.Instance.mediaPlaySong = "Battle1";
@@ -845,6 +856,17 @@ namespace Rockman
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"CrackOut", Content.Load<SoundEffect>("sfx/CrackOut").CreateInstance() },
+                }
+            });
+
+            //fadeAppearWhiteScreen
+            _sprites.Add(new AppearScreen(fadeScreenTexture)
+            {
+                Name = "FadeWhiteScreen",
+                Viewport = new Rectangle(0, 0, 1200, 800),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    //to do
                 }
             });
 

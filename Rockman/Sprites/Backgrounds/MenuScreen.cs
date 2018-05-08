@@ -10,8 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Rockman.Sprites
-{
-    class MenuScreen : Background
+{    class MenuScreen : Background
     {
         Color fadeBA;
         Color[] textButtonColor = new Color[7]
@@ -26,6 +25,14 @@ namespace Rockman.Sprites
         };
         int alphaBA = 0;
         bool isFadeIn = true, isClicked = false;
+
+        public enum MenuState
+        {
+            Open,
+            Wait,
+            Close
+        }
+        public static MenuState CurrentMenuState;
 
         public MenuScreen(Texture2D[] texture)
             : base(texture)
@@ -83,10 +90,10 @@ namespace Rockman.Sprites
                         {
                             SoundEffects["PressStart"].Volume = Singleton.Instance.MasterSFXVolume;
                             SoundEffects["PressStart"].Play();
-                            MediaPlayer.Stop();
+                            //MediaPlayer.Stop();
                             Singleton.Instance.mediaPlaySong = "Battle1";
                             Singleton.Instance.CurrentScreenState = Singleton.ScreenState.StoryMode;
-                            Singleton.Instance.CurrentGameState = Singleton.GameState.GameCustomScreen;
+                            Singleton.Instance.CurrentGameState = Singleton.GameState.GameEnemyAppear;
                         }
                     }
                     else if ((Singleton.Instance.CurrentMouse.X >= 60 && Singleton.Instance.CurrentMouse.X <= 316) &&

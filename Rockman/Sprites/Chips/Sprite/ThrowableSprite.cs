@@ -14,7 +14,6 @@ namespace Rockman.Sprites.Chips
     {
         private float _throwableCoolDown = 0f;
         public bool drawThrowableObject = false;
-        public int projectX = 0, projectY = 0;
 
         public ThrowableSprite(Dictionary<string, Animation> animations)
             : base(animations)
@@ -28,24 +27,43 @@ namespace Rockman.Sprites.Chips
                 SoundEffects["Throw"].Volume = Singleton.Instance.MasterSFXVolume;
                 SoundEffects["Throw"].Play();
                 _animationManager.Play(_animations[Singleton.Instance.useChipName]);
+                Singleton.Instance.choosePlayerAnimate = "Bomb";
                 Singleton.Instance.useThrowableChip = false;
                 drawThrowableObject = true;
             }
             if (drawThrowableObject)
             {
                 _throwableCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                //if (_throwableCoolDown > 0.1f)
-                //{
-                    projectX += 2;
-                    projectY -= 2;
-                //}
-                if (_throwableCoolDown > 3f)
+                if (_throwableCoolDown > 0.1f)
                 {
-                    projectX = 0; projectY = 0;
-                    _throwableCoolDown = 0f;
-                    drawThrowableObject = false;
-                    Singleton.Instance.useChipNearlySuccess = true;
+                    //projectile
+                    Acceleration.Y += GRAVITY;
+                    Velocity += Acceleration * gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
+                    Position += Velocity * gameTime.ElapsedGameTime.Ticks / TimeSpan.TicksPerSecond;
+                    if (_throwableCoolDown > 0.5f)
+                    {
+                        Singleton.Instance.choosePlayerAnimate = "Alive";
+                    }
+                    if (_throwableCoolDown > 2f)
+                    {
+                        Position = new Vector2(0, 0);
+                        Velocity = new Vector2(1200, -2000);
+                        Acceleration = new Vector2(100, 100);
+                        _throwableCoolDown = 0f;
+                        drawThrowableObject = false;
+                        Singleton.Instance.useChipNearlySuccess = true;
+                    }
                 }
+                
+                //checkDamgeRange
+                if (Position.Y >= (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 90) &&
+                    Position.Y <= (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 90) + 100)
+                {
+                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y + 5] -= Singleton.Instance.playerChipAtk;
+                    Console.WriteLine(Position);
+                }
+
+                
             }
             _animationManager.Update(gameTime);
             base.Update(gameTime, sprites);
@@ -68,10 +86,15 @@ namespace Rockman.Sprites.Chips
                         }
                         else
                         {
-                            _animationManager.Draw(spriteBatch, 
-                                new Vector2((TILESIZEX * Singleton.Instance.currentPlayerPoint.Y * 2) + (screenStageX + 95) + projectX,
-                                    (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 90) + projectY), 
+                            if ((TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) +(screenStageY - 90) + Position.Y
+                                < Singleton.HEIGHT - 250)
+                            {
+                                _animationManager.Draw(spriteBatch,
+                                new Vector2((TILESIZEX * Singleton.Instance.currentPlayerPoint.Y * 2) + (screenStageX + 95) + Position.X,
+                                    (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 90) + Position.Y),
                                 scale);
+                            }
+                                
                         }
                     }
                     break;

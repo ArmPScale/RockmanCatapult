@@ -230,7 +230,7 @@ namespace Rockman.Sprites
                                 else if (_chipCoolDown > Singleton.Instance.currentChipCoolDown)
                                 {
                                     _chipCoolDown = 0;
-                                    Singleton.Instance.choosePlayerAnimate = "";
+                                    Singleton.Instance.choosePlayerAnimate = "Alive";
                                     Singleton.Instance.currentChipCoolDown = 0f;
                                     Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.Playing;
                                 }
@@ -242,6 +242,10 @@ namespace Rockman.Sprites
                                 break;
                         }
                     }
+                    _animationManager.Update(gameTime);
+                    break;
+                case Singleton.GameState.GameUseChip:
+                    _animationManager.Play(_animations[Singleton.Instance.choosePlayerAnimate]);
                     _animationManager.Update(gameTime);
                     break;
                 case Singleton.GameState.GameClear:

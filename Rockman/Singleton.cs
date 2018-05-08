@@ -26,7 +26,7 @@ namespace Rockman
         public int currentVirusGotDmgIndex;
         public Point currentPlayerPoint;
         public bool isDamaged, isRecovered, statusBugHP = false;
-        public string choosePlayerAnimate = "", chooseEmotionPlayer = "NormalEmotion";
+        public string choosePlayerAnimate = "Alive", chooseEmotionPlayer = "NormalEmotion";
         public float currentChipCoolDown = 0f, currentChipAtkTime = 0f;
 
         //enemyVar
@@ -80,6 +80,7 @@ namespace Rockman
         }
         public enum GameState
         {
+            GameEnemyAppear,
             GameCustomScreen,
             GameWaiting,
             GamePlaying,

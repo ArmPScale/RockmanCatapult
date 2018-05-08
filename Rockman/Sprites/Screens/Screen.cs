@@ -12,6 +12,8 @@ namespace Rockman.Sprites.Screens
 {
     class Screen : Sprite
     {
+        public int alpha;
+        public Color fade;
         public enum CustomState
         {
             Open,

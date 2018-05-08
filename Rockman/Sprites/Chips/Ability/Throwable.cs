@@ -12,6 +12,8 @@ namespace Rockman.Sprites.Chips
 {
     class Throwable : Chip
     {
+        private bool isPressed = false;
+
         Dictionary<string, Rectangle> rectChipThrowableImg = new Dictionary<string, Rectangle>()
         {
             {"MiniBomb",  new Rectangle(0, 48, 56, 47) },
@@ -64,9 +66,16 @@ namespace Rockman.Sprites.Chips
                         throwableAtk.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
                     {
                         // to do
-                        if(Singleton.Instance.CurrentKey.IsKeyDown(Keys.K) && Singleton.Instance.PreviousKey.IsKeyUp(Keys.K))
+                        if(!isPressed && 
+                            Singleton.Instance.CurrentKey.IsKeyDown(Keys.K) && Singleton.Instance.PreviousKey.IsKeyUp(Keys.K))
                         {
+                            isPressed = true;
                             Singleton.Instance.useThrowableChip = true;
+                            Singleton.Instance.playerChipAtk = throwableAtk[Singleton.Instance.useChipSlotIn.Peek()];
+                        }
+                        if (Singleton.Instance.useChipNearlySuccess)
+                        {
+                            isPressed = false;
                         }
                     }
                     break;

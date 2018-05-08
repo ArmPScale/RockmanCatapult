@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Rockman.Sprites.Screens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,16 @@ using System.Threading.Tasks;
 
 namespace Rockman.Sprites
 {
-    class FadeScreen : Sprite
+    class FadeScreen : Screen
     {
-        Color fade, fadeChipName;
-        int alpha = 0 , alphaChip = 0;
+        Color fadeChipName;
+        int alphaChip = 0;
         private float _textAnimate, _fadeAnimate;
 
         public FadeScreen(Texture2D[] texture)
             : base(texture)
         {
+            alpha = 0;
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)

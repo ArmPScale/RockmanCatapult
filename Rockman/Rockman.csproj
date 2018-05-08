@@ -77,7 +77,8 @@
     <Compile Include="Sprites\Screens\Battle\CustomBar.cs" />
     <Compile Include="Sprites\Screens\Battle\CustomScreen.cs" />
     <Compile Include="Sprites\Screens\Battle\ChipSelect.cs" />
-    <Compile Include="Sprites\Backgrounds\FadeScreen.cs" />
+    <Compile Include="Sprites\Screens\Battle\AppearScreen.cs" />
+    <Compile Include="Sprites\Screens\Battle\FadeScreen.cs" />
     <Compile Include="Sprites\Enemies\MettonWaveSprite.cs" />
     <Compile Include="Sprites\Enemies\MettonSprite.cs" />
     <Compile Include="Sprites\PanelSprite.cs" />
