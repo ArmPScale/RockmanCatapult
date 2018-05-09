@@ -53,6 +53,11 @@ namespace Rockman.Sprites
                         {
                             case Singleton.PlayerState.Playing:
                                 _animationManager.Play(_animations["Alive"]);
+                                //changeBlackAce
+                                if (Singleton.Instance.useChipSlotIn.Count != 0 && Singleton.Instance.useChipSlotIn.Peek() == "BlackAce")
+                                {
+                                    Singleton.Instance.CurrentGameState = Singleton.GameState.GameWaitingChip;
+                                }
                                 //Damaged
                                 if (Singleton.Instance.isDamaged)
                                 {

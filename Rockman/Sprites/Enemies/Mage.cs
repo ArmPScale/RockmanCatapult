@@ -35,7 +35,7 @@ namespace Rockman.Sprites
                         //checkHP
                         if (Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] <= 0)
                         {
-                            Singleton.Instance.virusAttack[panelX, panelY] = 0;
+                            Singleton.Instance.panelYellow[panelX, panelY] = 0;
                             SoundEffects["Explosion"].Volume = Singleton.Instance.MasterSFXVolume;
                             SoundEffects["Explosion"].Play();
                             Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
@@ -53,7 +53,7 @@ namespace Rockman.Sprites
                                     panelX = random.Next(0, 3);
                                     panelY = random.Next(0, 5);
                                     panelType = random.Next(1, 5);
-                                    Singleton.Instance.virusAttack[panelX, panelY] = 3;
+                                    Singleton.Instance.panelYellow[panelX, panelY] = 3;
                                     _castingTime = 0f;
                                 }
                                 
@@ -63,12 +63,12 @@ namespace Rockman.Sprites
                                 SoundEffects["Paneltolce"].Volume = Singleton.Instance.MasterSFXVolume;
                                 SoundEffects["Paneltolce"].Play();
                                 Singleton.Instance.panelElement[panelX, panelY] = panelType;
-                                Singleton.Instance.virusAttack[panelX, panelY] = 0;
+                                Singleton.Instance.panelYellow[panelX, panelY] = 0;
                                 _atkTime = 0f;
                             }
                         }
                         //movement
-                        else if (_timer > 0.8f)
+                        else if (_timer > 1.2f)
                         {
                             _animationManager.Play(_animations["Alive"]);
                             int xPos = random.Next(0, 3);

@@ -61,7 +61,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/PanelPower.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Meteor.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/VirusExplode.wav</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipList.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/BattleStart.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/EnemyDeleted(short).mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/titleScreen1.png</File>
@@ -78,5 +77,10 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/Meteor.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/virus/Wizard.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/Uninstall.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/boss/QueenVirgo.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/MagicFreeze.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/MagicCircle.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipList.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/BlackAceEmblem.png</File>
   </SourceFiles>
 </SourceFileCollection>

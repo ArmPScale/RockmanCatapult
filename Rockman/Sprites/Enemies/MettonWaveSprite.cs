@@ -27,9 +27,9 @@ namespace Rockman.Sprites
                     sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
                     break;
                 case Singleton.GameState.GamePlaying:
-                    drawWaveTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                     if (Singleton.Instance.virusAttack[currentTile.X, currentTile.Y] == 2)
                     {
+                        drawWaveTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                         //atkTakePlayer
                         if (Singleton.Instance.playerMove[currentTile.X, currentTile.Y] > 0 && isDamaged)
                         {

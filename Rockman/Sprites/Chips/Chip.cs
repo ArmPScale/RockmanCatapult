@@ -19,8 +19,8 @@ namespace Rockman.Sprites.Chips
 
         #endregion
 
-        public String[] chipCustomImg = new string[6];
-        public String[] chipCustomImgCopy = new string[6];
+        public String[] chipCustomImg = new string[7];
+        public String[] chipCustomImgCopy = new string[7];
 
         public Chip(Texture2D[] texture) 
             : base(texture)

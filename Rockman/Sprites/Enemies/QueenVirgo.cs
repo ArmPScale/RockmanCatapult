@@ -6,19 +6,20 @@ using Rockman.Models;
 
 namespace Rockman.Sprites
 {
-    class Wizard : Enemy
+    class QueenVirgo : Enemy
     {
         private float _timer, _atkTime, _castingTime;
         public Point currentTile;
         public static Random random = new Random();
-        int panelX, panelY;
+        int panelX, panelY, HP;
+        bool isProtected = false;
 
-        public Wizard(Texture2D[] _texture)
+        public QueenVirgo(Texture2D[] _texture)
             : base(_texture)
         {
         }
 
-        public Wizard(Dictionary<string, Animation> animations)
+        public QueenVirgo(Dictionary<string, Animation> animations)
             : base(animations)
         {
         }
@@ -30,46 +31,62 @@ namespace Rockman.Sprites
                     _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     _atkTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     _castingTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] == 4)
+                    if (Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] == 5)
                     {
+                        //aquaShield
+                        if (isProtected && HP > Singleton.Instance.spriteHP[currentTile.X, currentTile.Y])
+                        {
+                            Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] = HP;
+                            SoundEffects["AquaSheild"].Volume = Singleton.Instance.MasterSFXVolume;
+                            SoundEffects["AquaSheild"].Play();
+                        }
                         //checkHP
                         if (Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] <= 0)
                         {
-                            Singleton.Instance.virusAttack[panelX, panelY] = 0;
-                            Singleton.Instance.panelYellow[panelX, panelY] = 0;
-                            SoundEffects["Explosion"].Volume = Singleton.Instance.MasterSFXVolume;
-                            SoundEffects["Explosion"].Play();
+                            Singleton.Instance.bossAttack[panelX, panelY] = 0;
+                            SoundEffects["Defeated"].Volume = Singleton.Instance.MasterSFXVolume;
+                            SoundEffects["Defeated"].Play();
                             Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
                         }
-                        //wizardAtk
-                        if (_atkTime > 6.0f)
+                        //queenVirgoAtk
+                        if (_atkTime > 4.0f)
                         {
-                            _animationManager.Play(_animations["Casting"]);
-                            if (_atkTime < 6.2f)
+                            if (_atkTime < 4.1f)
                             {
-                                SoundEffects["Casting"].Volume = Singleton.Instance.MasterSFXVolume;
-                                SoundEffects["Casting"].Play();
-                                if (_castingTime > 0.2f)
-                                {
-                                    panelX = Singleton.Instance.currentPlayerPoint.X;
-                                    panelY = Singleton.Instance.currentPlayerPoint.Y;
-                                    Singleton.Instance.panelYellow[panelX, panelY] = 4;
-                                    _castingTime = 0f;
-                                }
+                                _animationManager.Play(_animations["StartCasting"]);
+                                HP = Singleton.Instance.spriteHP[currentTile.X, currentTile.Y];
                             }
-                            else if (_atkTime > 7.5f)
+                            else if (_atkTime < 6.5f)
                             {
-                                Singleton.Instance.panelYellow[panelX, panelY] = 0;
-                                Singleton.Instance.virusAttack[panelX, panelY] = 4;
-                                if (_atkTime > 7.5f + (0.92f * 3) + 0.05f)
+                                _animationManager.Play(_animations["Casting"]);
+                                if(_atkTime < 4.2f)
                                 {
-                                    Singleton.Instance.virusAttack[panelX, panelY] = 0;
-                                    _atkTime = 0f;
+                                    SoundEffects["Casting"].Volume = Singleton.Instance.MasterSFXVolume;
+                                    SoundEffects["Casting"].Play();
                                 }
+                                if (_atkTime > 4.5f && _atkTime < 4.6f)
+                                {
+                                    Singleton.Instance.panelYellow[currentTile.X, currentTile.Y - 1] = 1;
+                                    Singleton.Instance.bossAttack[currentTile.X, currentTile.Y - 1] = 1;
+                                }
+                                isProtected = true;
+                            }
+                            else if (_atkTime < 6.7f)
+                            {
+                                _animationManager.Play(_animations["FinishCasting"]);
+                                isProtected = false;
+                            }
+                            else if (_atkTime < 6.9f)
+                            {
+                                _animationManager.Play(_animations["Alive"]);
+                            }
+                            else if (_atkTime > 7f)
+                            {
+                                _atkTime = 0f;
                             }
                         }
                         //movement
-                        else if (_timer > 1f)
+                        else if (_timer > 0.8f)
                         {
                             _animationManager.Play(_animations["Alive"]);
                             int xPos = random.Next(0, 3);
@@ -89,6 +106,15 @@ namespace Rockman.Sprites
                     }
                     _animationManager.Update(gameTime);
                     break;
+                case Singleton.GameState.GameUseChip:
+                    //aquaShield
+                    if (isProtected && HP > Singleton.Instance.spriteHP[currentTile.X, currentTile.Y])
+                    {
+                        Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] = HP;
+                        SoundEffects["AquaSheild"].Volume = Singleton.Instance.MasterSFXVolume;
+                        SoundEffects["AquaSheild"].Play();
+                    }
+                    break;
             }
             base.Update(gameTime, sprites);
         }
@@ -103,7 +129,7 @@ namespace Rockman.Sprites
                         for (int j = 0; j < 10; j++)
                         {
                             //drawWizard
-                            if (Singleton.Instance.spriteMove[i, j] == 4)
+                            if (Singleton.Instance.spriteMove[i, j] == 5)
                             {
                                 currentTile = new Point(i, j);
                                 if (_animationManager == null)
@@ -116,9 +142,9 @@ namespace Rockman.Sprites
                                 else
                                 {
                                     _animationManager.Draw(spriteBatch,
-                                        new Vector2((TILESIZEX * j * 2) + (screenStageX + 10),
-                                            (TILESIZEY * i * 2) + (screenStageY - 140)),
-                                        scale);
+                                        new Vector2((TILESIZEX * j * 2) + (screenStageX - 90),
+                                            (TILESIZEY * i * 2) + (screenStageY - 210)),
+                                        1.5f);
                                 }
                                 //drawHP
                                 if (Singleton.Instance.spriteHP[i, j] >= 0)

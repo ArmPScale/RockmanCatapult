@@ -34,7 +34,22 @@ namespace Rockman.Sprites.Screens
                             if (Singleton.Instance.chipSelect[currentTile.X] == 1)
                             {
                                 _animationManager.Play(_animations["Select"]);
-                                if (Singleton.Instance.CurrentKey.IsKeyDown(A) && Singleton.Instance.PreviousKey.IsKeyUp(A))
+                                if (currentTile.X == 6 && Singleton.Instance.CurrentKey.IsKeyDown(W) && Singleton.Instance.PreviousKey.IsKeyUp(W))
+                                {
+                                    SoundEffects["ChipSelect"].Volume = Singleton.Instance.MasterSFXVolume;
+                                    SoundEffects["ChipSelect"].Play();
+                                    Singleton.Instance.chipSelect[currentTile.X == 6 ? 5 : currentTile.X] = Singleton.Instance.chipSelect[currentTile.X];
+                                    Singleton.Instance.chipSelect[currentTile.X] = 0;
+                                }
+                                //BlackAce
+                                else if (currentTile.X != 6 && Singleton.Instance.CurrentKey.IsKeyDown(S) && Singleton.Instance.PreviousKey.IsKeyUp(S))
+                                {
+                                    SoundEffects["ChipSelect"].Volume = Singleton.Instance.MasterSFXVolume;
+                                    SoundEffects["ChipSelect"].Play();
+                                    Singleton.Instance.chipSelect[currentTile.X != 6 ? 6 : currentTile.X] = Singleton.Instance.chipSelect[currentTile.X];
+                                    Singleton.Instance.chipSelect[currentTile.X] = 0;
+                                }
+                                else if (currentTile.X != 6 && Singleton.Instance.CurrentKey.IsKeyDown(A) && Singleton.Instance.PreviousKey.IsKeyUp(A))
                                 {
                                     SoundEffects["ChipSelect"].Volume = Singleton.Instance.MasterSFXVolume;
                                     SoundEffects["ChipSelect"].Play();
@@ -45,7 +60,7 @@ namespace Rockman.Sprites.Screens
                                 {
                                     SoundEffects["ChipSelect"].Volume = Singleton.Instance.MasterSFXVolume;
                                     SoundEffects["ChipSelect"].Play();
-                                    Singleton.Instance.chipSelect[(currentTile.X + 1) % chipLength] = Singleton.Instance.chipSelect[currentTile.X];
+                                    Singleton.Instance.chipSelect[(currentTile.X + 1) % (chipLength - 1)] = Singleton.Instance.chipSelect[currentTile.X];
                                     Singleton.Instance.chipSelect[currentTile.X] = 0;
                                 }
                                 else if (Singleton.Instance.CurrentKey.IsKeyDown(J) && Singleton.Instance.PreviousKey.IsKeyUp(J))
@@ -85,10 +100,19 @@ namespace Rockman.Sprites.Screens
                                     }
                                     else
                                     {
-                                        if(Singleton.Instance.chipCustomSelect[currentTile.X] != "")
+                                        if(Singleton.Instance.indexChipSlotIn.Count != 5 && Singleton.Instance.chipCustomSelect[currentTile.X] != "")
                                         {
-                                            SoundEffects["ChipChoose"].Volume = Singleton.Instance.MasterSFXVolume;
-                                            SoundEffects["ChipChoose"].Play();
+                                            if (currentTile.X == 6)
+                                            {
+                                                //checkBlackAceChip
+                                                SoundEffects["ChipChoose"].Volume = Singleton.Instance.MasterSFXVolume;
+                                                SoundEffects["ChipChoose"].Play();
+                                            }
+                                            else
+                                            {
+                                                SoundEffects["ChipChoose"].Volume = Singleton.Instance.MasterSFXVolume;
+                                                SoundEffects["ChipChoose"].Play();
+                                            }
                                             //selectChip
                                             Singleton.Instance.chipSlotIn.Push(Singleton.Instance.chipCustomSelect[currentTile.X]);
                                             Singleton.Instance.indexChipSlotIn.Push(currentTile.X);
@@ -114,7 +138,7 @@ namespace Rockman.Sprites.Screens
                     switch (Singleton.Instance.CurrentGameState)
                     {
                         case Singleton.GameState.GameCustomScreen:
-                            for (int i = 0; i < 6; i++)
+                            for (int i = 0; i < chipLength; i++)
                             {
                                 if (_animationManager == null)
                                 {
@@ -129,7 +153,8 @@ namespace Rockman.Sprites.Screens
                                     {
                                         currentTile = new Point(i);
                                         Singleton.Instance.currentChipSelect = new Point(i);
-                                        if (currentTile.X == 5) _animationManager.Draw(spriteBatch, new Vector2(273, 110 * 3), scale);
+                                        if (currentTile.X == 6) _animationManager.Draw(spriteBatch, new Vector2(273, 130 * 3), scale);
+                                        else if(currentTile.X == 5) _animationManager.Draw(spriteBatch, new Vector2(273, 110 * 3), scale);
                                         else _animationManager.Draw(spriteBatch, new Vector2(12 + (48 * currentTile.X), 100 * 3), scale);
                                     }
                                 }

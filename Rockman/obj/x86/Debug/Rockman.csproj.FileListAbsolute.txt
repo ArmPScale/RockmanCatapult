@@ -152,3 +152,7 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\Battle1.xn
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\MenuScreenBlack.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Meteor.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\virus\Wizard.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\boss\QueenVirgo.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\MagicCircle.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\MagicFreeze.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\BlackAceEmblem.xnb

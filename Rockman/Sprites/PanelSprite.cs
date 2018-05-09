@@ -313,7 +313,7 @@ namespace Rockman.Sprites
                             }
 
                             //virusAtkPanel
-                            if (Singleton.Instance.virusAttack[i, j] > 0)
+                            if (Singleton.Instance.panelYellow[i, j] > 0)
                             {
                                 destRectPanel = new Rectangle((40 * j * (int)scale) + screenStageX, (24 * i * (int)scale) + screenStageY, 40 * (int)scale, 24 * (int)scale);
                                 spriteBatch.Draw(_texture[0], destRectPanel, new Rectangle(320, 0, 40, 24), Color.White);

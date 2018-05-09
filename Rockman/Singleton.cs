@@ -25,7 +25,7 @@ namespace Rockman
         public int HeroHP = 100, maxHeroHP = 200, HeroAttack = 1, HeroBarrier = 0, HeroAura = 0, playerChipAtk = 0;
         public int currentVirusGotDmgIndex;
         public Point currentPlayerPoint;
-        public bool isDamaged, isRecovered, statusBugHP = false;
+        public bool isDamaged, isRecovered, statusBugHP = false, gotBlackAce = true;
         public string choosePlayerAnimate = "Alive", chooseEmotionPlayer = "NormalEmotion";
         public float currentChipCoolDown = 0f, currentChipAtkTime = 0f;
 
@@ -45,7 +45,7 @@ namespace Rockman
         public Queue<string> nextChipFolder;
 
         //initialArr
-        public int[,] panelBoundary, panelStage, panelElement, playerMove, spriteMove, spriteHP, chipEffect, virusAttack;
+        public int[,] panelBoundary, panelStage, panelElement, panelYellow, playerMove, spriteMove, spriteHP, chipEffect, virusAttack, bossAttack;
         public SpriteFont _font;
         public Texture2D[] effectsTexture;
         public Dictionary<string, Song> song;

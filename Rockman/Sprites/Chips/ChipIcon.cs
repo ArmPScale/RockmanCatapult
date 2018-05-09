@@ -42,6 +42,7 @@ namespace Rockman.Sprites.Chips
             {"Barrier100",  new Rectangle(41+(19*1), 200, 14, 14) },
             {"Barrier200",  new Rectangle(41+(19*2), 200, 14, 14) },
             {"DreamAura",  new Rectangle(41+(19*4), 200, 14, 14) },
+            {"BlackAce",  new Rectangle(136, 254, 14, 14) },
         };
         Dictionary<string, Rectangle> rectChipIconEXE4Img = new Dictionary<string, Rectangle>()
         {
