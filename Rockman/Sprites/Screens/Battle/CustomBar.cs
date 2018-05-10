@@ -13,6 +13,7 @@ namespace Rockman.Sprites.Screens
 {
     class CustomBar : Screen
     {
+        private float _timer, _delayBar = 32f;
         Rectangle rectBar = new Rectangle(423, 31, 0, 23);
         bool isNotPlayed = true;
 
@@ -32,13 +33,14 @@ namespace Rockman.Sprites.Screens
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameCustomScreen:
-                    rectBar.Width = 0;
+                    _timer = 0f; rectBar.Width = 0;
                     isNotPlayed = true;
                     break;
                 case Singleton.GameState.GamePlaying:
-                    if(rectBar.Width > 384)
+                    _timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                    if (rectBar.Width > 384)
                     {
-                        if(isNotPlayed)
+                        if (isNotPlayed)
                         {
                             SoundEffects["FullCustom"].Volume = Singleton.Instance.MasterSFXVolume;
                             SoundEffects["FullCustom"].Play();
@@ -46,7 +48,11 @@ namespace Rockman.Sprites.Screens
                         }
                         Singleton.Instance.isCustomBarFull = true;
                     }
-                    else rectBar.Width += 1;
+                    else if (_timer > _delayBar)
+                    {
+                        rectBar.Width += 1;
+                        _timer = 0;
+                    } 
                     break;
             }
             base.Update(gameTime, sprites);

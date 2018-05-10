@@ -11,7 +11,7 @@ namespace Rockman.Sprites
         private float _timer, _atkTime, _castingTime;
         public Point currentTile;
         public static Random random = new Random();
-        int panelX, panelY, HP;
+        int HP, panelX, panelY, chooseAtk;
         bool isProtected = false;
 
         public QueenVirgo(Texture2D[] _texture)
@@ -43,44 +43,89 @@ namespace Rockman.Sprites
                         //checkHP
                         if (Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] <= 0)
                         {
-                            Singleton.Instance.bossAttack[panelX, panelY] = 0;
+                            Singleton.Instance.bossAttack = new int[3, 10]
+                            {
+                                { 0,0,0,0,0,0,0,0,0,0},
+                                { 0,0,0,0,0,0,0,0,0,0},
+                                { 0,0,0,0,0,0,0,0,0,0},
+                            };
                             SoundEffects["Defeated"].Volume = Singleton.Instance.MasterSFXVolume;
                             SoundEffects["Defeated"].Play();
                             Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
                         }
                         //queenVirgoAtk
-                        if (_atkTime > 4.0f)
+                        if (_atkTime > 3.0f)
                         {
-                            if (_atkTime < 4.1f)
+                            if (_atkTime < 3.1f)
                             {
+                                if (currentTile.X != Singleton.Instance.currentPlayerPoint.X &&
+                                    Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, currentTile.Y] == 0)
+                                {
+                                    Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, currentTile.Y] = Singleton.Instance.spriteMove[currentTile.X, currentTile.Y];
+                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, currentTile.Y] = Singleton.Instance.spriteHP[currentTile.X, currentTile.Y];
+                                    Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;
+                                    Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] = 0;
+                                }
                                 _animationManager.Play(_animations["StartCasting"]);
                                 HP = Singleton.Instance.spriteHP[currentTile.X, currentTile.Y];
+                                //randomChooseAtk
+                                chooseAtk = random.Next(1, 3);
                             }
-                            else if (_atkTime < 6.5f)
+                            else if (_atkTime < 5.5f)
                             {
                                 _animationManager.Play(_animations["Casting"]);
-                                if(_atkTime < 4.2f)
+                                if(_atkTime < 3.2f)
                                 {
                                     SoundEffects["Casting"].Volume = Singleton.Instance.MasterSFXVolume;
                                     SoundEffects["Casting"].Play();
+                                    if (chooseAtk == 2 && _castingTime > 0.2f)
+                                    {
+                                        panelX = Singleton.Instance.currentPlayerPoint.X;
+                                        panelY = Singleton.Instance.currentPlayerPoint.Y;
+                                        Singleton.Instance.panelYellow[panelX, panelY] = 2;
+                                        for(int i = 0; i < 3; i++)
+                                        {
+                                            panelX = random.Next(0, 3);
+                                            panelY = random.Next(0, 5);
+                                            Singleton.Instance.panelYellow[panelX, panelY] = 2;
+                                        }
+                                        _castingTime = 0f;
+                                    }
                                 }
-                                if (_atkTime > 4.5f && _atkTime < 4.6f)
+                                if (chooseAtk == 1 && _atkTime > 3.5f && _atkTime < 3.5f + 0.1f)
                                 {
+                                    //aquaWave
                                     Singleton.Instance.panelYellow[currentTile.X, currentTile.Y - 1] = 1;
                                     Singleton.Instance.bossAttack[currentTile.X, currentTile.Y - 1] = 1;
                                 }
+                                else if (chooseAtk == 2 && _atkTime > 4f && _atkTime < 4f + 0.9f)
+                                {
+                                    //rainy
+                                    for (int i = 0; i < 3; i++)
+                                    {
+                                        for (int j = 0; j < 10; j++)
+                                        {
+                                            if (Singleton.Instance.panelYellow[i, j] == 2) Singleton.Instance.bossAttack[i, j] = 2;
+                                        }
+                                    }
+                                }
+                                else if (chooseAtk == 3 && _atkTime > 4f && _atkTime < 4f + 0.8f)
+                                {
+                                    //magicianFreeze
+                                    Singleton.Instance.bossAttack[panelX, panelY] = 2;
+                                }
                                 isProtected = true;
                             }
-                            else if (_atkTime < 6.7f)
+                            else if (_atkTime < 5.7f)
                             {
                                 _animationManager.Play(_animations["FinishCasting"]);
                                 isProtected = false;
                             }
-                            else if (_atkTime < 6.9f)
+                            else if (_atkTime < 5.9f)
                             {
                                 _animationManager.Play(_animations["Alive"]);
                             }
-                            else if (_atkTime > 7f)
+                            else if (_atkTime > 6f)
                             {
                                 _atkTime = 0f;
                             }

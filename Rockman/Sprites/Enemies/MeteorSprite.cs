@@ -33,7 +33,6 @@ namespace Rockman.Sprites
                         if (_meteorCoolDown < 0.05f && _meteorCoolDown < 0.1f)
                         {
                             _animationManager.Play(_animations["Meteor"]);
-
                             SoundEffects["Meteor"].Volume = Singleton.Instance.MasterSFXVolume;
                             SoundEffects["Meteor"].Play();
                         }
@@ -92,7 +91,6 @@ namespace Rockman.Sprites
                                 new Vector2((TILESIZEX * j * 2) + (screenStageX + Position.X + 20),
                                     (TILESIZEY * i * 2) + (screenStageY - Position.Y - 20)),
                                 scale);
-
                         }
                     }
                 }

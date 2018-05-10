@@ -35,8 +35,17 @@ namespace Rockman.Sprites
                         //checkHP
                         if (Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] <= 0)
                         {
-                            Singleton.Instance.virusAttack[panelX, panelY] = 0;
-                            Singleton.Instance.panelYellow[panelX, panelY] = 0;
+                            for (int i = 0; i < 3; i++)
+                            {
+                                for (int j = 0; j < 10; j++)
+                                {
+                                    if (Singleton.Instance.virusAttack[i, j] == 4)
+                                    {
+                                        Singleton.Instance.virusAttack[i, j] = 0;
+                                        Singleton.Instance.panelYellow[i, j] = 0;
+                                    }
+                                }
+                            }
                             SoundEffects["Explosion"].Volume = Singleton.Instance.MasterSFXVolume;
                             SoundEffects["Explosion"].Play();
                             Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] = 0;

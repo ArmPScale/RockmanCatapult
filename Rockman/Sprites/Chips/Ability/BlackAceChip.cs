@@ -39,7 +39,9 @@ namespace Rockman.Sprites.Chips
                         rectChipBlackAceImg.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
                     {
                         //to do
-                        Singleton.Instance.playerMove[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] = 0;
+                        Singleton.Instance.HeroBarrier = 100;
+                        Singleton.Instance.playerMove[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] = 10;
+                        Singleton.Instance.useSceneChip = false;
                         Singleton.Instance.useChipNearlySuccess = true;
                     }
                     break;

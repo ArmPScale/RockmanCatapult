@@ -8,10 +8,10 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Rockman.Sprites
 {
-    class RockmanEXESprite : Sprite
+    class BlackAce : Sprite
     {
-        const float CHARGING = 1.2f ,CHARGED = 3.2f;
-        private float _chargeTime, _barrierTime, _busterCoolDown, _chipCoolDown, _bugCoolDown, _deadCoolDown, _clearCoolDown;
+        const float CHARGING = 1.2f ,CHARGED = 2.4f;
+        private float _chargeTime, _barrierTime, _busterCoolDown, _chipCoolDown,_bugCoolDown, _deadCoolDown, _clearCoolDown;
         public int HP, Attack, Barrier;
         public Point currentTile, busterDamagedPosition;
         public Keys W, S, A, D, J, K, U;
@@ -21,7 +21,7 @@ namespace Rockman.Sprites
         Rectangle destRectCharge, sourceRectCharge;
         public bool busterAttacked;
 
-        public RockmanEXESprite(Dictionary<string, Animation> animations) : base(animations)
+        public BlackAce(Dictionary<string, Animation> animations) : base(animations)
         {
         }
 
@@ -38,7 +38,7 @@ namespace Rockman.Sprites
                 case Singleton.GameState.GamePlaying:
                     _chargeTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     drawChargeTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                    if (Singleton.Instance.playerMove[currentTile.X, currentTile.Y] == 1)
+                    if (Singleton.Instance.playerMove[currentTile.X, currentTile.Y] == 10)
                     {
                         //statusBug
                         if (Singleton.Instance.statusBugHP)
@@ -54,11 +54,6 @@ namespace Rockman.Sprites
                         {
                             case Singleton.PlayerState.Playing:
                                 _animationManager.Play(_animations["Alive"]);
-                                //changeBlackAce
-                                if (Singleton.Instance.useChipSlotIn.Count != 0 && Singleton.Instance.useChipSlotIn.Peek() == "BlackAce")
-                                {
-                                    Singleton.Instance.CurrentGameState = Singleton.GameState.GameWaitingChip;
-                                }
                                 //Damaged
                                 if (Singleton.Instance.isDamaged)
                                 {
@@ -107,37 +102,33 @@ namespace Rockman.Sprites
                                     }
                                 }
                                 //movementHero
-                                if ((currentTile.X > 0 && Singleton.Instance.panelBoundary[currentTile.X - 1, currentTile.Y] == 0 &&
-                                Singleton.Instance.panelStage[currentTile.X - 1, currentTile.Y] <= 1) &&
+                                if ((currentTile.X > 0 && Singleton.Instance.panelBoundary[currentTile.X - 1, currentTile.Y] == 0) &&
                                 (Singleton.Instance.CurrentKey.IsKeyDown(W) && Singleton.Instance.PreviousKey.IsKeyUp(W)))
                                 {
                                     Singleton.Instance.playerMove[currentTile.X - 1, currentTile.Y] = Singleton.Instance.playerMove[currentTile.X, currentTile.Y];
                                     Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
                                 }
-                                else if ((currentTile.X < 2 && Singleton.Instance.panelBoundary[currentTile.X + 1, currentTile.Y] == 0 &&
-                                    Singleton.Instance.panelStage[currentTile.X + 1, currentTile.Y] <= 1) &&
+                                else if ((currentTile.X < 2 && Singleton.Instance.panelBoundary[currentTile.X + 1, currentTile.Y] == 0) &&
                                     (Singleton.Instance.CurrentKey.IsKeyDown(S) && Singleton.Instance.PreviousKey.IsKeyUp(S)))
                                 {
                                     Singleton.Instance.playerMove[currentTile.X + 1, currentTile.Y] = Singleton.Instance.playerMove[currentTile.X, currentTile.Y];
                                     Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
                                 }
-                                else if ((currentTile.Y > 0 && Singleton.Instance.panelBoundary[currentTile.X, currentTile.Y - 1] == 0 &&
-                                    Singleton.Instance.panelStage[currentTile.X, currentTile.Y - 1] <= 1) &&
+                                else if ((currentTile.Y > 0 && Singleton.Instance.panelBoundary[currentTile.X, currentTile.Y - 1] == 0) &&
                                     (Singleton.Instance.CurrentKey.IsKeyDown(A) && Singleton.Instance.PreviousKey.IsKeyUp(A)))
                                 {
                                     Singleton.Instance.playerMove[currentTile.X, currentTile.Y - 1] = Singleton.Instance.playerMove[currentTile.X, currentTile.Y];
                                     Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
                                 }
-                                else if ((currentTile.Y < 10 && Singleton.Instance.panelBoundary[currentTile.X, currentTile.Y + 1] == 0 &&
-                                    Singleton.Instance.panelStage[currentTile.X, currentTile.Y + 1] <= 1) &&
+                                else if ((currentTile.Y < 10 && Singleton.Instance.panelBoundary[currentTile.X, currentTile.Y + 1] == 0) &&
                                     (Singleton.Instance.CurrentKey.IsKeyDown(D) && Singleton.Instance.PreviousKey.IsKeyUp(D)))
                                 {
                                     Singleton.Instance.playerMove[currentTile.X, currentTile.Y + 1] = Singleton.Instance.playerMove[currentTile.X, currentTile.Y];
                                     Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
                                 }
-                                else if (Singleton.Instance.CurrentKey.IsKeyDown(J) && Singleton.Instance.PreviousKey.IsKeyUp(J))
+                                else if (Singleton.Instance.CurrentKey.IsKeyDown(J))
                                 {
-                                    _animationManager.Play(_animations["Buster"]);
+                                    _animationManager.Play(_animations["NormalBuster"]);
                                     for (int k = currentTile.Y; k < 10; k++)
                                     {
                                         chargeFrames = -1;
@@ -220,7 +211,7 @@ namespace Rockman.Sprites
                                 break;
                             case Singleton.PlayerState.BusterShot:
                                 _busterCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                                if (_busterCoolDown > 0.3f)
+                                if (_busterCoolDown > 0.08f)
                                 {
                                     _busterCoolDown = 0;
                                     Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.Playing;
@@ -335,7 +326,7 @@ namespace Rockman.Sprites
                     {
                         for (int j = 0; j < 10; j++)
                         {
-                            if (Singleton.Instance.playerMove[i, j] == 1)
+                            if (Singleton.Instance.playerMove[i, j] == 10)
                             {
                                 currentTile = new Point(i, j);
                                 Singleton.Instance.currentPlayerPoint = new Point(i, j);
@@ -348,7 +339,8 @@ namespace Rockman.Sprites
                                 }
                                 else
                                 {
-                                    _animationManager.Draw(spriteBatch, new Vector2((TILESIZEX * j * 2) + (screenStageX + 5), (TILESIZEY * i * 2) + (screenStageY - 100)), scale);
+                                    _animationManager.Draw(spriteBatch, new Vector2((TILESIZEX * j * 2) + (screenStageX - 36), 
+                                        (TILESIZEY * i * 2) + (screenStageY - 171)), scale);
                                     //drawCharge
                                     if (_chargeTime > 1.2)
                                     {

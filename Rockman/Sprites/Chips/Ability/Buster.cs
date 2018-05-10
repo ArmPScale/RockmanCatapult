@@ -72,15 +72,18 @@ namespace Rockman.Sprites.Chips
                             }
                             else
                             {
-                                _animationManager.Draw(spriteBatch,
-                                    new Vector2((TILESIZEX * Singleton.Instance.currentPlayerPoint.Y * 2) + (screenStageX + 95), (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 50)), 
+                                if (Singleton.Instance.playerMove[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] < 10)
+                                {
+                                    _animationManager.Draw(spriteBatch,
+                                    new Vector2((TILESIZEX * Singleton.Instance.currentPlayerPoint.Y * 2) + (screenStageX + 95), (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 50)),
                                     scale);
+                                }
                             }
                             break;
                     }
                     break;
                 case Singleton.GameState.GameClear:
-                    if (_isBusterShot)
+                    if (_isBusterShot && Singleton.Instance.playerMove[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] < 10)
                         _animationManager.Draw(spriteBatch,
                                 new Vector2((TILESIZEX * Singleton.Instance.currentPlayerPoint.Y * 2) + (screenStageX + 95), (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 50)),
                                 scale);

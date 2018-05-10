@@ -44,7 +44,7 @@ namespace Rockman
             enemiesTexture = new Texture2D[10];
             fadeScreenTexture = new Texture2D[2];
             customScreenTexture = new Texture2D[5];
-            chipTexture = new Texture2D[10];
+            chipTexture = new Texture2D[20];
             Singleton.Instance.effectsTexture = new Texture2D[10];
             //Singleton.Instance.soundEffects = new List<SoundEffect>();
             Singleton.Instance.chipSlotIn = new Stack<string>();
@@ -101,7 +101,7 @@ namespace Rockman
             {
                 { 0,0,0,0,0,0,0,0,0,0},
                 { 0,0,0,0,0,0,0,0,5,0},
-                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,3,0,4},
             };
             Singleton.Instance.spriteHP = new int[3, 10]
             {
@@ -438,6 +438,7 @@ namespace Rockman
             panelTexture[0] = Content.Load<Texture2D>("panel/PanelsEXE5");
             playersTexture[0] = Content.Load<Texture2D>("rockman/RockmanEXE6");
             playersTexture[1] = Content.Load<Texture2D>("rockman/RockmanBusterEXE6");
+            playersTexture[2] = Content.Load<Texture2D>("rockman/BlackAceSprite");
             enemiesTexture[0] = Content.Load<Texture2D>("virus/MettonAttack");
             enemiesTexture[1] = Content.Load<Texture2D>("virus/MettFire");
             enemiesTexture[2] = Content.Load<Texture2D>("virus/Wizard");
@@ -461,6 +462,7 @@ namespace Rockman
             chipTexture[7] = Content.Load<Texture2D>("chipAtk/Cannon");
             chipTexture[8] = Content.Load<Texture2D>("chipAtk/Throwables");
             chipTexture[9] = Content.Load<Texture2D>("chipAtk/Meteor");
+            chipTexture[10] = Content.Load<Texture2D>("chipAtk/RainyNoShade");
 
             // --> screenSpritesList
             _screenSprites = new List<Sprite>();
@@ -603,6 +605,20 @@ namespace Rockman
                     {"AquaWave", Content.Load<SoundEffect>("sfx/MettWave").CreateInstance() },
                 }
             });
+            //rainySprite
+            _sprites.Add(new Rainy(new Dictionary<string, Animation>()
+            {
+                { "Cloudy", new Animation(chipTexture[10], new Rectangle(0, 0,  32*4, 72), 4) },
+                { "Rainy", new Animation(chipTexture[10], new Rectangle(128, 0,  32*4, 72), 4) },
+            })
+            {
+                Name = "Rainy",
+                Viewport = new Rectangle(0, 0, 32, 72),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    //{"Rainy", Content.Load<SoundEffect>("sfx/MettWave").CreateInstance() },
+                }
+            });
             //barrierSprite
             _sprites.Add(new BarrierSprite(new Dictionary<string, Animation>()
             {
@@ -627,6 +643,40 @@ namespace Rockman
             {
                 Name = "RockmanEXE",
                 Viewport = new Rectangle(57, 0, 57, 57),
+                W = Keys.W,
+                S = Keys.S,
+                A = Keys.A,
+                D = Keys.D,
+                J = Keys.J,
+                K = Keys.K,
+                U = Keys.U,
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"Barrier", Content.Load<SoundEffect>("sfx/AttackBounce").CreateInstance() },
+                    {"Buster", Content.Load<SoundEffect>("sfx/Buster").CreateInstance() },
+                    {"Charging", Content.Load<SoundEffect>("sfx/BusterCharging").CreateInstance() },
+                    {"Charged", Content.Load<SoundEffect>("sfx/BusterCharged").CreateInstance() },
+                    {"BusterHit", Content.Load<SoundEffect>("sfx/BusterHit").CreateInstance() },
+                    {"Damaged", Content.Load<SoundEffect>("sfx/Damaged").CreateInstance() },
+                    {"UseChip", Content.Load<SoundEffect>("sfx/UseChip").CreateInstance() },
+                    {"LowHP", Content.Load<SoundEffect>("sfx/RedHP").CreateInstance() },
+                    {"Deleted", Content.Load<SoundEffect>("sfx/Deleted").CreateInstance() },
+                }
+            });
+            //blackAce
+            _sprites.Add(new BlackAce(new Dictionary<string, Animation>()
+            {
+                { "Alive", new Animation(playersTexture[2], new Rectangle(0, 0, 80*4, 80), 4) },
+                { "NormalBuster", new Animation(playersTexture[2], new Rectangle(0, 80, 80*4, 80), 4) },
+                { "Buster", new Animation(playersTexture[2], new Rectangle(0, 160, 80*4, 80), 4) },
+                { "Bomb", new Animation(playersTexture[2], new Rectangle(0, 160, 80*4, 80), 4) },
+                { "Sword", new Animation(playersTexture[2], new Rectangle(0, 240, 80*7, 80), 7) },
+                { "Dead", new Animation(playersTexture[2], new Rectangle(0, 0, 80*4, 80), 4) },
+                { "Uninstall", new Animation(Singleton.Instance.effectsTexture[3], new Rectangle(0, 0, 75*4, 68), 4) },
+            })
+            {
+                Name = "BlackAce",
+                Viewport = new Rectangle(0, 0, 80, 80),
                 W = Keys.W,
                 S = Keys.S,
                 A = Keys.A,
