@@ -69,7 +69,7 @@ namespace Rockman.Sprites
                                 _animationManager.Play(_animations["StartCasting"]);
                                 HP = Singleton.Instance.spriteHP[currentTile.X, currentTile.Y];
                                 //randomChooseAtk
-                                chooseAtk = random.Next(1, 3);
+                                chooseAtk = random.Next(3, 4);
                             }
                             else if (_atkTime < 5.5f)
                             {
@@ -91,6 +91,21 @@ namespace Rockman.Sprites
                                         }
                                         _castingTime = 0f;
                                     }
+                                    else if (chooseAtk == 3 && _castingTime > 0.2f)
+                                    {
+                                        panelX = 1;
+                                        panelY = random.Next(1, 4);
+                                        Singleton.Instance.panelYellow[panelX, panelY] = 3;
+                                        Singleton.Instance.panelYellow[panelX, panelY - 1] = 3;
+                                        Singleton.Instance.panelYellow[panelX, panelY + 1] = 3;
+                                        Singleton.Instance.panelYellow[panelX - 1, panelY - 1] = 3;
+                                        Singleton.Instance.panelYellow[panelX - 1, panelY] = 3;
+                                        Singleton.Instance.panelYellow[panelX - 1, panelY + 1] = 3;
+                                        Singleton.Instance.panelYellow[panelX + 1, panelY - 1] = 3;
+                                        Singleton.Instance.panelYellow[panelX + 1, panelY] = 3;
+                                        Singleton.Instance.panelYellow[panelX + 1, panelY + 1] = 3;
+                                        _castingTime = 0f;
+                                    }
                                 }
                                 if (chooseAtk == 1 && _atkTime > 3.5f && _atkTime < 3.5f + 0.1f)
                                 {
@@ -109,11 +124,12 @@ namespace Rockman.Sprites
                                         }
                                     }
                                 }
-                                else if (chooseAtk == 3 && _atkTime > 4f && _atkTime < 4f + 0.8f)
+                                else if (chooseAtk == 3 && _atkTime > 4f && _atkTime < 4f + 1.8f)
                                 {
                                     //magicianFreeze
-                                    Singleton.Instance.bossAttack[panelX, panelY] = 2;
+                                    Singleton.Instance.bossAttack[panelX, panelY] = 3;
                                 }
+                                //aquaShieldActived
                                 isProtected = true;
                             }
                             else if (_atkTime < 5.7f)

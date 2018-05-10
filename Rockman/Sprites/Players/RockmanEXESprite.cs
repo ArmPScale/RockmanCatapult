@@ -106,6 +106,10 @@ namespace Rockman.Sprites
                                         _barrierTime = 0;
                                     }
                                 }
+                                else
+                                {
+                                    _barrierTime = 0;
+                                }
                                 //movementHero
                                 if ((currentTile.X > 0 && Singleton.Instance.panelBoundary[currentTile.X - 1, currentTile.Y] == 0 &&
                                 Singleton.Instance.panelStage[currentTile.X - 1, currentTile.Y] <= 1) &&

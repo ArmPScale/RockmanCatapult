@@ -12,6 +12,7 @@ namespace Rockman.Sprites.Chips
 {
     class BlackAceChip : Chip
     {
+        private float _timerChange = 0f;
         Dictionary<string, Rectangle> rectChipBlackAceImg = new Dictionary<string, Rectangle>()
         {
             {"BlackAce",  new Rectangle(0, 432, 56, 47) },
@@ -38,11 +39,20 @@ namespace Rockman.Sprites.Chips
                     if (Singleton.Instance.useChipDuring &&
                         rectChipBlackAceImg.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
                     {
-                        //to do
-                        Singleton.Instance.HeroBarrier = 100;
-                        Singleton.Instance.playerMove[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] = 10;
+                        _timerChange += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                        Singleton.Instance.playerMove[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] = 0;
                         Singleton.Instance.useSceneChip = false;
-                        Singleton.Instance.useChipNearlySuccess = true;
+                        if (_timerChange > 1f)
+                        {
+                            Singleton.Instance.whiteScreen = true;
+                            if (_timerChange > 1.1f)
+                            {
+                                Singleton.Instance.whiteScreen = false;
+                                Singleton.Instance.playerMove[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] = 10;
+                                Singleton.Instance.HeroBarrier = 100;
+                                Singleton.Instance.useChipNearlySuccess = true;
+                            }
+                        }
                     }
                     break;
             }

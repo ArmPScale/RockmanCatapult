@@ -101,6 +101,10 @@ namespace Rockman.Sprites
                                         _barrierTime = 0;
                                     }
                                 }
+                                else
+                                {
+                                    _barrierTime = 0;
+                                }
                                 //movementHero
                                 if ((currentTile.X > 0 && Singleton.Instance.panelBoundary[currentTile.X - 1, currentTile.Y] == 0) &&
                                 (Singleton.Instance.CurrentKey.IsKeyDown(W) && Singleton.Instance.PreviousKey.IsKeyUp(W)))
@@ -171,14 +175,12 @@ namespace Rockman.Sprites
                                     }
                                     _chargeTime = 0;
                                 }
-                                else if (Singleton.Instance.isCustomBarFull &&
-                                    Singleton.Instance.CurrentKey.IsKeyDown(U) && Singleton.Instance.PreviousKey.IsKeyUp(U))
+                                else if (Singleton.Instance.isCustomBarFull)
                                 {
                                     Singleton.Instance.newTurnCustom = true;
                                     Singleton.Instance.isCustomBarFull = false;
                                     Singleton.Instance.CurrentGameState = Singleton.GameState.GameCustomScreen;
                                 }
-
                                 //autoCharge
                                 if (drawChargeTime >= delay)
                                 {

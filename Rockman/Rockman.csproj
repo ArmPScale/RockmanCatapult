@@ -55,6 +55,7 @@
     <Compile Include="Sprites\Chips\Ability\BlackAceChip.cs" />
     <Compile Include="Sprites\Chips\Ability\AirShot.cs" />
     <Compile Include="Sprites\Chips\Ability\PanelChip.cs" />
+    <Compile Include="Sprites\Chips\Effect\BlackAceEffect.cs" />
     <Compile Include="Sprites\Chips\Sprite\AirShotSprite.cs" />
     <Compile Include="Sprites\Chips\Sprite\ThrowableSprite.cs" />
     <Compile Include="Sprites\Chips\Ability\Throwable.cs" />
@@ -71,6 +72,8 @@
     <Compile Include="Sprites\Chips\Effect\ImpactHalfExplodeEffect.cs" />
     <Compile Include="Sprites\Chips\Effect\SpreaderEffect.cs" />
     <Compile Include="Sprites\Chips\Sprite\SpreaderSprite.cs" />
+    <Compile Include="Sprites\Enemies\MagicFreeze.cs" />
+    <Compile Include="Sprites\Enemies\MagicCircle.cs" />
     <Compile Include="Sprites\Enemies\Rainy.cs" />
     <Compile Include="Sprites\Enemies\Enemy.cs" />
     <Compile Include="Sprites\Enemies\AquaWave.cs" />

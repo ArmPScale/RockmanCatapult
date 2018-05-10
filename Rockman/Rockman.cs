@@ -101,7 +101,7 @@ namespace Rockman
             {
                 { 0,0,0,0,0,0,0,0,0,0},
                 { 0,0,0,0,0,0,0,0,5,0},
-                { 0,0,0,0,0,0,0,3,0,4},
+                { 0,0,0,0,0,0,0,0,0,0},
             };
             Singleton.Instance.spriteHP = new int[3, 10]
             {
@@ -439,6 +439,7 @@ namespace Rockman
             playersTexture[0] = Content.Load<Texture2D>("rockman/RockmanEXE6");
             playersTexture[1] = Content.Load<Texture2D>("rockman/RockmanBusterEXE6");
             playersTexture[2] = Content.Load<Texture2D>("rockman/BlackAceSprite");
+            playersTexture[3] = Content.Load<Texture2D>("rockman/BlackAceEffect");
             enemiesTexture[0] = Content.Load<Texture2D>("virus/MettonAttack");
             enemiesTexture[1] = Content.Load<Texture2D>("virus/MettFire");
             enemiesTexture[2] = Content.Load<Texture2D>("virus/Wizard");
@@ -463,6 +464,8 @@ namespace Rockman
             chipTexture[8] = Content.Load<Texture2D>("chipAtk/Throwables");
             chipTexture[9] = Content.Load<Texture2D>("chipAtk/Meteor");
             chipTexture[10] = Content.Load<Texture2D>("chipAtk/RainyNoShade");
+            chipTexture[11] = Content.Load<Texture2D>("chipAtk/MagicCircle");
+            chipTexture[12] = Content.Load<Texture2D>("chipAtk/MagicFreeze");
 
             // --> screenSpritesList
             _screenSprites = new List<Sprite>();
@@ -555,7 +558,6 @@ namespace Rockman
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"Casting", Content.Load<SoundEffect>("sfx/SpellCasting").CreateInstance() },
-                    //{"Meteor", Content.Load<SoundEffect>("sfx/Meteor").CreateInstance() },
                     {"Explosion", Content.Load<SoundEffect>("sfx/VirusExplode").CreateInstance() },
                 }
             });
@@ -617,6 +619,34 @@ namespace Rockman
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     //{"Rainy", Content.Load<SoundEffect>("sfx/MettWave").CreateInstance() },
+                }
+            });
+            //magicCircleSprite
+            _sprites.Add(new MagicCircle(new Dictionary<string, Animation>()
+            {
+                { "MagicCircle", new Animation(chipTexture[11], new Rectangle(0, 0,  307, 211), 1) },
+            })
+            {
+                Name = "MagicCircle",
+                Viewport = new Rectangle(0, 0, 307, 211),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    
+                }
+            });
+            //magicFreezeSprite
+            _sprites.Add(new MagicFreeze(new Dictionary<string, Animation>()
+            {
+                { "Freezing", new Animation(chipTexture[12], new Rectangle(0, 0, 64 * 5, 64), 5) },
+                { "Frozen", new Animation(chipTexture[12], new Rectangle(0, 64, 64, 64), 1) },
+                { "Break", new Animation(chipTexture[12], new Rectangle(64, 64, 64, 64), 1) },
+            }) 
+            {
+                Name = "MagicFreeze",
+                Viewport = new Rectangle(0, 0, 64, 64),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+
                 }
             });
             //barrierSprite
@@ -695,6 +725,20 @@ namespace Rockman
                     {"UseChip", Content.Load<SoundEffect>("sfx/UseChip").CreateInstance() },
                     {"LowHP", Content.Load<SoundEffect>("sfx/RedHP").CreateInstance() },
                     {"Deleted", Content.Load<SoundEffect>("sfx/Deleted").CreateInstance() },
+                }
+            });
+            //blackAceEffect
+            _sprites.Add(new BlackAceEffect(new Dictionary<string, Animation>()
+            {
+                { "Changing", new Animation(playersTexture[3], new Rectangle(1, 0, 65*2, 82), 2) },
+                { "Changed", new Animation(playersTexture[3], new Rectangle(2, 82, 70*2, 82), 2) },
+            })
+            {
+                Name = "BlackAceEffect",
+                Viewport = new Rectangle(0, 0, 64, 82),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    
                 }
             });
             //busterRockman
