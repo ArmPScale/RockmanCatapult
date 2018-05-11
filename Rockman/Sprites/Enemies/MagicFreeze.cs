@@ -12,7 +12,7 @@ namespace Rockman.Sprites
 {
     class MagicFreeze : Sprite
     {
-        private float _magicFreezeCoolDown = 0;
+        private float _magicFreezeCoolDown = 0, _magicFreezeChipCoolDown = 0;
         private Point _currentMagicFreeze;
         private bool _isDamaged = true;
 
@@ -72,6 +72,33 @@ namespace Rockman.Sprites
                     }
                     _animationManager.Update(gameTime);
                     break;
+                case Singleton.GameState.GameUseChip:
+                    if (Singleton.Instance.chipEffect[_currentMagicFreeze.X, _currentMagicFreeze.Y] == 6 &&
+                        (Singleton.Instance.useChipName == "CherprangRiver" || Singleton.Instance.useChipName == "JaneRiver"))
+                    {
+                        _magicFreezeChipCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                        if (_magicFreezeChipCoolDown > 1.3f)
+                        {
+                            if (_magicFreezeChipCoolDown < 1.4f)
+                            {
+                                SoundEffects["MagicFreeze"].Volume = Singleton.Instance.MasterSFXVolume;
+                                SoundEffects["MagicFreeze"].Play();
+                                _animationManager.Play(_animations["Freezing"]);
+                            }
+                            else if (_magicFreezeChipCoolDown < 1.6f)
+                            {
+                                _animationManager.Play(_animations["Frozen"]);
+                            }
+                            else if (_magicFreezeChipCoolDown > 2.5f)
+                            {
+                                _magicFreezeChipCoolDown = 0;
+                            }
+                            Console.WriteLine("MagicFreeze",_magicFreezeChipCoolDown);
+                        }
+                    }
+                    _animationManager.Update(gameTime);
+                    break;
             }
             base.Update(gameTime, sprites);
         }
@@ -82,7 +109,9 @@ namespace Rockman.Sprites
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if (Singleton.Instance.bossAttack[i, j] == 4 && i == 1)
+                    if ((Singleton.Instance.bossAttack[i, j] == 4 || 
+                        Singleton.Instance.chipEffect[i, j] == 6) 
+                        && i == 1)
                     {
                         _currentMagicFreeze = new Point(i, j);
                         if (_animationManager == null)
@@ -100,6 +129,14 @@ namespace Rockman.Sprites
                                 new Vector2((TILESIZEX * j * 2) + (screenStageX - 90),
                                     (TILESIZEY * i * 2) + (screenStageY - 180)),
                                 scale + 1f);
+                            }
+                            else if (j == 7 && _magicFreezeChipCoolDown > 1.3f &&
+                                (Singleton.Instance.useChipName == "CherprangRiver" || Singleton.Instance.useChipName == "JaneRiver"))
+                            {
+                                _animationManager.Draw(spriteBatch,
+                                new Vector2((TILESIZEX * j * 2) + (screenStageX - 70),
+                                    (TILESIZEY * i * 2) + (screenStageY - 180)),
+                                scale + 1.5f);
                             }
                         }
                     }

@@ -22,7 +22,7 @@ namespace Rockman
             Dead
         }
         public PlayerState CurrentPlayerState;
-        public int HeroHP = 100, maxHeroHP = 200, HeroAttack = 4, HeroBarrier = 0, HeroAura = 0, playerChipAtk = 0;
+        public int HeroHP = 100, maxHeroHP = 200, HeroAttack = 4, HeroBarrier = 0, HeroAura = 0, playerChipAtk = 0, NoisePercent = 0;
         public int currentVirusGotDmgIndex;
         public Point currentPlayerPoint;
         public bool isDamaged, isRecovered, statusBugHP = false, gotBlackAce = true, whiteScreen = false;

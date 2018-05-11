@@ -174,3 +174,4 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\BombExplos
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\CannonBall.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\EnergyBomb.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\CustomBomb.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\RiverBNK48.xnb

@@ -13,7 +13,7 @@ namespace Rockman.Sprites.Chips
     class ThrowableSprite : Chip
     {
         private float _throwableCoolDown = 0f;
-        public bool drawThrowableObject = false, isDamaged = true;
+        public bool drawThrowableObject = false, isDamaged = true, isThrown = true;
         public int areaBombRangeY = 0;
         public ThrowableSprite(Dictionary<string, Animation> animations)
             : base(animations)
@@ -27,7 +27,7 @@ namespace Rockman.Sprites.Chips
                 SoundEffects["Throw"].Volume = Singleton.Instance.MasterSFXVolume;
                 SoundEffects["Throw"].Play();
                 _animationManager.Play(_animations[Singleton.Instance.useChipName]);
-                isDamaged = true;
+                isDamaged = true; isThrown = true;
                 Singleton.Instance.choosePlayerAnimate = "Bomb";
                 Singleton.Instance.currentChipCoolDown = 0.4f;
                 Singleton.Instance.useThrowableChip = false;
@@ -60,27 +60,35 @@ namespace Rockman.Sprites.Chips
                 areaBombRangeY = (int)Position.X / (40 * 3) + Singleton.Instance.currentPlayerPoint.Y;
 
                 //checkDamgeRange
-                if (areaBombRangeY < 10 && Position.Y >= (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 90) &&
+                if (isThrown && areaBombRangeY < 10 && 
+                    Position.Y >= (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 90) &&
                     Position.Y <= (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 90) + 150)
                 {
                     Singleton.Instance.currentChipAtkTime = 0.2f;
+                    isThrown = false;
                     if (Singleton.Instance.useChipName == "BigBomb" ||
-                        Singleton.Instance.useChipName == "DarkBomb" ||
-                        Singleton.Instance.useChipName == "BugBomb")
+                        Singleton.Instance.useChipName == "DarkBomb")
                     {
                         if (Singleton.Instance.currentPlayerPoint.X - 1 >= 0)
                         {
                             if (Singleton.Instance.useChipName == "DarkBomb")
                             {
-                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X - 1, areaBombRangeY - 1] = 4;
+                                if(Singleton.Instance.currentPlayerPoint.Y - 1 >= 0)
+                                {
+                                    Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X - 1, areaBombRangeY - 1] = 4;
+                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X - 1, areaBombRangeY - 1] -= Singleton.Instance.playerChipAtk;
+                                }
                                 Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X - 1, areaBombRangeY] = 4;
                             }
                             else
                             {
-                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X - 1, areaBombRangeY - 1] = 3;
+                                if (Singleton.Instance.currentPlayerPoint.Y - 1 >= 0)
+                                {
+                                    Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X - 1, areaBombRangeY - 1] = 3;
+                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X - 1, areaBombRangeY - 1] -= Singleton.Instance.playerChipAtk;
+                                }
                                 Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X - 1, areaBombRangeY] = 3;
                             }
-                            Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X - 1, areaBombRangeY - 1] -= Singleton.Instance.playerChipAtk;
                             Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X - 1, areaBombRangeY] -= Singleton.Instance.playerChipAtk;
                             if (areaBombRangeY + 1 < 10)
                             {
@@ -99,15 +107,22 @@ namespace Rockman.Sprites.Chips
                         {
                             if (Singleton.Instance.useChipName == "DarkBomb")
                             {
-                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X + 1, areaBombRangeY - 1] = 4;
+                                if (Singleton.Instance.currentPlayerPoint.Y - 1 >= 0)
+                                {
+                                    Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X + 1, areaBombRangeY - 1] = 4;
+                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X + 1, areaBombRangeY - 1] -= Singleton.Instance.playerChipAtk;
+                                }
                                 Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X + 1, areaBombRangeY] = 4;
                             }
                             else
                             {
-                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X + 1, areaBombRangeY - 1] = 3;
+                                if (Singleton.Instance.currentPlayerPoint.Y - 1 >= 0)
+                                {
+                                    Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X + 1, areaBombRangeY - 1] = 3;
+                                    Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X + 1, areaBombRangeY - 1] -= Singleton.Instance.playerChipAtk;
+                                }
                                 Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X + 1, areaBombRangeY] = 3;
                             }
-                            Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X + 1, areaBombRangeY - 1] -= Singleton.Instance.playerChipAtk;
                             Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X + 1, areaBombRangeY] -= Singleton.Instance.playerChipAtk;
                             if (areaBombRangeY + 1 < 10)
                             {
@@ -122,10 +137,38 @@ namespace Rockman.Sprites.Chips
                                 Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X + 1, areaBombRangeY + 1] -= Singleton.Instance.playerChipAtk;
                             }
                         }
-                        if (Singleton.Instance.useChipName == "BugBomb")
+                        if (Singleton.Instance.currentPlayerPoint.Y - 1 >= 0)
                         {
-                            // todo bug bomb
+                            if (Singleton.Instance.useChipName == "DarkBomb")
+                            {
+                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY - 1] = 4;
+                            }
+                            else
+                            {
+                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY - 1] = 3;
+                            }
+                            Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY - 1] -= Singleton.Instance.playerChipAtk;
                         }
+                        if (areaBombRangeY + 1 < 10)
+                        {
+                            if (Singleton.Instance.useChipName == "DarkBomb")
+                            {
+                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY + 1] = 4;
+                            }
+                            else
+                            {
+                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY + 1] = 3;
+                            }
+                            Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY + 1] -= Singleton.Instance.playerChipAtk;
+                        }
+                    }
+                    else if (Singleton.Instance.useChipName == "BugBomb")
+                    {
+                        // todo bug bomb
+                        Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY] = 3;
+                        Singleton.Instance.panelElement[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY] = 4;
+                        Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY - 1] = 3;
+                        Singleton.Instance.panelElement[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY- 1] = 3;
                     }
                     else if(Singleton.Instance.useChipName == "EnergyBomb" ||
                         Singleton.Instance.useChipName == "MegaEnergyBomb")
@@ -180,33 +223,6 @@ namespace Rockman.Sprites.Chips
                         SoundEffects["BombExplosion"].Play();
                     }
                     Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY] -= Singleton.Instance.playerChipAtk;
-                    //checkBombAgain
-                    if (Singleton.Instance.useChipName == "BigBomb" ||
-                        Singleton.Instance.useChipName == "DarkBomb" ||
-                        Singleton.Instance.useChipName == "BugBomb")
-                    {
-                        if (Singleton.Instance.useChipName == "DarkBomb")
-                        {
-                            Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY - 1] = 4;
-                        }
-                        else
-                        {
-                            Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY - 1] = 3;
-                        }
-                        Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY - 1] -= Singleton.Instance.playerChipAtk;
-                        if (areaBombRangeY + 1 < 10)
-                        {
-                            if (Singleton.Instance.useChipName == "DarkBomb")
-                            {
-                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY + 1] = 4;
-                            }
-                            else
-                            {
-                                Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY + 1] = 3;
-                            }
-                            Singleton.Instance.spriteHP[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY + 1] -= Singleton.Instance.playerChipAtk;
-                        }
-                    }
                     //bombingMe
                     if (isDamaged && Singleton.Instance.currentPlayerPoint.Y == areaBombRangeY)
                     {

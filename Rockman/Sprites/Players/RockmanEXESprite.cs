@@ -34,6 +34,11 @@ namespace Rockman.Sprites
             {
                 case Singleton.GameState.GameCustomScreen:
                     //_animationManager.Play(_animations["Alive"]);
+                    if (Singleton.Instance.maxHeroHP / 4 >= HP)
+                    {
+                        SoundEffects["LowHP"].Volume = Singleton.Instance.MasterSFXVolume;
+                        SoundEffects["LowHP"].Play();
+                    }
                     break;
                 case Singleton.GameState.GamePlaying:
                     _chargeTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -94,6 +99,11 @@ namespace Rockman.Sprites
                                     SoundEffects["Deleted"].Play();
                                     HP = 0;
                                     Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.Dead;
+                                }
+                                else if (Singleton.Instance.maxHeroHP / 4 >= HP)
+                                {
+                                    SoundEffects["LowHP"].Volume = Singleton.Instance.MasterSFXVolume;
+                                    SoundEffects["LowHP"].Play();
                                 }
                                 //barrierTime
                                 if (Singleton.Instance.HeroBarrier > 0 || Singleton.Instance.HeroAura > 0)
@@ -334,33 +344,6 @@ namespace Rockman.Sprites
                 case Singleton.ScreenState.StoryMode:
                     //rectCharge
                     destRectCharge = new Rectangle((TILESIZEX * currentTile.Y * 2) + (screenStageX - 40), (TILESIZEY * currentTile.X * 2) + (screenStageY - 100), 67 * (int)scale, 67 * (int)scale);
-                    //drawHeroHP
-                    if (Singleton.Instance.maxHeroHP / 4 >= HP)
-                    {
-                        SoundEffects["LowHP"].Volume = Singleton.Instance.MasterSFXVolume;
-                        SoundEffects["LowHP"].Play();
-                        if (Singleton.Instance.chooseEmotionPlayer != "DarkEmotion") Singleton.Instance.chooseEmotionPlayer = "HurtEmotion";
-                        if (Singleton.Instance.CurrentGameState == Singleton.GameState.GameCustomScreen)
-                        {
-                            spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(375, 10), Color.OrangeRed, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
-                        }
-                        else if (Singleton.Instance.CurrentGameState == Singleton.GameState.GamePlaying)
-                        {
-                            spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(10, 10), Color.OrangeRed, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
-                        }
-                    }
-                    else
-                    {
-                        if (Singleton.Instance.chooseEmotionPlayer != "DarkEmotion") Singleton.Instance.chooseEmotionPlayer = "NormalEmotion";
-                        if (Singleton.Instance.CurrentGameState == Singleton.GameState.GameCustomScreen)
-                        {
-                            spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(375, 10), Color.White, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
-                        }
-                        else if (Singleton.Instance.CurrentGameState == Singleton.GameState.GamePlaying)
-                        {
-                            spriteBatch.DrawString(Singleton.Instance._font, string.Format("HP {0}", HP), new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.6f, SpriteEffects.None, 0f);
-                        }
-                    }
                     //drawHeroSprite
                     for (int i = 0; i < 3; i++)
                     {

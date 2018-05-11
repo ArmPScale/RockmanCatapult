@@ -52,6 +52,7 @@
     <Compile Include="Sprites\Backgrounds\MenuScreen.cs" />
     <Compile Include="Sprites\Backgrounds\TitleScreen.cs" />
     <Compile Include="Sprites\Backgrounds\BackgroundSprite.cs" />
+    <Compile Include="Sprites\Chips\Ability\RiverBNK.cs" />
     <Compile Include="Sprites\Chips\Ability\BlackAceChip.cs" />
     <Compile Include="Sprites\Chips\Ability\AirShot.cs" />
     <Compile Include="Sprites\Chips\Ability\PanelChip.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Sprites\Screens\Battle\CustomScreen.cs" />
     <Compile Include="Sprites\Screens\Battle\ChipSelect.cs" />
     <Compile Include="Sprites\Screens\Battle\AppearScreen.cs" />
+    <Compile Include="Sprites\Screens\Battle\HealthGauge.cs" />
     <Compile Include="Sprites\Screens\Battle\FadeScreen.cs" />
     <Compile Include="Sprites\Enemies\MettonWaveSprite.cs" />
     <Compile Include="Sprites\Enemies\MettonSprite.cs" />

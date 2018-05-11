@@ -84,7 +84,8 @@ namespace Rockman.Sprites
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if (Singleton.Instance.bossAttack[i, j] == 3)
+                    if (Singleton.Instance.bossAttack[i, j] == 3 || 
+                        Singleton.Instance.chipEffect[i, j] == 5)
                     {
                         _currentMagicCircle = new Point(i, j);
                         if (_animationManager == null)
@@ -96,6 +97,7 @@ namespace Rockman.Sprites
                         }
                         else
                         {
+
                             _animationManager.Draw(spriteBatch,
                                 new Vector2((TILESIZEX * j * 2) + (screenStageX + 25),
                                     (TILESIZEY * i * 2) + (screenStageY + 0)),

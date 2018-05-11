@@ -65,10 +65,10 @@ namespace Rockman
             //shuffleBattleChipInFolder
             Singleton.Instance.folderList = new List<string>()
             {
-                "DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
-                "DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon",
-                "PanelReturn","HolyPanel","Sanctuary","BlackBomb","CannonBall","DarkStage",
-                "MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb3","DarkBomb"
+                //"DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
+                //"DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon",
+                "PanelReturn","HolyPanel","Sanctuary","BlackBomb","CannonBall","DarkStage","CherprangRiver","JaneRiver"
+                //"MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb3","DarkBomb","BugBomb",
             };
             Singleton.Instance.folderList.Shuffle();
             Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
@@ -469,6 +469,7 @@ namespace Rockman
             chipTexture[10] = Content.Load<Texture2D>("chipAtk/RainyNoShade");
             chipTexture[11] = Content.Load<Texture2D>("chipAtk/MagicCircle");
             chipTexture[12] = Content.Load<Texture2D>("chipAtk/MagicFreeze");
+            chipTexture[13] = Content.Load<Texture2D>("chipAtk/RiverBNK48");
 
             // --> screenSpritesList
             _screenSprites = new List<Sprite>();
@@ -511,6 +512,19 @@ namespace Rockman
             _sprites.Add(new FadeScreen(fadeScreenTexture)
             {
                 Name = "FadeScreen",
+            });
+            //magicCircleSprite
+            _sprites.Add(new MagicCircle(new Dictionary<string, Animation>()
+            {
+                { "MagicCircle", new Animation(chipTexture[11], new Rectangle(0, 0,  307, 211), 1) },
+            })
+            {
+                Name = "MagicCircle",
+                Viewport = new Rectangle(0, 0, 307, 211),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"MagicCircle", Content.Load<SoundEffect>("sfx/MagicCircle").CreateInstance() },
+                }
             });
             //mettonSprite
             _sprites.Add(new MettonSprite(enemiesTexture)
@@ -622,19 +636,6 @@ namespace Rockman
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"Rainy", Content.Load<SoundEffect>("sfx/Rainy").CreateInstance() },
-                }
-            });
-            //magicCircleSprite
-            _sprites.Add(new MagicCircle(new Dictionary<string, Animation>()
-            {
-                { "MagicCircle", new Animation(chipTexture[11], new Rectangle(0, 0,  307, 211), 1) },
-            })
-            {
-                Name = "MagicCircle",
-                Viewport = new Rectangle(0, 0, 307, 211),
-                SoundEffects = new Dictionary<string, SoundEffectInstance>()
-                {
-                    {"MagicCircle", Content.Load<SoundEffect>("sfx/MagicCircle").CreateInstance() },
                 }
             });
             //magicFreezeSprite
@@ -950,6 +951,11 @@ namespace Rockman
                 Position = new Vector2(Singleton.WIDTH/3, Singleton.HEIGHT/4),
                 Viewport = new Rectangle(0, 0, 280, 20),
             });
+            //gaugeHPandNoise
+            _sprites.Add(new HealthGauge(customScreenTexture)
+            {
+                Name = "HealthNoiseGauge",
+            });
             ////emotionPlayer
             //_sprites.Add(new EmotionPlayer(customScreenTexture)
             //{
@@ -1079,6 +1085,28 @@ namespace Rockman
                     {"CrackOut", Content.Load<SoundEffect>("sfx/CrackOut").CreateInstance() },
                 }
             });
+            //chipRiverBNK48
+            _sprites.Add(new RiverBNK(chipTexture)
+            {
+                Name = "RiverBNK48",
+                Viewport = new Rectangle(0, 0, 168, 144),
+                Position = new Vector2(16 * 3, 24 * 3 - 2),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"MagicCircle", Content.Load<SoundEffect>("sfx/MagicCircle").CreateInstance() },
+                    {"MagicFreeze", Content.Load<SoundEffect>("sfx/MagicFreeze").CreateInstance() },
+                }
+            });
+            ////chipBlackEndGalaxy
+            //_sprites.Add(new BlackEndGalaxy(chipTexture)
+            //{
+            //    Name = "BlackEndGalaxy",
+            //    Viewport = new Rectangle(56, 240, 56, 47),
+            //    SoundEffects = new Dictionary<string, SoundEffectInstance>()
+            //    {
+            //        {"BlackEndGalaxy", Content.Load<SoundEffect>("sfx/CrackOut").CreateInstance() },
+            //    }
+            //});
             //chipBlackAce
             _sprites.Add(new BlackAceChip(chipTexture)
             {
