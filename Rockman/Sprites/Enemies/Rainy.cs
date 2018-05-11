@@ -47,12 +47,12 @@ namespace Rockman.Sprites
                         if (_rainyCoolDown < 0.05f)
                         {
                             _animationManager.Play(_animations["Cloudy"]);
+                            SoundEffects["Rainy"].Volume = Singleton.Instance.MasterSFXVolume;
+                            SoundEffects["Rainy"].Play();
                         }
                         else if (_rainyCoolDown > 0.15f && _rainyCoolDown < 0.2f)
                         {
                             _animationManager.Play(_animations["Rainy"]);
-                            //SoundEffects["Rainy"].Volume = Singleton.Instance.MasterSFXVolume;
-                            //SoundEffects["Rainy"].Play();
                         }
                         else if (_rainyCoolDown > 0.2f)
                         {

@@ -55,7 +55,7 @@ namespace Rockman
         public float MasterSFXVolume;
 
         //utility
-        public bool newTurnCustom, isCustomBarFull;
+        public bool newTurnCustom, isCustomBarFull, isCustomBomb = false;
         public bool atkFinished, selectChipSuccess;
         public bool useChip, useChipDuring, useChipNearlySuccess, useChipSuccess;
         public bool useNormalChip, useSceneChip, useThrowableChip;

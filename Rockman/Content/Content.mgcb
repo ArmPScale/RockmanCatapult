@@ -99,12 +99,6 @@
 /processorParam:Quality=Best
 /build:bgm/PVPBattle(Re)-RNR3.mp3
 
-#begin sfx/Cannon.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sfx/Cannon.wav
-
 #begin sfx/DefeatedExplode.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -117,18 +111,6 @@
 /processorParam:Quality=Best
 /build:sfx/Deleted.wav
 
-#begin background/space.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:background/space.png
-
 #begin rockman/RockmanExe6.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -140,18 +122,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:rockman/RockmanExe6.png
-
-#begin screen/CustomScreen.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:screen/CustomScreen.png
 
 #begin sfx/ChipCancel.wav
 /importer:WavImporter
@@ -309,18 +279,6 @@
 /processorParam:TextureFormat=Color
 /build:screen/EmotionEXE5.png
 
-#begin screen/CustomWindow.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:screen/CustomWindow.png
-
 #begin chipAtk/Recovery.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -404,18 +362,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:screen/PushButtonEXE3.png
-
-#begin chipAtk/Throwables.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:chipAtk/Throwables.png
 
 #begin sfx/MettWave.wav
 /importer:WavImporter
@@ -675,18 +621,6 @@
 /processorParam:TextureFormat=Color
 /build:chipAtk/MagicCircle.png
 
-#begin chipAtk/chipList.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:chipAtk/chipList.png
-
 #begin screen/BlackAceEmblem.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -734,4 +668,172 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:rockman/BlackAceEffect.png
+
+#begin sfx/MagicFreeze.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/MagicFreeze.wav
+
+#begin sfx/MagicCircle.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/MagicCircle.wav
+
+#begin sfx/FinalizeChanged.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/FinalizeChanged.wav
+
+#begin sfx/Finalize!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/Finalize!.wav
+
+#begin sfx/BlackAce!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/BlackAce!.wav
+
+#begin sfx/FinalizeChanging.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/FinalizeChanging.wav
+
+#begin sfx/BlackAceSelected.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/BlackAceSelected.wav
+
+#begin sfx/Rainy.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/Rainy.wav
+
+#begin sfx/AquaShield.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/AquaShield.wav
+
+#begin sfx/AquaWave.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/AquaWave.wav
+
+#begin chipAtk/Throwables.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:chipAtk/Throwables.png
+
+#begin battleEffect/ImpactExplosion.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:battleEffect/ImpactExplosion.png
+
+#begin sfx/BombExplosion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/BombExplosion.wav
+
+#begin sfx/CannonBall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/CannonBall.wav
+
+#begin sfx/Cannon.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/Cannon.wav
+
+#begin sfx/EnergyBomb.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/EnergyBomb.wav
+
+#begin chipAtk/chipList.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:chipAtk/chipList.png
+
+#begin screen/CustomWindow.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:screen/CustomWindow.png
+
+#begin screen/CustomBomb.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:screen/CustomBomb.png
+
+#begin background/Space.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background/Space.png
+
+#begin screen/CustomScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:screen/CustomScreen.png
 

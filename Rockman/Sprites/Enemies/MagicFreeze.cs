@@ -30,31 +30,41 @@ namespace Rockman.Sprites
                     if (Singleton.Instance.bossAttack[_currentMagicFreeze.X, _currentMagicFreeze.Y] == 4)
                     {
                         _magicFreezeCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                        //atkTakePlayer
-                        for (int i = 0; i < 3; i++)
-                        {
-                            for (int j = 0; j < 10; j++)
-                            {
-                                if (Singleton.Instance.bossAttack[i, j] == 4 && Singleton.Instance.playerMove[i, j] > 0 && _isDamaged)
-                                {
-                                    Singleton.Instance.enemyAtk = 1;
-                                    Singleton.Instance.isDamaged = _isDamaged;
-                                    _isDamaged = false;
-                                }
-                            }
-                        }
+                        
                         if (_magicFreezeCoolDown > 1.3f)
                         {
                             if (_magicFreezeCoolDown < 1.4f)
                             {
+                                SoundEffects["MagicFreeze"].Volume = Singleton.Instance.MasterSFXVolume;
+                                SoundEffects["MagicFreeze"].Play();
                                 _animationManager.Play(_animations["Freezing"]);
                             }
                             else if (_magicFreezeCoolDown < 1.6f)
                             {
                                 _animationManager.Play(_animations["Frozen"]);
+                                //atkTakePlayer
+                                for (int i = 0; i < 3; i++)
+                                {
+                                    for (int j = 0; j < 10; j++)
+                                    {
+                                        if (Singleton.Instance.bossAttack[i, j] == 4 && Singleton.Instance.playerMove[i, j] > 0 && _isDamaged)
+                                        {
+                                            Singleton.Instance.enemyAtk = 200;
+                                            Singleton.Instance.isDamaged = _isDamaged;
+                                            _isDamaged = false;
+                                        }
+                                    }
+                                }
                             }
-                            else if (_magicFreezeCoolDown > 3f)
+                            else if (_magicFreezeCoolDown > 2.5f)
                             {
+                                for (int i = 0; i < 3; i++)
+                                {
+                                    for (int j = 0; j < 10; j++)
+                                    {
+                                        if (Singleton.Instance.bossAttack[i, j] == 4) Singleton.Instance.bossAttack[i, j] = 0;
+                                    }
+                                }
                                 _isDamaged = true;
                                 _magicFreezeCoolDown = 0;
                             }
@@ -72,7 +82,7 @@ namespace Rockman.Sprites
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if (Singleton.Instance.bossAttack[i, j] == 4)
+                    if (Singleton.Instance.bossAttack[i, j] == 4 && i == 1)
                     {
                         _currentMagicFreeze = new Point(i, j);
                         if (_animationManager == null)

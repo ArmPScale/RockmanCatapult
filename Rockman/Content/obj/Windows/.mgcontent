@@ -15,12 +15,9 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/TournamentBattle-EXE4.5.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/virus/MettonAttack.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/PVPBattle(Re)-RNR3.mp3</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Cannon.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/DefeatedExplode.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Deleted.wav</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/space.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanExe6.png</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomScreen.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipCancel.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipChoose.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipConfirm.wav</File>
@@ -42,7 +39,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/CrackOut.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipIconEXE4.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/EmotionEXE5.png</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomWindow.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/Recovery.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/AirShot.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Spreader.wav</File>
@@ -51,7 +47,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/ImpacteffectHalfexplosion.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Throwable.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/PushButtonEXE3.png</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/Throwables.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/MettWave.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/SpellCasting.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/virus/MettFire.png</File>
@@ -80,10 +75,30 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/boss/QueenVirgo.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/MagicFreeze.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/MagicCircle.png</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipList.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/BlackAceEmblem.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/RainyNoShade.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/BlackAceSprite.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/BlackAceEffect.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/MagicFreeze.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/MagicCircle.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/FinalizeChanged.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Finalize!.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BlackAce!.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/FinalizeChanging.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BlackAceSelected.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Rainy.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/AquaShield.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/AquaWave.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/Throwables.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/ImpactExplosion.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BombExplosion.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/CannonBall.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Cannon.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/EnergyBomb.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipList.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomWindow.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomBomb.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/Space.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomScreen.png</File>
   </SourceFiles>
 </SourceFileCollection>

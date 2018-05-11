@@ -13,7 +13,6 @@ namespace Rockman.Sprites.Chips
     class ImpactHalfExplodeEffect : Sprite
     {
         private float _impactHalfExplodeCoolDown = 0;
-        private bool isExplode = false;
         public ImpactHalfExplodeEffect(Dictionary<string, Animation> animations)
             : base(animations)
         {

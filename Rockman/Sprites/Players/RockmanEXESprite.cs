@@ -285,6 +285,33 @@ namespace Rockman.Sprites
                     break;
                 case Singleton.GameState.GameUseChip:
                     _animationManager.Play(_animations[Singleton.Instance.choosePlayerAnimate]);
+                    if (Singleton.Instance.isDamaged)
+                    {
+                        //holyPanelPlayer
+                        if (Singleton.Instance.panelElement[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] == 1)
+                        {
+                            Singleton.Instance.enemyAtk /= 2;
+                        }
+                        //barrier
+                        if (Singleton.Instance.HeroBarrier > 0)
+                        {
+                            SoundEffects["Barrier"].Volume = Singleton.Instance.MasterSFXVolume;
+                            SoundEffects["Barrier"].Play();
+                            Singleton.Instance.HeroBarrier -= Singleton.Instance.enemyAtk;
+                        }
+                        else if (Singleton.Instance.HeroAura > 0)
+                        {
+                            if (Singleton.Instance.enemyAtk >= Singleton.Instance.HeroAura) Singleton.Instance.HeroAura = 0;
+                        }
+                        else
+                        {
+                            SoundEffects["Damaged"].Volume = Singleton.Instance.MasterSFXVolume;
+                            SoundEffects["Damaged"].Play();
+                            Singleton.Instance.HeroHP -= Singleton.Instance.enemyAtk;
+                        }
+                        Singleton.Instance.enemyAtk = 0;
+                        Singleton.Instance.isDamaged = false;
+                    }
                     _animationManager.Update(gameTime);
                     break;
                 case Singleton.GameState.GameClear:

@@ -21,7 +21,7 @@ namespace Rockman.Sprites.Screens
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameCustomScreen:
-                    if (Singleton.Instance.chipCustomSelect[6] == "BlackAce")
+                    if (Singleton.Instance.chipCustomSelect[6] == "BlackAce" && Singleton.Instance.chipSlotIn.Count == 0)
                     {
                         _animationManager.Play(_animations["Available"]);
                     }

@@ -32,7 +32,7 @@ namespace Rockman.Sprites.Chips
                         rectChipBlackAceImg.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
                     {
                         Singleton.Instance.useSceneChip = true;
-                        //Singleton.Instance.useChipName = Singleton.Instance.useChipSlotIn.Peek();
+                        Singleton.Instance.useChipName = "";
                     }
                     break;
                 case Singleton.GameState.GameUseChip:
@@ -41,12 +41,29 @@ namespace Rockman.Sprites.Chips
                     {
                         _timerChange += (float)gameTime.ElapsedGameTime.TotalSeconds;
                         Singleton.Instance.playerMove[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] = 0;
+                        Singleton.Instance.HeroBarrier = 0;
+                        Singleton.Instance.HeroAura = 0;
                         Singleton.Instance.useSceneChip = false;
-                        if (_timerChange > 1f)
+                        if (_timerChange > 0.1f && _timerChange < 0.2f)
+                        {
+                            SoundEffects["Finalize!"].Volume = Singleton.Instance.MasterSFXVolume;
+                            SoundEffects["Finalize!"].Play();
+                        }
+                        else if (_timerChange > 0.2f && _timerChange < 0.3f)
+                        {
+                            SoundEffects["FinalizeChanging"].Volume = Singleton.Instance.MasterSFXVolume;
+                            SoundEffects["FinalizeChanging"].Play();
+                        }
+                        else if (_timerChange > 1f)
                         {
                             Singleton.Instance.whiteScreen = true;
                             if (_timerChange > 1.1f)
                             {
+                                SoundEffects["FinalizeChanged"].Volume = Singleton.Instance.MasterSFXVolume;
+                                SoundEffects["FinalizeChanged"].Play();
+                                SoundEffects["BlackAce!"].Volume = Singleton.Instance.MasterSFXVolume;
+                                SoundEffects["BlackAce!"].Play();
+                                _timerChange = 0f;
                                 Singleton.Instance.whiteScreen = false;
                                 Singleton.Instance.playerMove[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] = 10;
                                 Singleton.Instance.HeroBarrier = 100;

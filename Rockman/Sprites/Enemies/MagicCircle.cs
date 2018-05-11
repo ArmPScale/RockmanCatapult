@@ -14,6 +14,7 @@ namespace Rockman.Sprites
     {
         private float _magicCircleCoolDown = 0;
         private Point _currentMagicCircle;
+        private bool _isDamaged = true;
 
         public MagicCircle(Dictionary<string, Animation> animations)
             : base(animations)
@@ -31,6 +32,8 @@ namespace Rockman.Sprites
                         _magicCircleCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
                         if (_magicCircleCoolDown > 0.2f && _magicCircleCoolDown < 0.3f)
                         {
+                            SoundEffects["MagicCircle"].Volume = Singleton.Instance.MasterSFXVolume;
+                            SoundEffects["MagicCircle"].Play();
                             for (int i = 0; i < 3; i++)
                             {
                                 for (int j = 0; j < 10; j++)
@@ -41,24 +44,32 @@ namespace Rockman.Sprites
                         }
                         else if (_magicCircleCoolDown < 1f)
                         {
-                            for (int i = 0; i < 3; i++)
+                            //magicFreezeStart
+                            Singleton.Instance.bossAttack[_currentMagicCircle.X, _currentMagicCircle.Y + 1] = 4;
+                            Singleton.Instance.bossAttack[_currentMagicCircle.X, _currentMagicCircle.Y + 2] = 4;
+                            Singleton.Instance.bossAttack[_currentMagicCircle.X + 1, _currentMagicCircle.Y] = 4;
+                            Singleton.Instance.bossAttack[_currentMagicCircle.X + 1, _currentMagicCircle.Y + 1] = 4;
+                            Singleton.Instance.bossAttack[_currentMagicCircle.X + 1, _currentMagicCircle.Y + 2] = 4;
+                            Singleton.Instance.bossAttack[_currentMagicCircle.X + 2, _currentMagicCircle.Y] = 4;
+                            Singleton.Instance.bossAttack[_currentMagicCircle.X + 2, _currentMagicCircle.Y + 1] = 4;
+                            Singleton.Instance.bossAttack[_currentMagicCircle.X + 2, _currentMagicCircle.Y + 2] = 4;
+                        }
+                        else if (_magicCircleCoolDown > 1.5f && _magicCircleCoolDown < 1.6f)
+                        {
+                            //atkTakePlayer
+                            if (Singleton.Instance.bossAttack[_currentMagicCircle.X, _currentMagicCircle.Y] == 3 && 
+                                Singleton.Instance.playerMove[_currentMagicCircle.X, _currentMagicCircle.Y] > 0 && _isDamaged)
                             {
-                                for (int j = 0; j < 10; j++)
-                                {
-                                    if (Singleton.Instance.bossAttack[i, j] == 3) Singleton.Instance.bossAttack[i, j] = 4;
-                                }
+                                Singleton.Instance.enemyAtk = 200;
+                                Singleton.Instance.isDamaged = _isDamaged;
+                                _isDamaged = false;
                             }
                         }
                         else if (_magicCircleCoolDown > 2f)
                         {
+                            _isDamaged = true;
                             _magicCircleCoolDown = 0f;
-                            for (int i = 0; i < 3; i++)
-                            {
-                                for (int j = 0; j < 10; j++)
-                                {
-                                    if (Singleton.Instance.bossAttack[i, j] == 3) Singleton.Instance.bossAttack[i, j] = 0;
-                                }
-                            }
+                            Singleton.Instance.bossAttack[_currentMagicCircle.X, _currentMagicCircle.Y] = 0;
                         }
                     }
                     _animationManager.Update(gameTime);
@@ -86,8 +97,8 @@ namespace Rockman.Sprites
                         else
                         {
                             _animationManager.Draw(spriteBatch,
-                                new Vector2((TILESIZEX * j * 2) + (screenStageX - 100),
-                                    (TILESIZEY * i * 2) + (screenStageY - 70)),
+                                new Vector2((TILESIZEX * j * 2) + (screenStageX + 25),
+                                    (TILESIZEY * i * 2) + (screenStageY + 0)),
                                 1f);
                         }
                     }

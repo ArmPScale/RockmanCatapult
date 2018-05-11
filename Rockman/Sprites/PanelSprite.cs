@@ -118,6 +118,14 @@ namespace Rockman.Sprites
                                         }
                                     }
                                     break;
+                                case Singleton.GameState.GameUseChip:
+                                    //panelElementCracked
+                                    if (Singleton.Instance.panelStage[i, j] > 0)
+                                    {
+                                        Singleton.Instance.panelElement[i, j] = 0;
+                                    }
+                                    break;
+
                             }
                         }
                     }

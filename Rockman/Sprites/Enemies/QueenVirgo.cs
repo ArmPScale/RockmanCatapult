@@ -11,7 +11,7 @@ namespace Rockman.Sprites
         private float _timer, _atkTime, _castingTime;
         public Point currentTile;
         public static Random random = new Random();
-        int HP, panelX, panelY, chooseAtk;
+        int HP, panelX, panelY, chooseAtk, notUseStack = 0;
         bool isProtected = false;
 
         public QueenVirgo(Texture2D[] _texture)
@@ -36,9 +36,16 @@ namespace Rockman.Sprites
                         //aquaShield
                         if (isProtected && HP > Singleton.Instance.spriteHP[currentTile.X, currentTile.Y])
                         {
-                            Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] = HP;
-                            SoundEffects["AquaSheild"].Volume = Singleton.Instance.MasterSFXVolume;
-                            SoundEffects["AquaSheild"].Play();
+                            if (Singleton.Instance.useChipName == "CannonBall")
+                            {
+                                isProtected = false;
+                            }
+                            else
+                            {
+                                Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] = HP;
+                                SoundEffects["AquaProtect"].Volume = Singleton.Instance.MasterSFXVolume;
+                                SoundEffects["AquaProtect"].Play();
+                            }
                         }
                         //checkHP
                         if (Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] <= 0)
@@ -69,15 +76,26 @@ namespace Rockman.Sprites
                                 _animationManager.Play(_animations["StartCasting"]);
                                 HP = Singleton.Instance.spriteHP[currentTile.X, currentTile.Y];
                                 //randomChooseAtk
-                                chooseAtk = random.Next(3, 4);
+                                if (HP < 400)
+                                {
+                                    chooseAtk = random.Next(1, 4);
+                                    //stackNotUse3
+                                    if (notUseStack == 3) chooseAtk = 3;
+                                    if (chooseAtk != 3) notUseStack += 1;
+                                    else notUseStack = 0;
+                                }
+                                else
+                                {
+                                    chooseAtk = random.Next(1, 3);
+                                }
                             }
                             else if (_atkTime < 5.5f)
                             {
                                 _animationManager.Play(_animations["Casting"]);
                                 if(_atkTime < 3.2f)
                                 {
-                                    SoundEffects["Casting"].Volume = Singleton.Instance.MasterSFXVolume;
-                                    SoundEffects["Casting"].Play();
+                                    SoundEffects["AquaShield"].Volume = Singleton.Instance.MasterSFXVolume;
+                                    SoundEffects["AquaShield"].Play();
                                     if (chooseAtk == 2 && _castingTime > 0.2f)
                                     {
                                         panelX = Singleton.Instance.currentPlayerPoint.X;
@@ -127,7 +145,7 @@ namespace Rockman.Sprites
                                 else if (chooseAtk == 3 && _atkTime > 4f && _atkTime < 4f + 1.8f)
                                 {
                                     //magicianFreeze
-                                    Singleton.Instance.bossAttack[panelX, panelY] = 3;
+                                    Singleton.Instance.bossAttack[panelX - 1, panelY - 1] = 3;
                                 }
                                 //aquaShieldActived
                                 isProtected = true;
@@ -171,9 +189,16 @@ namespace Rockman.Sprites
                     //aquaShield
                     if (isProtected && HP > Singleton.Instance.spriteHP[currentTile.X, currentTile.Y])
                     {
-                        Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] = HP;
-                        SoundEffects["AquaSheild"].Volume = Singleton.Instance.MasterSFXVolume;
-                        SoundEffects["AquaSheild"].Play();
+                        if (Singleton.Instance.useChipName == "CannonBall")
+                        {
+                            isProtected = false;
+                        }
+                        else
+                        {
+                            Singleton.Instance.spriteHP[currentTile.X, currentTile.Y] = HP;
+                            SoundEffects["AquaProtect"].Volume = Singleton.Instance.MasterSFXVolume;
+                            SoundEffects["AquaProtect"].Play();
+                        }
                     }
                     break;
             }

@@ -8,11 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Rockman.Models;
 
+
 namespace Rockman.Sprites.Chips
 {
     class Throwable : Chip
     {
-        private bool isPressed = false;
+        private bool isPressed = false, _isHolding = true;
 
         Dictionary<string, Rectangle> rectChipThrowableImg = new Dictionary<string, Rectangle>()
         {
@@ -65,9 +66,18 @@ namespace Rockman.Sprites.Chips
                     if (Singleton.Instance.useChipDuring &&
                         throwableAtk.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
                     {
-                        // to do
-                        if(!isPressed && 
-                            Singleton.Instance.CurrentKey.IsKeyDown(Keys.K) && Singleton.Instance.PreviousKey.IsKeyUp(Keys.K))
+                        Singleton.Instance.isCustomBomb = true;
+                        if(!isPressed && Singleton.Instance.CurrentKey.IsKeyDown(Keys.K))
+                        {
+                            Singleton.Instance.choosePlayerAnimate = "BombPrepare";
+                            if(Velocity.X <= 2316)
+                            {
+                                Velocity.X += 12;
+                                Velocity.Y -= 12;
+                            }
+                            _isHolding = false;
+                        }
+                        else if (!isPressed && !_isHolding && Singleton.Instance.PreviousKey.IsKeyUp(Keys.K))
                         {
                             isPressed = true;
                             Singleton.Instance.useThrowableChip = true;
@@ -75,7 +85,9 @@ namespace Rockman.Sprites.Chips
                         }
                         if (Singleton.Instance.useChipNearlySuccess)
                         {
+                            Singleton.Instance.isCustomBomb = false;
                             isPressed = false;
+                            _isHolding = true;
                         }
                     }
                     break;

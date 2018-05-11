@@ -11,9 +11,6 @@ namespace Rockman.Sprites
 {
     class BackgroundSprite : Sprite
     {
-        Vector2 bgScroll;
-        int n = 0;
-
         public BackgroundSprite(Texture2D[] texture)
             : base(texture)
         {
@@ -21,11 +18,10 @@ namespace Rockman.Sprites
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            n--;
-            bgScroll = new Vector2(n, 0);
-            if(n <= -(Singleton.WIDTH) * scale)
+            Position.X -= 0.75f;
+            if(Position.X <= -(Singleton.WIDTH))
             {
-                n = 0;
+                Position.X = 0;
             }
             base.Update(gameTime, sprites);
         }
@@ -35,7 +31,7 @@ namespace Rockman.Sprites
             switch (Singleton.Instance.CurrentScreenState)
             {
                 case Singleton.ScreenState.StoryMode:
-                    spriteBatch.Draw(_texture[0], bgScroll, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(_texture[0], Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                     break;
             }
             base.Draw(spriteBatch);

@@ -13,9 +13,9 @@ namespace Rockman.Sprites.Chips
     class Chip : Sprite
     {
         #region PHYSICS_VARIABLES
-        public float GRAVITY = 981;
-        public Vector2 Acceleration = new Vector2(100, 100);
-        public Vector2 Velocity = new Vector2(1200, -2000);
+        public static float GRAVITY = 981;
+        public static Vector2 Acceleration = new Vector2(75, 75);
+        public static Vector2 Velocity = new Vector2(0, 0);
 
         #endregion
 

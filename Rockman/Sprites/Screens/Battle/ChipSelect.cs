@@ -100,24 +100,28 @@ namespace Rockman.Sprites.Screens
                                     }
                                     else
                                     {
-                                        if(Singleton.Instance.indexChipSlotIn.Count != 5 && Singleton.Instance.chipCustomSelect[currentTile.X] != "")
+                                        if(Singleton.Instance.indexChipSlotIn.Count != 5 && 
+                                            Singleton.Instance.chipCustomSelect[currentTile.X] != "")
                                         {
-                                            if (currentTile.X == 6)
+                                            if (Singleton.Instance.chipSlotIn.Count == 0 && currentTile.X == 6)
                                             {
                                                 //checkBlackAceChip
-                                                SoundEffects["ChipChoose"].Volume = Singleton.Instance.MasterSFXVolume;
-                                                SoundEffects["ChipChoose"].Play();
+                                                SoundEffects["BlackAceSelected"].Volume = Singleton.Instance.MasterSFXVolume;
+                                                SoundEffects["BlackAceSelected"].Play();
+                                                Singleton.Instance.chipSlotIn.Push(Singleton.Instance.chipCustomSelect[currentTile.X]);
+                                                Singleton.Instance.indexChipSlotIn.Push(currentTile.X);
+                                                Singleton.Instance.chipCustomSelect[currentTile.X] = "";
+                                                Singleton.Instance.chipStackImg[Singleton.Instance.chipSlotIn.Count - 1] = Singleton.Instance.chipSlotIn.Peek();
                                             }
-                                            else
+                                            else if(currentTile.X != 6)
                                             {
                                                 SoundEffects["ChipChoose"].Volume = Singleton.Instance.MasterSFXVolume;
                                                 SoundEffects["ChipChoose"].Play();
+                                                Singleton.Instance.chipSlotIn.Push(Singleton.Instance.chipCustomSelect[currentTile.X]);
+                                                Singleton.Instance.indexChipSlotIn.Push(currentTile.X);
+                                                Singleton.Instance.chipCustomSelect[currentTile.X] = "";
+                                                Singleton.Instance.chipStackImg[Singleton.Instance.chipSlotIn.Count - 1] = Singleton.Instance.chipSlotIn.Peek();
                                             }
-                                            //selectChip
-                                            Singleton.Instance.chipSlotIn.Push(Singleton.Instance.chipCustomSelect[currentTile.X]);
-                                            Singleton.Instance.indexChipSlotIn.Push(currentTile.X);
-                                            Singleton.Instance.chipCustomSelect[currentTile.X] = "";
-                                            Singleton.Instance.chipStackImg[Singleton.Instance.chipSlotIn.Count - 1] = Singleton.Instance.chipSlotIn.Peek();
                                         }
                                     }
                                 }

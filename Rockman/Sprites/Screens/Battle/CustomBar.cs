@@ -62,18 +62,18 @@ namespace Rockman.Sprites.Screens
         {
             switch (Singleton.Instance.CurrentGameState)
             {
-                case Singleton.GameState.GameWaiting:
-                    if (_animationManager == null)
-                    {
-                        //drawBar
-                        spriteBatch.Draw(_texture[0], rectBar, Viewport, Color.White);
-                    }
-                    else _animationManager.Draw(spriteBatch, Position, scale);
-                    break;
                 case Singleton.GameState.GamePlaying:
                     if (_animationManager == null)
                     {
                         //drawBar
+                        if (rectBar.Width > 384)
+                        {
+                            Viewport = new Rectangle(452, 151, 8, 8);
+                        }
+                        else
+                        {
+                            Viewport = new Rectangle(452, 139, 8, 8);
+                        }
                         spriteBatch.Draw(_texture[0], rectBar, Viewport, Color.White);
                     }
                     else _animationManager.Draw(spriteBatch, Position, scale);
