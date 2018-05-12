@@ -29,6 +29,10 @@ namespace Rockman.Sprites
             switch (Singleton.Instance.CurrentScreenState)
             {
                 case Singleton.ScreenState.TitleScreen:
+                    if (Singleton.Instance.CurrentKey.IsKeyDown(Keys.Escape) && Singleton.Instance.PreviousKey.IsKeyUp(Keys.Escape))
+                    {
+                        Singleton.Instance.CurrentScreenState = Singleton.ScreenState.Quit;
+                    }
                     //bgScrolling
                     bg1 -= 3;
                     bgScroll1 = new Vector2(bg1, 0);

@@ -26,6 +26,9 @@ namespace Rockman.Sprites
         {
             switch (Singleton.Instance.CurrentGameState)
             {
+                case Singleton.GameState.GameEnemyAppear:
+                    _magicCircleCoolDown = 0;
+                    break;
                 case Singleton.GameState.GamePlaying:
                     if (Singleton.Instance.bossAttack[_currentMagicCircle.X, _currentMagicCircle.Y] == 3)
                     {

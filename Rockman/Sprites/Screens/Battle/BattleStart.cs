@@ -49,8 +49,7 @@ namespace Rockman.Sprites.Screens
                         _animationManager.Play(_animations["EnemyDeletedFreeze"]);
                         if (_timer > 1.5f)
                         {
-                            //_timer = 0f;
-                            //Singleton.Instance.CurrentGameState = Singleton.GameState.GamePlaying;
+                            _timer = 0f;
                         }
                     }
                     else

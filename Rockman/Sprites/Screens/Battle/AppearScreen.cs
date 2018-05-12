@@ -13,6 +13,7 @@ namespace Rockman.Sprites
 {
     class AppearScreen : Screen
     {
+        private float _timer = 0f;
 
         public AppearScreen(Texture2D[] texture)
             : base(texture)
@@ -24,17 +25,27 @@ namespace Rockman.Sprites
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameEnemyAppear:
-                    //fadeScreen
-                    fade.R += 5;
-                    fade.G += 5;
-                    fade.B += 5;
-                    fade.A += 5;
-                    if (fade.A >= 255)
+                    _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (_timer < 0.05f)
                     {
+                        SoundEffects["GoIntoBattle"].Volume = Singleton.Instance.MasterSFXVolume;
+                        SoundEffects["GoIntoBattle"].Play();
+                    }
+                    //gotoGameCustomScreen
+                    else if (_timer > 3f)
+                    {
+                        _timer = 0f;
                         MediaPlayer.Stop();
                         Singleton.Instance.CurrentGameState = Singleton.GameState.GameCustomScreen;
                     }
-                    Console.WriteLine(fade.A);
+                    //fadeScreen
+                    if (fade.A < 255)
+                    {
+                        fade.R += 15;
+                        fade.G += 15;
+                        fade.B += 15;
+                        fade.A += 15;
+                    }
                     break;
                 case Singleton.GameState.GameCustomScreen:
                     fade *= 0.96f;
@@ -49,6 +60,7 @@ namespace Rockman.Sprites
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameEnemyAppear:
+                    spriteBatch.Draw(_texture[0], new Vector2(0, 0), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                     spriteBatch.Draw(_texture[1], new Vector2(0, 0), null, fade, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                     break;
                 case Singleton.GameState.GameCustomScreen:

@@ -45,6 +45,9 @@ namespace Rockman.Sprites.Chips
                     }
                     _animationManager.Update(gameTime);
                     break;
+                case Singleton.GameState.GameOver:
+                    _airShotCoolDown = 0;
+                    break;
             }
             base.Update(gameTime, sprites);
         }

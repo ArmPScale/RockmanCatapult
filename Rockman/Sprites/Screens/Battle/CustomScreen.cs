@@ -48,6 +48,18 @@ namespace Rockman.Sprites.Screens
                     }
                     _animationManager.Update(gameTime);
                     break;
+                case Singleton.GameState.GamePlaying:
+                    if (Singleton.Instance.CurrentPlayerState == Singleton.PlayerState.Dead)
+                    {
+                        setState(CustomState.Open);
+                    }
+                    break;
+                case Singleton.GameState.GameClear:
+                    setState(CustomState.Open);
+                    break;
+                case Singleton.GameState.GameOver:
+                    setState(CustomState.Open);
+                    break;
             }
             base.Update(gameTime, sprites);
         }

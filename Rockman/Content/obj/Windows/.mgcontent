@@ -6,7 +6,6 @@
   <SourceFiles>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/Font.spritefont</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/RockmanFont.spritefont</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/busterEffect.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/chargeBuster.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/BattleStart-EXE5.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BusterCharged.wav</File>
@@ -101,5 +100,11 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/Space.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/CustomScreen.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/RiverBNK48.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/BusterEffect.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/stage/Stage4.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/stage/Stage1.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/stage/Stage2.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/stage/Stage3.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/GoIntoBattle.wav</File>
   </SourceFiles>
 </SourceFileCollection>

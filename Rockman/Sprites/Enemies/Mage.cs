@@ -26,6 +26,9 @@ namespace Rockman.Sprites
         {
             switch (Singleton.Instance.CurrentGameState)
             {
+                case Singleton.GameState.GameEnemyAppear:
+                    _timer = 0; _atkTime = 0; _castingTime = 0;
+                    break;
                 case Singleton.GameState.GamePlaying:
                     _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     _atkTime += (float)gameTime.ElapsedGameTime.TotalSeconds;

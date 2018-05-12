@@ -8,27 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Rockman.Models;
 
-namespace Rockman.Sprites.Chips
+namespace Rockman.Sprites.Screens
 {
-    class Chip : Sprite
+    class Stage : Sprite
     {
-        #region PHYSICS_VARIABLES
-        public static float GRAVITY = 981;
-        public static Vector2 Acceleration = new Vector2(75, 75);
-        public static Vector2 Velocity = new Vector2(0, 0);
+        public Color fade;
 
-        #endregion
-
-        public String[] chipCustomImg = new string[7];
-
-        public Chip(Texture2D[] texture) 
-            : base(texture)
+        public Stage() : base()
         {
-            chipCustomImg = Singleton.Instance.chipCustomSelect;
         }
-
-        public Chip(Dictionary<string, Animation> animations) 
-            : base(animations)
+        public Stage(Texture2D[] texture) : base(texture)
         {
         }
 

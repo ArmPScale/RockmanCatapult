@@ -22,10 +22,10 @@ namespace Rockman
             Dead
         }
         public PlayerState CurrentPlayerState;
-        public int HeroHP = 100, maxHeroHP = 200, HeroAttack = 4, HeroBarrier = 0, HeroAura = 0, playerChipAtk = 0, NoisePercent = 0;
+        public int HeroHP = 200, maxHeroHP = 200, HeroAttack = 4, HeroBarrier = 0, HeroAura = 0, playerChipAtk = 0, NoisePercent = 0;
         public int currentVirusGotDmgIndex;
         public Point currentPlayerPoint;
-        public bool isDamaged, isRecovered, statusBugHP = false, gotBlackAce = true, whiteScreen = false;
+        public bool isDamaged, isRecovered, statusBugHP = false, whiteScreen = false, gotBlackAce = true;
         public string choosePlayerAnimate = "Alive", chooseEmotionPlayer = "NormalEmotion";
         public float currentChipCoolDown = 0f, currentChipAtkTime = 0f;
 
@@ -49,14 +49,14 @@ namespace Rockman
         public SpriteFont _font;
         public Texture2D[] effectsTexture;
         public Dictionary<string, Song> song;
-        public string mediaPlaySong = "";
+        public string mediaPlaySong = "", stagesName = "";
         //public List<SoundEffect> soundEffects;
         public float MasterBGMVolume;
         public float MasterSFXVolume;
 
         //utility
         public bool newTurnCustom, isCustomBarFull, isCustomBomb = false;
-        public bool atkFinished, selectChipSuccess;
+        public bool selectChipSuccess;
         public bool useChip, useChipDuring, useChipNearlySuccess, useChipSuccess;
         public bool useNormalChip, useSceneChip, useThrowableChip;
         public String chipType ,chipClass, useChipName = "", drawChipEffectName = "";
@@ -65,6 +65,19 @@ namespace Rockman
         public int[] chipSelect;
         public String[] chipCustomSelect, chipStackImg;
         public Point currentChipSelect;
+
+        public enum MenuState
+        {
+            MainMenu,
+            StoryMode,
+            EditFolderChip,
+            Shop,
+            Tutorial,
+            Option,
+            Credits,
+            Quit
+        }
+        public MenuState CurrentMenuState;
 
         public enum ScreenState
         {
@@ -78,6 +91,8 @@ namespace Rockman
             Credits,
             Quit
         }
+        public ScreenState CurrentScreenState;
+
         public enum GameState
         {
             GameEnemyAppear,
@@ -89,13 +104,10 @@ namespace Rockman
             GameClear,
             GameOver,
         }
-
-        public ScreenState CurrentScreenState;
         public GameState CurrentGameState;
 
         public KeyboardState PreviousKey, CurrentKey;
         public MouseState PreviousMouse, CurrentMouse;
-
 
         public Random rng = new Random();
 

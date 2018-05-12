@@ -17,10 +17,10 @@ namespace Rockman
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private List<Sprite> _screenSprites, _sprites;
-        Texture2D[] titleScreenTexture, menuScreenTexture,
+        private List<Sprite> _screenSprites, _sprites, _stages;
+        Texture2D[] titleScreenTexture, menuScreenTexture, stageTexture,
             playersTexture, panelTexture, enemiesTexture, backgroundTexture, fadeScreenTexture, chipTexture, customScreenTexture;
-        private int _numScreenSprites, _numObject;
+        private int _numScreenSprites, _numObject, _numStages;
 
         public Rockman()
         {
@@ -38,6 +38,8 @@ namespace Rockman
 
             titleScreenTexture = new Texture2D[5];
             menuScreenTexture = new Texture2D[5];
+            stageTexture = new Texture2D[5];
+
             backgroundTexture = new Texture2D[10];
             panelTexture = new Texture2D[6];
             playersTexture = new Texture2D[10];
@@ -54,13 +56,13 @@ namespace Rockman
             {
                 "","","","","","",""
             };
-            Singleton.Instance.chipSelect = new int[7]
-            {
-                1,0,0,0,0,0,0
-            };
             Singleton.Instance.chipCustomSelect = new string[7]
             {
                 "","","","","","NoChip","BlackAce"
+            };
+            Singleton.Instance.chipSelect = new int[7]
+            {
+                1,0,0,0,0,0,0
             };
             //shuffleBattleChipInFolder
             Singleton.Instance.folderList = new List<string>()
@@ -81,33 +83,33 @@ namespace Rockman
             };
             Singleton.Instance.panelStage = new int[3, 10]
             {
-                { 3,1,0,0,0,0,0,0,0,0},
-                { 1,1,0,0,0,0,0,0,0,0},
-                { 1,1,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,0,0,0},
             };
             Singleton.Instance.panelElement = new int[3, 10]
             {
-                { 0,0,0,1,0,0,0,1,0,0},
-                { 0,0,1,1,0,0,1,1,1,0},
-                { 0,0,1,0,0,0,0,1,0,0},
+                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,0,0,0},
             };
             Singleton.Instance.playerMove = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
-                { 0,1,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,0,0,0},
                 { 0,0,0,0,0,0,0,0,0,0},
             };
             Singleton.Instance.spriteMove = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
-                { 0,0,0,0,0,0,0,0,5,0},
-                { 0,0,0,0,0,0,0,3,0,4},
+                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,0,0,0},
             };
             Singleton.Instance.spriteHP = new int[3, 10]
             {
                 { 0,0,0,0,0,0,0,0,0,0},
-                { 0,0,0,0,0,0,0,0,900,0},
-                { 0,0,0,0,0,0,0,100,0,100},
+                { 0,0,0,0,0,0,0,0,0,0},
+                { 0,0,0,0,0,0,0,0,0,0},
             };
             Singleton.Instance.chipEffect = new int[3, 10]
             {
@@ -151,7 +153,7 @@ namespace Rockman
             for (int i = 0; i < data.Length; ++i) data[i] = Color.White;
             fadeScreenTexture[1].SetData(data);
 
-            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.StoryMode;
+            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
             Reset();
         }
 
@@ -162,14 +164,12 @@ namespace Rockman
 
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Singleton.Instance.CurrentScreenState = Singleton.ScreenState.Quit;
             Singleton.Instance.PreviousMouse = Singleton.Instance.CurrentMouse;
-
             Singleton.Instance.CurrentKey = Keyboard.GetState();
             Singleton.Instance.CurrentMouse = Mouse.GetState();
             _numScreenSprites = _screenSprites.Count;
             _numObject = _sprites.Count;
+            _numStages = _stages.Count;
 
             switch (Singleton.Instance.CurrentScreenState)
             {
@@ -192,7 +192,6 @@ namespace Rockman
                     }
                     break;
                 case Singleton.ScreenState.StoryMode:
-                    Singleton.Instance.mediaPlaySong = "BossBattle1";
 
                     switch (Singleton.Instance.CurrentGameState)
                     {
@@ -201,11 +200,12 @@ namespace Rockman
                             {
                                 if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
                             }
+                            for (int i = 0; i < _numStages; i++)
+                            {
+                                if (_stages[i].IsActive) _stages[i].Update(gameTime, _stages);
+                            }
                             break;
                         case Singleton.GameState.GameCustomScreen:
-                            //mediaPlay --> Battle1
-                            Singleton.Instance.mediaPlaySong = "BossBattle1";
-
                             for (int i = 0; i < _numObject; i++)
                             {
                                 if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
@@ -236,7 +236,6 @@ namespace Rockman
                                     _numObject--;
                                 }
                             }
-
                             int enemies = 0;
                             foreach (int virus in Singleton.Instance.spriteMove)
                             {
@@ -281,19 +280,10 @@ namespace Rockman
                             {
                                 if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
                             }
-
-                            Singleton.Instance.chipEffect = new int[3, 10]
+                            for (int i = 0; i < _numStages; i++)
                             {
-                                { 0,0,0,0,0,0,0,0,0,0},
-                                { 0,0,0,0,0,0,0,0,0,0},
-                                { 0,0,0,0,0,0,0,0,0,0},
-                            };
-                            Singleton.Instance.virusAttack = new int[3, 10]
-                            {
-                                { 0,0,0,0,0,0,0,0,0,0},
-                                { 0,0,0,0,0,0,0,0,0,0},
-                                { 0,0,0,0,0,0,0,0,0,0},
-                            };
+                                if (_stages[i].IsActive) _stages[i].Update(gameTime, _stages);
+                            }
 
                             for (int i = 0; i < _numObject; i++)
                             {
@@ -395,6 +385,10 @@ namespace Rockman
                     {
                         if (_sprites[i].IsActive) _sprites[i].Draw(spriteBatch);
                     }
+                    for (int i = 0; i < _numStages; i++)
+                    {
+                        if (_stages[i].IsActive) _stages[i].Draw(spriteBatch);
+                    }
                     break;
             }
             spriteBatch.End();
@@ -430,9 +424,14 @@ namespace Rockman
             titleScreenTexture[1] = Content.Load<Texture2D>("background/titleScreen2");
             titleScreenTexture[2] = Content.Load<Texture2D>("background/logoTitle");
             //menuScreenTexture
-            menuScreenTexture[0] = Content.Load<Texture2D>("background/MenuScreenBlack");
+            menuScreenTexture[0] = Content.Load<Texture2D>("background/MenuScreen");
             menuScreenTexture[1] = Content.Load<Texture2D>("background/BlackAce");
             menuScreenTexture[2] = Content.Load<Texture2D>("background/logoTitle");
+            stageTexture[0] = Content.Load<Texture2D>("background/MenuScreenBlack");
+            stageTexture[1] = Content.Load<Texture2D>("background/stage/Stage1");
+            stageTexture[2] = Content.Load<Texture2D>("background/stage/Stage2");
+            stageTexture[3] = Content.Load<Texture2D>("background/stage/Stage3");
+            stageTexture[4] = Content.Load<Texture2D>("background/stage/Stage4");
 
             backgroundTexture[0] = Content.Load<Texture2D>("background/Space");
             panelTexture[0] = Content.Load<Texture2D>("panel/PanelsEXE5");
@@ -444,7 +443,7 @@ namespace Rockman
             enemiesTexture[1] = Content.Load<Texture2D>("virus/MettFire");
             enemiesTexture[2] = Content.Load<Texture2D>("virus/Wizard");
             enemiesTexture[3] = Content.Load<Texture2D>("boss/QueenVirgo");
-            Singleton.Instance.effectsTexture[0] = this.Content.Load<Texture2D>("battleEffect/busterEffect");
+            Singleton.Instance.effectsTexture[0] = this.Content.Load<Texture2D>("battleEffect/BusterEffect");
             Singleton.Instance.effectsTexture[1] = this.Content.Load<Texture2D>("battleEffect/chargeBuster");
             Singleton.Instance.effectsTexture[2] = this.Content.Load<Texture2D>("battleEffect/ImpacteffectHalfexplosion");
             Singleton.Instance.effectsTexture[3] = this.Content.Load<Texture2D>("battleEffect/Uninstall");
@@ -490,6 +489,31 @@ namespace Rockman
                 {
                     {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
                 }
+            });
+            //storyModeScreenSprite
+            _screenSprites.Add(new StoryModeScreen(stageTexture)
+            {
+                Name = "StoryModeScreen",
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
+                }
+            });
+
+            // --> stageList
+            _stages = new List<Sprite>();
+            //stageSprite
+            _stages.Add(new Stage1Metton(fadeScreenTexture)
+            {
+                Name = "Stage1Metton",
+            });
+            _stages.Add(new Stage2Meteor(fadeScreenTexture)
+            {
+                Name = "Stage2Meteor",
+            });
+            _stages.Add(new Stage3Queen(fadeScreenTexture)
+            {
+                Name = "Stage3Queen",
             });
 
             // --> spriteList
@@ -755,6 +779,16 @@ namespace Rockman
             {
                 Name = "RockmanBuster",
                 Viewport = new Rectangle(8, 4, 19, 7),
+            });
+            //busterEffect
+            _sprites.Add(new BusterEffect(new Dictionary<string, Animation>()
+            {
+                { "NormalBuster", new Animation(Singleton.Instance.effectsTexture[0], new Rectangle(0, 0, 60*4, 55), 4) },
+                { "ChargeBuster", new Animation(Singleton.Instance.effectsTexture[0], new Rectangle(0, 55, 60*6, 55), 6) },
+            })
+            {
+                Name = "BusterEffect",
+                Viewport = new Rectangle(0, 0, 60, 55),
             });
             //cannonSprite
             _sprites.Add(new CannonSprite(new Dictionary<string, Animation>()
@@ -1127,7 +1161,7 @@ namespace Rockman
                 Viewport = new Rectangle(0, 0, 1200, 800),
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
-                    //to do
+                    {"GoIntoBattle", Content.Load<SoundEffect>("sfx/GoIntoBattle").CreateInstance() },
                 }
             });
 

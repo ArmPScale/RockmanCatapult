@@ -49,6 +49,11 @@
     <Compile Include="Models\Animation.cs" />
     <Compile Include="Managers\AnimationManager.cs" />
     <Compile Include="Sprites\Backgrounds\Background.cs" />
+    <Compile Include="Sprites\Backgrounds\Stages\Stage3Queen.cs" />
+    <Compile Include="Sprites\Backgrounds\Stages\Stage2Meteor.cs" />
+    <Compile Include="Sprites\Backgrounds\Stages\Stage1Metton.cs" />
+    <Compile Include="Sprites\Backgrounds\Stages\Stage.cs" />
+    <Compile Include="Sprites\Backgrounds\StoryModeScreen.cs" />
     <Compile Include="Sprites\Backgrounds\MenuScreen.cs" />
     <Compile Include="Sprites\Backgrounds\TitleScreen.cs" />
     <Compile Include="Sprites\Backgrounds\BackgroundSprite.cs" />
@@ -57,6 +62,7 @@
     <Compile Include="Sprites\Chips\Ability\AirShot.cs" />
     <Compile Include="Sprites\Chips\Ability\PanelChip.cs" />
     <Compile Include="Sprites\Chips\Effect\BlackAceEffect.cs" />
+    <Compile Include="Sprites\Chips\Effect\BusterEffect.cs" />
     <Compile Include="Sprites\Chips\Effect\ImpactExplosionEffect.cs" />
     <Compile Include="Sprites\Chips\Sprite\AirShotSprite.cs" />
     <Compile Include="Sprites\Chips\Sprite\ThrowableSprite.cs" />

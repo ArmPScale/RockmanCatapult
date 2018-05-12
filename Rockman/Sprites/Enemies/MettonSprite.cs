@@ -31,6 +31,9 @@ namespace Rockman.Sprites
         {
             switch (Singleton.Instance.CurrentGameState)
             {
+                case Singleton.GameState.GameEnemyAppear:
+                    _timer = 0; _atkTime = 0;
+                    break;
                 case Singleton.GameState.GameCustomScreen:
                     sourceRectMetAtk = new Rectangle((50 * atkFrames), 0, 50, 60);
                     break;

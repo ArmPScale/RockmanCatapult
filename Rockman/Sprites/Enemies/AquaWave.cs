@@ -26,6 +26,9 @@ namespace Rockman.Sprites
         {
             switch (Singleton.Instance.CurrentGameState)
             {
+                case Singleton.GameState.GameEnemyAppear:
+                    _aquaWaveCoolDown = 0;
+                    break;
                 case Singleton.GameState.GamePlaying:
                     if (Singleton.Instance.bossAttack[_currentAquaWave.X, _currentAquaWave.Y] == 1)
                     {

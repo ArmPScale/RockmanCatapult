@@ -26,6 +26,9 @@ namespace Rockman.Sprites
         {
             switch (Singleton.Instance.CurrentGameState)
             {
+                case Singleton.GameState.GameEnemyAppear:
+                    _rainyCoolDown = 0; _atkCoolDown = 0;
+                    break;
                 case Singleton.GameState.GamePlaying:
                     if (Singleton.Instance.bossAttack[_currentRainy.X, _currentRainy.Y] == 2)
                     {

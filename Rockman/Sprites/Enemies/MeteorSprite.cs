@@ -26,6 +26,9 @@ namespace Rockman.Sprites
         {
             switch (Singleton.Instance.CurrentGameState)
             {
+                case Singleton.GameState.GameEnemyAppear:
+                    _meteorCoolDown = 0;
+                    break;
                 case Singleton.GameState.GamePlaying:
                     if (Singleton.Instance.virusAttack[_currentMeteor.X, _currentMeteor.Y] == 4)
                     {

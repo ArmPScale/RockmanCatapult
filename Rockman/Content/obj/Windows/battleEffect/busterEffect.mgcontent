@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/busterEffect.png</SourceFile>
-  <SourceTime>2018-02-19T00:56:56.8738358+07:00</SourceTime>
-  <DestFile>D:/Projects/RockmanCatapult/Rockman/Content/bin/Windows/battleEffect/busterEffect.xnb</DestFile>
-  <DestTime>2018-04-14T15:23:59.1697086+07:00</DestTime>
+  <SourceFile>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/BusterEffect.png</SourceFile>
+  <SourceTime>2018-05-12T22:04:19.4921023+07:00</SourceTime>
+  <DestFile>D:/Projects/RockmanCatapult/Rockman/Content/bin/Windows/battleEffect/BusterEffect.xnb</DestFile>
+  <DestTime>2018-05-12T22:04:43.0488175+07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T22:05:36+07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
