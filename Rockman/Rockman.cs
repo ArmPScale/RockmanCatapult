@@ -18,7 +18,7 @@ namespace Rockman
         SpriteBatch spriteBatch;
 
         private List<Sprite> _screenSprites, _sprites, _stages;
-        Texture2D[] titleScreenTexture, menuScreenTexture, stageTexture,
+        Texture2D[] titleScreenTexture, menuScreenTexture, stageTexture, practiceTexture,
             playersTexture, panelTexture, enemiesTexture, backgroundTexture, fadeScreenTexture, chipTexture, customScreenTexture;
         private int _numScreenSprites, _numObject, _numStages;
 
@@ -39,6 +39,7 @@ namespace Rockman
             titleScreenTexture = new Texture2D[5];
             menuScreenTexture = new Texture2D[5];
             stageTexture = new Texture2D[5];
+            practiceTexture = new Texture2D[5];
 
             backgroundTexture = new Texture2D[10];
             panelTexture = new Texture2D[6];
@@ -206,6 +207,10 @@ namespace Rockman
                             }
                             break;
                         case Singleton.GameState.GameCustomScreen:
+                            for (int i = 0; i < _numStages; i++)
+                            {
+                                if (_stages[i].IsActive) _stages[i].Update(gameTime, _stages);
+                            }
                             for (int i = 0; i < _numObject; i++)
                             {
                                 if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
@@ -223,6 +228,10 @@ namespace Rockman
                             }
                             break;
                         case Singleton.GameState.GamePlaying:
+                            for (int i = 0; i < _numStages; i++)
+                            {
+                                if (_stages[i].IsActive) _stages[i].Update(gameTime, _stages);
+                            }
                             for (int i = 0; i < _numObject; i++)
                             {
                                 if (_sprites[i].IsActive) _sprites[i].Update(gameTime, _sprites);
@@ -317,7 +326,7 @@ namespace Rockman
                     break;
                 case Singleton.ScreenState.Shop:
                     break;
-                case Singleton.ScreenState.Tutorial:
+                case Singleton.ScreenState.Practice:
                     break;
                 case Singleton.ScreenState.Option:
                     break;
@@ -339,15 +348,18 @@ namespace Rockman
             else if (Singleton.Instance.mediaPlaySong == "TitleScreenRemix" &&
                 MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 1, 750))
                 MediaPlayer.Play(Singleton.Instance.song["TitleScreenRemix"], new TimeSpan(0, 0, 0, 32, 400));
-            else if (Singleton.Instance.mediaPlaySong == "TitleScreen" &&
-                MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 0, 830))
-                MediaPlayer.Play(Singleton.Instance.song["TitleScreen"], new TimeSpan(0, 0, 0, 34, 200));
+            //else if (Singleton.Instance.mediaPlaySong == "TitleScreen" &&
+            //    MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 0, 830))
+            //    MediaPlayer.Play(Singleton.Instance.song["TitleScreen"], new TimeSpan(0, 0, 0, 34, 200));
             else if (Singleton.Instance.mediaPlaySong == "MenuScreen" &&
                 MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 42, 438))
                 MediaPlayer.Play(Singleton.Instance.song["MenuScreen"], new TimeSpan(0, 0, 0, 3, 526));
-            else if (Singleton.Instance.mediaPlaySong == "PVPBattle" 
-                && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
-                MediaPlayer.Play(Singleton.Instance.song["PVPBattle"], new TimeSpan(0, 0, 0, 6, 880));
+            //else if (Singleton.Instance.mediaPlaySong == "PVPBattle" 
+            //    && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
+            //    MediaPlayer.Play(Singleton.Instance.song["PVPBattle"], new TimeSpan(0, 0, 0, 6, 880));
+            else if (Singleton.Instance.mediaPlaySong == "PracticeBattle"
+                && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 40, 259))
+                MediaPlayer.Play(Singleton.Instance.song["PracticeBattle"], new TimeSpan(0, 0, 0, 8, 270));
             else if (Singleton.Instance.mediaPlaySong == "Battle1" 
                 && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 53, 034))
                 MediaPlayer.Play(Singleton.Instance.song["Battle1"], new TimeSpan(0, 0, 0, 5, 985));
@@ -411,10 +423,11 @@ namespace Rockman
 
             Singleton.Instance.song = new Dictionary<string, Song>()
             {
-                {"TitleScreen", Content.Load<Song>("bgm/TitleScreen") },
+                //{"TitleScreen", Content.Load<Song>("bgm/TitleScreen") },
                 {"TitleScreenRemix", Content.Load<Song>("bgm/TitleScreenRemix") },
                 {"MenuScreen", Content.Load<Song>("bgm/MenuScreen") },
-                {"PVPBattle", Content.Load<Song>("bgm/PVPBattle(Re)-RNR3") },
+                //{"PVPBattle", Content.Load<Song>("bgm/PVPBattle(Re)-RNR3") },
+                {"PracticeBattle", Content.Load<Song>("bgm/BattleStart-EXE5") },
                 {"Battle1", Content.Load<Song>("bgm/Battle1") },
                 {"BossBattle1", Content.Load<Song>("bgm/TournamentBattle-EXE4.5") },
                 {"EnemyDeletedShort", Content.Load<Song>("bgm/EnemyDeleted(short)") },
@@ -432,7 +445,10 @@ namespace Rockman
             stageTexture[2] = Content.Load<Texture2D>("background/stage/Stage2");
             stageTexture[3] = Content.Load<Texture2D>("background/stage/Stage3");
             stageTexture[4] = Content.Load<Texture2D>("background/stage/Stage4");
-
+            practiceTexture[0] = Content.Load<Texture2D>("background/MenuScreenBlack");
+            practiceTexture[1] = Content.Load<Texture2D>("background/practice/Practice1");
+            practiceTexture[2] = Content.Load<Texture2D>("background/practice/Practice2");
+            
             backgroundTexture[0] = Content.Load<Texture2D>("background/Space");
             panelTexture[0] = Content.Load<Texture2D>("panel/PanelsEXE5");
             playersTexture[0] = Content.Load<Texture2D>("rockman/RockmanEXE6");
@@ -499,6 +515,24 @@ namespace Rockman
                     {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
                 }
             });
+            //practiceScreenSprite
+            _screenSprites.Add(new PracticeScreen(practiceTexture)
+            {
+                Name = "PracticeScreen",
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
+                }
+            });
+            //optionScreenSprite
+            _screenSprites.Add(new OptionScreen(practiceTexture)
+            {
+                Name = "OptionScreen",
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
+                }
+            });
 
             // --> stageList
             _stages = new List<Sprite>();
@@ -514,6 +548,14 @@ namespace Rockman
             _stages.Add(new Stage3Queen(fadeScreenTexture)
             {
                 Name = "Stage3Queen",
+            });
+            _stages.Add(new Practice1Tutorial(fadeScreenTexture)
+            {
+                Name = "Practice1Tutorial",
+            });
+            _stages.Add(new Practice2Catapult(fadeScreenTexture)
+            {
+                Name = "Practice2Catapult",
             });
 
             // --> spriteList

@@ -72,7 +72,7 @@ namespace Rockman
             StoryMode,
             EditFolderChip,
             Shop,
-            Tutorial,
+            Practice,
             Option,
             Credits,
             Quit
@@ -86,7 +86,7 @@ namespace Rockman
             StoryMode,
             EditFolderChip,
             Shop,
-            Tutorial,
+            Practice,
             Option,
             Credits,
             Quit

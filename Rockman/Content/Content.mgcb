@@ -81,12 +81,6 @@
 /processorParam:TextureFormat=Color
 /build:virus/MettonAttack.png
 
-#begin bgm/PVPBattle(Re)-RNR3.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:bgm/PVPBattle(Re)-RNR3.mp3
-
 #begin sfx/DefeatedExplode.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -458,12 +452,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:background/titleScreen2.png
-
-#begin bgm/TitleScreen.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:bgm/TitleScreen.mp3
 
 #begin background/logoTitle.png
 /importer:TextureImporter
@@ -902,4 +890,52 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:sfx/GoIntoBattle.wav
+
+#begin chipAtk/BlackHole.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:chipAtk/BlackHole.png
+
+#begin chipAtk/BlackHoleMatter.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:chipAtk/BlackHoleMatter.png
+
+#begin background/practice/Practice1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background/practice/Practice1.png
+
+#begin background/practice/Practice2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background/practice/Practice2.png
 

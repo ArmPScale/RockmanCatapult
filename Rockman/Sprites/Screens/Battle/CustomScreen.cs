@@ -38,6 +38,9 @@ namespace Rockman.Sprites.Screens
                             }
                             setState(CustomState.Wait);
                             break;
+                        case CustomState.Wait:
+
+                            break;
                         case CustomState.Close:
                             if (Singleton.Instance.newTurnCustom)
                             {

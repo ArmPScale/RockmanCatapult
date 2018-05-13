@@ -29,6 +29,8 @@ namespace Rockman.Sprites.Screens
 
                         //mediaPlay --> BossBattle1
                         Singleton.Instance.mediaPlaySong = "BossBattle1";
+                        //useBlackAce
+                        Singleton.Instance.chipCustomSelect[6] = "BlackAce";
                         //resetChip
                         Singleton.Instance.chipSelect = new int[7]
                         {
@@ -162,7 +164,10 @@ namespace Rockman.Sprites.Screens
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameClear:
+                    if (Singleton.Instance.stagesName == "Stage3Queen")
+                    {
                         spriteBatch.Draw(_texture[0], new Vector2(0, 0), null, fade, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                    }
                     break;
             }
             base.Draw(spriteBatch);

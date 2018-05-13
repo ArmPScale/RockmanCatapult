@@ -117,15 +117,16 @@ namespace Rockman.Sprites
                                     SoundEffects["PressStart"].Play();
                                 }
                             }
-                            else if ((Singleton.Instance.CurrentMouse.X >= 60 && Singleton.Instance.CurrentMouse.X <= 254) &&
+                            else if ((Singleton.Instance.CurrentMouse.X >= 60 && Singleton.Instance.CurrentMouse.X <= 248) &&
                             (Singleton.Instance.CurrentMouse.Y >= 392 && Singleton.Instance.CurrentMouse.Y <= 427))
                             {
-                                //Tutorial
+                                //Practice
                                 textButtonColor[3] = new Color(247, 159, 47);
                                 if (isClicked)
                                 {
                                     SoundEffects["PressStart"].Volume = Singleton.Instance.MasterSFXVolume;
                                     SoundEffects["PressStart"].Play();
+                                    Singleton.Instance.CurrentMenuState = Singleton.MenuState.Practice;
                                 }
                             }
                             else if ((Singleton.Instance.CurrentMouse.X >= 60 && Singleton.Instance.CurrentMouse.X <= 201) &&
@@ -137,6 +138,7 @@ namespace Rockman.Sprites
                                 {
                                     SoundEffects["PressStart"].Volume = Singleton.Instance.MasterSFXVolume;
                                     SoundEffects["PressStart"].Play();
+                                    Singleton.Instance.CurrentMenuState = Singleton.MenuState.Option;
                                 }
                             }
                             else if ((Singleton.Instance.CurrentMouse.X >= 60 && Singleton.Instance.CurrentMouse.X <= 228) &&
@@ -171,19 +173,10 @@ namespace Rockman.Sprites
                                 };
                             }
                             break;
-                        case Singleton.MenuState.StoryMode:
-
-                            break;
                         case Singleton.MenuState.EditFolderChip:
 
                             break;
                         case Singleton.MenuState.Shop:
-
-                            break;
-                        case Singleton.MenuState.Tutorial:
-
-                            break;
-                        case Singleton.MenuState.Option:
 
                             break;
                         case Singleton.MenuState.Credits:
@@ -224,7 +217,7 @@ namespace Rockman.Sprites
                             spriteBatch.DrawString(Singleton.Instance._font, "Shop", new Vector2(60, 331),
                                 textButtonColor[2], 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
                             //drawTextTutorialButton
-                            spriteBatch.DrawString(Singleton.Instance._font, "Tutorial", new Vector2(60, 392),
+                            spriteBatch.DrawString(Singleton.Instance._font, "Practice", new Vector2(60, 392),
                                 textButtonColor[3], 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
                             //drawTextOptionButton
                             spriteBatch.DrawString(Singleton.Instance._font, "Option", new Vector2(60, 453),

@@ -10,27 +10,27 @@ using Rockman.Models;
 
 namespace Rockman.Sprites.Screens
 {
-    class Stage1Metton : Stage
+    class Practice2Catapult : Stage
     {
         private float _timer = 0f;
 
-        public Stage1Metton(Texture2D[] texture)
+        public Practice2Catapult(Texture2D[] texture)
             : base(texture)
         {
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            if (Singleton.Instance.stagesName == "Stage1Metton")
+            if (Singleton.Instance.stagesName == "Practice2Catapult")
             {
                 switch (Singleton.Instance.CurrentGameState)
                 {
                     case Singleton.GameState.GameEnemyAppear:
 
-                        //mediaPlay --> Battle1
-                        Singleton.Instance.mediaPlaySong = "Battle1";
-                        //useBlackAce
-                        Singleton.Instance.chipCustomSelect[6] = "BlackAce";
+                        //mediaPlay --> PracticeBattle
+                        Singleton.Instance.mediaPlaySong = "PracticeBattle";
+                        //clearBlackAce
+                        Singleton.Instance.chipCustomSelect[6] = "";
                         //resetChip
                         Singleton.Instance.chipSelect = new int[7]
                         {
@@ -39,10 +39,11 @@ namespace Rockman.Sprites.Screens
                         //shuffleBattleChipInFolder
                         Singleton.Instance.folderList = new List<string>()
                         {
-                            "DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
-                            "DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon",
-                            "PanelReturn","HolyPanel","Sanctuary","BlackBomb","CannonBall","DarkStage","CherprangRiver","JaneRiver"
-                            //"MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb3","DarkBomb","BugBomb",
+                            //"DoubleCrack","DreamAura","Barrier200","TripleCrack","PanelReturn","HolyPanel","Sanctuary",
+                            //"DoubleCrack","Barrier","PanelReturn","HolyPanel",
+                            //"BlackBomb","CannonBall","MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb3","DarkBomb","BugBomb",
+                            //"CannonBall","MiniBomb","BigBomb","EnergyBomb","SearchBomb1","BugBomb",
+                            "BlackBomb","CannonBall","MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb2","BugBomb",
                         };
                         Singleton.Instance.folderList.Shuffle();
                         Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
@@ -80,7 +81,7 @@ namespace Rockman.Sprites.Screens
                         Singleton.Instance.spriteHP = new int[3, 10]
                         {
                             { 0,0,0,0,0,0,0,0,0,0},
-                            { 0,0,0,0,0,0,0,0,200,0},
+                            { 0,0,0,0,0,0,0,0,1000,0},
                             { 0,0,0,0,0,0,0,0,0,0 },
                         };
                         Singleton.Instance.chipEffect = new int[3, 10]
@@ -125,6 +126,21 @@ namespace Rockman.Sprites.Screens
                         Singleton.Instance.indexChipSlotIn.Clear();
                         fade = new Color(0, 0, 0, 0);
                         break;
+                    case Singleton.GameState.GameCustomScreen:
+                        if (Singleton.Instance.nextChipFolder.Count == 0)
+                        {
+                            Singleton.Instance.folderList = new List<string>()
+                            {
+                                "DoubleCrack","DreamAura","Barrier200","TripleCrack","PanelReturn","HolyPanel","Sanctuary",
+                                "DoubleCrack","Barrier","PanelReturn","HolyPanel",
+                                "BlackBomb","CannonBall","MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb3","DarkBomb","BugBomb",
+                                "CannonBall","MiniBomb","BigBomb","EnergyBomb","SearchBomb1","BugBomb",
+                                "BlackBomb","CannonBall","MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb2","BugBomb",
+                            };
+                            Singleton.Instance.folderList.Shuffle();
+                            Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
+                        }
+                        break;
                     case Singleton.GameState.GamePlaying:
                         if (Singleton.Instance.CurrentPlayerState == Singleton.PlayerState.Dead)
                         {
@@ -147,7 +163,7 @@ namespace Rockman.Sprites.Screens
                         {
                             _timer = 0f;
                             Singleton.Instance.stagesName = "";
-                            Singleton.Instance.CurrentMenuState = Singleton.MenuState.StoryMode;
+                            Singleton.Instance.CurrentMenuState = Singleton.MenuState.Practice;
                             Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
                         }
                         break;
@@ -164,7 +180,7 @@ namespace Rockman.Sprites.Screens
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameClear:
-                    if (Singleton.Instance.stagesName == "Stage1Metton")
+                    if (Singleton.Instance.stagesName == "Practice2Catapult")
                     {
                         spriteBatch.Draw(_texture[0], new Vector2(0, 0), null, fade, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                     }
@@ -180,10 +196,6 @@ namespace Rockman.Sprites.Screens
             {
                         "","","","","","",""
             };
-            //Singleton.Instance.chipCustomSelect = new string[7]
-            //{
-            //    "","","","","","NoChip","BlackAce"
-            //};
             Singleton.Instance.chipEffect = new int[3, 10]
             {
                         { 0,0,0,0,0,0,0,0,0,0},

@@ -13,7 +13,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Buster.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/TournamentBattle-EXE4.5.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/virus/MettonAttack.png</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/PVPBattle(Re)-RNR3.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/DefeatedExplode.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Deleted.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanExe6.png</File>
@@ -59,7 +58,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/EnemyDeleted(short).mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/titleScreen1.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/titleScreen2.png</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/TitleScreen.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/logoTitle.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/PressStart.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/TitleScreenRemix.mp3</File>
@@ -106,5 +104,9 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/stage/Stage2.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/stage/Stage3.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/GoIntoBattle.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/BlackHole.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/BlackHoleMatter.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/practice/Practice1.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/practice/Practice2.png</File>
   </SourceFiles>
 </SourceFileCollection>

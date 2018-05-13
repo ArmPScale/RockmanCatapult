@@ -29,6 +29,8 @@ namespace Rockman.Sprites.Screens
 
                         //mediaPlay --> Battle1
                         Singleton.Instance.mediaPlaySong = "Battle1";
+                        //useBlackAce
+                        Singleton.Instance.chipCustomSelect[6] = "BlackAce";
                         //resetChip
                         Singleton.Instance.chipSelect = new int[7]
                         {
@@ -145,7 +147,7 @@ namespace Rockman.Sprites.Screens
                         {
                             _timer = 0f;
                             Singleton.Instance.stagesName = "";
-                            Singleton.Instance.CurrentMenuState = Singleton.MenuState.StoryMode;
+                            Singleton.Instance.CurrentMenuState = Singleton.MenuState.Practice;
                             Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
                         }
                         break;
@@ -162,7 +164,10 @@ namespace Rockman.Sprites.Screens
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameClear:
-                    spriteBatch.Draw(_texture[0], new Vector2(0, 0), null, fade, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                    if (Singleton.Instance.stagesName == "Stage2Meteor")
+                    {
+                        spriteBatch.Draw(_texture[0], new Vector2(0, 0), null, fade, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                    }
                     break;
             }
             base.Draw(spriteBatch);

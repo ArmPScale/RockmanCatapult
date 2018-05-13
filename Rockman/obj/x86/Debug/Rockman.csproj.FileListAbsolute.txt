@@ -180,3 +180,7 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\sta
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\stage\Stage3.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\stage\Stage4.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\GoIntoBattle.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\BlackHole.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\BlackHoleMatter.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\practice\Practice1.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\practice\Practice2.xnb

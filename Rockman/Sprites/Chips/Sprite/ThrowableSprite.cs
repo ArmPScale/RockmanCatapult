@@ -61,6 +61,7 @@ namespace Rockman.Sprites.Chips
 
                 //checkDamgeRange
                 if (isThrown && areaBombRangeY < 10 && 
+                    Singleton.Instance.panelStage[Singleton.Instance.currentPlayerPoint.X, areaBombRangeY] < 2 &&
                     Position.Y >= (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 90) &&
                     Position.Y <= (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 90) + 150)
                 {
