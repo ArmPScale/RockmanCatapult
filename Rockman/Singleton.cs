@@ -23,9 +23,9 @@ namespace Rockman
         }
         public PlayerState CurrentPlayerState;
         public int HeroHP = 200, maxHeroHP = 200, HeroAttack = 4, HeroBarrier = 0, HeroAura = 0, playerChipAtk = 0, NoisePercent = 0;
-        public int currentVirusGotDmgIndex;
+        public int currentVirusGotDmgIndex , Zenny = 9999999;
         public Point currentPlayerPoint;
-        public bool isDamaged, isRecovered, statusBugHP = false, whiteScreen = false, gotBlackAce = true;
+        public bool isDamaged, isRecovered, statusBugHP = false, whiteScreen = false, isGetChipResult = false;
         public string choosePlayerAnimate = "Alive", chooseEmotionPlayer = "NormalEmotion";
         public float currentChipCoolDown = 0f, currentChipAtkTime = 0f;
 
@@ -41,8 +41,9 @@ namespace Rockman
         };
 
         //folderPlayer
-        public List<string> folderList;
-        public Queue<string> nextChipFolder;
+        public List<string> folderList, allChipList;
+        public Queue<string> nextChipFolder, nextChipInPack;
+        public Dictionary<string, int> allChipDict;
 
         //initialArr
         public int[,] panelBoundary, panelStage, panelElement, panelYellow, playerMove, spriteMove, spriteHP, chipEffect, virusAttack, bossAttack;
@@ -66,6 +67,15 @@ namespace Rockman
         public String[] chipCustomSelect, chipStackImg;
         public Point currentChipSelect;
 
+        public enum ScreenState
+        {
+            TitleScreen,
+            MenuScreen,
+            StoryMode,
+            Quit
+        }
+        public ScreenState CurrentScreenState;
+
         public enum MenuState
         {
             MainMenu,
@@ -78,20 +88,6 @@ namespace Rockman
             Quit
         }
         public MenuState CurrentMenuState;
-
-        public enum ScreenState
-        {
-            TitleScreen,
-            MenuScreen,
-            StoryMode,
-            EditFolderChip,
-            Shop,
-            Practice,
-            Option,
-            Credits,
-            Quit
-        }
-        public ScreenState CurrentScreenState;
 
         public enum GameState
         {

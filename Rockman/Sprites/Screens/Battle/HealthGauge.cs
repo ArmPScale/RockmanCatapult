@@ -42,7 +42,7 @@ namespace Rockman.Sprites.Screens
                         case Singleton.GameState.GamePlaying:
                             Position = new Vector2(0, 10);
                             NoisePosition = new Vector2(0, 70);
-
+                            if (HP <= 0) HP = 0;
                             break;
                     }
                     break;
@@ -103,26 +103,21 @@ namespace Rockman.Sprites.Screens
                         spriteBatch.DrawString(Singleton.Instance._font, string.Format("{0}", HP),
                             new Vector2(55, 18), Color.White, 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
                     }
-
-                    ////drawNoiseGauge
-                    //if (Noise < 50)
-                    //{
-                    //    spriteBatch.Draw(_texture[1], NoisePosition, rectGaugeImg["GreenGauge"],
-                    //        Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-
-                    //}
-                    //else if (Noise < 200)
-                    //{
-                    //    spriteBatch.Draw(_texture[1], NoisePosition, rectGaugeImg["OrangeGauge"],
-                    //       Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-                    //}
-                    //else
-                    //{
-                    //    spriteBatch.Draw(_texture[1], NoisePosition, rectGaugeImg["RedGauge"],
-                    //       Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
-                    //}
-                    //spriteBatch.DrawString(Singleton.Instance._font, string.Format("{0}", Noise),
-                    //        new Vector2(55, 78), Color.White, 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
+                    break;
+                case Singleton.GameState.GameUseChip:
+                    //drawHealthGauge
+                    spriteBatch.Draw(_texture[1], Position, rectGaugeImg["HealthGauge"], Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                    //drawHeroHP
+                    if (Singleton.Instance.maxHeroHP / 4 >= HP)
+                    {
+                        spriteBatch.DrawString(Singleton.Instance._font, string.Format("{0}", HP),
+                            new Vector2(55, 18), Color.OrangeRed, 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
+                    }
+                    else
+                    {
+                        spriteBatch.DrawString(Singleton.Instance._font, string.Format("{0}", HP),
+                            new Vector2(55, 18), Color.White, 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
+                    }
                     break;
             }
             base.Draw(spriteBatch);

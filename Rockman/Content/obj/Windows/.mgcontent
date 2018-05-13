@@ -65,7 +65,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/MenuScreen.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/MenuScreen.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/Battle1.mp3</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/MenuScreenBlack.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/Meteor.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/virus/Wizard.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/battleEffect/Uninstall.png</File>
@@ -108,5 +107,10 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/BlackHoleMatter.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/practice/Practice1.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/practice/Practice2.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/shop/Pack1.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/shop/BlockZenny.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/shop/ResultShop.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/WhiteScreen.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/GotItem.WAV</File>
   </SourceFiles>
 </SourceFileCollection>

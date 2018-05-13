@@ -51,6 +51,8 @@
     <Compile Include="Sprites\Backgrounds\Background.cs" />
     <Compile Include="Sprites\Backgrounds\CreditScreen.cs" />
     <Compile Include="Sprites\Backgrounds\OptionScreen.cs" />
+    <Compile Include="Sprites\Backgrounds\ShopResult.cs" />
+    <Compile Include="Sprites\Backgrounds\ShopScreen.cs" />
     <Compile Include="Sprites\Backgrounds\Stages\Practice2Catapult.cs" />
     <Compile Include="Sprites\Backgrounds\Stages\Practice1Tutorial.cs" />
     <Compile Include="Sprites\Backgrounds\Stages\Stage3Queen.cs" />

@@ -149,7 +149,6 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\MenuScreen
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\MenuScreen.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\Battle1.wma
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\bgm\Battle1.xnb
-D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\MenuScreenBlack.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\Meteor.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\virus\Wizard.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\boss\QueenVirgo.xnb
@@ -184,3 +183,8 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\BlackH
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\chipAtk\BlackHoleMatter.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\practice\Practice1.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\practice\Practice2.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\shop\Pack1.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\shop\ResultShop.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\shop\BlockZenny.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\WhiteScreen.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\GotItem.xnb

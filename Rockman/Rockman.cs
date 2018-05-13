@@ -18,7 +18,7 @@ namespace Rockman
         SpriteBatch spriteBatch;
 
         private List<Sprite> _screenSprites, _sprites, _stages;
-        Texture2D[] titleScreenTexture, menuScreenTexture, stageTexture, practiceTexture,
+        Texture2D[] titleScreenTexture, menuScreenTexture, stageTexture, practiceTexture, shopTexture,
             playersTexture, panelTexture, enemiesTexture, backgroundTexture, fadeScreenTexture, chipTexture, customScreenTexture;
         private int _numScreenSprites, _numObject, _numStages;
 
@@ -39,6 +39,7 @@ namespace Rockman
             titleScreenTexture = new Texture2D[5];
             menuScreenTexture = new Texture2D[5];
             stageTexture = new Texture2D[5];
+            shopTexture = new Texture2D[10];
             practiceTexture = new Texture2D[5];
 
             backgroundTexture = new Texture2D[10];
@@ -65,16 +66,14 @@ namespace Rockman
             {
                 1,0,0,0,0,0,0
             };
+            Singleton.Instance.allChipList = new List<string>();
+            Singleton.Instance.allChipDict = new Dictionary<string, int>();
+            Singleton.Instance.nextChipInPack = new Queue<string>();
             //shuffleBattleChipInFolder
-            Singleton.Instance.folderList = new List<string>()
-            {
-                //"DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
-                //"DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon",
-                "PanelReturn","HolyPanel","Sanctuary","BlackBomb","CannonBall","DarkStage","CherprangRiver","JaneRiver"
-                //"MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb3","DarkBomb","BugBomb",
-            };
-            Singleton.Instance.folderList.Shuffle();
-            Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
+            Singleton.Instance.folderList = new List<string>();
+            Singleton.Instance.nextChipFolder = new Queue<string>();
+            //Singleton.Instance.folderList.Shuffle();
+            //Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
 
             Singleton.Instance.panelBoundary = new int[3, 10]
             {
@@ -322,16 +321,6 @@ namespace Rockman
                             break;
                     }
                     break;
-                case Singleton.ScreenState.EditFolderChip:
-                    break;
-                case Singleton.ScreenState.Shop:
-                    break;
-                case Singleton.ScreenState.Practice:
-                    break;
-                case Singleton.ScreenState.Option:
-                    break;
-                case Singleton.ScreenState.Credits:
-                    break;
                 case Singleton.ScreenState.Quit:
                     Exit();
                     break;
@@ -442,12 +431,19 @@ namespace Rockman
             menuScreenTexture[0] = Content.Load<Texture2D>("background/MenuScreen");
             menuScreenTexture[1] = Content.Load<Texture2D>("background/BlackAce");
             menuScreenTexture[2] = Content.Load<Texture2D>("background/logoTitle");
-            stageTexture[0] = Content.Load<Texture2D>("background/MenuScreenBlack");
+            stageTexture[0] = Content.Load<Texture2D>("background/WhiteScreen");
             stageTexture[1] = Content.Load<Texture2D>("background/stage/Stage1");
             stageTexture[2] = Content.Load<Texture2D>("background/stage/Stage2");
             stageTexture[3] = Content.Load<Texture2D>("background/stage/Stage3");
             stageTexture[4] = Content.Load<Texture2D>("background/stage/Stage4");
-            practiceTexture[0] = Content.Load<Texture2D>("background/MenuScreenBlack");
+            shopTexture[0] = Content.Load<Texture2D>("background/WhiteScreen");
+            shopTexture[1] = Content.Load<Texture2D>("background/shop/Pack1");
+            shopTexture[2] = Content.Load<Texture2D>("background/shop/BlockZenny");
+            shopTexture[3] = Content.Load<Texture2D>("background/shop/ResultShop");
+            shopTexture[4] = Content.Load<Texture2D>("chipAtk/chipList");
+            shopTexture[5] = Content.Load<Texture2D>("chipAtk/RiverBNK48");
+
+            practiceTexture[0] = Content.Load<Texture2D>("background/WhiteScreen");
             practiceTexture[1] = Content.Load<Texture2D>("background/practice/Practice1");
             practiceTexture[2] = Content.Load<Texture2D>("background/practice/Practice2");
             
@@ -515,6 +511,25 @@ namespace Rockman
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
+                }
+            });
+            //shopScreenSprite
+            _screenSprites.Add(new ShopScreen(shopTexture)
+            {
+                Name = "ShopScreen",
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
+                }
+            });
+            //shopResultSprite
+            _screenSprites.Add(new ShopResult(shopTexture)
+            {
+                Name = "ShopResult",
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
+                    {"GotItem", Content.Load<SoundEffect>("sfx/GotItem").CreateInstance() },
                 }
             });
             //practiceScreenSprite
