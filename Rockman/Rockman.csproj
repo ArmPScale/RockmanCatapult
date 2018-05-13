@@ -49,6 +49,7 @@
     <Compile Include="Models\Animation.cs" />
     <Compile Include="Managers\AnimationManager.cs" />
     <Compile Include="Sprites\Backgrounds\Background.cs" />
+    <Compile Include="Sprites\Backgrounds\CreditScreen.cs" />
     <Compile Include="Sprites\Backgrounds\OptionScreen.cs" />
     <Compile Include="Sprites\Backgrounds\Stages\Practice2Catapult.cs" />
     <Compile Include="Sprites\Backgrounds\Stages\Practice1Tutorial.cs" />

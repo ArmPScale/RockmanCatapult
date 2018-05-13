@@ -348,24 +348,26 @@ namespace Rockman
             else if (Singleton.Instance.mediaPlaySong == "TitleScreenRemix" &&
                 MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 1, 750))
                 MediaPlayer.Play(Singleton.Instance.song["TitleScreenRemix"], new TimeSpan(0, 0, 0, 32, 400));
-            //else if (Singleton.Instance.mediaPlaySong == "TitleScreen" &&
-            //    MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 0, 830))
-            //    MediaPlayer.Play(Singleton.Instance.song["TitleScreen"], new TimeSpan(0, 0, 0, 34, 200));
             else if (Singleton.Instance.mediaPlaySong == "MenuScreen" &&
                 MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 42, 438))
                 MediaPlayer.Play(Singleton.Instance.song["MenuScreen"], new TimeSpan(0, 0, 0, 3, 526));
-            //else if (Singleton.Instance.mediaPlaySong == "PVPBattle" 
-            //    && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
-            //    MediaPlayer.Play(Singleton.Instance.song["PVPBattle"], new TimeSpan(0, 0, 0, 6, 880));
             else if (Singleton.Instance.mediaPlaySong == "PracticeBattle"
                 && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 40, 259))
                 MediaPlayer.Play(Singleton.Instance.song["PracticeBattle"], new TimeSpan(0, 0, 0, 8, 270));
-            else if (Singleton.Instance.mediaPlaySong == "Battle1" 
+            else if (Singleton.Instance.mediaPlaySong == "Battle1"
                 && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 53, 034))
                 MediaPlayer.Play(Singleton.Instance.song["Battle1"], new TimeSpan(0, 0, 0, 5, 985));
             else if (Singleton.Instance.mediaPlaySong == "BossBattle1"
                 && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 45, 020))
                 MediaPlayer.Play(Singleton.Instance.song["BossBattle1"], new TimeSpan(0, 0, 0, 13, 053));
+
+            //optional
+            //else if (Singleton.Instance.mediaPlaySong == "TitleScreen" &&
+            //    MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 0, 830))
+            //    MediaPlayer.Play(Singleton.Instance.song["TitleScreen"], new TimeSpan(0, 0, 0, 34, 200));
+            //else if (Singleton.Instance.mediaPlaySong == "PVPBattle" 
+            //    && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 4, 604))
+            //    MediaPlayer.Play(Singleton.Instance.song["PVPBattle"], new TimeSpan(0, 0, 0, 6, 880));
             //else if (Singleton.Instance.mediaPlaySong == "EnemyDeletedShort"
             //    && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 3, 600))
             //    MediaPlayer.Play(Singleton.Instance.song["EnemyDeletedShort"], new TimeSpan(0, 0, 0, 3, 780));
@@ -525,9 +527,18 @@ namespace Rockman
                 }
             });
             //optionScreenSprite
-            _screenSprites.Add(new OptionScreen(practiceTexture)
+            _screenSprites.Add(new OptionScreen(fadeScreenTexture)
             {
                 Name = "OptionScreen",
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
+                }
+            });
+            //creditScreenSprite
+            _screenSprites.Add(new CreditScreen(fadeScreenTexture)
+            {
+                Name = "CreditScreen",
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
@@ -1208,6 +1219,7 @@ namespace Rockman
             });
 
             Singleton.Instance._font = Content.Load<SpriteFont>("RockmanFont");
+            Singleton.Instance.normalFont = Content.Load<SpriteFont>("Font");
         }
     }
 }

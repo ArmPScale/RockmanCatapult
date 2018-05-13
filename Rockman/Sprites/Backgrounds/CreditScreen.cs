@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Rockman.Sprites
-{    class OptionScreen : Background
+{    class CreditScreen : Background
     {
         public bool isClicked = false;
         Color backButtonColor = Color.WhiteSmoke;
@@ -38,7 +38,7 @@ namespace Rockman.Sprites
             Color.DarkGray,
         };
 
-        public OptionScreen(Texture2D[] texture)
+        public CreditScreen(Texture2D[] texture)
             : base(texture)
         {
         }
@@ -51,7 +51,7 @@ namespace Rockman.Sprites
                 case Singleton.MenuState.MainMenu:
                     alpha = 255;
                     break;
-                case Singleton.MenuState.Option:
+                case Singleton.MenuState.Credits:
                     //Escape
                     if (Singleton.Instance.CurrentKey.IsKeyDown(Keys.Escape) && Singleton.Instance.PreviousKey.IsKeyUp(Keys.Escape))
                         Singleton.Instance.CurrentMenuState = Singleton.MenuState.MainMenu;
@@ -163,9 +163,9 @@ namespace Rockman.Sprites
                 case Singleton.ScreenState.MenuScreen:
                     switch (Singleton.Instance.CurrentMenuState)
                     {
-                        case Singleton.MenuState.Option:
+                        case Singleton.MenuState.Credits:
                             //drawTextPractice
-                            spriteBatch.DrawString(Singleton.Instance._font, "Option", new Vector2(60, 144),
+                            spriteBatch.DrawString(Singleton.Instance._font, "Credits", new Vector2(60, 144),
                                 Color.WhiteSmoke, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
                             //drawTextBGM
                             spriteBatch.DrawString(Singleton.Instance._font, "Background Music", new Vector2(200, 300),

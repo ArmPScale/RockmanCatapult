@@ -46,7 +46,7 @@ namespace Rockman
 
         //initialArr
         public int[,] panelBoundary, panelStage, panelElement, panelYellow, playerMove, spriteMove, spriteHP, chipEffect, virusAttack, bossAttack;
-        public SpriteFont _font;
+        public SpriteFont _font, normalFont;
         public Texture2D[] effectsTexture;
         public Dictionary<string, Song> song;
         public string mediaPlaySong = "", stagesName = "";

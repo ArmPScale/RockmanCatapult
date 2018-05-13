@@ -150,6 +150,7 @@ namespace Rockman.Sprites
                                 {
                                     SoundEffects["PressStart"].Volume = Singleton.Instance.MasterSFXVolume;
                                     SoundEffects["PressStart"].Play();
+                                    Singleton.Instance.CurrentMenuState = Singleton.MenuState.Credits;
                                 }
                             }
                             else if ((Singleton.Instance.CurrentMouse.X >= 60 && Singleton.Instance.CurrentMouse.X <= 147) &&
