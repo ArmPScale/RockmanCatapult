@@ -60,6 +60,8 @@ namespace Rockman.Sprites.Chips
             {"DarkBomb",  new Rectangle(176, 113, 14, 14) },
             {"DarkRecovery",  new Rectangle(224, 113, 14, 14) },
             {"DarkStage",  new Rectangle(240, 113, 14, 14) },
+            {"FinalGun",  new Rectangle(240, 113, 14, 14) },
+
         };
         Dictionary<string, int> allChipIconAtk = new Dictionary<string, int>()
         {

@@ -22,50 +22,6 @@ namespace Rockman.Sprites
         {
             "","",""
         };
-        Dictionary<string, Rectangle> rectChipImg = new Dictionary<string, Rectangle>()
-        {
-            {"Cannon",  new Rectangle(0, 0, 56, 47) },
-            {"HiCannon",  new Rectangle(56, 0, 56, 47) },
-            {"MegaCannon",  new Rectangle(112, 0, 56, 47) },
-            {"AirShot",  new Rectangle(168, 0, 56, 47) },
-            {"SpreadGun1",  new Rectangle(392, 0, 56, 47) },
-            {"SpreadGun2",  new Rectangle(448, 0, 56, 47) },
-            {"SpreadGun3",  new Rectangle(504, 0, 56, 47) },
-            {"MiniBomb",  new Rectangle(0, 48, 56, 47) },
-            {"BigBomb",  new Rectangle(0 + (56*1), 48, 56, 47) },
-            {"EnergyBomb",  new Rectangle(0 + (56*2), 48, 56, 47) },
-            {"MegaEnergyBomb",  new Rectangle(0 + (56*3), 48, 56, 47) },
-            {"BugBomb",  new Rectangle(0 + (56*4), 48, 56, 47) },
-            {"SearchBomb1",  new Rectangle(0 + (56*5), 48, 56, 47) },
-            {"SearchBomb2",  new Rectangle(0 + (56*6), 48, 56, 47) },
-            {"SearchBomb3",  new Rectangle(0 + (56*7), 48, 56, 47) },
-            {"CannonBall",  new Rectangle(0 + (56*8), 48, 56, 47) },
-            {"BlackBomb",  new Rectangle(0 + (56*9), 48, 56, 47) },
-            {"Recovery10",  new Rectangle(0, 145, 56, 47) },
-            {"Recovery30",  new Rectangle(56, 145, 56, 47) },
-            {"Recovery50",  new Rectangle(56*2, 145, 56, 47) },
-            {"Recovery80",  new Rectangle(56*3, 145, 56, 47) },
-            {"Recovery120",  new Rectangle(56*4, 145, 56, 47) },
-            {"Recovery150",  new Rectangle(56*5, 145, 56, 47) },
-            {"Recovery200",  new Rectangle(56*6, 145, 56, 47) },
-            {"Recovery300",  new Rectangle(56*7, 145, 56, 47) },
-            {"Barrier",  new Rectangle(224, 192, 56, 47) },
-            {"Barrier100",  new Rectangle(224 + (56*1), 192, 56, 47) },
-            {"Barrier200",  new Rectangle(224 + (56*2), 192, 56, 47) },
-            {"PanelReturn",  new Rectangle(448, 144, 56, 47) },
-            {"HolyPanel",  new Rectangle(448 + (56*1), 144, 56, 47) },
-            {"Sanctuary",  new Rectangle(280, 288, 56, 47) },
-            {"CrackOut",  new Rectangle(112, 240, 56, 47) },
-            {"DoubleCrack",  new Rectangle(168, 240, 56, 47) },
-            {"TripleCrack",  new Rectangle(224, 240, 56, 47) },
-            {"DreamAura",  new Rectangle(56, 288, 56, 47) },
-            {"DarkCannon",  new Rectangle(0, 336, 56, 47) },
-            {"DarkBomb",  new Rectangle(56, 336, 56, 47) },
-            {"DarkSpread",  new Rectangle(112, 336, 56, 47) },
-            {"DarkRecovery",  new Rectangle(168, 336, 56, 47) },
-            {"DarkStage",  new Rectangle(280, 336, 56, 47) },
-            {"FinalGun",  new Rectangle(0, 384, 56, 47) },
-        };
         Dictionary<string, Rectangle> rectChipRiverImg = new Dictionary<string, Rectangle>()
         {
             {"CherprangRiver",  new Rectangle(0, 0, 168, 144) },
@@ -121,7 +77,7 @@ namespace Rockman.Sprites
                             }
                             isPutInYouGot = true;
                             Console.WriteLine(Singleton.Instance.nextChipInPack.Count);
-                            Console.WriteLine(Singleton.Instance.allChipDict);
+                            Console.WriteLine(Singleton.Instance.allChipDict.Count);
                         }
                         fadeChipImg *= 0.96f;
                         //fadeScreen

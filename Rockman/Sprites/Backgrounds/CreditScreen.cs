@@ -14,7 +14,6 @@ namespace Rockman.Sprites
     {
         public bool isClicked = false;
         Color backButtonColor = Color.WhiteSmoke;
-        float numberSelectedBGM = 0f , numberSelectedSFX = 0f;
         public int[] positionNumber = new int[6]
         {
             700,750,800,850,900,950

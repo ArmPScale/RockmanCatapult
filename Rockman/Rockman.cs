@@ -18,7 +18,7 @@ namespace Rockman
         SpriteBatch spriteBatch;
 
         private List<Sprite> _screenSprites, _sprites, _stages;
-        Texture2D[] titleScreenTexture, menuScreenTexture, stageTexture, practiceTexture, shopTexture,
+        Texture2D[] titleScreenTexture, menuScreenTexture, stageTexture, practiceTexture, shopTexture, editTexture,
             playersTexture, panelTexture, enemiesTexture, backgroundTexture, fadeScreenTexture, chipTexture, customScreenTexture;
         private int _numScreenSprites, _numObject, _numStages;
 
@@ -39,6 +39,7 @@ namespace Rockman
             titleScreenTexture = new Texture2D[5];
             menuScreenTexture = new Texture2D[5];
             stageTexture = new Texture2D[5];
+            editTexture = new Texture2D[10];
             shopTexture = new Texture2D[10];
             practiceTexture = new Texture2D[5];
 
@@ -66,11 +67,17 @@ namespace Rockman
             {
                 1,0,0,0,0,0,0
             };
-            Singleton.Instance.allChipList = new List<string>();
             Singleton.Instance.allChipDict = new Dictionary<string, int>();
             Singleton.Instance.nextChipInPack = new Queue<string>();
             //shuffleBattleChipInFolder
-            Singleton.Instance.folderList = new List<string>();
+            Singleton.Instance.folderList = new List<string>()
+            {
+                "Cannon","Cannon","Cannon","Cannon","Cannon","Cannon",
+                "Cannon","Cannon","Cannon","HiCannon","HiCannon","HiCannon",
+                "Cannon","Cannon","Cannon","Cannon","Cannon","Cannon",
+                "Cannon","Cannon","Cannon","HiCannon","HiCannon","HiCannon",
+                "Cannon","Cannon","Cannon","HiCannon","Sanctuary","DreamAura",
+            };
             Singleton.Instance.nextChipFolder = new Queue<string>();
             //Singleton.Instance.folderList.Shuffle();
             //Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
@@ -436,6 +443,14 @@ namespace Rockman
             stageTexture[2] = Content.Load<Texture2D>("background/stage/Stage2");
             stageTexture[3] = Content.Load<Texture2D>("background/stage/Stage3");
             stageTexture[4] = Content.Load<Texture2D>("background/stage/Stage4");
+            editTexture[0] = Content.Load<Texture2D>("background/WhiteScreen");
+            editTexture[1] = Content.Load<Texture2D>("background/edit/ChipScreen");
+            editTexture[2] = Content.Load<Texture2D>("background/edit/ChipFrameEXE5");
+            editTexture[3] = Content.Load<Texture2D>("chipAtk/chipIconEXE6");
+            editTexture[4] = Content.Load<Texture2D>("chipAtk/chipIconEXE4");
+            editTexture[5] = Content.Load<Texture2D>("chipAtk/chipList");
+            editTexture[6] = Content.Load<Texture2D>("chipAtk/RiverBNK48");
+
             shopTexture[0] = Content.Load<Texture2D>("background/WhiteScreen");
             shopTexture[1] = Content.Load<Texture2D>("background/shop/Pack1");
             shopTexture[2] = Content.Load<Texture2D>("background/shop/BlockZenny");
@@ -508,6 +523,15 @@ namespace Rockman
             _screenSprites.Add(new StoryModeScreen(stageTexture)
             {
                 Name = "StoryModeScreen",
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },
+                }
+            });
+            //editScreenSprite
+            _screenSprites.Add(new EditScreen(editTexture)
+            {
+                Name = "EditScreen",
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"PressStart", Content.Load<SoundEffect>("sfx/PressStart").CreateInstance() },

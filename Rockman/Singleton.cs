@@ -41,7 +41,7 @@ namespace Rockman
         };
 
         //folderPlayer
-        public List<string> folderList, allChipList;
+        public List<string> folderList;
         public Queue<string> nextChipFolder, nextChipInPack;
         public Dictionary<string, int> allChipDict;
 

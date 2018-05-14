@@ -175,15 +175,6 @@ namespace Rockman.Sprites
                                 };
                             }
                             break;
-                        case Singleton.MenuState.EditFolderChip:
-
-                            break;
-                        case Singleton.MenuState.Shop:
-
-                            break;
-                        case Singleton.MenuState.Credits:
-
-                            break;
                         case Singleton.MenuState.Quit:
                             Singleton.Instance.CurrentScreenState = Singleton.ScreenState.Quit;
                             break;

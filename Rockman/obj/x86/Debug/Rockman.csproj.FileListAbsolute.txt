@@ -188,3 +188,7 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\sho
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\shop\BlockZenny.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\WhiteScreen.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\GotItem.xnb
+D:\Projects\RockmanCatapult\Rockman\obj\x86\Debug\Rockman.Properties.Resources.resources
+D:\Projects\RockmanCatapult\Rockman\obj\x86\Debug\Rockman.csproj.GenerateResource.Cache
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\edit\ChipFrameEXE5.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\edit\ChipScreen.xnb

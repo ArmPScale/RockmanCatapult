@@ -31,11 +31,14 @@ namespace Rockman.Sprites
                         SoundEffects["GoIntoBattle"].Volume = Singleton.Instance.MasterSFXVolume;
                         SoundEffects["GoIntoBattle"].Play();
                     }
+                    else if(_timer > 2.4f && _timer < 3f)
+                    {
+                        MediaPlayer.Stop();
+                    }
                     //gotoGameCustomScreen
                     else if (_timer > 3f)
                     {
                         _timer = 0f;
-                        MediaPlayer.Stop();
                         Singleton.Instance.CurrentGameState = Singleton.GameState.GameCustomScreen;
                     }
                     //fadeScreen
