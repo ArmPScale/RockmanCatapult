@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 namespace Rockman.Sprites
 {    class EditScreen : Background
     {
-        public bool isClicked = false;
+        public bool isClicked = false, isSelectedFolder = false;
         Color backButtonColor = Color.WhiteSmoke;
         private int _positionChipIconImgX = 0, _positionChipIconImgY = 0, _chipCount = 0;
-        int rowAllChip = 0, columnAllChip = 0, numAllChip = 0;
+        int rowAllChip = 0, columnAllChip = 0, numAllChip = 0, positionChipFolder = 0;
         string drawFrameName = "", drawChipName = "";
         string drawFrameNameBag = "", drawChipNameBag = "";
         List<string> allChipKeyList;
@@ -72,6 +72,8 @@ namespace Rockman.Sprites
                                 {
                                     drawFrameName = chipClassDict[Singleton.Instance.folderList[_chipCount]];
                                     drawChipName = Singleton.Instance.folderList[_chipCount];
+                                    positionChipFolder = _chipCount;
+                                    isSelectedFolder = true;
                                 }
                             }
                             _positionChipIconImgX += 50;
@@ -108,6 +110,37 @@ namespace Rockman.Sprites
                                 {
                                     if (isClicked)
                                     {
+                                        if (isSelectedFolder)
+                                        {
+                                            //checkAlreadyHave
+                                            if (Singleton.Instance.allChipDict.ContainsKey(drawChipName))
+                                            {
+                                                Singleton.Instance.folderList[positionChipFolder] = allChipKeyList[_chipCount];
+                                                Singleton.Instance.allChipDict[drawChipName] += 1;
+                                                if (Singleton.Instance.allChipDict[allChipKeyList[_chipCount]] > 1)
+                                                {
+                                                    Singleton.Instance.allChipDict[allChipKeyList[_chipCount]] -= 1;
+                                                }
+                                                else
+                                                {
+                                                    Singleton.Instance.allChipDict.Remove(allChipKeyList[_chipCount]);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Singleton.Instance.folderList[positionChipFolder] = allChipKeyList[_chipCount];
+                                                if (Singleton.Instance.allChipDict[allChipKeyList[_chipCount]] > 1)
+                                                {
+                                                    Singleton.Instance.allChipDict[allChipKeyList[_chipCount]] -= 1;
+                                                }
+                                                else
+                                                Singleton.Instance.allChipDict.Remove(allChipKeyList[_chipCount]);
+                                                Singleton.Instance.allChipDict.Add(drawChipName, 1);
+                                                allChipKeyList.Add(drawChipName);
+                                                Console.WriteLine(Singleton.Instance.allChipDict.Count);
+                                            }
+                                            isSelectedFolder = false;
+                                        }
                                         drawFrameNameBag = chipClassDict[allChipKeyList[_chipCount]];
                                         drawChipNameBag = allChipKeyList[_chipCount];
                                     }
@@ -127,8 +160,9 @@ namespace Rockman.Sprites
                         backButtonColor = new Color(247, 159, 47);
                         if (isClicked)
                         {
-                            Singleton.Instance.CurrentMenuState = Singleton.MenuState.MainMenu;
+                            isSelectedFolder = false;
                             backButtonColor = Color.WhiteSmoke;
+                            Singleton.Instance.CurrentMenuState = Singleton.MenuState.MainMenu;
                         }
                     }
                     else
@@ -176,8 +210,18 @@ namespace Rockman.Sprites
                             {
                                 spriteBatch.Draw(_texture[2], new Vector2(943, 149), rectChipFrameImg[drawFrameNameBag],
                                 Color.White, 0f, Vector2.Zero, 2.5f, SpriteEffects.None, 0f);
-                                spriteBatch.Draw(_texture[5], new Vector2(968, 162), rectChipImg[drawChipNameBag],
-                               Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                                if (drawChipNameBag == "JaneRiver" ||
+                                    drawChipNameBag == "CherprangRiver")
+                                {
+                                    spriteBatch.Draw(_texture[6], new Vector2(968, 162), rectChipRiverImg[drawChipNameBag],
+                                Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                                }
+                                else
+                                {
+                                    spriteBatch.Draw(_texture[5], new Vector2(968, 162), rectChipImg[drawChipNameBag],
+                                Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                                }
+                                
                                 spriteBatch.DrawString(Singleton.Instance._font, drawChipNameBag, new Vector2(960, 332),
                                 Color.WhiteSmoke, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                             }
@@ -208,9 +252,18 @@ namespace Rockman.Sprites
                             {
                                 for (int j = 1; j <= Singleton.Instance.folderList.Count / 6; j++)
                                 {
-                                    spriteBatch.Draw(_texture[3], new Vector2(302 + _positionChipIconImgX, 302 + _positionChipIconImgY), 
+                                    if (rectChipIconEXE4Img.ContainsKey(Singleton.Instance.folderList[_chipCount]))
+                                    {
+                                        spriteBatch.Draw(_texture[4], new Vector2(302 + _positionChipIconImgX, 302 + _positionChipIconImgY),
+                                        rectChipIconEXE4Img[Singleton.Instance.folderList[_chipCount]],
+                                        Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                                    }
+                                    else
+                                    {
+                                        spriteBatch.Draw(_texture[3], new Vector2(302 + _positionChipIconImgX, 302 + _positionChipIconImgY),
                                         rectChipIconEXE6Img[Singleton.Instance.folderList[_chipCount]],
-                                    Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                                        Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                                    }
                                     _positionChipIconImgX += 50;
                                     _chipCount += 1;
                                 }
@@ -253,8 +306,9 @@ namespace Rockman.Sprites
                                             Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
                                         }
 
-                                        if (drawChipNameBag != "")
+                                        if (Singleton.Instance.allChipDict.ContainsKey(drawChipNameBag) && drawChipNameBag != "")
                                         {
+                                            // error
                                             //drawTextCount
                                             spriteBatch.DrawString(Singleton.Instance._font, string.Format("x {0}",
                                                 Singleton.Instance.allChipDict[drawChipNameBag]),

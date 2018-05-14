@@ -58,6 +58,11 @@ namespace Rockman.Sprites.Screens
             {"DarkStage",  new Rectangle(280, 336, 56, 47) },
             {"FinalGun",  new Rectangle(0, 384, 56, 47) },
         };
+        public Dictionary<string, Rectangle> rectChipRiverImg = new Dictionary<string, Rectangle>()
+        {
+            {"CherprangRiver",  new Rectangle(0, 0, 168, 144) },
+            {"JaneRiver",  new Rectangle(168, 0, 168, 144) },
+        };
         public Dictionary<string, Rectangle> rectChipIconEXE6Img = new Dictionary<string, Rectangle>()
         {
             {"Cannon",  new Rectangle(22, 2, 14, 14) },

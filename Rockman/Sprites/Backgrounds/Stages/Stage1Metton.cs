@@ -37,13 +37,13 @@ namespace Rockman.Sprites.Screens
                             1,0,0,0,0,0,0
                         };
                         //shuffleBattleChipInFolder
-                        Singleton.Instance.folderList = new List<string>()
-                        {
-                            "DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
-                            "DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon",
-                            "PanelReturn","HolyPanel","Sanctuary","BlackBomb","CannonBall","DarkStage","CherprangRiver","JaneRiver",
-                            "MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb3","DarkBomb","BugBomb","Barrier200",
-                        };
+                        //Singleton.Instance.folderList = new List<string>()
+                        //{
+                        //    "DarkRecovery","DoubleCrack","SpreadGun3","Recovery120","Recovery300","DarkSpread",
+                        //    "DreamAura","HiCannon","Barrier100","TripleCrack","AirShot","Cannon","MegaCannon","DarkCannon",
+                        //    "PanelReturn","HolyPanel","Sanctuary","BlackBomb","CannonBall","DarkStage","CherprangRiver","JaneRiver",
+                        //    "MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb3","DarkBomb","BugBomb","Barrier200",
+                        //};
                         Singleton.Instance.folderList.Shuffle();
                         Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
 
