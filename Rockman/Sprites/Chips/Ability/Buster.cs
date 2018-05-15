@@ -42,6 +42,14 @@ namespace Rockman.Sprites.Chips
                             break;
                     }
                     break;
+                case Singleton.GameState.GameUseChip:
+                    _busterCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (_busterCoolDown > 0.01f)
+                    {
+                        _busterCoolDown = 0f;
+                        _animationManager.Update(gameTime);
+                    }
+                    break;
                 case Singleton.GameState.GameClear:
                     _busterCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     if (_busterCoolDown > 0.3f)
@@ -80,6 +88,14 @@ namespace Rockman.Sprites.Chips
                                 }
                             }
                             break;
+                    }
+                    break;
+                case Singleton.GameState.GameUseChip:
+                    if (Singleton.Instance.choosePlayerAnimate == "Buster")
+                    {
+                        _animationManager.Draw(spriteBatch,
+                        new Vector2((TILESIZEX * Singleton.Instance.currentPlayerPoint.Y * 2) + (screenStageX + 95), (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 50)),
+                        scale);
                     }
                     break;
                 case Singleton.GameState.GameClear:

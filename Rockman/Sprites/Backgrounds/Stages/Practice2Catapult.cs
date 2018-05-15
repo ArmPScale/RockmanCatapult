@@ -37,12 +37,17 @@ namespace Rockman.Sprites.Screens
                             1,0,0,0,0,0,0
                         };
                         //shuffleBattleChipInFolder
+                        if (!isBackUp)
+                        {
+                            backUpFolderList = Singleton.Instance.folderList;
+                            isBackUp = true;
+                        }
                         Singleton.Instance.folderList = new List<string>()
                         {
-                            //"DoubleCrack","DreamAura","Barrier200","TripleCrack","PanelReturn","HolyPanel","Sanctuary",
-                            //"DoubleCrack","Barrier","PanelReturn","HolyPanel",
-                            //"BlackBomb","CannonBall","MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb3","DarkBomb","BugBomb",
-                            //"CannonBall","MiniBomb","BigBomb","EnergyBomb","SearchBomb1","BugBomb",
+                            "DoubleCrack","DreamAura","Barrier200","TripleCrack","PanelReturn","HolyPanel","Sanctuary",
+                            "DoubleCrack","Barrier","PanelReturn","HolyPanel",
+                            "BlackBomb","CannonBall","MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb3","DarkBomb","BugBomb",
+                            "CannonBall","MiniBomb","BigBomb","EnergyBomb","SearchBomb1","BugBomb",
                             "BlackBomb","CannonBall","MiniBomb","BigBomb","EnergyBomb","MegaEnergyBomb","SearchBomb2","BugBomb",
                         };
                         Singleton.Instance.folderList.Shuffle();
@@ -192,6 +197,8 @@ namespace Rockman.Sprites.Screens
         public override void Reset()
         {
             Singleton.Instance.nextChipFolder.Clear();
+            Singleton.Instance.folderList = backUpFolderList;
+            isBackUp = false;
             Singleton.Instance.chipStackImg = new string[7]
             {
                         "","","","","","",""

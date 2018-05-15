@@ -278,19 +278,23 @@ namespace Rockman.Sprites
                                         SoundEffects["Deleted"].Play();
                                         _animationManager.Play(_animations["Dead"]);
                                     }
-                                    else
+                                    else if (_deadCoolDown > 1f)
                                     {
-                                        if (_deadCoolDown > 1f)
+                                        if (_deadCoolDown < 1.6f)
                                         {
                                             _animationManager.Play(_animations["Uninstall"]);
-                                            if (_deadCoolDown > 3f)
-                                            {
-                                                _deadCoolDown = 0;
-                                                MediaPlayer.Stop();
-                                                Singleton.Instance.mediaPlaySong = "MenuScreen";
-                                                Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
-                                                Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
-                                            }
+                                        }
+                                        else if (_deadCoolDown < 1.7f)
+                                        {
+                                            _animationManager.Play(_animations["Blank"]);
+                                        }
+                                        else if (_deadCoolDown > 3f)
+                                        {
+                                            _deadCoolDown = 0;
+                                            MediaPlayer.Stop();
+                                            Singleton.Instance.mediaPlaySong = "MenuScreen";
+                                            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
+                                            Singleton.Instance.playerMove[currentTile.X, currentTile.Y] = 0;
                                         }
                                     }
                                     break;
@@ -368,7 +372,8 @@ namespace Rockman.Sprites
                                 }
                                 else
                                 {
-                                    _animationManager.Draw(spriteBatch, new Vector2((TILESIZEX * j * 2) + (screenStageX + 5), (TILESIZEY * i * 2) + (screenStageY - 100)), scale);
+                                    _animationManager.Draw(spriteBatch, new Vector2((TILESIZEX * j * 2) + (screenStageX - 21), 
+                                        (TILESIZEY * i * 2) + (screenStageY - 112)), scale);
                                     //drawCharge
                                     if (_chargeTime > 1.2)
                                     {

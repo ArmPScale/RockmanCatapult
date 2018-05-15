@@ -37,8 +37,8 @@ namespace Rockman.Sprites.Chips
                         rectChipCrackImg.ContainsKey(Singleton.Instance.useChipSlotIn.Peek()))
                     {
                         //animateUseChipNormal
-                        Singleton.Instance.choosePlayerAnimate = "Bomb";
-                        Singleton.Instance.currentChipCoolDown = 0.3f;
+                        Singleton.Instance.choosePlayerAnimate = "Panel";
+                        Singleton.Instance.currentChipCoolDown = 0.4f;
                         Singleton.Instance.CurrentPlayerState = Singleton.PlayerState.UseChipNormal;
                         //useChipCrackOut
                         SoundEffects["CrackOut"].Volume = Singleton.Instance.MasterSFXVolume;

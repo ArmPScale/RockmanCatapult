@@ -19,7 +19,7 @@ namespace Rockman.Sprites.Chips
 
         #endregion
 
-        public String[] chipCustomImg = new string[7];
+        public string[] chipCustomImg = new string[7];
 
         public Chip(Texture2D[] texture) 
             : base(texture)
@@ -30,6 +30,7 @@ namespace Rockman.Sprites.Chips
         public Chip(Dictionary<string, Animation> animations) 
             : base(animations)
         {
+            chipCustomImg = Singleton.Instance.chipCustomSelect;
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)

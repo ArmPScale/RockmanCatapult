@@ -93,18 +93,6 @@
 /processorParam:Quality=Best
 /build:sfx/Deleted.wav
 
-#begin rockman/RockmanExe6.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:rockman/RockmanExe6.png
-
 #begin sfx/ChipCancel.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1004,4 +992,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:background/edit/ChipScreen.png
+
+#begin rockman/RockmanEXESprite.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:rockman/RockmanEXESprite.png
 

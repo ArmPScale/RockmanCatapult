@@ -103,7 +103,6 @@ namespace Rockman.Sprites.Chips
                                 Singleton.Instance.chipEffect[0, 6] = 0;
                                 _magicFreezeCoolDown = 0;
                             }
-                            Console.WriteLine("RiverBNK", _magicFreezeCoolDown);
 
                         }
                     }

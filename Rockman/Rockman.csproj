@@ -70,6 +70,7 @@
     <Compile Include="Sprites\Backgrounds\MenuScreen.cs" />
     <Compile Include="Sprites\Backgrounds\TitleScreen.cs" />
     <Compile Include="Sprites\Backgrounds\BackgroundSprite.cs" />
+    <Compile Include="Sprites\Chips\Ability\FinalGun.cs" />
     <Compile Include="Sprites\Chips\Ability\RiverBNK.cs" />
     <Compile Include="Sprites\Chips\Ability\BlackAceChip.cs" />
     <Compile Include="Sprites\Chips\Ability\AirShot.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Sprites\Enemies\Wizard.cs" />
     <Compile Include="Sprites\Enemies\Mage.cs" />
     <Compile Include="Sprites\Players\BlackAce.cs" />
+    <Compile Include="Sprites\Chips\InformationChip.cs" />
     <Compile Include="Sprites\Screens\Battle\BlackAceEmblem.cs" />
     <Compile Include="Sprites\Screens\Battle\ChipType.cs" />
     <Compile Include="Sprites\Screens\Battle\CustomBomb.cs" />

@@ -27,6 +27,7 @@ namespace Rockman.Sprites
             switch (Singleton.Instance.CurrentGameState)
             {
                 case Singleton.GameState.GameEnemyAppear:
+                    _animationManager.Play(_animations["Alive"]);
                     _timer = 0; _atkTime = 0; _castingTime = 0;
                     break;
                 case Singleton.GameState.GamePlaying:
@@ -124,7 +125,7 @@ namespace Rockman.Sprites
                                         scale);
                                 }
                                 //drawHP
-                                if (Singleton.Instance.spriteHP[i, j] >= 0)
+                                if (Singleton.Instance.spriteHP[i, j] > 0)
                                 {
                                     spriteBatch.DrawString(Singleton.Instance._font, string.Format("{0}", (Singleton.Instance.spriteHP[i, j])), new Vector2((TILESIZEX * currentTile.Y * 2) + (screenStageX + TILESIZEY), (TILESIZEY * currentTile.X * 2) + (screenStageY + TILESIZEX - 10)), Color.White, 0f, Vector2.Zero, 1.3f, SpriteEffects.None, 0f);
                                 }

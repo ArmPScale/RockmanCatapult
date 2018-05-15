@@ -22,11 +22,6 @@ namespace Rockman.Sprites
         {
             "","",""
         };
-        Dictionary<string, Rectangle> rectChipRiverImg = new Dictionary<string, Rectangle>()
-        {
-            {"CherprangRiver",  new Rectangle(0, 0, 168, 144) },
-            {"JaneRiver",  new Rectangle(168, 0, 168, 144) },
-        };
         private List<string> _boosterPack1 = new List<string>()
         {
             "Cannon","Cannon","Cannon","Cannon","Cannon","AirShot","AirShot","AirShot","AirShot","AirShot",
@@ -35,7 +30,7 @@ namespace Rockman.Sprites
             "Barrier","Barrier","Barrier","HolyPanel","HolyPanel","PanelReturn","CrackOut","CrackOut","CrackOut","DoubleCrack",
             "DoubleCrack","DoubleCrack","TripleCrack","TripleCrack","HiCannon","HiCannon","SpreadGun2","SpreadGun2","EnergyBomb","EnergyBomb",
             "CannonBall","CannonBall","Recovery50","Recovery50","Barrier100","Barrier100","Barrier200","Recovery80","Sanctuary","DreamAura",
-            "FinalGun","JaneRiver","CherprangRiver"
+            "FinalGun","JaneRiver","CherprangRiver","DarkCannon","DarkStage","DarkRecovery"
         };
 
         public ShopResult(Texture2D[] texture)

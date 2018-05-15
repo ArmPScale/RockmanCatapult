@@ -69,19 +69,18 @@ namespace Rockman
             };
             Singleton.Instance.allChipDict = new Dictionary<string, int>();
             Singleton.Instance.nextChipInPack = new Queue<string>();
-            //shuffleBattleChipInFolder
             Singleton.Instance.folderList = new List<string>()
             {
-                "Cannon","Cannon","Cannon","Cannon","Cannon","Cannon",
-                "Cannon","Cannon","Cannon","HiCannon","HiCannon","HiCannon",
-                "Cannon","Cannon","Cannon","Cannon","Cannon","Cannon",
-                "Cannon","Cannon","Cannon","HiCannon","HiCannon","HiCannon",
-                "Cannon","Cannon","Cannon","HiCannon","Sanctuary","DreamAura",
+                "FinalGun","FinalGun","FinalGun","FinalGun","FinalGun","FinalGun",
+                "FinalGun","FinalGun","FinalGun","FinalGun","FinalGun","FinalGun",
+                "FinalGun","FinalGun","FinalGun","FinalGun","FinalGun","FinalGun",
+                //"Cannon","AirShot","SpreadGun1","Cannon","HolyPanel","Barrier",
+                //"Cannon","AirShot","SpreadGun1","Recovery10","Recovery10","Barrier100",
+                //"Cannon","AirShot","SpreadGun1","Recovery10","Recovery10","MiniBomb",
+                "HiCannon","CrackOut","SpreadGun2","Recovery30","CrackOut","MiniBomb",
+                "HiCannon","DoubleCrack","SpreadGun2","Recovery30","CrackOut","MiniBomb",
             };
             Singleton.Instance.nextChipFolder = new Queue<string>();
-            //Singleton.Instance.folderList.Shuffle();
-            //Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
-
             Singleton.Instance.panelBoundary = new int[3, 10]
             {
                 { 0,0,0,0,0,1,1,1,1,1},
@@ -375,7 +374,6 @@ namespace Rockman
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            // TODO: Add your drawing code here
             switch (Singleton.Instance.CurrentScreenState)
             {
                 case Singleton.ScreenState.TitleScreen:
@@ -450,6 +448,7 @@ namespace Rockman
             editTexture[4] = Content.Load<Texture2D>("chipAtk/chipIconEXE4");
             editTexture[5] = Content.Load<Texture2D>("chipAtk/chipList");
             editTexture[6] = Content.Load<Texture2D>("chipAtk/RiverBNK48");
+            editTexture[7] = Content.Load<Texture2D>("screen/CustomWindow");
 
             shopTexture[0] = Content.Load<Texture2D>("background/WhiteScreen");
             shopTexture[1] = Content.Load<Texture2D>("background/shop/Pack1");
@@ -464,7 +463,7 @@ namespace Rockman
             
             backgroundTexture[0] = Content.Load<Texture2D>("background/Space");
             panelTexture[0] = Content.Load<Texture2D>("panel/PanelsEXE5");
-            playersTexture[0] = Content.Load<Texture2D>("rockman/RockmanEXE6");
+            playersTexture[0] = Content.Load<Texture2D>("rockman/RockmanEXESprite");
             playersTexture[1] = Content.Load<Texture2D>("rockman/RockmanBusterEXE6");
             playersTexture[2] = Content.Load<Texture2D>("rockman/BlackAceSprite");
             playersTexture[3] = Content.Load<Texture2D>("rockman/BlackAceEffect");
@@ -784,12 +783,15 @@ namespace Rockman
             //rockmanEXE
             _sprites.Add(new RockmanEXESprite(new Dictionary<string, Animation>()
             {
-                { "Alive", new Animation(playersTexture[0], new Rectangle(9, 1, 57, 57), 1) },
-                { "Buster", new Animation(playersTexture[0], new Rectangle(9, 527, 43*4, 52), 4) },
-                { "BombPrepare", new Animation(playersTexture[0], new Rectangle(10, 370, 49, 52), 1) },
-                { "Bomb", new Animation(playersTexture[0], new Rectangle(10, 370, 49*7, 52), 7) },
-                { "Dead", new Animation(playersTexture[0], new Rectangle(9, 58, 42, 57), 1) },
+                { "Alive", new Animation(playersTexture[0], new Rectangle(0, 0, 80, 60), 1) },
+                { "Buster", new Animation(playersTexture[0], new Rectangle(0, 60, 80*4, 60), 4) },
+                { "Panel", new Animation(playersTexture[0], new Rectangle(0, 120, 80*4, 60), 4) },
+                { "BombPrepare", new Animation(playersTexture[0], new Rectangle(0, 240, 80, 60), 1) },
+                { "Bomb", new Animation(playersTexture[0], new Rectangle(0, 240, 80*7, 60), 7) },
+                { "Sword", new Animation(playersTexture[2], new Rectangle(0, 180, 80*4, 80), 4) },
+                { "Dead", new Animation(playersTexture[0], new Rectangle(80, 0, 80, 60), 1) },
                 { "Uninstall", new Animation(Singleton.Instance.effectsTexture[3], new Rectangle(0, 0, 75*4, 68), 4) },
+                { "Blank", new Animation(playersTexture[0], new Rectangle(160, 0, 80, 60), 1) },
             })
             {
                 Name = "RockmanEXE",
@@ -820,11 +822,13 @@ namespace Rockman
                 { "Alive", new Animation(playersTexture[2], new Rectangle(0, 0, 80*4, 80), 4) },
                 { "NormalBuster", new Animation(playersTexture[2], new Rectangle(0, 80, 80*4, 80), 4) },
                 { "Buster", new Animation(playersTexture[2], new Rectangle(0, 160, 80*4, 80), 4) },
+                { "Panel", new Animation(playersTexture[2], new Rectangle(0, 160, 80*4, 80), 4) },
                 { "BombPrepare", new Animation(playersTexture[2], new Rectangle(0, 160, 80, 80), 1) },
                 { "Bomb", new Animation(playersTexture[2], new Rectangle(0, 160, 80*4, 80), 4) },
                 { "Sword", new Animation(playersTexture[2], new Rectangle(0, 240, 80*7, 80), 7) },
                 { "Dead", new Animation(playersTexture[2], new Rectangle(0, 0, 80*4, 80), 4) },
                 { "Uninstall", new Animation(Singleton.Instance.effectsTexture[3], new Rectangle(0, 0, 75*4, 68), 4) },
+                { "Blank", new Animation(playersTexture[2], new Rectangle(320, 0, 80, 80), 1) },
             })
             {
                 Name = "BlackAce",
@@ -1053,6 +1057,17 @@ namespace Rockman
                 Position = new Vector2(0, 0),
                 Viewport = new Rectangle(9, 255, 89, 105),
             });
+            //informationChipScreen
+            _sprites.Add(new InformationChip(new Dictionary<string, Animation>()
+            {
+                { "Open", new Animation(editTexture[2], new Rectangle(220, 152, 80, 59), 1) },
+                { "Close", new Animation(editTexture[2], new Rectangle(300, 152, 80, 59), 1) },
+            })
+            {
+                Name = "InformationScreen",
+                Position = new Vector2(360, 300),
+                Viewport = new Rectangle(220, 152, 80, 59),
+            });
             //blackAceEmblem
             _sprites.Add(new BlackAceEmblem(new Dictionary<string, Animation>()
             {
@@ -1064,6 +1079,7 @@ namespace Rockman
                 Position = new Vector2(285, 400),
                 Viewport = new Rectangle(0, 0, 50, 50),
             });
+
             //battleStart
             _sprites.Add(new BattleStart(new Dictionary<string, Animation>()
             {
@@ -1209,6 +1225,19 @@ namespace Rockman
                 SoundEffects = new Dictionary<string, SoundEffectInstance>()
                 {
                     {"CrackOut", Content.Load<SoundEffect>("sfx/CrackOut").CreateInstance() },
+                }
+            });
+            //chipFinalGun
+            _sprites.Add(new FinalGun(chipTexture)
+            {
+                Name = "FinalGunChip",
+                Viewport = new Rectangle(0, 384, 56, 47),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"Buster", Content.Load<SoundEffect>("sfx/Buster").CreateInstance() },
+                    {"BusterHit", Content.Load<SoundEffect>("sfx/BusterHit").CreateInstance() },
+                    {"Charging", Content.Load<SoundEffect>("sfx/BusterCharging").CreateInstance() },
+                    {"Charged", Content.Load<SoundEffect>("sfx/BusterCharged").CreateInstance() },
                 }
             });
             //chipRiverBNK48

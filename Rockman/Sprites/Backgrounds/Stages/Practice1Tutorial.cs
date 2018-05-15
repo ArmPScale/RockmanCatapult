@@ -26,7 +26,6 @@ namespace Rockman.Sprites.Screens
                 switch (Singleton.Instance.CurrentGameState)
                 {
                     case Singleton.GameState.GameEnemyAppear:
-
                         //mediaPlay --> PracticeBattle
                         Singleton.Instance.mediaPlaySong = "PracticeBattle";
                         //clearBlackAce
@@ -37,6 +36,11 @@ namespace Rockman.Sprites.Screens
                             1,0,0,0,0,0,0
                         };
                         //shuffleBattleChipInFolder
+                        if (!isBackUp)
+                        {
+                            backUpFolderList = Singleton.Instance.folderList;
+                            isBackUp = true;
+                        }
                         Singleton.Instance.folderList = new List<string>()
                         {
                             "Cannon","AirShot","SpreadGun1","Recovery10","HolyPanel","Barrier",
@@ -189,6 +193,8 @@ namespace Rockman.Sprites.Screens
         public override void Reset()
         {
             Singleton.Instance.nextChipFolder.Clear();
+            Singleton.Instance.folderList = backUpFolderList;
+            isBackUp = false;
             Singleton.Instance.chipStackImg = new string[7]
             {
                         "","","","","","",""

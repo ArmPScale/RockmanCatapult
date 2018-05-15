@@ -15,7 +15,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/virus/MettonAttack.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/DefeatedExplode.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Deleted.wav</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanExe6.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipCancel.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipChoose.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/ChipConfirm.wav</File>
@@ -114,5 +113,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/GotItem.WAV</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/edit/ChipFrameEXE5.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/edit/ChipScreen.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanEXESprite.png</File>
   </SourceFiles>
 </SourceFileCollection>

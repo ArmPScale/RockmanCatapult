@@ -64,7 +64,7 @@ namespace Rockman
         public Stack<String> chipSlotIn, useChipSlotIn;
         public Stack<int> indexChipSlotIn;
         public int[] chipSelect;
-        public String[] chipCustomSelect, chipStackImg;
+        public string[] chipCustomSelect, chipStackImg;
         public Point currentChipSelect;
 
         public enum ScreenState

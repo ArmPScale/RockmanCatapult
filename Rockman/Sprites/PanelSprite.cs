@@ -36,6 +36,12 @@ namespace Rockman.Sprites
                         {
                             switch (Singleton.Instance.CurrentGameState)
                             {
+                                case Singleton.GameState.GameEnemyAppear:
+                                    if(Singleton.Instance.panelYellow[i,j] > 0)
+                                    {
+                                        Singleton.Instance.panelYellow[i, j] = 0;
+                                    }
+                                    break;
                                 case Singleton.GameState.GamePlaying:
                                     //panelElementCracked
                                     if (Singleton.Instance.panelStage[i, j] > 0)
@@ -78,39 +84,38 @@ namespace Rockman.Sprites
                                             Singleton.Instance.enemyAtk += 20;
                                             Singleton.Instance.panelElement[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] = 0;
                                         }
-                                        else if (Singleton.Instance.spriteMove[i, j] > 0)
+                                        for (int magmaRow = 0; magmaRow < 3; magmaRow++)
                                         {
-                                            for (int magmaRow = 0; magmaRow < 3; magmaRow++)
+                                            for (int magmaColumn = 0; magmaColumn < 10; magmaColumn++)
                                             {
-                                                for (int magmaColumn = 0; magmaColumn < 10; magmaColumn++)
+                                                if (Singleton.Instance.spriteHP[magmaRow, magmaColumn] > 0 &&
+                                                    Singleton.Instance.panelElement[magmaRow, magmaColumn] == 3)
                                                 {
-                                                    if (Singleton.Instance.spriteMove[magmaRow, magmaColumn] > 0)
-                                                    {
-                                                        Singleton.Instance.spriteHP[magmaRow, magmaColumn] -= 20;
-                                                        Singleton.Instance.panelElement[magmaRow, magmaColumn] = 0;
-                                                    }
+                                                    Singleton.Instance.spriteHP[magmaRow, magmaColumn] -= 20;
+                                                    Singleton.Instance.panelElement[magmaRow, magmaColumn] = 0;
                                                 }
                                             }
                                         }
-
                                     }
                                     //4.poisonPanel
                                     else if (Singleton.Instance.panelElement[i, j] == 4 &&
                                         (Singleton.Instance.spriteMove[i, j] > 0 || Singleton.Instance.playerMove[i, j] > 0))
                                     {
-                                        if (_poisonCoolDown > 0.3f && Singleton.Instance.HeroBarrier == 0 &&
+                                        if (_poisonCoolDown > 0.3f)
+                                        {
+                                            if (Singleton.Instance.HeroBarrier <= 0 &&
                                             Singleton.Instance.panelElement[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] == 4)
-                                        {
-                                            Singleton.Instance.isDamaged = true;
-                                            Singleton.Instance.enemyAtk = 1;
-                                            _poisonCoolDown = 0f;
-                                        }
-                                        else if (_poisonCoolDown > 0.3f)
-                                        {
+                                            {
+                                                Singleton.Instance.isDamaged = true;
+                                                Singleton.Instance.enemyAtk = 1;
+                                                _poisonCoolDown = 0f;
+                                            }
                                             for (int poisonRow = 0; poisonRow < 3; poisonRow++)
                                             {
                                                 for (int poisonColumn = 0; poisonColumn < 10; poisonColumn++)
                                                 {
+                                                    if(Singleton.Instance.spriteHP[poisonRow, poisonColumn] > 0 && 
+                                                        Singleton.Instance.panelElement[poisonRow, poisonColumn] == 4)
                                                     Singleton.Instance.spriteHP[poisonRow, poisonColumn] -= 1;
                                                 }
                                             }

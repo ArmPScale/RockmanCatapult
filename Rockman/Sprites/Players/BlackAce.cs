@@ -276,7 +276,14 @@ namespace Rockman.Sprites
                                     {
                                         if (_deadCoolDown > 1f)
                                         {
-                                            _animationManager.Play(_animations["Uninstall"]);
+                                            if (_deadCoolDown < 1.6f)
+                                            {
+                                                _animationManager.Play(_animations["Uninstall"]);
+                                            }
+                                            else if (_deadCoolDown < 1.7f)
+                                            {
+                                                _animationManager.Play(_animations["Blank"]);
+                                            }
                                             if (_deadCoolDown > 3f)
                                             {
                                                 _deadCoolDown = 0;

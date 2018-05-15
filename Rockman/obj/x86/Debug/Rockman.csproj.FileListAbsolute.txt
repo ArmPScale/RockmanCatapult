@@ -89,7 +89,6 @@ D:\Projects\RockmanCatapult\Rockman\obj\x86\Debug\Rockman.csproj.CoreCompileInpu
 D:\Projects\RockmanCatapult\Rockman\obj\x86\Debug\Rockman.exe
 D:\Projects\RockmanCatapult\Rockman\obj\x86\Debug\Rockman.pdb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\UseChip.xnb
-D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\rockman\RockmanExe6.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\CustomScreen.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\screen\CustomWindow.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\battleEffect\Uninstall.xnb
@@ -192,3 +191,4 @@ D:\Projects\RockmanCatapult\Rockman\obj\x86\Debug\Rockman.Properties.Resources.r
 D:\Projects\RockmanCatapult\Rockman\obj\x86\Debug\Rockman.csproj.GenerateResource.Cache
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\edit\ChipFrameEXE5.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\edit\ChipScreen.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\rockman\RockmanEXESprite.xnb

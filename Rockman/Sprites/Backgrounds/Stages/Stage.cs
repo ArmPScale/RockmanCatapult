@@ -13,6 +13,8 @@ namespace Rockman.Sprites.Screens
     class Stage : Sprite
     {
         public Color fade;
+        public List<string> backUpFolderList = new List<string>();
+        public bool isBackUp = false;
 
         public Stage() : base()
         {
