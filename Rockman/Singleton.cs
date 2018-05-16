@@ -25,7 +25,7 @@ namespace Rockman
         public int HeroHP = 200, maxHeroHP = 200, HeroAttack = 4, HeroBarrier = 0, HeroAura = 0, playerChipAtk = 0, NoisePercent = 0;
         public int currentVirusGotDmgIndex , Zenny = 9999999;
         public Point currentPlayerPoint;
-        public bool isDamaged, isRecovered, statusBugHP = false, whiteScreen = false, isGetChipResult = false;
+        public bool isDamaged, isRecovered, statusBugHP = false, isGetChipResult = false;
         public string choosePlayerAnimate = "Alive", chooseEmotionPlayer = "NormalEmotion";
         public float currentChipCoolDown = 0f, currentChipAtkTime = 0f;
 
@@ -59,6 +59,7 @@ namespace Rockman
         public bool selectChipSuccess;
         public bool useChip, useChipDuring, useChipNearlySuccess, useChipSuccess;
         public bool useNormalChip, useSceneChip, useThrowableChip;
+        public bool whiteScreen = false, blackScreen = false;
         public String chipType ,chipClass, useChipName = "", drawChipEffectName = "";
         public Stack<String> chipSlotIn, useChipSlotIn;
         public Stack<int> indexChipSlotIn;

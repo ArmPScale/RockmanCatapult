@@ -194,3 +194,11 @@ D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\edi
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\rockman\RockmanEXESprite.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\logoTitleOld.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\LogoTitleWithShadow.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\BEGalaxy\BEGalaxy1.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\BEGalaxy\BEGalaxy2.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\BEGalaxy\BEGalaxy3.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\BEGalaxy\BEGalaxy4.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\BEGalaxy\BEGalaxy5.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\BEGalaxy\BEGalaxy6.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\BEGalaxy\BlackEnd!.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\sfx\BEGalaxy\Galaxy!.xnb

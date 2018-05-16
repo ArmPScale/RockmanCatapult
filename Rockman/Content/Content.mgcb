@@ -1005,3 +1005,57 @@
 /processorParam:TextureFormat=Color
 /build:background/LogoTitleWithShadow.png
 
+#begin sfx/BEGalaxy/BEGalaxy1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/BEGalaxy/BEGalaxy1.wav
+
+#begin sfx/BEGalaxy/BEGalaxy2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/BEGalaxy/BEGalaxy2.wav
+
+#begin sfx/BEGalaxy/BEGalaxy3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/BEGalaxy/BEGalaxy3.wav
+
+#begin sfx/BEGalaxy/BEGalaxy4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/BEGalaxy/BEGalaxy4.wav
+
+#begin sfx/BEGalaxy/BEGalaxy5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/BEGalaxy/BEGalaxy5.wav
+
+#begin sfx/BEGalaxy/BEGalaxy6.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/BEGalaxy/BEGalaxy6.wav
+
+#begin sfx/BEGalaxy/BlackEnd!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/BEGalaxy/BlackEnd!.wav
+
+#begin sfx/BEGalaxy/Galaxy!.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sfx/BEGalaxy/Galaxy!.wav
+
+#begin bgm/VsCrimsonDragon.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:bgm/VsCrimsonDragon.mp3
+

@@ -42,8 +42,9 @@ namespace Rockman.Sprites.Chips
             {"Barrier100",  new Rectangle(41+(19*1), 200, 14, 14) },
             {"Barrier200",  new Rectangle(41+(19*2), 200, 14, 14) },
             {"DreamAura",  new Rectangle(41+(19*4), 200, 14, 14) },
-            {"CherprangRiver",  new Rectangle(193, 254, 14, 14) },
             {"JaneRiver",  new Rectangle(193, 254, 14, 14) },
+            {"CherprangRiver",  new Rectangle(193, 254, 14, 14) },
+            {"BlackEndGalaxy",  new Rectangle(155, 254, 14, 14) },
             {"BlackAce",  new Rectangle(136, 254, 14, 14) },
         };
         Dictionary<string, Rectangle> rectChipIconEXE4Img = new Dictionary<string, Rectangle>()
@@ -84,8 +85,9 @@ namespace Rockman.Sprites.Chips
             {"DarkSpread",  400 },
             {"DarkBomb",  200 },
             {"FinalGun",  50 },
-            {"CherprangRiver",  400 },
             {"JaneRiver",  400 },
+            {"CherprangRiver",  400 },
+            {"BlackEndGalaxy",  500 },
         };
 
         public ChipIcon(Texture2D[] texture)

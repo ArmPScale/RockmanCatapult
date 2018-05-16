@@ -57,6 +57,7 @@ namespace Rockman.Sprites.Chips
             {"FinalGun",  "Charges up\n\n then uses chip\n\n Shoots 12 times" },
             {"JaneRiver",  "Jane Charges up\n\n freeze far \n\n 3x3 panels" },
             {"CherprangRiver",  "Cherprang Charges up\n\n freeze far \n\n 3x3 panels" },
+            {"BlackEndGalaxy",  "Attack all \n\nenemies with \n\nBlackAce Sword" },
             {"BlackAce",  "Change to \n\nBlackAce" },
         };
         private bool _isHidden = false;

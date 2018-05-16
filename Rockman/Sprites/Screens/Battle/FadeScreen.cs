@@ -83,6 +83,10 @@ namespace Rockman.Sprites
                 {
                     spriteBatch.Draw(_texture[1], new Vector2(0, 0), null,Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                 }
+                else if (Singleton.Instance.blackScreen)
+                {
+                    spriteBatch.Draw(_texture[0], new Vector2(0, 0), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                }
                 else
                 {
                     spriteBatch.Draw(_texture[0], new Vector2(0, 0), null, fade, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);

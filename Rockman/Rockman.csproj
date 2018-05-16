@@ -70,6 +70,7 @@
     <Compile Include="Sprites\Backgrounds\MenuScreen.cs" />
     <Compile Include="Sprites\Backgrounds\TitleScreen.cs" />
     <Compile Include="Sprites\Backgrounds\BackgroundSprite.cs" />
+    <Compile Include="Sprites\Chips\Ability\BEGalaxy.cs" />
     <Compile Include="Sprites\Chips\Ability\FinalGun.cs" />
     <Compile Include="Sprites\Chips\Ability\RiverBNK.cs" />
     <Compile Include="Sprites\Chips\Ability\BlackAceChip.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Sprites\Chips\Effect\BusterEffect.cs" />
     <Compile Include="Sprites\Chips\Effect\ImpactExplosionEffect.cs" />
     <Compile Include="Sprites\Chips\Sprite\AirShotSprite.cs" />
+    <Compile Include="Sprites\Chips\Sprite\BEGalaxySprite.cs" />
     <Compile Include="Sprites\Chips\Sprite\ThrowableSprite.cs" />
     <Compile Include="Sprites\Chips\Ability\Throwable.cs" />
     <Compile Include="Sprites\Chips\Ability\Barrier.cs" />

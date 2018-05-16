@@ -103,7 +103,7 @@ namespace Rockman.Sprites
                             spriteBatch.DrawString(Singleton.Instance._font, "Credits", new Vector2(60, 144),
                                 Color.WhiteSmoke, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
                             //drawTextBGM
-                            stringPieces = new string[]{ "Background Musics ", "by KokiRemix"};
+                            stringPieces = new string[]{ "Background Musics ", "by KokiRemix from YouTube"};
                             offset = Vector2.Zero;
                             for (int x = 0; x < stringPieces.Length; x++)
                             {
@@ -111,7 +111,7 @@ namespace Rockman.Sprites
                                 offset.X += Singleton.Instance._font.MeasureString(stringPieces[x]).X + 150;
                             }
                             //drawTextSFX
-                            stringPieces = new string[]{ "Sound Effects ", "by Rockamn EXE from Capcom" };
+                            stringPieces = new string[]{ "Sound Effects ", "by Rockman EXE from Capcom" };
                             offset = Vector2.Zero;
                             for (int x = 0; x < stringPieces.Length; x++)
                             {
@@ -119,7 +119,7 @@ namespace Rockman.Sprites
                                 offset.X += Singleton.Instance._font.MeasureString(stringPieces[x]).X + 150;
                             }
                             //drawTextSprite
-                            stringPieces = new string[] { "Sprites ", "by Rockamn EXE from Capcom" };
+                            stringPieces = new string[] { "Sprites ", "by Rockman EXE from Capcom" };
                             offset = Vector2.Zero;
                             for (int x = 0; x < stringPieces.Length; x++)
                             {

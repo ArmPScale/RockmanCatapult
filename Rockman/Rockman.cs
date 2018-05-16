@@ -69,11 +69,11 @@ namespace Rockman
             Singleton.Instance.nextChipInPack = new Queue<string>();
             Singleton.Instance.folderList = new List<string>()
             {
-                "Cannon","Cannon","Cannon","Cannon","HiCannon","AirShot",
-                "AirShot","AirShot","SpreadGun1","SpreadGun1","SpreadGun2","MiniBomb",
-                "MiniBomb","MiniBomb","MiniBomb","EnergyBomb","EnergyBomb","BugBomb",
-                "HolyPanel","Barrier","Barrier","Recovery10","Recovery10","Recovery10",
-                "Recovery30","CrackOut","CrackOut","CrackOut","DoubleCrack","DoubleCrack",
+                "BlackEndGalaxy","BlackEndGalaxy","BlackEndGalaxy","Cannon","HiCannon","AirShot",
+                //"AirShot","AirShot","SpreadGun1","SpreadGun1","SpreadGun2","MiniBomb",
+                //"MiniBomb","MiniBomb","MiniBomb","EnergyBomb","EnergyBomb","BugBomb",
+                //"HolyPanel","Barrier","Barrier","Recovery10","Recovery10","Recovery10",
+                //"Recovery30","CrackOut","CrackOut","CrackOut","DoubleCrack","DoubleCrack",
             };
             Singleton.Instance.nextChipFolder = new Queue<string>();
             Singleton.Instance.panelBoundary = new int[3, 10]
@@ -154,7 +154,7 @@ namespace Rockman
             for (int i = 0; i < data.Length; ++i) data[i] = Color.White;
             fadeScreenTexture[1].SetData(data);
 
-            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.TitleScreen;
+            Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
             Reset();
         }
 
@@ -492,6 +492,8 @@ namespace Rockman
             chipTexture[11] = Content.Load<Texture2D>("chipAtk/MagicCircle");
             chipTexture[12] = Content.Load<Texture2D>("chipAtk/MagicFreeze");
             chipTexture[13] = Content.Load<Texture2D>("chipAtk/RiverBNK48");
+            chipTexture[14] = Content.Load<Texture2D>("chipAtk/BlackHoleMatter");
+            chipTexture[15] = Content.Load<Texture2D>("chipAtk/BlackHole");
 
             // --> screenSpritesList
             _screenSprites = new List<Sprite>();
@@ -790,7 +792,8 @@ namespace Rockman
                 { "Panel", new Animation(playersTexture[0], new Rectangle(0, 120, 80*4, 60), 4) },
                 { "BombPrepare", new Animation(playersTexture[0], new Rectangle(0, 240, 80, 60), 1) },
                 { "Bomb", new Animation(playersTexture[0], new Rectangle(0, 240, 80*7, 60), 7) },
-                { "Sword", new Animation(playersTexture[2], new Rectangle(0, 180, 80*4, 80), 4) },
+                { "Sword", new Animation(playersTexture[0], new Rectangle(0, 180, 80*4, 60), 4) },
+                { "SwordLast", new Animation(playersTexture[0], new Rectangle(240, 180, 80, 60), 1) },
                 { "Dead", new Animation(playersTexture[0], new Rectangle(80, 0, 80, 60), 1) },
                 { "Uninstall", new Animation(Singleton.Instance.effectsTexture[3], new Rectangle(0, 0, 75*4, 68), 4) },
                 { "Blank", new Animation(playersTexture[0], new Rectangle(160, 0, 80, 60), 1) },
@@ -828,6 +831,7 @@ namespace Rockman
                 { "BombPrepare", new Animation(playersTexture[2], new Rectangle(0, 160, 80, 80), 1) },
                 { "Bomb", new Animation(playersTexture[2], new Rectangle(0, 160, 80*4, 80), 4) },
                 { "Sword", new Animation(playersTexture[2], new Rectangle(0, 240, 80*7, 80), 7) },
+                { "SwordLast", new Animation(playersTexture[2], new Rectangle(480, 240, 80, 80), 1) },
                 { "Dead", new Animation(playersTexture[2], new Rectangle(0, 0, 80*4, 80), 4) },
                 { "Uninstall", new Animation(Singleton.Instance.effectsTexture[3], new Rectangle(0, 0, 75*4, 68), 4) },
                 { "Blank", new Animation(playersTexture[2], new Rectangle(320, 0, 80, 80), 1) },
@@ -963,6 +967,27 @@ namespace Rockman
             {
                 Name = "RecoverySprite",
                 Viewport = new Rectangle(6, 0, 40, 72),
+            });
+            //blackEndGalaxySprite
+            _sprites.Add(new BEGalaxySprite(new Dictionary<string, Animation>()
+            {
+                { "Matter", new Animation(chipTexture[14], new Rectangle(0, 0, 64*4 , 64), 4) },
+                { "BlackHole", new Animation(chipTexture[15], new Rectangle(0, 0, 126 , 123), 1) },
+            })
+            {
+                Name = "BlackEndGalaxySprite",
+                Viewport = new Rectangle(0, 0, 64, 64),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"Matter", Content.Load<SoundEffect>("sfx/BEGalaxy/BEGalaxy1").CreateInstance() },
+                    {"BlackHole", Content.Load<SoundEffect>("sfx/BEGalaxy/BEGalaxy2").CreateInstance() },
+                    {"BlackAceSword", Content.Load<SoundEffect>("sfx/BEGalaxy/BEGalaxy3").CreateInstance() },
+                    {"Shining", Content.Load<SoundEffect>("sfx/BEGalaxy/BEGalaxy4").CreateInstance() },
+                    {"Dimension", Content.Load<SoundEffect>("sfx/BEGalaxy/BEGalaxy5").CreateInstance() },
+                    {"Explode", Content.Load<SoundEffect>("sfx/BEGalaxy/BEGalaxy6").CreateInstance() },
+                    {"BlackEnd!", Content.Load<SoundEffect>("sfx/BEGalaxy/BlackEnd!").CreateInstance() },
+                    {"Galaxy!", Content.Load<SoundEffect>("sfx/BEGalaxy/Galaxy!").CreateInstance() },
+                },
             });
             //impactHalfExplodeSprite
             _sprites.Add(new ImpactHalfExplodeEffect(new Dictionary<string, Animation>()
@@ -1254,16 +1279,16 @@ namespace Rockman
                     {"MagicFreeze", Content.Load<SoundEffect>("sfx/MagicFreeze").CreateInstance() },
                 }
             });
-            ////chipBlackEndGalaxy
-            //_sprites.Add(new BlackEndGalaxy(chipTexture)
-            //{
-            //    Name = "BlackEndGalaxy",
-            //    Viewport = new Rectangle(56, 240, 56, 47),
-            //    SoundEffects = new Dictionary<string, SoundEffectInstance>()
-            //    {
-            //        {"BlackEndGalaxy", Content.Load<SoundEffect>("sfx/CrackOut").CreateInstance() },
-            //    }
-            //});
+            //chipBlackEndGalaxy
+            _sprites.Add(new BEGalaxy(chipTexture)
+            {
+                Name = "BlackEndGalaxy",
+                Viewport = new Rectangle(56, 384, 56, 47),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"BlackEndGalaxy", Content.Load<SoundEffect>("sfx/CrackOut").CreateInstance() },
+                }
+            });
             //chipBlackAce
             _sprites.Add(new BlackAceChip(chipTexture)
             {

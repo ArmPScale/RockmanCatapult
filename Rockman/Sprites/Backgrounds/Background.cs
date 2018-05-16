@@ -57,6 +57,7 @@ namespace Rockman.Sprites.Screens
             {"DarkRecovery",  new Rectangle(168, 336, 56, 47) },
             {"DarkStage",  new Rectangle(280, 336, 56, 47) },
             {"FinalGun",  new Rectangle(0, 384, 56, 47) },
+            {"BlackEndGalaxy",  new Rectangle(57, 385, 56, 47) },
         };
         public Dictionary<string, Rectangle> rectChipRiverImg = new Dictionary<string, Rectangle>()
         {
@@ -93,8 +94,9 @@ namespace Rockman.Sprites.Screens
             {"Barrier100",  new Rectangle(41+(19*1), 200, 14, 14) },
             {"Barrier200",  new Rectangle(41+(19*2), 200, 14, 14) },
             {"DreamAura",  new Rectangle(41+(19*4), 200, 14, 14) },
-            {"CherprangRiver",  new Rectangle(193, 254, 14, 14) },
             {"JaneRiver",  new Rectangle(193, 254, 14, 14) },
+            {"CherprangRiver",  new Rectangle(193, 254, 14, 14) },
+            {"BlackEndGalaxy",  new Rectangle(155, 254, 14, 14) },
             {"BlackAce",  new Rectangle(136, 254, 14, 14) },
         };
         public Dictionary<string, Rectangle> rectChipIconEXE4Img = new Dictionary<string, Rectangle>()
@@ -159,6 +161,7 @@ namespace Rockman.Sprites.Screens
             {"FinalGun",  "Giga" },
             {"JaneRiver",  "Giga" },
             {"CherprangRiver",  "Giga" },
+            {"BlackEndGalaxy",  "Giga" },
             {"BlackAce", "Black" }
         };
         public Dictionary<string, string> allChipTypeDict = new Dictionary<string, string>()
@@ -206,7 +209,8 @@ namespace Rockman.Sprites.Screens
             {"FinalGun",  "Normal" },
             {"JaneRiver",  "Aqua" },
             {"CherprangRiver",  "Aqua" },
-            {"BlackAce", "Normal" }
+            {"BlackEndGalaxy", "Normal" },
+            {"BlackAce", "Normal" },
         };
         public Dictionary<string, int> allChipAtkDict = new Dictionary<string, int>()
         {
@@ -230,8 +234,9 @@ namespace Rockman.Sprites.Screens
             {"DarkSpread",  400 },
             {"DarkBomb",  200 },
             {"FinalGun",  50 },
-            {"CherprangRiver",  400 },
             {"JaneRiver",  400 },
+            {"CherprangRiver",  400 },
+            {"BlackEndGalaxy",  500 },
         };
         public Dictionary<string, string> chipInformationDict = new Dictionary<string, string>()
         {
@@ -278,6 +283,7 @@ namespace Rockman.Sprites.Screens
             {"FinalGun",  "Charges up\n\n then uses chip\n\n Shoots 12 times" },
             {"JaneRiver",  "Jane Charges up\n\n freeze far \n\n 3x3 panels" },
             {"CherprangRiver",  "Cherprang Charges up\n\n freeze far \n\n 3x3 panels" },
+            {"BlackEndGalaxy",  "Attack all \n\nenemies with \n\nBlackAce Sword" },
             {"BlackAce",  "Change to \n\nBlackAce" },
         };
         public Background() : base()

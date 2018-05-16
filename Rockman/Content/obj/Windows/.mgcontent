@@ -114,5 +114,14 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanEXESprite.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipIconEXE4.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/LogoTitleWithShadow.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BEGalaxy/BEGalaxy1.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BEGalaxy/BEGalaxy2.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BEGalaxy/BEGalaxy3.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BEGalaxy/BEGalaxy4.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BEGalaxy/BEGalaxy5.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BEGalaxy/BEGalaxy6.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BEGalaxy/BlackEnd!.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BEGalaxy/Galaxy!.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/VsCrimsonDragon.mp3</File>
   </SourceFiles>
 </SourceFileCollection>
