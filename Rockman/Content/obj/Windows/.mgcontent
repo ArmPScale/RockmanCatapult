@@ -34,7 +34,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Damaged.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Pointing.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/CrackOut.wav</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipIconEXE4.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/screen/EmotionEXE5.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/Recovery.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/AirShot.png</File>
@@ -57,7 +56,6 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/EnemyDeleted(short).mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/titleScreen1.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/titleScreen2.png</File>
-    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/logoTitle.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/PressStart.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/TitleScreenRemix.mp3</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/BlackAce.png</File>
@@ -114,5 +112,7 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/edit/ChipFrameEXE5.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/background/edit/ChipScreen.png</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/rockman/RockmanEXESprite.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/chipIconEXE4.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/background/LogoTitleWithShadow.png</File>
   </SourceFiles>
 </SourceFileCollection>

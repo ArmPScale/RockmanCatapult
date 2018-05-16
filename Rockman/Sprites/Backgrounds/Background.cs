@@ -111,7 +111,7 @@ namespace Rockman.Sprites.Screens
             {"DarkBomb",  new Rectangle(176, 113, 14, 14) },
             {"DarkRecovery",  new Rectangle(224, 113, 14, 14) },
             {"DarkStage",  new Rectangle(240, 113, 14, 14) },
-            {"FinalGun",  new Rectangle(240, 113, 14, 14) },
+            {"FinalGun",  new Rectangle(432, 113, 14, 14) },
 
         };
         public Dictionary<string, string> chipClassDict = new Dictionary<string, string>()

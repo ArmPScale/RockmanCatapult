@@ -60,8 +60,7 @@ namespace Rockman.Sprites.Chips
             {"DarkBomb",  new Rectangle(176, 113, 14, 14) },
             {"DarkRecovery",  new Rectangle(224, 113, 14, 14) },
             {"DarkStage",  new Rectangle(240, 113, 14, 14) },
-            {"FinalGun",  new Rectangle(240, 113, 14, 14) },
-
+            {"FinalGun",  new Rectangle(432, 113, 14, 14) },
         };
         Dictionary<string, int> allChipIconAtk = new Dictionary<string, int>()
         {
@@ -84,6 +83,7 @@ namespace Rockman.Sprites.Chips
             {"DarkCannon",  Singleton.Instance.maxHeroHP - Singleton.Instance.HeroHP},
             {"DarkSpread",  400 },
             {"DarkBomb",  200 },
+            {"FinalGun",  50 },
             {"CherprangRiver",  400 },
             {"JaneRiver",  400 },
         };

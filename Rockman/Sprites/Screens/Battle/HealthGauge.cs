@@ -33,6 +33,7 @@ namespace Rockman.Sprites.Screens
                 case Singleton.ScreenState.StoryMode:
                     HP = Singleton.Instance.HeroHP;
                     Noise = Singleton.Instance.NoisePercent;
+                    if (HP <= 0) HP = 0;
                     switch (Singleton.Instance.CurrentGameState)
                     {
                         case Singleton.GameState.GameCustomScreen:
@@ -42,7 +43,6 @@ namespace Rockman.Sprites.Screens
                         case Singleton.GameState.GamePlaying:
                             Position = new Vector2(0, 10);
                             NoisePosition = new Vector2(0, 70);
-                            if (HP <= 0) HP = 0;
                             break;
                     }
                     break;

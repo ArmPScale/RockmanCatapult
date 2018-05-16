@@ -225,18 +225,6 @@
 /processorParam:Quality=Best
 /build:sfx/CrackOut.wav
 
-#begin chipAtk/chipIconEXE4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:chipAtk/chipIconEXE4.png
-
 #begin screen/EmotionEXE5.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -440,18 +428,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:background/titleScreen2.png
-
-#begin background/logoTitle.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:background/logoTitle.png
 
 #begin sfx/PressStart.wav
 /importer:WavImporter
@@ -1004,4 +980,28 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:rockman/RockmanEXESprite.png
+
+#begin chipAtk/chipIconEXE4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:chipAtk/chipIconEXE4.png
+
+#begin background/LogoTitleWithShadow.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background/LogoTitleWithShadow.png
 

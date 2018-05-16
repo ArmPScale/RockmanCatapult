@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Rockman.Models;
 using System;
 using System.Collections.Generic;
 
@@ -8,79 +9,52 @@ namespace Rockman.Sprites
     class MettonWaveSprite : Enemy
     {
         Point currentTile;
-        float delay = 100f, drawWaveTime;
-        int waveFrames = 0, Attack = 10;
-        bool isDamaged = true;
+        private float _mettonWaveCoolDown = 0f;
+        private bool _isDamaged = true;
 
-        Rectangle destRectWave, sourceRectWave;
-
-        public MettonWaveSprite(Texture2D[] texture)
-            : base(texture)
+        public MettonWaveSprite(Dictionary<string, Animation> animations)
+           : base(animations)
         {
+            _animations = animations;
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             switch (Singleton.Instance.CurrentGameState)
             {
-                case Singleton.GameState.GameCustomScreen:
-                    sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
+                case Singleton.GameState.GameEnemyAppear:
+                    _mettonWaveCoolDown = 0;
                     break;
                 case Singleton.GameState.GamePlaying:
                     if (Singleton.Instance.virusAttack[currentTile.X, currentTile.Y] == 2)
                     {
-                        drawWaveTime += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                        _mettonWaveCoolDown += (float)gameTime.ElapsedGameTime.TotalSeconds;
                         //atkTakePlayer
-                        if (Singleton.Instance.playerMove[currentTile.X, currentTile.Y] > 0 && isDamaged)
+                        if (Singleton.Instance.playerMove[currentTile.X, currentTile.Y] > 0 && _isDamaged)
                         {
-                            Singleton.Instance.enemyAtk = Attack;
-                            Singleton.Instance.isDamaged = isDamaged;
-                            isDamaged = false;
+                            Singleton.Instance.enemyAtk = 10;
+                            Singleton.Instance.isDamaged = _isDamaged;
+                            _isDamaged = false;
                         }
-                        if (drawWaveTime >= delay)
+                        if (_mettonWaveCoolDown < 0.1f)
                         {
-                            if (waveFrames >= 4)
+                            SoundEffects["MettonWave"].Volume = Singleton.Instance.MasterSFXVolume;
+                            SoundEffects["MettonWave"].Play();
+                        }
+                        else if (_mettonWaveCoolDown > 0.45f)
+                        {
+                            if (currentTile.Y > 0 && Singleton.Instance.panelStage[currentTile.X, currentTile.Y - 1] <= 1)
                             {
-                                waveFrames = -1;
-                                if (currentTile.Y > 0 && Singleton.Instance.panelStage[currentTile.X, currentTile.Y - 1] <= 1)
-                                {
-                                    Singleton.Instance.virusAttack[currentTile.X, currentTile.Y - 1] = Singleton.Instance.virusAttack[currentTile.X, currentTile.Y];
-                                }
-                                //crackedWave
-                                //if (Singleton.Instance.panelStage[currentTile.X, currentTile.Y] == 1 && Singleton.Instance.spriteMove[currentTile.X, currentTile.Y] != 1)
-                                //{
-                                //    Singleton.Instance.panelStage[currentTile.X, currentTile.Y] = 2;
-                                //}
-                                //else if (Singleton.Instance.panelStage[currentTile.X, currentTile.Y] == 0)
-                                //{
-                                //    Singleton.Instance.panelStage[currentTile.X, currentTile.Y] = 1;
-                                //}
-
-                                Singleton.Instance.virusAttack[currentTile.X, currentTile.Y] = 0;
-                                isDamaged = true;
+                                Singleton.Instance.panelYellow[currentTile.X, currentTile.Y - 1] = Singleton.Instance.virusAttack[currentTile.X, currentTile.Y];
+                                Singleton.Instance.virusAttack[currentTile.X, currentTile.Y - 1] = Singleton.Instance.virusAttack[currentTile.X, currentTile.Y];
                             }
-                            else
-                            {
-                                if (waveFrames == 0)
-                                {
-                                    SoundEffects["MettonWave"].Volume = Singleton.Instance.MasterSFXVolume;
-                                    SoundEffects["MettonWave"].Play();
-                                }
-                                waveFrames++;
-                            }
-                            sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
-                            drawWaveTime = 0;
+                            Singleton.Instance.panelYellow[currentTile.X, currentTile.Y] = 0;
+                            Singleton.Instance.virusAttack[currentTile.X, currentTile.Y] = 0;
+                            _isDamaged = true;
+                            _mettonWaveCoolDown = 0;
                         }
                     }
-                    break;
-                case Singleton.GameState.GameWaitingChip:
-                    sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
-                    break;
-                case Singleton.GameState.GameUseChip:
-                    sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
-                    break;
-                case Singleton.GameState.GameClear:
-                    sourceRectWave = new Rectangle((50 * waveFrames), 61, 50, 60);
+                    _animationManager.Update(gameTime);
                     break;
             }
             base.Update(gameTime, sprites);
@@ -88,17 +62,27 @@ namespace Rockman.Sprites
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //rectAtk
-            destRectWave = new Rectangle((TILESIZEX * currentTile.Y * 2) + (screenStageX - 12), (TILESIZEY * currentTile.X * 2) + (screenStageY - 125), 50 * (int)scale, 60 * (int)scale);
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    //drawAtk
                     if (Singleton.Instance.virusAttack[i, j] == 2)
                     {
                         currentTile = new Point(i, j);
-                        spriteBatch.Draw(_texture[0], destRectWave, sourceRectWave, Color.White);
+                        if (_animationManager == null)
+                        {
+                            spriteBatch.Draw(_texture[0],
+                                            Position,
+                                            Viewport,
+                                            Color.White);
+                        }
+                        else
+                        {
+                            _animationManager.Draw(spriteBatch,
+                                new Vector2((TILESIZEX * j * 2) + (screenStageX - 10),
+                                    (TILESIZEY * i * 2) + (screenStageY - 120)),
+                                scale);
+                        }
                     }
                 }
             }

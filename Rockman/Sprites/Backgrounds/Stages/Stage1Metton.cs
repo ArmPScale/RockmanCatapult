@@ -29,17 +29,21 @@ namespace Rockman.Sprites.Screens
 
                         //mediaPlay --> Battle1
                         Singleton.Instance.mediaPlaySong = "Battle1";
-                        //useBlackAce
-                        Singleton.Instance.chipCustomSelect[6] = "BlackAce";
+                        //clearBlackAce
+                        Singleton.Instance.chipCustomSelect[6] = "";
                         //resetChip
                         Singleton.Instance.chipSelect = new int[7]
                         {
                             1,0,0,0,0,0,0
                         };
                         //shuffleBattleChipInFolder
+                        if (!isBackUp)
+                        {
+                            backUpFolderList = new List<string>(Singleton.Instance.folderList);
+                            isBackUp = true;
+                        }
                         Singleton.Instance.folderList.Shuffle();
                         Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
-
                         Singleton.Instance.panelBoundary = new int[3, 10]
                         {
                             { 0,0,0,0,0,1,1,1,1,1},
@@ -169,14 +173,12 @@ namespace Rockman.Sprites.Screens
         public override void Reset()
         {
             Singleton.Instance.nextChipFolder.Clear();
+            Singleton.Instance.folderList = backUpFolderList;
+            isBackUp = false;
             Singleton.Instance.chipStackImg = new string[7]
             {
                         "","","","","","",""
             };
-            //Singleton.Instance.chipCustomSelect = new string[7]
-            //{
-            //    "","","","","","NoChip","BlackAce"
-            //};
             Singleton.Instance.chipEffect = new int[3, 10]
             {
                         { 0,0,0,0,0,0,0,0,0,0},

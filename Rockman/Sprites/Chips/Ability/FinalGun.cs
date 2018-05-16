@@ -13,7 +13,7 @@ namespace Rockman.Sprites.Chips
     class FinalGun : Chip
     {
         private float _chargeBusterCoolDown = 0f, _busterShotDown = 0f;
-        private bool isDamaged = true, isScan = false;
+        private bool isScan = false;
         private List<Vector2> posEnemies = new List<Vector2>();
         public int times, indexList = 0;
         Dictionary<string, Rectangle> rectChipFinalGunImg = new Dictionary<string, Rectangle>()

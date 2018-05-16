@@ -53,6 +53,13 @@ namespace Rockman.Sprites
                         alpha -= 10;
                         fade = new Color(0, 0, 0, alpha);
                     }
+                    //enterButtonToMenuScreen
+                    if (!isPressStart && Singleton.Instance.CurrentKey.IsKeyDown(Keys.Enter) && Singleton.Instance.PreviousKey.IsKeyUp(Keys.Enter))
+                    {
+                        SoundEffects["PressStart"].Volume = Singleton.Instance.MasterSFXVolume;
+                        SoundEffects["PressStart"].Play();
+                        isPressStart = true;
+                    }
                     //textButton
                     if ((Singleton.Instance.CurrentMouse.X >= 400 && Singleton.Instance.CurrentMouse.X <= 825) &&
                         (Singleton.Instance.CurrentMouse.Y >= 600 && Singleton.Instance.CurrentMouse.Y <= 635))
@@ -61,7 +68,7 @@ namespace Rockman.Sprites
                         if (!isPressStart && Singleton.Instance.PreviousMouse.LeftButton == ButtonState.Released &&
                        Singleton.Instance.CurrentMouse.LeftButton == ButtonState.Pressed)
                         {
-                            SoundEffects["PressStart"].Volume = 0.5f;
+                            SoundEffects["PressStart"].Volume = Singleton.Instance.MasterSFXVolume;
                             SoundEffects["PressStart"].Play();
                             isPressStart = true;
                         }
@@ -97,8 +104,8 @@ namespace Rockman.Sprites
                     //drawbgFront
                     spriteBatch.Draw(_texture[1], bgScroll2, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                     //drawLogo
-                    spriteBatch.Draw(_texture[2], new Vector2(Singleton.WIDTH / 4, Singleton.HEIGHT / 10),
-                        null, Color.White, 0f, Vector2.Zero, scale - 0.3f, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(_texture[2], new Vector2((Singleton.WIDTH / 4) - 75, Singleton.HEIGHT / 10),
+                        null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                     //drawTextButton
                     spriteBatch.DrawString(Singleton.Instance._font, "Press Button Here", new Vector2(400, 600),
                         textButtonColor, 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);

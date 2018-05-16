@@ -51,7 +51,6 @@ namespace Rockman
         public Texture2D[] effectsTexture;
         public Dictionary<string, Song> song;
         public string mediaPlaySong = "", stagesName = "";
-        //public List<SoundEffect> soundEffects;
         public float MasterBGMVolume;
         public float MasterSFXVolume;
 

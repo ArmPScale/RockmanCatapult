@@ -194,7 +194,7 @@ namespace Rockman.Sprites
                     spriteBatch.Draw(_texture[0], new Vector2(0, 0), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                     //drawLogo
                     spriteBatch.Draw(_texture[2], new Vector2(Singleton.WIDTH / 2 - 80, Singleton.HEIGHT / 10 - 80),
-                        null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                        null, Color.White, 0f, Vector2.Zero, 0.3f, SpriteEffects.None, 0f);
                     switch (Singleton.Instance.CurrentMenuState)
                     {
                         case Singleton.MenuState.MainMenu:

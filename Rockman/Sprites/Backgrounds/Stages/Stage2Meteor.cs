@@ -37,9 +37,13 @@ namespace Rockman.Sprites.Screens
                             1,0,0,0,0,0,0
                         };
                         //shuffleBattleChipInFolder
+                        if (!isBackUp)
+                        {
+                            backUpFolderList = new List<string>(Singleton.Instance.folderList);
+                            isBackUp = true;
+                        }
                         Singleton.Instance.folderList.Shuffle();
                         Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
-
                         Singleton.Instance.panelBoundary = new int[3, 10]
                         {
                             { 0,0,0,0,0,1,1,1,1,1},
@@ -72,9 +76,9 @@ namespace Rockman.Sprites.Screens
                         };
                         Singleton.Instance.spriteHP = new int[3, 10]
                         {
-                            { 0,0,0,0,0,0,0,0,100,0},
+                            { 0,0,0,0,0,0,0,0,150,0},
                             { 0,0,0,0,0,0,0,200,0,0},
-                            { 0,0,0,0,0,0,0,0,100,0 },
+                            { 0,0,0,0,0,0,0,0,250,0 },
                         };
                         Singleton.Instance.chipEffect = new int[3, 10]
                         {
@@ -140,7 +144,7 @@ namespace Rockman.Sprites.Screens
                         {
                             _timer = 0f;
                             Singleton.Instance.stagesName = "";
-                            Singleton.Instance.CurrentMenuState = Singleton.MenuState.Practice;
+                            Singleton.Instance.CurrentMenuState = Singleton.MenuState.StoryMode;
                             Singleton.Instance.CurrentScreenState = Singleton.ScreenState.MenuScreen;
                         }
                         break;
@@ -169,6 +173,7 @@ namespace Rockman.Sprites.Screens
         public override void Reset()
         {
             Singleton.Instance.nextChipFolder.Clear();
+            Singleton.Instance.folderList = backUpFolderList;
             Singleton.Instance.chipStackImg = new string[7]
             {
                         "","","","","","",""

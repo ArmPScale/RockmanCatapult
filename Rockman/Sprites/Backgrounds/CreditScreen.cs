@@ -14,6 +14,9 @@ namespace Rockman.Sprites
     {
         public bool isClicked = false;
         Color backButtonColor = Color.WhiteSmoke;
+        Color[] colors = { Color.WhiteSmoke, Color.DarkOrange };
+        Vector2 offset;
+        string[] stringPieces;
         public int[] positionNumber = new int[6]
         {
             700,750,800,850,900,950
@@ -100,12 +103,30 @@ namespace Rockman.Sprites
                             spriteBatch.DrawString(Singleton.Instance._font, "Credits", new Vector2(60, 144),
                                 Color.WhiteSmoke, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
                             //drawTextBGM
-                            spriteBatch.DrawString(Singleton.Instance._font, "Background Music by KokiRemix", new Vector2(200, 300),
-                                Color.WhiteSmoke, 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
+                            stringPieces = new string[]{ "Background Musics ", "by KokiRemix"};
+                            offset = Vector2.Zero;
+                            for (int x = 0; x < stringPieces.Length; x++)
+                            {
+                                spriteBatch.DrawString(Singleton.Instance._font, stringPieces[x], new Vector2(200, 300) + offset, colors[x], 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
+                                offset.X += Singleton.Instance._font.MeasureString(stringPieces[x]).X + 150;
+                            }
                             //drawTextSFX
-                            spriteBatch.DrawString(Singleton.Instance._font, "Sound Effect            by Rockman EXE", new Vector2(200, 400),
-                                Color.WhiteSmoke, 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
-                            
+                            stringPieces = new string[]{ "Sound Effects ", "by Rockamn EXE from Capcom" };
+                            offset = Vector2.Zero;
+                            for (int x = 0; x < stringPieces.Length; x++)
+                            {
+                                spriteBatch.DrawString(Singleton.Instance._font, stringPieces[x], new Vector2(200, 400) + offset, colors[x], 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
+                                offset.X += Singleton.Instance._font.MeasureString(stringPieces[x]).X + 150;
+                            }
+                            //drawTextSprite
+                            stringPieces = new string[] { "Sprites ", "by Rockamn EXE from Capcom" };
+                            offset = Vector2.Zero;
+                            for (int x = 0; x < stringPieces.Length; x++)
+                            {
+                                spriteBatch.DrawString(Singleton.Instance._font, stringPieces[x], new Vector2(200, 500) + offset, colors[x], 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
+                                offset.X += Singleton.Instance._font.MeasureString(stringPieces[x]).X + 150;
+                            }
+
                             //drawTextBackButton
                             spriteBatch.DrawString(Singleton.Instance._font, "Back", new Vector2(925, 700),
                                 backButtonColor, 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);

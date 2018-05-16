@@ -192,3 +192,5 @@ D:\Projects\RockmanCatapult\Rockman\obj\x86\Debug\Rockman.csproj.GenerateResourc
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\edit\ChipFrameEXE5.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\edit\ChipScreen.xnb
 D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\rockman\RockmanEXESprite.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\logoTitleOld.xnb
+D:\Projects\RockmanCatapult\Rockman\bin\Windows\x86\Debug\Content\background\LogoTitleWithShadow.xnb

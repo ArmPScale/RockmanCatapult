@@ -37,9 +37,13 @@ namespace Rockman.Sprites.Screens
                             1,0,0,0,0,0,0
                         };
                         //shuffleBattleChipInFolder
+                        if (!isBackUp)
+                        {
+                            backUpFolderList = new List<string>(Singleton.Instance.folderList);
+                            isBackUp = true;
+                        }
                         Singleton.Instance.folderList.Shuffle();
                         Singleton.Instance.nextChipFolder = new Queue<string>(Singleton.Instance.folderList);
-
                         Singleton.Instance.panelBoundary = new int[3, 10]
                         {
                             { 0,0,0,0,0,1,1,1,1,1},
@@ -169,6 +173,7 @@ namespace Rockman.Sprites.Screens
         public override void Reset()
         {
             Singleton.Instance.nextChipFolder.Clear();
+            Singleton.Instance.folderList = backUpFolderList;
             Singleton.Instance.chipStackImg = new string[7]
             {
                         "","","","","","",""

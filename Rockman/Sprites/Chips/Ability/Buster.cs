@@ -91,7 +91,8 @@ namespace Rockman.Sprites.Chips
                     }
                     break;
                 case Singleton.GameState.GameUseChip:
-                    if (Singleton.Instance.choosePlayerAnimate == "Buster")
+                    if (Singleton.Instance.choosePlayerAnimate == "Buster" &&
+                        Singleton.Instance.playerMove[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] == 1)
                     {
                         _animationManager.Draw(spriteBatch,
                         new Vector2((TILESIZEX * Singleton.Instance.currentPlayerPoint.Y * 2) + (screenStageX + 95), (TILESIZEY * Singleton.Instance.currentPlayerPoint.X * 2) + (screenStageY - 50)),
