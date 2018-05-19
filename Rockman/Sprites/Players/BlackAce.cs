@@ -35,6 +35,7 @@ namespace Rockman.Sprites
                 switch (Singleton.Instance.CurrentGameState)
                 {
                     case Singleton.GameState.GameEnemyAppear:
+                        _chargeTime = 0f; drawChargeTime = 0f; _barrierTime = 0f; chargeFrames = 0;
                         _animationManager.Play(_animations[Singleton.Instance.choosePlayerAnimate]);
                         break;
                     case Singleton.GameState.GameCustomScreen:

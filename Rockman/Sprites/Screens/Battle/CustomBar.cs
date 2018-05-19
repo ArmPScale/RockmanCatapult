@@ -32,6 +32,10 @@ namespace Rockman.Sprites.Screens
         {
             switch (Singleton.Instance.CurrentGameState)
             {
+                case Singleton.GameState.GameEnemyAppear:
+                    _timer = 0f; rectBar.Width = 0;
+                    Singleton.Instance.isCustomBarFull = false;
+                    break;
                 case Singleton.GameState.GameCustomScreen:
                     _timer = 0f; rectBar.Width = 0;
                     isNotPlayed = true;

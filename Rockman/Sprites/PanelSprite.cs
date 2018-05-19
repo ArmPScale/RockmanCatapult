@@ -76,7 +76,8 @@ namespace Rockman.Sprites
                                     //panelElementAbility
                                     //3.magmaPanel
                                     if (Singleton.Instance.panelElement[i, j] == 3 &&
-                                        (Singleton.Instance.spriteMove[i, j] > 0 || Singleton.Instance.playerMove[i, j] > 0))
+                                        (Singleton.Instance.spriteMove[i, j] > 0 || Singleton.Instance.playerMove[i, j] > 0) &&
+                                        Singleton.Instance.spriteMove[i, j] < 10)
                                     {
                                         if (Singleton.Instance.panelElement[Singleton.Instance.currentPlayerPoint.X, Singleton.Instance.currentPlayerPoint.Y] == 3)
                                         {
@@ -99,7 +100,8 @@ namespace Rockman.Sprites
                                     }
                                     //4.poisonPanel
                                     else if (Singleton.Instance.panelElement[i, j] == 4 &&
-                                        (Singleton.Instance.spriteMove[i, j] > 0 || Singleton.Instance.playerMove[i, j] > 0))
+                                        (Singleton.Instance.spriteMove[i, j] > 0 || Singleton.Instance.playerMove[i, j] > 0) &&
+                                        Singleton.Instance.spriteMove[i, j] < 10)
                                     {
                                         if (_poisonCoolDown > 0.3f)
                                         {

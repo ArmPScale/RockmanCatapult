@@ -45,18 +45,14 @@ namespace Rockman.Sprites.Chips
                         SoundEffects["PanelPower"].Play();
                         if(Singleton.Instance.useChipSlotIn.Peek() == "PanelReturn")
                         {
-                            Singleton.Instance.panelStage = new int[3, 10]
+                            for (int i = 0; i < 3; i++)
                             {
-                                { 0,0,0,0,0,0,0,0,0,0},
-                                { 0,0,0,0,0,0,0,0,0,0},
-                                { 0,0,0,0,0,0,0,0,0,0},
-                            };
-                            Singleton.Instance.panelElement = new int[3, 10]
-                            {
-                                { 0,0,0,0,0,0,0,0,0,0},
-                                { 0,0,0,0,0,0,0,0,0,0},
-                                { 0,0,0,0,0,0,0,0,0,0},
-                            };
+                                for (int j = 0; j < 5; j++)
+                                {
+                                    Singleton.Instance.panelStage[i, j] = 0;
+                                    Singleton.Instance.panelElement[i, j] = 0;
+                                }
+                            }
                         }
                         else if(Singleton.Instance.useChipSlotIn.Peek() == "HolyPanel")
                         {

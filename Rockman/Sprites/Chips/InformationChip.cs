@@ -42,7 +42,7 @@ namespace Rockman.Sprites.Chips
             {"Barrier",  "Nullifies 10 HP \n\nof damage" },
             {"Barrier100",  "Nullifies 100 HP \n\nof damage" },
             {"Barrier200",  "Nullifies 200 HP \n\nof damage" },
-            {"PanelReturn",  "Fix all panels" },
+            {"PanelReturn",  "Fix your \n\nall panels" },
             {"HolyPanel",  "Creates a HolyPanel\n\n in own panel" },
             {"CrackOut",  "Destroys 1 panel\n\n in front" },
             {"DoubleCrack",  "Destroys 2 panel\n\n in front" },

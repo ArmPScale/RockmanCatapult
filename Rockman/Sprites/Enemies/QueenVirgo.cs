@@ -219,7 +219,7 @@ namespace Rockman.Sprites
                     {
                         for (int j = 0; j < 10; j++)
                         {
-                            //drawWizard
+                            //drawQueenVirgo
                             if (Singleton.Instance.spriteMove[i, j] == 5)
                             {
                                 currentTile = new Point(i, j);

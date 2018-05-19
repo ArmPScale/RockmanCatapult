@@ -51,7 +51,9 @@ namespace Rockman.Sprites.Chips
                                 Singleton.Instance.chipEffect[Singleton.Instance.currentPlayerPoint.X, k] = 2;
                                 if (k + 1 < 10)
                                 {
-                                    if (Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k + 1] == 0)
+                                    //checkNoCrimsonDragon
+                                    if (Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k + 1] == 0 && 
+                                        Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k] < 10)
                                     {
                                         Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k + 1] = Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k];
                                         Singleton.Instance.spriteMove[Singleton.Instance.currentPlayerPoint.X, k] = 0;

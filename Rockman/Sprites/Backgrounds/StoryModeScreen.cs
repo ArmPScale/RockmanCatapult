@@ -91,7 +91,7 @@ namespace Rockman.Sprites
                         {
                             SoundEffects["PressStart"].Volume = Singleton.Instance.MasterSFXVolume;
                             SoundEffects["PressStart"].Play();
-                            Singleton.Instance.stagesName = "Stage1Metton";
+                            Singleton.Instance.stagesName = "Stage4Crimson";
                             Singleton.Instance.CurrentScreenState = Singleton.ScreenState.StoryMode;
                             Singleton.Instance.CurrentGameState = Singleton.GameState.GameEnemyAppear;
                         }
@@ -133,7 +133,7 @@ namespace Rockman.Sprites
                             //drawStage3
                             spriteBatch.Draw(_texture[3], new Vector2(270 + _texture[2].Width * 2, 265), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                             //drawStage4
-                            spriteBatch.Draw(_texture[4], new Vector2(320 + _texture[3].Width * 3, 265), null, Color.Transparent, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                            spriteBatch.Draw(_texture[4], new Vector2(320 + _texture[3].Width * 3, 265), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
                             //drawFadeBlack
                             spriteBatch.Draw(_texture[0], new Vector2(0, 0), null, fade, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);

@@ -48,7 +48,7 @@ namespace Rockman
             enemiesTexture = new Texture2D[10];
             fadeScreenTexture = new Texture2D[2];
             customScreenTexture = new Texture2D[10];
-            chipTexture = new Texture2D[20];
+            chipTexture = new Texture2D[25];
             Singleton.Instance.effectsTexture = new Texture2D[10];
             Singleton.Instance.chipSlotIn = new Stack<string>();
             Singleton.Instance.indexChipSlotIn = new Stack<int>();
@@ -70,10 +70,10 @@ namespace Rockman
             Singleton.Instance.folderList = new List<string>()
             {
                 "BlackEndGalaxy","BlackEndGalaxy","BlackEndGalaxy","Cannon","HiCannon","AirShot",
-                //"AirShot","AirShot","SpreadGun1","SpreadGun1","SpreadGun2","MiniBomb",
-                //"MiniBomb","MiniBomb","MiniBomb","EnergyBomb","EnergyBomb","BugBomb",
-                //"HolyPanel","Barrier","Barrier","Recovery10","Recovery10","Recovery10",
-                //"Recovery30","CrackOut","CrackOut","CrackOut","DoubleCrack","DoubleCrack",
+                "AirShot","AirShot","SpreadGun1","SpreadGun1","SpreadGun2","MiniBomb",
+                "MiniBomb","MiniBomb","MiniBomb","EnergyBomb","EnergyBomb","BugBomb",
+                "HolyPanel","Barrier","Barrier","Recovery10","Recovery10","Recovery10",
+                "Recovery30","CrackOut","CrackOut","CrackOut","DoubleCrack","DoubleCrack",
             };
             Singleton.Instance.nextChipFolder = new Queue<string>();
             Singleton.Instance.panelBoundary = new int[3, 10]
@@ -350,6 +350,9 @@ namespace Rockman
             else if (Singleton.Instance.mediaPlaySong == "BossBattle1"
                 && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 0, 45, 020))
                 MediaPlayer.Play(Singleton.Instance.song["BossBattle1"], new TimeSpan(0, 0, 0, 13, 053));
+            else if (Singleton.Instance.mediaPlaySong == "VsCrimsonDragon"
+                && MediaPlayer.PlayPosition >= new TimeSpan(0, 0, 1, 30, 162))
+                MediaPlayer.Play(Singleton.Instance.song["VsCrimsonDragon"], new TimeSpan(0, 0, 0, 16, 656));
 
             //optional
             //else if (Singleton.Instance.mediaPlaySong == "TitleScreen" &&
@@ -421,6 +424,7 @@ namespace Rockman
                 {"PracticeBattle", Content.Load<Song>("bgm/BattleStart-EXE5") },
                 {"Battle1", Content.Load<Song>("bgm/Battle1") },
                 {"BossBattle1", Content.Load<Song>("bgm/TournamentBattle-EXE4.5") },
+                {"VsCrimsonDragon", Content.Load<Song>("bgm/VsCrimsonDragon") },
                 {"EnemyDeletedShort", Content.Load<Song>("bgm/EnemyDeleted(short)") },
             };
             //titleScreenTexture
@@ -466,6 +470,8 @@ namespace Rockman
             enemiesTexture[1] = Content.Load<Texture2D>("virus/MettFire");
             enemiesTexture[2] = Content.Load<Texture2D>("virus/Wizard");
             enemiesTexture[3] = Content.Load<Texture2D>("boss/QueenVirgo");
+            enemiesTexture[4] = Content.Load<Texture2D>("boss/CrimsonDragon");
+
             Singleton.Instance.effectsTexture[0] = this.Content.Load<Texture2D>("battleEffect/BusterEffect");
             Singleton.Instance.effectsTexture[1] = this.Content.Load<Texture2D>("battleEffect/chargeBuster");
             Singleton.Instance.effectsTexture[2] = this.Content.Load<Texture2D>("battleEffect/ImpacteffectHalfexplosion");
@@ -494,6 +500,12 @@ namespace Rockman
             chipTexture[13] = Content.Load<Texture2D>("chipAtk/RiverBNK48");
             chipTexture[14] = Content.Load<Texture2D>("chipAtk/BlackHoleMatter");
             chipTexture[15] = Content.Load<Texture2D>("chipAtk/BlackHole");
+            chipTexture[16] = Content.Load<Texture2D>("boss/CrimsonDragonHeadJet");
+            chipTexture[17] = Content.Load<Texture2D>("boss/CrimsonDragonFire");
+            chipTexture[18] = Content.Load<Texture2D>("chipAtk/FireWave");
+            chipTexture[19] = Content.Load<Texture2D>("chipAtk/FireTower");
+            chipTexture[20] = Content.Load<Texture2D>("chipAtk/RocketDust");
+            chipTexture[21] = Content.Load<Texture2D>("chipAtk/SpaceJunk");
 
             // --> screenSpritesList
             _screenSprites = new List<Sprite>();
@@ -594,6 +606,10 @@ namespace Rockman
             _stages.Add(new Stage3Queen(fadeScreenTexture)
             {
                 Name = "Stage3Queen",
+            });
+            _stages.Add(new Stage4Crimson(fadeScreenTexture)
+            {
+                Name = "Stage4Crimson",
             });
             _stages.Add(new Practice1Tutorial(fadeScreenTexture)
             {
@@ -757,13 +773,94 @@ namespace Rockman
                     {"Rainy", Content.Load<SoundEffect>("sfx/Rainy").CreateInstance() },
                 }
             });
+            //crimsonDragonSprite
+            _sprites.Add(new CrimsonDragon(new Dictionary<string, Animation>()
+            {
+                { "Alive", new Animation(enemiesTexture[4], new Rectangle(0, 0, 400*3, 300), 3) },
+                { "HeadAttack", new Animation(enemiesTexture[4], new Rectangle(0, 300, 400*3, 300), 3) },
+                { "WithoutHead", new Animation(enemiesTexture[4], new Rectangle(0, 600, 400*3, 300), 3) },
+                { "ReHead", new Animation(enemiesTexture[4], new Rectangle(0, 900, 400, 300), 1) },
+            })
+            {
+                Name = "CrimsonDragon",
+                Viewport = new Rectangle(0, 0, 400, 300),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"DragonRoar", Content.Load<SoundEffect>("sfx/Crimson/DragonRoar").CreateInstance() },
+                    {"HeadReturn", Content.Load<SoundEffect>("sfx/Crimson/HeadReturn").CreateInstance() },
+                    {"HeadDisappear", Content.Load<SoundEffect>("sfx/Crimson/HeadDisappear").CreateInstance() },
+                    {"Defeated", Content.Load<SoundEffect>("sfx/DefeatedExplode").CreateInstance() },
+                }
+            });
+            //crimsonHeadJetSprite
+            _sprites.Add(new CrimsonHeadJet(new Dictionary<string, Animation>()
+            {
+                { "RedHead", new Animation(chipTexture[16], new Rectangle(0, 0, 150*2, 100), 2) },
+                { "BlackHead", new Animation(chipTexture[16], new Rectangle(0, 100, 150*2, 100), 2) },
+                { "Fire", new Animation(chipTexture[17], new Rectangle(0, 0, 80*5, 150), 5) },
+            })
+            {
+                Name = "CrimsonHeadJet",
+                Position = new Vector2(300, 400),
+                Viewport = new Rectangle(0, 0, 150, 100),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"HeadJet", Content.Load<SoundEffect>("sfx/Crimson/HeadJet").CreateInstance() },
+                    {"HeadJetFall", Content.Load<SoundEffect>("sfx/Crimson/HeadJetFall").CreateInstance() },
+                }
+            });
+            //fireWaveSprite
+            _sprites.Add(new FireWave(new Dictionary<string, Animation>()
+            {
+                { "FireWave", new Animation(chipTexture[18], new Rectangle(0, 0, 50*5, 50), 5) },
+            })
+            {
+                Name = "FireWave",
+                Viewport = new Rectangle(0, 0, 50, 50),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"NoiseCharge", Content.Load<SoundEffect>("sfx/Crimson/NoiseCharge").CreateInstance() },
+                    {"NoiseWave", Content.Load<SoundEffect>("sfx/Crimson/NoiseWave").CreateInstance() },
+                }
+            });
+            //fireTowerSprite
+            _sprites.Add(new FireTower(new Dictionary<string, Animation>()
+            {
+                { "FireTowerFirst", new Animation(chipTexture[19], new Rectangle(0, 0, 40*3, 60), 3) },
+                { "FireTower", new Animation(chipTexture[19], new Rectangle(120, 0, 40*2, 60), 2) },
+
+            })
+            {
+                Name = "FireTower",
+                Viewport = new Rectangle(0, 0, 50, 50),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"NoiseCharge", Content.Load<SoundEffect>("sfx/Crimson/NoiseCharge").CreateInstance() },
+                    {"DragonBreathe", Content.Load<SoundEffect>("sfx/Crimson/DragonBreathe").CreateInstance() },
+                }
+            });
+            //rocketDustSprite
+            _sprites.Add(new RocketDust(new Dictionary<string, Animation>()
+            {
+                { "RocketAppear", new Animation(chipTexture[20], new Rectangle(0, 0, 50, 50), 1) },
+                { "RocketJet", new Animation(chipTexture[20], new Rectangle(50, 0, 50*2, 50), 2) },
+            })
+            {
+                Name = "RocketDust",
+                Viewport = new Rectangle(0, 0, 50, 50),
+                SoundEffects = new Dictionary<string, SoundEffectInstance>()
+                {
+                    {"RocketAppear", Content.Load<SoundEffect>("sfx/Crimson/RocketAppear").CreateInstance() },
+                    {"RocketJet", Content.Load<SoundEffect>("sfx/Crimson/RocketJet").CreateInstance() },
+                }
+            });
             //magicFreezeSprite
             _sprites.Add(new MagicFreeze(new Dictionary<string, Animation>()
             {
                 { "Freezing", new Animation(chipTexture[12], new Rectangle(0, 0, 64 * 5, 64), 5) },
                 { "Frozen", new Animation(chipTexture[12], new Rectangle(0, 64, 64, 64), 1) },
                 { "Break", new Animation(chipTexture[12], new Rectangle(64, 64, 64, 64), 1) },
-            }) 
+            })
             {
                 Name = "MagicFreeze",
                 Viewport = new Rectangle(0, 0, 64, 64),

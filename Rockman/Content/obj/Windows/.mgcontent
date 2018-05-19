@@ -123,5 +123,23 @@
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BEGalaxy/BlackEnd!.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/BEGalaxy/Galaxy!.wav</File>
     <File>D:/Projects/RockmanCatapult/Rockman/Content/bgm/VsCrimsonDragon.mp3</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/boss/CrimsonDragonFire.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/boss/CrimsonDragonHeadJet.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/boss/CrimsonDragon.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Crimson/HeadReturn.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Crimson/HeadDisappear.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Crimson/DragonRoar.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Crimson/HeadJet.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Crimson/HeadJetFall.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Crimson/NoiseCharge.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Crimson/NoiseWave.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/FireWave.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/FireTower.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Crimson/DragonBreathe.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/RocketDust.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/chipAtk/SpaceJunk.png</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Crimson/RocketAppear.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Crimson/RocketJet.wav</File>
+    <File>D:/Projects/RockmanCatapult/Rockman/Content/sfx/Crimson/DragonClaw.wav</File>
   </SourceFiles>
 </SourceFileCollection>

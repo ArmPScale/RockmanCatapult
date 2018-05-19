@@ -61,6 +61,7 @@
     <Compile Include="Sprites\Backgrounds\ShopScreen.cs" />
     <Compile Include="Sprites\Backgrounds\Stages\Practice2Catapult.cs" />
     <Compile Include="Sprites\Backgrounds\Stages\Practice1Tutorial.cs" />
+    <Compile Include="Sprites\Backgrounds\Stages\Stage4Crimson.cs" />
     <Compile Include="Sprites\Backgrounds\Stages\Stage3Queen.cs" />
     <Compile Include="Sprites\Backgrounds\Stages\Stage2Meteor.cs" />
     <Compile Include="Sprites\Backgrounds\Stages\Stage1Metton.cs" />
@@ -96,8 +97,13 @@
     <Compile Include="Sprites\Chips\Effect\ImpactHalfExplodeEffect.cs" />
     <Compile Include="Sprites\Chips\Effect\SpreaderEffect.cs" />
     <Compile Include="Sprites\Chips\Sprite\SpreaderSprite.cs" />
+    <Compile Include="Sprites\Enemies\FireTower.cs" />
+    <Compile Include="Sprites\Enemies\RocketDust.cs" />
+    <Compile Include="Sprites\Enemies\FireWave.cs" />
     <Compile Include="Sprites\Enemies\MagicFreeze.cs" />
     <Compile Include="Sprites\Enemies\MagicCircle.cs" />
+    <Compile Include="Sprites\Enemies\CrimsonDragon.cs" />
+    <Compile Include="Sprites\Enemies\CrimsonHeadJet.cs" />
     <Compile Include="Sprites\Enemies\Rainy.cs" />
     <Compile Include="Sprites\Enemies\Enemy.cs" />
     <Compile Include="Sprites\Enemies\AquaWave.cs" />
